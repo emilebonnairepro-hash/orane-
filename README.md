@@ -27,6 +27,15 @@ Sections (toutes modifiables dans l'éditeur de thème) :
 - `orane-promesses` : livraison, retours… en gros stickers ronds
 - `orane-faq` : questions qui s'ouvrent
 
+Sections v4 (feuille de style `assets/orane-v4.css`) :
+- `orane-univers` : les univers en grandes tuiles (accueil, liste des collections) ou compactes (pages collection)
+- `orane-vedette` : le produit vedette dans l'anneau, actifs en orbite, ajout au panier
+- `orane-actifs` : l'explorateur d'actifs (étiquettes « … (Principes actifs) » ; phrases dans `snippets/orane-actif-why.liquid`)
+- `orane-apropos-intro`, `orane-valeurs`, `orane-chiffres`, `orane-bouille-show`, `orane-jamais` : la page À propos
+  (modèle `page.page`, déjà attribué à la page « À propos d'ORANE »)
+- `orane-contact` : le formulaire de contact Shopify (sujets, n° de commande, bouille qui réagit)
+- `orane-produit-faq` : les questions sur chaque soin, tirées de sa description et de ses étiquettes
+
 Panier en tiroir : `snippets/cart-drawer.liquid` appelle `orane-cart-drawer` (le tiroir de Dawn, mêmes
 identifiants) avec la piste de livraison offerte, le coup de pouce et « va très bien avec »
 (`orane-drawer-bonus`, `orane-drawer-row`). Il s'ouvre à chaque ajout depuis les cartes ORANE.
