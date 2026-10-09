@@ -113,11 +113,11 @@ body {{ position: relative; color: {texte}; font-family: "Bricolage Grotesque", 
 .row.hl + .row {{ border-top: 0; }}
 .row.hl .lab {{ opacity: .85; }}
 .row.hl .val {{ font-family: Unbounded, sans-serif; font-weight: 800; letter-spacing: -.01em; }}
-.foot {{ display: flex; justify-content: space-between; align-items: center; gap: 2mm; border-top: {.45 * u:.2f}mm solid currentColor; padding-top: calc({1 * u:.2f}mm * var(--f)); margin-top: calc({1.2 * u:.2f}mm * var(--f)); }}
-.foot b {{ font-family: Unbounded, sans-serif; font-weight: 900; font-size: calc({max(5.5, 8 * u):.2f}pt * min(var(--f), 1.4)); white-space: nowrap; }}
+.foot {{ display: flex; justify-content: space-between; align-items: center; gap: 2mm; border-top: {.45 * u:.2f}mm solid currentColor; padding-top: {1.2 * u:.2f}mm; margin-top: {1.4 * u:.2f}mm; }}
+.foot b {{ font-family: Unbounded, sans-serif; font-weight: 900; font-size: {max(5.5, 9 * u):.2f}pt; white-space: nowrap; }}
 .minis {{ display: flex; flex-wrap: wrap; gap: 1mm; }}
-.mini {{ border: {.35 * u:.2f}mm solid currentColor; border-radius: 99mm; padding: .3mm 1.6mm; font-weight: 800; font-size: calc({max(5.0, 5.2 * u):.2f}pt * min(var(--f), 1.3)); }}
-.slog {{ white-space: nowrap; font-family: Unbounded, sans-serif; font-weight: 700; font-size: calc({max(4.6, 4.6 * u):.2f}pt * min(var(--f), 1.3)); letter-spacing: .1em; text-transform: uppercase; }}
+.mini {{ border: {.35 * u:.2f}mm solid currentColor; border-radius: 99mm; padding: .3mm 1.6mm; font-weight: 800; font-size: {max(5.0, 5.4 * u):.2f}pt; white-space: nowrap; }}
+.slog {{ white-space: nowrap; font-family: Unbounded, sans-serif; font-weight: 700; font-size: {max(4.6, 4.8 * u):.2f}pt; letter-spacing: .1em; text-transform: uppercase; }}
 
 /* ----- côté ----- */
 .side {{ position: absolute; display: flex; flex-direction: column; justify-content: space-between; }}
@@ -164,7 +164,7 @@ async function run() {{
   await document.fonts.ready;
   const front = document.querySelector('.front'), fiche = document.querySelector('.fiche');
   const foot = document.querySelector('.foot');
-  const over = () => front.scrollHeight > front.clientHeight + .5 || fiche.scrollHeight > fiche.clientHeight + .5 || foot.scrollWidth > foot.clientWidth + .5;
+  const over = () => front.scrollHeight > front.clientHeight + .5 || fiche.scrollHeight > fiche.clientHeight + .5;
   // 1. le nom remplit la largeur, sans prendre plus de 36 % de la hauteur
   let k = 1;
   for (let i = 0; i < 16; i++) {{
