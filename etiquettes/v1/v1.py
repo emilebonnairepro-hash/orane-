@@ -74,6 +74,9 @@ def page(spec, guides=False):
     {'<p class="volume">' + e(p['volume']) + '</p>' if p.get('volume') else ''}
   </div>"""
 
+    side2 = None
+    if G["strip"] and G["strip"][2] - G["strip"][0] >= 20:
+        side2, G["strip"] = G["strip"], None
     side = ""
     if G["side"]:
         sx0, sy0, sx1, sy1 = G["side"]
@@ -83,7 +86,16 @@ def page(spec, guides=False):
             past = (f'<p class="pastille"><span>{e(p["pastille"]["grand"])}<small>{e(p["pastille"].get("petit", ""))}</small></span></p>'
                     if p.get("pastille") else "")
             bas = f'<div class="bas">{past}{"".join(logo(l) for l in p.get("logos", []))}</div>'
-        side = f'<div class="side" style="left:{sx0}mm;top:{sy0}mm;width:{sx1 - sx0}mm;height:{sy1 - sy0}mm">{secs}{bas}</div>'
+        if side2:
+            # côté gauche : les premières sections ; côté droit : la suite + pastille et logo
+            cote = p.get("cote", [])
+            n = max(1, (len(cote) + 1) // 2)
+            mk = lambda lst: "".join(f'<div class="sec"><h3>{e(t)}</h3><p>{e(x)}</p></div>' for t, x in lst)
+            lx0, ly0, lx1, ly1 = side2
+            side = (f'<div class="side" style="left:{lx0}mm;top:{ly0}mm;width:{lx1 - lx0}mm;height:{ly1 - ly0}mm">{mk(cote[:n])}</div>'
+                    f'<div class="side" style="left:{sx0}mm;top:{sy0}mm;width:{sx1 - sx0}mm;height:{sy1 - sy0}mm">{mk(cote[n:])}{bas}</div>')
+        else:
+            side = f'<div class="side" style="left:{sx0}mm;top:{sy0}mm;width:{sx1 - sx0}mm;height:{sy1 - sy0}mm">{secs}{bas}</div>'
 
     deco = ""
     if G["strip"]:
@@ -173,14 +185,14 @@ async function run() {{
   let lo = .3, hi = 1.25;
   for (let i = 0; i < 18; i++) {{ const m = (lo + hi) / 2; body.style.setProperty('--k', m); if (overF()) hi = m; else lo = m; }}
   body.style.setProperty('--k', lo);
-  const side = document.querySelector('.side');
-  if (side) {{
-    const overS = () => side.scrollHeight > side.clientHeight + 4 || wide(side);
+  const sides = [...document.querySelectorAll('.side')];
+  if (sides.length) {{
+    const overS = () => sides.some((side) => side.scrollHeight > side.clientHeight + 4 || wide(side));
     let a = .4, b = 1.25;
     for (let i = 0; i < 18; i++) {{ const m = (a + b) / 2; body.style.setProperty('--q', m); if (overS()) b = m; else a = m; }}
     body.style.setProperty('--q', a);
     // si ça ne tient toujours pas, on retire les dernières sections
-    const secs = [...side.querySelectorAll('.sec')];
+    const secs = [...document.querySelectorAll('.side .sec')];
     while (overS() && secs.length > 1) secs.pop().remove();
   }}
   body.dataset.ready = '1';

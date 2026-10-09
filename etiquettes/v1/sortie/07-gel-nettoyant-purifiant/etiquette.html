@@ -18,12 +18,13 @@ body { position: relative; color: #2A1240; font-family: "Bricolage Grotesque", s
 .marque { font-family: Unbounded, sans-serif; font-weight: 800; font-size: calc(25.00pt * var(--k)); letter-spacing: -.05em; line-height: .9; margin-top: calc(2.20mm * var(--k)); white-space: nowrap; }
 .art { container-type: size; position: relative; flex: 1 1 0; min-height: 5mm; max-height: calc(26.00mm * var(--k)); width: 100%; display: flex; justify-content: center; margin: calc(3.00mm * var(--k)) 0 calc(1.50mm * var(--k)); }
 .art .bouille { height: 100%; width: auto; max-width: 70%; transform: translateX(8%) rotate(8deg); }
-.art:has(.gbadge) .bouille { transform: translateX(-22%) rotate(8deg); }
-.gbadge { position: absolute; right: 2%; top: 0; height: 68%; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; text-align: center;
+.art:has(.gbadge) .bouille { height: 78%; align-self: center; transform: translateX(-46%) rotate(8deg); }
+.gbadge { position: absolute; right: 4%; top: 50%; translate: 0 -50%; height: 100%; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; text-align: center;
   background: #D4F23A; color: #2A1240; border: .45mm solid #2A1240; box-shadow: .6mm .6mm 0 #2A1240;
-  font-family: Unbounded, sans-serif; font-weight: 800; font-size: 19cqh; line-height: .92; transform: rotate(10deg); padding: .5mm; white-space: pre-line; }
+  font-family: Unbounded, sans-serif; font-weight: 800; font-size: 27cqh; line-height: .9; transform: rotate(10deg); padding: .5mm; white-space: pre-line; }
 .nom { font-family: Unbounded, sans-serif; font-weight: 800; font-size: max(5.5pt, calc(12.50pt * var(--k))); line-height: 1; letter-spacing: -.03em; }
 .sous { font-weight: 700; font-size: max(4.6pt, calc(7.00pt * var(--k))); margin-top: calc(1.40mm * var(--k)); line-height: 1.2; }
+.sticker.fort { font-size: max(6pt, calc(9.50pt * var(--k))); padding: calc(1mm * var(--k)) calc(3.60mm * var(--k)); }
 .sticker { margin-top: calc(2.40mm * var(--k)); background: #6B2CF5; color: #FFF3E3; border: .45mm solid #2A1240; border-radius: 99mm;
   padding: calc(.8mm * var(--k)) calc(3.00mm * var(--k)); font-family: Unbounded, sans-serif; font-weight: 700; font-size: max(4.8pt, calc(7.00pt * var(--k)));
   box-shadow: .7mm .7mm 0 #2A1240; transform: rotate(-4deg); white-space: nowrap; }
@@ -769,14 +770,14 @@ async function run() {
   let lo = .3, hi = 1.25;
   for (let i = 0; i < 18; i++) { const m = (lo + hi) / 2; body.style.setProperty('--k', m); if (overF()) hi = m; else lo = m; }
   body.style.setProperty('--k', lo);
-  const side = document.querySelector('.side');
-  if (side) {
-    const overS = () => side.scrollHeight > side.clientHeight + 4 || wide(side);
+  const sides = [...document.querySelectorAll('.side')];
+  if (sides.length) {
+    const overS = () => sides.some((side) => side.scrollHeight > side.clientHeight + 4 || wide(side));
     let a = .4, b = 1.25;
     for (let i = 0; i < 18; i++) { const m = (a + b) / 2; body.style.setProperty('--q', m); if (overS()) b = m; else a = m; }
     body.style.setProperty('--q', a);
     // si ça ne tient toujours pas, on retire les dernières sections
-    const secs = [...side.querySelectorAll('.sec')];
+    const secs = [...document.querySelectorAll('.side .sec')];
     while (overS() && secs.length > 1) secs.pop().remove();
   }
   body.dataset.ready = '1';

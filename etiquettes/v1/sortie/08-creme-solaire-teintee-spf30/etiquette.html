@@ -770,14 +770,14 @@ async function run() {
   let lo = .3, hi = 1.25;
   for (let i = 0; i < 18; i++) { const m = (lo + hi) / 2; body.style.setProperty('--k', m); if (overF()) hi = m; else lo = m; }
   body.style.setProperty('--k', lo);
-  const side = document.querySelector('.side');
-  if (side) {
-    const overS = () => side.scrollHeight > side.clientHeight + 4 || wide(side);
+  const sides = [...document.querySelectorAll('.side')];
+  if (sides.length) {
+    const overS = () => sides.some((side) => side.scrollHeight > side.clientHeight + 4 || wide(side));
     let a = .4, b = 1.25;
     for (let i = 0; i < 18; i++) { const m = (a + b) / 2; body.style.setProperty('--q', m); if (overS()) b = m; else a = m; }
     body.style.setProperty('--q', a);
     // si ça ne tient toujours pas, on retire les dernières sections
-    const secs = [...side.querySelectorAll('.sec')];
+    const secs = [...document.querySelectorAll('.side .sec')];
     while (overS() && secs.length > 1) secs.pop().remove();
   }
   body.dataset.ready = '1';

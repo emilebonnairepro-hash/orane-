@@ -1,11 +1,11 @@
 <!doctype html><html><head><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Unbounded:wght@700;800&display=block" rel="stylesheet">
 <style>
-@page { size: 100.1mm 46.1mm; margin: 0; }
+@page { size: 249.5mm 46.05mm; margin: 0; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { width: 100.1mm; height: 46.1mm; overflow: hidden; background: transparent; }
+html, body { width: 249.5mm; height: 46.05mm; overflow: hidden; background: transparent; }
 body { position: relative; color: #2A1240; font-family: "Bricolage Grotesque", sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; --k: 1; --q: 1; }
-.fond { position: absolute; left: 0.0mm; top: 0.0mm; width: 73.1mm; height: 46.1mm; background: #FF5FA8; overflow: hidden; }
+.fond { position: absolute; left: 64.5mm; top: 0.0mm; width: 126.30000000000001mm; height: 46.05mm; background: #FF5FA8; overflow: hidden; }
 .fond::after { content: ""; position: absolute; right: 0; top: 5mm; bottom: 5mm; border-right: .5mm dashed #2A1240; opacity: .35; }
 .trou { position: absolute; background: #fff; }
 .sp { position: absolute; }
@@ -14,21 +14,21 @@ body { position: relative; color: #2A1240; font-family: "Bricolage Grotesque", s
 
 /* face avant : tailles × --k (calculé pour remplir la hauteur), jamais sous 4,6 pt */
 .front { position: absolute; display: flex; flex-direction: column; align-items: center; text-align: center; }
-.kicker { font-family: Unbounded, sans-serif; font-weight: 700; font-size: max(4.6pt, calc(4.88pt * var(--k))); letter-spacing: .22em; text-transform: uppercase; white-space: nowrap; }
-.marque { font-family: Unbounded, sans-serif; font-weight: 800; font-size: calc(20.31pt * var(--k)); letter-spacing: -.05em; line-height: .9; margin-top: calc(1.79mm * var(--k)); white-space: nowrap; }
-.art { container-type: size; position: relative; flex: 1 1 0; min-height: 5mm; max-height: calc(21.12mm * var(--k)); width: 100%; display: flex; justify-content: center; margin: calc(2.44mm * var(--k)) 0 calc(1.22mm * var(--k)); }
+.kicker { font-family: Unbounded, sans-serif; font-weight: 700; font-size: max(4.6pt, calc(6.75pt * var(--k))); letter-spacing: .22em; text-transform: uppercase; white-space: nowrap; }
+.marque { font-family: Unbounded, sans-serif; font-weight: 800; font-size: calc(28.13pt * var(--k)); letter-spacing: -.05em; line-height: .9; margin-top: calc(2.48mm * var(--k)); white-space: nowrap; }
+.art { container-type: size; position: relative; flex: 1 1 0; min-height: 5mm; max-height: calc(29.25mm * var(--k)); width: 100%; display: flex; justify-content: center; margin: calc(3.38mm * var(--k)) 0 calc(1.69mm * var(--k)); }
 .art .bouille { height: 100%; width: auto; max-width: 70%; transform: translateX(8%) rotate(8deg); }
 .art:has(.gbadge) .bouille { height: 78%; align-self: center; transform: translateX(-46%) rotate(8deg); }
 .gbadge { position: absolute; right: 4%; top: 50%; translate: 0 -50%; height: 100%; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; text-align: center;
   background: #D4F23A; color: #2A1240; border: .45mm solid #2A1240; box-shadow: .6mm .6mm 0 #2A1240;
   font-family: Unbounded, sans-serif; font-weight: 800; font-size: 27cqh; line-height: .9; transform: rotate(10deg); padding: .5mm; white-space: pre-line; }
-.nom { font-family: Unbounded, sans-serif; font-weight: 800; font-size: max(5.5pt, calc(10.16pt * var(--k))); line-height: 1; letter-spacing: -.03em; }
-.sous { font-weight: 700; font-size: max(4.6pt, calc(5.69pt * var(--k))); margin-top: calc(1.14mm * var(--k)); line-height: 1.2; }
-.sticker.fort { font-size: max(6pt, calc(7.72pt * var(--k))); padding: calc(1mm * var(--k)) calc(2.93mm * var(--k)); }
-.sticker { margin-top: calc(1.95mm * var(--k)); background: #6B2CF5; color: #FFF3E3; border: .45mm solid #2A1240; border-radius: 99mm;
-  padding: calc(.8mm * var(--k)) calc(2.44mm * var(--k)); font-family: Unbounded, sans-serif; font-weight: 700; font-size: max(4.8pt, calc(5.69pt * var(--k)));
+.nom { font-family: Unbounded, sans-serif; font-weight: 800; font-size: max(5.5pt, calc(14.06pt * var(--k))); line-height: 1; letter-spacing: -.03em; }
+.sous { font-weight: 700; font-size: max(4.6pt, calc(7.88pt * var(--k))); margin-top: calc(1.58mm * var(--k)); line-height: 1.2; }
+.sticker.fort { font-size: max(6pt, calc(10.69pt * var(--k))); padding: calc(1mm * var(--k)) calc(4.05mm * var(--k)); }
+.sticker { margin-top: calc(2.70mm * var(--k)); background: #6B2CF5; color: #FFF3E3; border: .45mm solid #2A1240; border-radius: 99mm;
+  padding: calc(.8mm * var(--k)) calc(3.38mm * var(--k)); font-family: Unbounded, sans-serif; font-weight: 700; font-size: max(4.8pt, calc(7.88pt * var(--k)));
   box-shadow: .7mm .7mm 0 #2A1240; transform: rotate(-4deg); white-space: nowrap; }
-.volume { font-family: Unbounded, sans-serif; font-weight: 700; font-size: max(4.8pt, calc(5.28pt * var(--k))); margin-top: auto; padding-top: calc(1.5mm * var(--k)); white-space: nowrap; }
+.volume { font-family: Unbounded, sans-serif; font-weight: 700; font-size: max(4.8pt, calc(7.31pt * var(--k))); margin-top: auto; padding-top: calc(1.5mm * var(--k)); white-space: nowrap; }
 
 /* côté : tailles × --q */
 .side { position: absolute; display: flex; flex-direction: column; gap: calc(3mm * var(--q)); padding-bottom: 1.6mm; }
@@ -46,10 +46,10 @@ body { position: relative; color: #2A1240; font-family: "Bricolage Grotesque", s
 .gz span, .gt { font: 700 4.6pt sans-serif; color: #c2410c; background: rgba(255,255,255,.9); padding: .3mm .8mm; text-align: center; }
 .gt { position: absolute; left: 3mm; bottom: .1mm; }
 </style></head><body>
-<div class="fond"><svg viewBox="0 0 40 40" class="sp" style="width:4.5mm;left:65.10mm;top:5.50mm"><path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" fill="#FFF3E3" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+<div class="fond"><svg viewBox="0 0 40 40" class="sp" style="width:4.5mm;left:118.30mm;top:5.50mm"><path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" fill="#FFF3E3" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
 
-<div class="front" style="left:13.100000000000001mm;top:5mm;width:26.0mm;height:36.1mm">
-    <p class="kicker">n°08 · visage</p>
+<div class="front" style="left:106.8mm;top:5mm;width:36.000000000000014mm;height:36.05mm">
+    <p class="kicker">n°09 · visage</p>
     <p class="marque">orane</p>
     <div class="art"><svg viewBox="0 0 120 120" class="bouille"><circle cx="64" cy="64" r="52" fill="#2A1240"/>
 <circle cx="58" cy="58" r="52" fill="#FF6A2B" stroke="#2A1240" stroke-width="5"/>
@@ -58,12 +58,12 @@ body { position: relative; color: #2A1240; font-family: "Bricolage Grotesque", s
 <path d="M68 48 Q76 40 84 48" fill="none" stroke="#2A1240" stroke-width="5" stroke-linecap="round"/>
 <path d="M36 66 Q58 98 82 66 Z" fill="#2A1240" stroke="#2A1240" stroke-width="4" stroke-linejoin="round"/>
 <path d="M48 80 Q58 72 70 80 Q60 90 48 80 Z" fill="#FF5FA8"/></svg></div>
-    <p class="nom">crème solaire<br>teintée</p>
-    <p class="sous">hydratante · sans traces blanches</p>
-    <p class="sticker fort">SPF 30</p>
-    <p class="volume">30 ml ℮</p>
+    <p class="nom">masque<br>à l&#x27;argile</p>
+    <p class="sous">pores &amp; points noirs · purifiant</p>
+    <p class="sticker">argiles</p>
+    <p class="volume">90 ml ℮</p>
   </div>
-<div class="side" style="left:43.1mm;top:5mm;width:26.999999999999993mm;height:36.1mm"><div class="sec"><h3>Ce qu&#x27;on aime</h3><p>Facile à étaler, sans traces blanches. Une teinte légère qui aide à uniformiser le teint.</p></div><div class="sec"><h3>Dedans</h3><p>Filtre minéral (oxyde de zinc) · argousier · acide hyaluronique.</p></div><div class="bas"><p class="pastille"><span>99 %<small>d&#x27;origine naturelle</small></span></p>
+<div class="side" style="left:67.5mm;top:5mm;width:35.3mm;height:36.05mm"><div class="sec"><h3>Le geste</h3><p>Sur peau propre, laisse poser 5 à 10 minutes, puis rince abondamment.</p></div><div class="sec"><h3>Ce qu&#x27;on aime</h3><p>Absorbe l&#x27;excès de sébum, exfolie en douceur et aide à affiner l&#x27;apparence des pores.</p></div></div><div class="side" style="left:146.8mm;top:5mm;width:41.0mm;height:36.05mm"><div class="sec"><h3>Dedans</h3><p>Argile blanche · argile verte · algues aquatiques · complexe biominéral · aloe vera.</p></div><div class="bas"><p class="pastille"><span>100 %<small>d&#x27;origine naturelle</small></span></p>
 
 
 <svg class="logo" version="1.1" id="Layer_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
@@ -760,7 +760,7 @@ MafvBbmtbxyJnEICU4V/FFCsgiFYDX3tv+aQ/SPtYMtAN3zdMnzJ14o43g6LXlqebA==
 </i:aipgf>
 </svg>
 </div></div>
-<div class="gl" style="inset:2mm;border:.3mm solid #2a6cff"></div><div class="gl" style="inset:5mm;border:.25mm dashed #2a6cff;opacity:.6"></div><div class="gl" style="left:13.100000000000001mm;width:26.0mm;top:0;bottom:0;border-inline:.3mm solid #888"></div><div class="gz" style="left:74.1mm;top:0mm;width:26mm;height:46.1mm"><span>mentions obligatoires<br>(Selfnamed)</span></div><p class="gt">bleu : coupe · pointillés : marge · gris : face avant · orange : laissé vide</p>
+<div class="gl" style="inset:2mm;border:.3mm solid #2a6cff"></div><div class="gl" style="inset:5mm;border:.25mm dashed #2a6cff;opacity:.6"></div><div class="gl" style="left:106.8mm;width:36.000000000000014mm;top:0;bottom:0;border-inline:.3mm solid #888"></div><div class="gz" style="left:0mm;top:0mm;width:63.5mm;height:46.05mm"><span>mentions obligatoires<br>(Selfnamed)</span></div><div class="gz" style="left:191.8mm;top:0mm;width:57.7mm;height:46.05mm"><span>mentions obligatoires<br>(Selfnamed)</span></div><p class="gt">bleu : coupe · pointillés : marge · gris : face avant · orange : laissé vide</p>
 <script>
 async function run() {
   await document.fonts.ready;

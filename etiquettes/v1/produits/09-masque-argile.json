@@ -1,0 +1,63 @@
+{
+  "gabarit": {
+    "source": "Selfnamed 100-004 Clay mask 90 ml (TEMPLATE_Label_100-04.ai)",
+    "largeur": 249.5,
+    "hauteur": 46.05,
+    "fond_perdu": 2,
+    "marge": 3,
+    "zones_vides": [
+      {
+        "x": 0,
+        "y": 0,
+        "l": 63.5,
+        "h": 46.05
+      },
+      {
+        "x": 191.8,
+        "y": 0,
+        "l": 57.7,
+        "h": 46.05
+      }
+    ],
+    "face": {
+      "cx": 124.8,
+      "largeur": 36
+    },
+    "px": [
+      5892,
+      1083
+    ]
+  },
+  "produit": {
+    "numero": "09",
+    "univers": "visage",
+    "nom": [
+      "masque",
+      "à l'argile"
+    ],
+    "sous_titre": "pores & points noirs · purifiant",
+    "sticker": "argiles",
+    "volume": "90 ml ℮",
+    "cote": [
+      [
+        "Le geste",
+        "Sur peau propre, laisse poser 5 à 10 minutes, puis rince abondamment."
+      ],
+      [
+        "Ce qu'on aime",
+        "Absorbe l'excès de sébum, exfolie en douceur et aide à affiner l'apparence des pores."
+      ],
+      [
+        "Dedans",
+        "Argile blanche · argile verte · algues aquatiques · complexe biominéral · aloe vera."
+      ]
+    ],
+    "pastille": {
+      "grand": "100 %",
+      "petit": "d'origine naturelle"
+    },
+    "logos": [
+      "ecocert-cosmos-natural.svg"
+    ]
+  }
+}
