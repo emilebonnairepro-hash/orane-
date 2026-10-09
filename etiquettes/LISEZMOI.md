@@ -12,7 +12,7 @@ Règles Selfnamed respectées : PNG, 600 dpi minimum, moins de 10 Mo, ~3 mm de f
 zone des mentions obligatoires laissée vide (Selfnamed les ajoute).
 Charte : 7 couleurs, pas de texte crème sur mandarine ou rose, 3 couleurs vives maximum.
 
-## n°07 — Gel nettoyant purifiant (gabarit Selfnamed 150-004, 140 ml)
+## n°07 — Gel nettoyant purifiant (gabarit Selfnamed 150-004, 140 ml) — ✅ VERSION RETENUE (V1)
 
 Dossier `07-gel-nettoyant-purifiant/`, fait d'après le vrai gabarit Selfnamed :
 plan de travail 142,5 × 109 mm (3367 × 2575 px à 600 dpi), fond perdu 2 mm, marge 3 mm,
