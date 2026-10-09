@@ -531,15 +531,61 @@ cart-items .cart-item .price { font-family: var(--o-display); font-weight: 800; 
 .cart__empty-text::after { content: " (pour l'instant)"; display: block; font-size: .4em; font-weight: 700; color: var(--o-mandarine); -webkit-text-stroke: 3px var(--o-aubergine); paint-order: stroke fill; }
 .cart__warnings .button { margin-top: 2rem; }
 
-/* Panier en tiroir (Dawn) */
+/* ---------- Panier en tiroir ORANE ---------- */
 .drawer__inner { border-left: var(--o-line); background: var(--o-creme); }
-.drawer__heading { font-family: var(--o-display); font-weight: 800; font-size: 2.8rem; letter-spacing: -0.03em; }
-.drawer__header { border-bottom: 3px dashed var(--o-aubergine); }
+.o-drawer .drawer__header { border-bottom: 3px dashed var(--o-aubergine); align-items: center; }
+.o-drawer .drawer__heading { font-family: var(--o-display); font-weight: 800; font-size: 3rem; letter-spacing: -0.04em; text-transform: lowercase; margin: 0; color: var(--o-aubergine); }
+.o-drawer__count { margin: 0 auto 0 1.2rem; font-family: var(--o-display); font-weight: 700; font-size: 1.2rem; background: var(--o-citron); border: 2px solid var(--o-aubergine); border-radius: 999px; padding: .4rem 1rem; transform: rotate(-4deg); }
+.o-drawer .drawer__close { border: 2px solid var(--o-aubergine); border-radius: 50%; background: var(--o-creme); box-shadow: 3px 3px 0 var(--o-aubergine); }
+.o-drawer .drawer__close:hover { background: var(--o-rose); }
 .drawer__footer { border-top: var(--o-line) !important; }
-.cart-drawer .cart-item__image { border-radius: 14px; }
-.cart-drawer .totals__total-value { font-family: var(--o-display); font-weight: 800; font-size: 2.4rem; }
+.cart-drawer .cart-item__image { border-radius: 14px; border: 2px solid var(--o-aubergine); background: #fff; }
+.cart-drawer .cart-item__name { font-family: var(--o-display); font-weight: 800; font-size: 1.4rem; color: var(--o-aubergine); text-decoration: none; }
+.cart-drawer .cart-item .quantity { border: 2px solid var(--o-aubergine); border-radius: 999px; overflow: hidden; background: #fff; }
+.cart-drawer .cart-item .quantity::before, .cart-drawer .cart-item .quantity::after { box-shadow: none !important; }
+.cart-drawer .cart-item .price { font-family: var(--o-display); font-weight: 800; color: var(--o-aubergine); }
+.cart-drawer .totals__total { font-family: var(--o-display); font-weight: 800; font-size: 1.6rem; }
+.cart-drawer .totals__total-value { font-family: var(--o-display); font-weight: 800; font-size: 2.4rem; white-space: nowrap; }
 #CartDrawer-Checkout { min-height: 5.8rem; }
-.drawer__inner-empty .cart__empty-text { font-size: 3.4rem !important; }
+.o-drawer__big { display: block; margin-top: 1.2rem; text-align: center; font-family: var(--o-display); font-weight: 700; font-size: 1.3rem; color: var(--o-aubergine); text-decoration: underline; text-decoration-color: var(--o-rose); text-decoration-thickness: 3px; text-underline-offset: 4px; }
+cart-drawer.is-empty .drawer__footer, cart-drawer.is-empty cart-drawer-items, cart-drawer.is-empty .drawer__header { display: none; }
+
+/* Piste de livraison offerte (version tiroir) */
+.o-dtrack { padding: 1.4rem 0 1.8rem; border-bottom: 3px dashed var(--o-aubergine); }
+.o-dtrack__text { margin: 0 0 1.2rem; font-family: var(--o-display); font-weight: 700; font-size: 1.3rem; color: var(--o-aubergine); }
+.o-dtrack__text strong { background: var(--o-citron); border: 2px solid var(--o-aubergine); border-radius: 999px; padding: 0 .5em; }
+.o-dtrack__lane { position: relative; height: 1.8rem; margin: 1.6rem 5rem 0 0; background: repeating-linear-gradient(90deg, #fff 0 12px, #ffe7c9 12px 24px); border: 2px solid var(--o-aubergine); border-radius: 999px; }
+.o-dtrack__fill { position: absolute; inset: 0 auto 0 0; width: var(--p, 0%); background: var(--o-rose); border-radius: 999px; transition: width .8s var(--o-ease-pop); }
+.o-dtrack__rider { position: absolute; top: 50%; left: var(--p, 0%); width: 3.8rem; translate: -50% -62%; transition: left .8s var(--o-ease-pop); }
+.o-dtrack__rider .o-bouille { width: 100%; animation: o-bob 1.6s ease-in-out infinite; }
+.o-dtrack__flag { position: absolute; right: -5rem; top: 50%; translate: 0 -50%; display: grid; place-items: center; width: 4.4rem; height: 4.4rem; border-radius: 50%; background: var(--o-citron); border: 2px solid var(--o-aubergine); box-shadow: 2px 2px 0 var(--o-aubergine); font-family: var(--o-display); font-weight: 800; font-size: 1.1rem; transform: rotate(8deg); }
+
+/* Suggestions dans le tiroir */
+.o-dsuggest { padding: 1.6rem 0 2rem; border-top: 3px dashed var(--o-aubergine); }
+.o-dsuggest .o-kicker { color: var(--o-aubergine); margin-bottom: 1.2rem; }
+.o-dsuggest__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.2rem; text-align: left; }
+.o-drow { display: flex; align-items: center; gap: 1.2rem; padding: 1rem; background: #fff; border: 2px solid var(--o-aubergine); border-radius: 20px; box-shadow: 3px 3px 0 var(--o-aubergine); }
+.o-drow:nth-child(odd) { transform: rotate(-.6deg); }
+.o-drow:nth-child(even) { transform: rotate(.6deg); }
+.o-drow__media { flex: none; display: grid; place-items: center; width: 5.6rem; height: 5.6rem; border-radius: 14px; border: 2px solid var(--o-aubergine); overflow: hidden; }
+.o-drow__media img { width: 100%; height: 100%; object-fit: cover; }
+.o-drow__dot { width: 40%; height: 55%; background: var(--o-creme); border: 2px solid var(--o-aubergine); border-radius: 8px; }
+.o-drow__body { flex: 1; min-width: 0; display: grid; gap: .2rem; }
+.o-drow__note { margin: 0; font-family: var(--o-display); font-weight: 700; font-size: 1rem; line-height: 1.25; color: var(--o-mandarine); }
+.o-drow__name { font-family: var(--o-display); font-weight: 800; font-size: 1.25rem; line-height: 1.2; color: var(--o-aubergine); text-decoration: none; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.o-drow__price { font-weight: 700; font-size: 1.3rem; color: var(--o-aubergine); }
+.o-drow__form { margin: 0; }
+.o-drow__add { display: grid; place-items: center; width: 4rem; height: 4rem; border-radius: 50%; cursor: pointer; background: var(--o-citron); color: var(--o-aubergine); border: 2px solid var(--o-aubergine); box-shadow: 2px 2px 0 var(--o-aubergine); font-family: var(--o-display); font-weight: 800; font-size: 2.2rem; line-height: 1; transition: transform .2s var(--o-ease-pop); }
+.o-drow__add:hover { transform: rotate(90deg) scale(1.1); }
+
+/* Tiroir vide */
+.o-drawer__empty { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.2rem; padding: 6rem 2rem 3rem; overflow: auto; height: 100%; color: var(--o-aubergine); }
+.o-drawer__empty .drawer__close { position: absolute; top: 1.6rem; right: 1.6rem; }
+.o-drawer__bouille { width: 11rem; animation: o-bob 3.4s ease-in-out infinite; }
+.o-drawer__empty-title { margin: .8rem 0 0; font-family: var(--o-display); font-weight: 800; font-size: 3rem; line-height: 1; letter-spacing: -0.04em; color: var(--o-aubergine); }
+.o-drawer__empty-text { margin: 0 0 .8rem; font-size: 1.5rem; }
+.o-drawer__empty .o-dsuggest__list { width: 100%; }
+.o-drawer__all { margin-top: 1.2rem; }
 
 /* ---------- Panier : le coach ---------- */
 .o-coach { background: var(--o-creme); color: var(--o-aubergine); padding: clamp(6rem, 8vw, 10rem) 0; border-top: 3px dashed var(--o-aubergine); }
@@ -645,6 +691,6 @@ cart-items .cart-item .price { font-family: var(--o-display); font-weight: 800; 
   .o-track__rider { width: 5.2rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .o-hero__ring, .o-hero__bouille, .o-phero__bouille, .o-chead__bouille, .o-track__rider .o-bouille, .o-spark, .o-tape__track, .o-spin-cta svg, .o-bouille.is-happy { animation: none !important; }
+  .o-hero__ring, .o-hero__bouille, .o-phero__bouille, .o-chead__bouille, .o-track__rider .o-bouille, .o-dtrack__rider .o-bouille, .o-drawer__bouille, .o-spark, .o-tape__track, .o-spin-cta svg, .o-bouille.is-happy { animation: none !important; }
   .o-w { opacity: 1 !important; }
 }

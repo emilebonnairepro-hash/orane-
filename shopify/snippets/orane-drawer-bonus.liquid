@@ -1,0 +1,122 @@
+{%- comment -%}
+  ORANE — les bonus du panier en tiroir.
+  part: 'track'   → la piste de livraison offerte (la bouille avance jusqu'au drapeau)
+  part: 'suggest' → le coup de pouce + « va très bien avec » (liens « Pour une routine complète » des descriptions)
+  part: 'start'   → panier vide : trois soins pour démarrer
+  Le seuil de livraison offerte est fixé ici (50 €), comme sur la page panier.
+{%- endcomment -%}
+{%- liquid
+  assign threshold = 5000
+  assign left = threshold | minus: cart.total_price
+  assign pct = cart.total_price | times: 100 | divided_by: threshold
+  if pct > 100
+    assign pct = 100
+  endif
+  assign tones = 'citron,rose,mandarine' | split: ','
+-%}
+
+{%- case part -%}
+  {%- when 'track' -%}
+    <div class="o-dtrack" style="--p: {{ pct }}%">
+      <p class="o-dtrack__text">
+        {%- if left > 0 -%}
+          Plus que <strong>{{ left | money }}</strong> et la livraison est offerte
+        {%- else -%}
+          <strong>Livraison offerte</strong>, tu gères ✦
+        {%- endif -%}
+      </p>
+      <div class="o-dtrack__lane" aria-hidden="true">
+        <span class="o-dtrack__fill"></span>
+        <span class="o-dtrack__rider">{%- render 'orane-bouille' -%}</span>
+        <span class="o-dtrack__flag">{{ threshold | money_without_trailing_zeros }}</span>
+      </div>
+    </div>
+
+  {%- when 'suggest' -%}
+    {%- liquid
+      assign in_cart = ','
+      for item in cart.items
+        assign in_cart = in_cart | append: item.product.handle | append: ','
+      endfor
+
+      # Va très bien avec : liens produits de « Pour une routine complète »
+      assign mates = ','
+      assign mates_from = ''
+      for item in cart.items
+        assign d = item.product.description
+        if d contains '/products/'
+          assign chunks = d | split: '<h3>'
+          for chunk in chunks
+            assign head = chunk | split: '</h3>' | first | downcase
+            if head contains 'routine' and chunk contains '/products/'
+              assign h = chunk | split: '/products/' | last | split: '"' | first | split: '?' | first
+              assign key = ',' | append: h | append: ','
+              unless in_cart contains key or mates contains key
+                assign mates = mates | append: h | append: ','
+                assign mates_from = mates_from | append: item.product.title | append: '|'
+              endunless
+            endif
+          endfor
+        endif
+      endfor
+      assign mate_list = mates | remove_first: ',' | split: ','
+      assign mate_from = mates_from | split: '|'
+
+      # Coup de pouce : le moins cher qui suffit pour la livraison offerte, sinon le plus cher
+      assign boost = nil
+      assign boost_price = 999999999
+      assign fallback = nil
+      assign fallback_price = 0
+      if left > 0
+        for p in collections.all.products limit: 50
+          assign key = ',' | append: p.handle | append: ','
+          unless in_cart contains key or mates contains key
+            if p.available
+              if p.price >= left and p.price < boost_price
+                assign boost = p
+                assign boost_price = p.price
+              endif
+              if p.price > fallback_price
+                assign fallback = p
+                assign fallback_price = p.price
+              endif
+            endif
+          endunless
+        endfor
+        if boost == nil
+          assign boost = fallback
+        endif
+      endif
+    -%}
+    {%- if boost != nil or mate_list.size > 0 -%}
+      <div class="o-dsuggest">
+        <p class="o-kicker">Et avec ça&nbsp;?</p>
+        <ul class="o-dsuggest__list">
+          {%- if boost != nil -%}
+            {%- if boost.price >= left -%}
+              {%- assign note = 'Ajoute-le : livraison offerte ✦' -%}
+            {%- else -%}
+              {%- assign note = 'Le plus grand pas vers la livraison offerte' -%}
+            {%- endif -%}
+            {%- render 'orane-drawer-row', p: boost, note: note, tone: 'citron' -%}
+          {%- endif -%}
+          {%- for h in mate_list limit: 2 -%}
+            {%- assign p = all_products[h] -%}
+            {%- if p.id -%}
+              {%- assign note = 'Va très bien avec : ' | append: mate_from[forloop.index0] -%}
+              {%- assign t = forloop.index | modulo: 3 -%}
+              {%- render 'orane-drawer-row', p: p, note: note, tone: tones[t] -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+
+  {%- when 'start' -%}
+    <ul class="o-dsuggest__list">
+      {%- for p in collections.all.products limit: 3 -%}
+        {%- assign t = forloop.index0 | modulo: 3 -%}
+        {%- render 'orane-drawer-row', p: p, note: '', tone: tones[t] -%}
+      {%- endfor -%}
+    </ul>
+{%- endcase -%}

@@ -6,7 +6,8 @@
    - l'étagère produits défile avec les flèches
    - le grand « orane » du bas glisse au défilement
    - fiche produit : la barre d'achat qui suit
-   - panier : les sections ORANE se redessinent quand le panier change */
+   - panier : les sections ORANE se redessinent quand le panier change,
+     et un ajout depuis n'importe où ouvre le panier en tiroir à jour */
 (() => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const SPARK = '<path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/>';
@@ -153,12 +154,22 @@
     const btn = form.querySelector('button[type="submit"]');
     const label = btn.textContent;
     btn.disabled = true;
+    // Avec le panier en tiroir : on demande aussi le tiroir redessiné, puis on l'ouvre (comme Dawn)
+    const drawer = onCartPage ? null : document.querySelector('cart-drawer');
+    const body = new FormData(form);
+    if (drawer) { body.append('sections', 'cart-drawer,cart-icon-bubble'); body.append('sections_url', location.pathname); }
     try {
-      const res = await fetch(form.action, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
-      if (!res.ok) throw new Error();
+      const res = await fetch(form.action, { method: 'POST', headers: { Accept: 'application/json', 'X-Requested-With': 'XMLHttpRequest' }, body });
+      const json = await res.json();
+      if (!res.ok || json.status) throw new Error(json.description || json.message);
       const r = btn.getBoundingClientRect();
       burst(r.left + r.width / 2, r.top);
       if (onCartPage) { setTimeout(() => location.reload(), 450); return; }
+      if (drawer && json.sections && typeof drawer.renderContents === 'function') {
+        drawer.renderContents(json);
+        if (btn.isConnected) { btn.disabled = false; }
+        return;
+      }
       if (btn.classList.contains('o-add')) btn.textContent = 'dans le panier ✦';
       btn.classList.add('is-added');
       document.dispatchEvent(new CustomEvent('orane:cart-updated'));

@@ -9,7 +9,8 @@ import { fileURLToPath } from 'node:url';
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
 const cartGlobal = { total_price: 1340, item_count: 0, items: [] };
-const engine = new Liquid({ root: [path.join(root, 'sections'), path.join(root, 'snippets')], extname: '.liquid', globals: { cart: cartGlobal } });
+const liquidGlobals = { cart: cartGlobal };
+const engine = new Liquid({ root: [path.join(root, 'sections'), path.join(root, 'snippets'), path.join(here, 'stubs')], extname: '.liquid', globals: liquidGlobals });
 
 engine.registerTag('schema', class extends Tag {
   constructor(token, remain, liquid, parser) {
@@ -27,6 +28,10 @@ engine.registerFilter('image_tag', (src, ...args) => {
 });
 engine.registerFilter('money', (c) => `${(c / 100).toFixed(2).replace('.', ',')} €`);
 engine.registerFilter('money_without_trailing_zeros', (c) => `${(c / 100).toFixed(2).replace('.', ',').replace(/,00$/, '')} €`);
+engine.registerFilter('t', (k) => ({ 'sections.cart.title': 'Ton panier', 'sections.cart.estimated_total': 'Total estimé', 'sections.cart.checkout': 'Procéder au paiement', 'sections.cart.taxes_included_shipping_at_checkout_without_policy': 'Taxes incluses. Frais d’expédition calculés à l’étape du paiement.' }[k] ?? ''));
+engine.registerFilter('inline_asset_content', (f) => f.includes('minus') ? '−' : f.includes('plus') ? '+' : f.includes('close') || f.includes('remove') ? '✕' : '');
+engine.registerFilter('standard_event_data', () => '{}');
+engine.registerFilter('item_count_for_variant', () => 1);
 engine.registerFilter('asset_url', (f) => `shopify/assets/${f}`);
 engine.registerFilter('stylesheet_tag', (u) => `<link rel="stylesheet" href="${u}">`);
 
@@ -46,19 +51,20 @@ const products = {
   'patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c': P('patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c', 'Patchs hydrogel énergisants pour les yeux', 1340, ['Patches (Type)'], 'Un petit moment rien que pour ton regard. Frais et légers, ces patchs hydrogel inspirés de la K-beauty apaisent et revitalisent.', '#FFF3E3'),
 };
 const all = { url: '/collections/all', products: Object.values(products) };
+liquidGlobals.collections = { all }; liquidGlobals.all_products = products;
 const real = JSON.parse(fs.readFileSync(path.join(here, 'products.json'), 'utf8'));
 for (const r of real) Object.assign(products[r.handle], { description: r.descriptionHtml, tags: r.tags, id: r.id });
 
 const readJson = (f) => { const t = fs.readFileSync(path.join(root, f), 'utf8'); return JSON.parse(t.slice(t.indexOf('{\n'))); };
 const tpl = process.argv[2] || 'index';
 const out = process.argv[3] || path.resolve(root, '..', 'index.html');
-const index = readJson(`templates/${tpl}.json`);
+const index = tpl === 'drawer' ? { order: ['drawer'], sections: { drawer: { type: 'drawer' } } } : readJson(`templates/${tpl}.json`);
 const extra = { collection: tpl === 'collection' ? { title: 'Soin du visage', handle: 'soin-du-visage', products_count: 4, description: '<p>Nettoyer, réveiller, hydrater : la routine visage, sans prise de tête.</p>' } : null,
   page: tpl.startsWith('page') ? { title: 'Contact', handle: 'contact' } : null, page_title: tpl === 'cart' ? 'Panier' : '404',
   product: tpl === 'product' ? products[process.argv[4] || 'patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c'] : null,
   all_products: products, cart: { total_price: 1340 } };
 if (extra.product) extra.product.selected_or_first_available_variant.price = extra.product.price;
-if (tpl === 'cart') {
+if (tpl === 'cart' || tpl === 'drawer') {
   // ORANE_CART=vide pour un panier vide ; sinon deux soins
   const lines = process.env.ORANE_CART === 'vide' ? [] : [
     ['patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c', 1], ['gel-visage-au-zinc-sans-huile-pour-hommes', 2]];
@@ -74,6 +80,14 @@ for (const id of index.order) {
   const s = index.sections[id];
   const ctxBase = { ...extra, shop: { name: 'ORANE', email: 'emilebonnairepro@gmail.com' }, routes: { root_url: '/', all_products_collection_url: '/collections/all', cart_add_url: '#panier' }, collections: { all } };
   if (s.type === 'custom-liquid') { html += await engine.parseAndRender(s.settings.custom_liquid, ctxBase); continue; }
+  if (s.type === 'drawer') {
+    cartGlobal.items.forEach((it, i) => Object.assign(it, { index: i, key: 'k' + i, url: it.product.url, image: { ...it.product.featured_image, aspect_ratio: 1 }, original_price: it.product.price, final_price: it.product.price, original_line_price: it.line_price, final_line_price: it.line_price, variant: { id: i, quantity_rule: { min: 1, increment: 1, max: null } }, options_with_values: [], properties: [], line_level_discount_allocations: [] }));
+    cartGlobal.items.forEach((it) => { it.product.has_only_default_variant = true; });
+    Object.assign(cartGlobal, { cart_level_discount_applications: [], taxes_included: true });
+    html += `<style>.drawer{visibility:visible!important} cart-drawer{position:fixed;inset:0;z-index:100} .cart-drawer__overlay{position:absolute;inset:0;background:rgba(42,18,64,.45)} .drawer__inner{position:absolute;right:0;top:0;height:100%;width:40rem;max-width:calc(100vw - 3rem);display:flex;flex-direction:column;padding:0 1.5rem;overflow:hidden} .drawer__header{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0} .drawer__close{width:4.4rem;height:4.4rem} cart-drawer-items{flex:1;overflow:auto} .cart-items{width:100%;border-collapse:collapse} .cart-items thead{display:none} .cart-item{display:grid;grid-template-columns:7rem 1fr auto;gap:1rem;padding:1.4rem 0} .cart-item__media img{width:7rem} .cart-item__quantity{grid-column:2/4} .quantity{display:inline-flex;gap:1.6rem;padding:.4rem 1.2rem;align-items:center} .quantity input{width:3rem;border:0;text-align:center} cart-remove-button{display:inline-block;margin-left:1rem} .visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)} .cart-item__error{display:none} .drawer__footer{padding:1.5rem 0} .totals{display:flex;justify-content:space-between;align-items:baseline} .cart__checkout-button{width:100%;padding:1.6rem;background:#FF6A2B;border:3px solid #2A1240;border-radius:999px;font:800 1.6rem var(--font-heading-family);color:#2A1240;margin-top:1rem} .loading__spinner{display:none}</style>`;
+    html += await engine.renderFile('cart-drawer', ctxBase);
+    continue;
+  }
   if (s.type === 'main-cart-items') { html += await engine.parseAndRender(fs.readFileSync(path.join(here, 'mock-main-cart-items.liquid'), 'utf8'), ctxBase); continue; }
   if (s.type === 'main-cart-footer') continue;
   if (s.type === 'main-product') { html += await engine.parseAndRender(fs.readFileSync(path.join(here, 'mock-main-product.liquid'), 'utf8'), ctxBase); continue; }

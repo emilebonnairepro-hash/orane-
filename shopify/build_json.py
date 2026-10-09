@@ -53,7 +53,8 @@ current.update({
       "button_horizontal_position": "bottom_right", "button_vertical_position": "lowest",
       "agent_inherit_fonts": True, "agent_font": "system_ui_n4", "agent_font_size": 14,
       "agent_activator_font_size": 16, "agent_border_radius": 16}},
-    "9388344762370057067": {"type": "shopify://apps/essential-cart-drawer/blocks/app-embed/824bb1f9-5f36-4608-a60c-1f2b6a6f8834", "disabled": False, "settings": {}},
+    # Le tiroir panier ORANE remplace celui de l'appli : coupée dans ce thème, réactivable dans « Intégrations d'applications »
+    "9388344762370057067": {"type": "shopify://apps/essential-cart-drawer/blocks/app-embed/824bb1f9-5f36-4608-a60c-1f2b6a6f8834", "disabled": True, "settings": {}},
     "3410014444582139945": {"type": "shopify://apps/amose-ai-store-builder/blocks/amose_embed/019b845c-fbba-74c5-9473-5c87b8849c1b", "disabled": False, "settings": {}},
   },
   # Les 7 couleurs de la charte ; jamais de crème sur mandarine ou sur rose
