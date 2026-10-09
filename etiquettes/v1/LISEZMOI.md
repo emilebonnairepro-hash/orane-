@@ -26,3 +26,4 @@ Les tailles s'ajustent toutes seules au format (texte jamais sous 4,6 pt).
 - 08 Crème solaire teintée SPF 30 — gabarit UZL30-002 (30 ml, 100 × 46 mm) — rose (visage)
 - 09 Masque à l'argile — gabarit 100-004 (90 ml, 249,5 × 46 mm, deux zones de mentions, face au centre) — rose (visage)
 - 10 Crème peptides AM/PM — gabarit UZL50-001 (50 ml, 96 × 113 mm) — rose (visage)
+- 11 Gel double hydratation — gabarit LABEL_30-002 (30 ml, 100 × 46 mm, identique à la crème solaire) — rose (visage)

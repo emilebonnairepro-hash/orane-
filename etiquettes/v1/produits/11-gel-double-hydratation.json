@@ -1,0 +1,54 @@
+{
+  "gabarit": {
+    "source": "Selfnamed LABEL_30-002 Double Hydration Boost Gel 30 ml (même gabarit que la crème solaire)",
+    "largeur": 100.1,
+    "hauteur": 46.1,
+    "fond_perdu": 2,
+    "marge": 3,
+    "zones_vides": [
+      {
+        "x": 74.1,
+        "y": 0,
+        "l": 26,
+        "h": 46.1
+      }
+    ],
+    "face": {
+      "cx": 26.1,
+      "largeur": 26
+    },
+    "px": [
+      2365,
+      1089
+    ]
+  },
+  "produit": {
+    "numero": "11",
+    "univers": "visage",
+    "nom": [
+      "gel",
+      "hydratant"
+    ],
+    "sous_titre": "double hydratation · acide hyaluronique",
+    "sticker": "hydratation ×2",
+    "sticker_fort": true,
+    "volume": "30 ml ℮",
+    "cote": [
+      [
+        "Ce qu'on aime",
+        "Hydrate en profondeur et aide la peau à garder son eau. Atténue l'apparence des ridules, peau fraîche et douce."
+      ],
+      [
+        "Dedans",
+        "Acide hyaluronique · sodium PCA · aloe vera · thé blanc · sauge."
+      ],
+      [
+        "Le geste",
+        "Sur peau propre."
+      ]
+    ],
+    "logos": [
+      "ecocert-cosmos-natural.svg"
+    ]
+  }
+}

@@ -121,7 +121,8 @@ def page(spec, guides=False):
                  + spark(f"width:{min(7, sw * .8):.2f}mm;left:{cx - min(7, sw * .8) / 2:.2f}mm;top:{fy0 - by0 + 1:.2f}mm", C[P["etincelles"][0]]))
     if G["side"]:
         sx0, sy0, sx1, sy1 = G["side"]
-        deco += spark(f"width:4.5mm;left:{sx1 - bx0 - 5:.2f}mm;top:{sy0 - by0 + .5:.2f}mm", C[P["etincelles"][0]])
+        if sy1 - sy0 > 70:   # pas d'étincelle sur le texte des petits formats
+            deco += spark(f"width:4.5mm;left:{sx1 - bx0 - 5:.2f}mm;top:{sy0 - by0 + .5:.2f}mm", C[P["etincelles"][0]])
         if sy1 - sy0 > 70:
             deco += spark(f"width:3.8mm;left:{sx1 - bx0 - 12:.2f}mm;top:{sy1 - by0 - 5:.2f}mm", C[P["etincelles"][1]])
 
