@@ -5,7 +5,8 @@
    - le quiz « ta peau, là, maintenant ? »
    - l'étagère produits défile avec les flèches
    - le grand « orane » du bas glisse au défilement
-   - fiche produit : la barre d'achat qui suit */
+   - fiche produit : la barre d'achat qui suit
+   - panier : les sections ORANE se redessinent quand le panier change */
 (() => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const SPARK = '<path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/>';
@@ -31,38 +32,35 @@
   }
 
   // La bouille : l'œil ouvert suit le curseur, un clic la fait rire
-  const bouilles = [...document.querySelectorAll('.o-bouille')];
-  if (bouilles.length) {
-    let frame = null;
-    window.addEventListener('pointermove', (e) => {
-      if (frame) return;
-      frame = requestAnimationFrame(() => {
-        frame = null;
-        bouilles.forEach((b) => {
-          const eye = b.querySelector('.o-eye-open');
-          if (!eye) return;
-          const r = b.getBoundingClientRect();
-          if (r.bottom < 0 || r.top > innerHeight) return;
-          const dx = e.clientX - (r.left + r.width * .35);
-          const dy = e.clientY - (r.top + r.height * .4);
-          const len = Math.hypot(dx, dy) || 1;
-          const k = Math.min(1, len / 300) * 4;
-          eye.style.transform = `translate(${(dx / len) * k}px, ${(dy / len) * k}px)`;
-        });
-      });
-    }, { passive: true });
-
-    bouilles.forEach((b) => {
-      b.addEventListener('click', (e) => {
-        b.classList.remove('is-happy');
-        void b.getBoundingClientRect();
-        b.classList.add('is-happy');
-        burst(e.clientX, e.clientY);
-        clearTimeout(b._t);
-        b._t = setTimeout(() => b.classList.remove('is-happy'), 900);
+  let frame = null;
+  window.addEventListener('pointermove', (e) => {
+    if (frame) return;
+    frame = requestAnimationFrame(() => {
+      frame = null;
+      document.querySelectorAll('.o-bouille').forEach((b) => {
+        const eye = b.querySelector('.o-eye-open');
+        if (!eye) return;
+        const r = b.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > innerHeight) return;
+        const dx = e.clientX - (r.left + r.width * .35);
+        const dy = e.clientY - (r.top + r.height * .4);
+        const len = Math.hypot(dx, dy) || 1;
+        const k = Math.min(1, len / 300) * 4;
+        eye.style.transform = `translate(${(dx / len) * k}px, ${(dy / len) * k}px)`;
       });
     });
-  }
+  }, { passive: true });
+
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('.o-bouille');
+    if (!b) return;
+    b.classList.remove('is-happy');
+    void b.getBoundingClientRect();
+    b.classList.add('is-happy');
+    burst(e.clientX, e.clientY);
+    clearTimeout(b._t);
+    b._t = setTimeout(() => b.classList.remove('is-happy'), 900);
+  });
 
   // Stickers qu'on décolle
   document.querySelectorAll('.o-drag').forEach((el) => {
@@ -147,30 +145,52 @@
   });
 
   // Ajout au panier sans quitter la page (sinon, le formulaire s'envoie normalement)
-  document.querySelectorAll('.o-prod__form').forEach((form) => {
-    form.addEventListener('submit', async (e) => {
-      if (!window.fetch || !form.action.includes('/cart/add')) return;
-      e.preventDefault();
-      const btn = form.querySelector('.o-add');
-      const label = btn.textContent;
-      try {
-        const res = await fetch(form.action, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
-        if (!res.ok) throw new Error();
-        btn.textContent = 'dans le panier ✦';
-        btn.classList.add('is-added');
-        const r = btn.getBoundingClientRect();
-        burst(r.left + r.width / 2, r.top);
-        document.dispatchEvent(new CustomEvent('orane:cart-updated'));
-        fetch('/cart.js').then((c) => c.json()).then((cart) => {
-          document.querySelectorAll('.cart-count-bubble span[aria-hidden="true"]').forEach((s) => { s.textContent = cart.item_count; });
-        }).catch(() => {});
-      } catch {
-        form.submit();
-        return;
-      }
-      setTimeout(() => { btn.textContent = label; btn.classList.remove('is-added'); }, 2200);
-    });
+  const onCartPage = !!document.querySelector('main[data-template="cart"]');
+  document.addEventListener('submit', async (e) => {
+    const form = e.target.closest('.o-prod__form');
+    if (!form || !window.fetch || !form.action.includes('/cart/add')) return;
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    const label = btn.textContent;
+    btn.disabled = true;
+    try {
+      const res = await fetch(form.action, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
+      if (!res.ok) throw new Error();
+      const r = btn.getBoundingClientRect();
+      burst(r.left + r.width / 2, r.top);
+      if (onCartPage) { setTimeout(() => location.reload(), 450); return; }
+      if (btn.classList.contains('o-add')) btn.textContent = 'dans le panier ✦';
+      btn.classList.add('is-added');
+      document.dispatchEvent(new CustomEvent('orane:cart-updated'));
+      fetch('/cart.js').then((c) => c.json()).then((cart) => {
+        document.querySelectorAll('.cart-count-bubble span[aria-hidden="true"]').forEach((s) => { s.textContent = cart.item_count; });
+      }).catch(() => {});
+    } catch {
+      form.submit();
+      return;
+    }
+    setTimeout(() => { btn.textContent = label; btn.classList.remove('is-added'); btn.disabled = false; }, 2200);
   });
+
+  // Sections ORANE qui dépendent du panier : on les redessine quand il change
+  const refreshCartSections = () => {
+    document.querySelectorAll('[data-o-refresh]').forEach(async (el) => {
+      const id = el.dataset.oRefresh;
+      el.classList.add('is-refreshing');
+      try {
+        const res = await fetch(`${location.pathname}?section_id=${encodeURIComponent(id)}`);
+        const html = await res.text();
+        const fresh = new DOMParser().parseFromString(html, 'text/html').querySelector(`[data-o-refresh="${id}"]`);
+        if (fresh) el.replaceWith(fresh); else el.classList.remove('is-refreshing');
+      } catch { el.classList.remove('is-refreshing'); }
+    });
+  };
+  if (document.querySelector('[data-o-refresh]')) {
+    if (typeof subscribe === 'function' && typeof PUB_SUB_EVENTS !== 'undefined') {
+      subscribe(PUB_SUB_EVENTS.cartUpdate, refreshCartSections);
+    }
+    document.addEventListener('orane:cart-updated', refreshCartSections);
+  }
 
   // Fiche produit : barre d'achat qui apparaît quand le vrai bouton sort de l'écran
   const sticky = document.querySelector('[data-o-sticky]');

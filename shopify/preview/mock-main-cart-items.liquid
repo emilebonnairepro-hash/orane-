@@ -1,0 +1,38 @@
+{%- comment -%} Aperçu seulement : structure de main-cart-items et main-cart-footer de Dawn. {%- endcomment -%}
+<style>@media (max-width:749px){cart-items .page-width,#main-cart-footer .page-width{padding-left:1.6rem!important;padding-right:1.6rem!important}cart-items .cart-items thead{display:none}cart-items .cart-items,cart-items tbody{display:block}cart-items .cart-item{display:grid;grid-template-columns:9rem 1fr;gap:1rem 1.6rem}cart-items .cart-item>td{display:block}cart-items .cart-item__quantity{grid-column:2}cart-items .cart-item__totals{grid-column:2;text-align:left!important}#main-cart-footer .cart__blocks{width:100%!important}}</style>
+<cart-items class="gradient isolate{% if cart == empty %} is-empty{% endif %}" style="display:block;padding:4.8rem 0 1.2rem">
+  <div class="page-width" style="max-width:120rem;margin:0 auto;padding:0 5rem">
+    <div class="title-wrapper-with-link" style="display:flex;justify-content:space-between;align-items:center">
+      <h1 class="title title--primary">Ton panier</h1>
+      <a href="#" class="underlined-link">Continuer les achats</a>
+    </div>
+    {%- if cart.item_count > 0 -%}
+    <table class="cart-items" style="width:100%">
+      <thead><tr><th colspan="2" style="text-align:left">PRODUIT</th><th style="text-align:left">QUANTITÉ</th><th style="text-align:right">TOTAL</th></tr></thead>
+      <tbody>
+        {%- for item in cart.items -%}
+        <tr class="cart-item">
+          <td class="cart-item__media" style="width:12rem"><div class="cart-item__image-container"><img class="cart-item__image" src="{{ item.product.featured_image.src }}" style="display:block;width:10rem" alt=""></div></td>
+          <td class="cart-item__details"><a class="cart-item__name" href="#">{{ item.product.title }}</a><div class="product-option">{{ item.product.price | money }}</div></td>
+          <td class="cart-item__quantity"><div style="display:flex;gap:1rem;align-items:center"><div class="quantity" style="display:inline-flex;align-items:center;gap:2.4rem;padding:0 1.6rem;font-weight:700"><span class="quantity__button">−</span><span>{{ item.quantity }}</span><span class="quantity__button">+</span></div><cart-remove-button><a class="button" href="#" style="display:grid;place-items:center">✕</a></cart-remove-button></div></td>
+          <td class="cart-item__totals right" style="text-align:right"><span class="price">{{ item.line_price | money }}</span></td>
+        </tr>
+        {%- endfor -%}
+      </tbody>
+    </table>
+    {%- endif -%}
+  </div>
+</cart-items>
+{%- if cart.item_count > 0 -%}
+<div id="main-cart-footer">
+  <div class="page-width" style="max-width:120rem;margin:0 auto;padding:1.2rem 5rem 6.4rem">
+    <div class="cart__footer" style="display:flex">
+      <div class="cart__blocks" style="width:40rem">
+        <div class="totals" style="display:flex;justify-content:center;gap:2rem"><h2 class="totals__total" style="margin:0">Total estimé</h2><p class="totals__total-value" style="margin:0">{{ cart.total_price | money }} EUR</p></div>
+        <small class="tax-note">Taxes incluses. Frais d'expédition calculés à l'étape du paiement.</small>
+        <div class="cart__ctas" style="margin-top:2rem"><button class="cart__checkout-button button" style="width:100%;background:#FF6A2B;color:#2A1240;border:3px solid #2A1240;border-radius:999px;font:800 1.9rem var(--font-heading-family)">Procéder au paiement</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+{%- endif -%}

@@ -1,0 +1,201 @@
+{%- comment -%}
+  ORANE — le coach du panier, calculé à partir du panier et du catalogue :
+  1. le coup de pouce pour atteindre la livraison offerte,
+  2. les produits recommandés dans la description des soins du panier (« Pour une routine complète »),
+  3. la routine en liste à cocher (une étape = un type de soin, lu dans les étiquettes « … (Type) »).
+  Panier vide : « Par où commencer ? ». Se met à jour tout seul (orane.js, data-o-refresh).
+{%- endcomment -%}
+{%- liquid
+  assign threshold = section.settings.threshold | times: 100
+  assign left = threshold | minus: cart.total_price
+  assign catalog = section.settings.collection | default: collections.all
+
+  assign in_cart = ','
+  assign types_in_cart = ','
+  for item in cart.items
+    assign in_cart = in_cart | append: item.product.handle | append: ','
+    for tag in item.product.tags
+      if tag contains '(Type)'
+        assign ty = tag | remove: ' (Type)'
+        assign types_in_cart = types_in_cart | append: ty | append: ','
+      endif
+    endfor
+  endfor
+
+  # Coup de pouce : le moins cher des produits qui suffit à atteindre le seuil, sinon le plus cher.
+  assign boost = nil
+  assign boost_price = 999999999
+  assign fallback = nil
+  assign fallback_price = 0
+  if cart.item_count > 0 and left > 0
+    for p in catalog.products limit: 50
+      assign key = ',' | append: p.handle | append: ','
+      unless in_cart contains key
+        if p.available
+          if p.price >= left and p.price < boost_price
+            assign boost = p
+            assign boost_price = p.price
+          endif
+          if p.price > fallback_price
+            assign fallback = p
+            assign fallback_price = p.price
+          endif
+        endif
+      endunless
+    endfor
+    if boost == nil
+      assign boost = fallback
+    endif
+  endif
+
+  # Ça va avec : les liens « /products/… » de la partie « Pour une routine complète » des descriptions.
+  assign mates = ','
+  assign mates_from = ''
+  for item in cart.items
+    assign d = item.product.description
+    if d contains '/products/'
+      assign chunks = d | split: '<h3>'
+      for chunk in chunks
+        assign head = chunk | split: '</h3>' | first | downcase
+        if head contains 'routine' and chunk contains '/products/'
+          assign h = chunk | split: '/products/' | last | split: '"' | first | split: '?' | first
+          assign key = ',' | append: h | append: ','
+          unless in_cart contains key or mates contains key
+            assign mates = mates | append: h | append: ','
+            assign mates_from = mates_from | append: item.product.title | append: '|'
+          endunless
+        endif
+      endfor
+    endif
+  endfor
+  assign mate_list = mates | remove_first: ',' | split: ','
+  assign mate_from = mates_from | split: '|'
+
+  assign tones = 'citron,rose,mandarine' | split: ','
+-%}
+
+<section class="o-coach" data-o-refresh="{{ section.id }}">
+  <div class="o-wrap">
+    {%- if cart.item_count == 0 -%}
+      <p class="o-kicker">{{ section.settings.empty_kicker }}</p>
+      <h2 class="o-title">{{ section.settings.empty_title }}<br><em>{{ section.settings.empty_em }}</em></h2>
+      <div class="o-coach__grid">
+        {%- for p in catalog.products limit: 3 -%}
+          {%- assign t = forloop.index0 | modulo: 3 -%}
+          {%- render 'orane-mini-card', p: p, note: '', cta: section.settings.add_label, tone: tones[t] -%}
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <p class="o-kicker">{{ section.settings.kicker }}</p>
+      <h2 class="o-title">{{ section.settings.title }}<br><em>{{ section.settings.title_em }}</em></h2>
+
+      <div class="o-coach__grid">
+        {%- if boost != nil -%}
+          {%- liquid
+            if boost.price >= left
+              assign note = section.settings.boost_ok
+            else
+              assign note = section.settings.boost_closer
+            endif
+          -%}
+          <div class="o-coach__boost">
+            {%- render 'orane-mini-card', p: boost, note: note, cta: section.settings.add_label, tone: 'citron' -%}
+          </div>
+        {%- endif -%}
+
+        {%- for h in mate_list limit: 3 -%}
+          {%- assign p = all_products[h] -%}
+          {%- if p.id -%}
+            {%- assign note = section.settings.mate_note | replace: '[produit]', mate_from[forloop.index0] -%}
+            {%- assign t = forloop.index | modulo: 3 -%}
+            {%- render 'orane-mini-card', p: p, note: note, cta: section.settings.add_label, tone: tones[t] -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- comment -%} La routine en liste à cocher {%- endcomment -%}
+      <div class="o-routine">
+        <p class="o-kicker">{{ section.settings.routine_kicker }}</p>
+        <ul class="o-routine__list">
+          {%- assign seen = ',' -%}
+          {%- for p in catalog.products limit: 50 -%}
+            {%- assign ty = '' -%}
+            {%- for tag in p.tags -%}
+              {%- if tag contains '(Type)' -%}{%- assign ty = tag | remove: ' (Type)' -%}{%- break -%}{%- endif -%}
+            {%- endfor -%}
+            {%- assign key = ',' | append: ty | append: ',' -%}
+            {%- if ty != blank -%}
+              {%- unless seen contains key -%}
+                {%- assign seen = seen | append: ty | append: ',' -%}
+                {%- liquid
+                  assign tl = ty | downcase
+                  assign step = ty
+                  if tl contains 'nettoyant'
+                    assign step = 'Démaquiller'
+                  elsif tl contains 'patch'
+                    assign step = 'Réveiller le regard'
+                  elsif tl contains 'hydratant'
+                    assign step = 'Hydrater'
+                  elsif tl contains 'huile'
+                    assign step = 'Chouchouter la barbe'
+                  elsif tl contains 'shampooing'
+                    assign step = 'Laver les cheveux'
+                  elsif tl contains 'douche'
+                    assign step = 'Se laver en douceur'
+                  endif
+                  assign done = false
+                  if types_in_cart contains key
+                    assign done = true
+                  endif
+                -%}
+                <li class="o-step-check{% if done %} is-done{% endif %}">
+                  <span class="o-step-check__box" aria-hidden="true">{% if done %}✓{% endif %}</span>
+                  <span class="o-step-check__label">
+                    <strong>{{ step }}</strong>
+                    <small>{% if done %}{{ section.settings.done_label }}{% else %}{{ p.title }} · {{ p.price | money }}{% endif %}</small>
+                  </span>
+                  {%- unless done -%}
+                    {%- if p.available -%}
+                      <form class="o-prod__form" action="{{ routes.cart_add_url }}" method="post">
+                        <input type="hidden" name="id" value="{{ p.selected_or_first_available_variant.id }}">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" class="o-step-check__add" aria-label="{{ section.settings.add_label }} : {{ p.title | escape }}">+</button>
+                      </form>
+                    {%- endif -%}
+                  {%- endunless -%}
+                </li>
+              {%- endunless -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ORANE · Coach du panier",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "paragraph", "content": "Tout est calculé à partir du panier, des descriptions et des étiquettes « … (Type) » des produits." },
+    { "type": "collection", "id": "collection", "label": "Catalogue utilisé", "info": "Vide = tous les produits." },
+    { "type": "range", "id": "threshold", "label": "Livraison offerte dès", "min": 10, "max": 150, "step": 5, "unit": "€", "default": 50 },
+    { "type": "text", "id": "kicker", "label": "Mention", "default": "Le coach" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Et avec ça," },
+    { "type": "text", "id": "title_em", "label": "Titre en couleur", "default": "ça donne quoi ?" },
+    { "type": "text", "id": "boost_ok", "label": "Coup de pouce (suffit)", "default": "Ajoute-le et la livraison est offerte ✦" },
+    { "type": "text", "id": "boost_closer", "label": "Coup de pouce (rapproche)", "default": "Le plus grand pas vers la livraison offerte" },
+    { "type": "text", "id": "mate_note", "label": "Ça va avec", "info": "[produit] = le soin déjà dans le panier", "default": "Va très bien avec : [produit]" },
+    { "type": "text", "id": "routine_kicker", "label": "Mention de la routine", "default": "Ta routine, coche par coche" },
+    { "type": "text", "id": "done_label", "label": "Étape faite", "default": "c'est dans le panier" },
+    { "type": "text", "id": "add_label", "label": "Bouton d'ajout", "default": "Ajouter" },
+    { "type": "text", "id": "empty_kicker", "label": "Mention (panier vide)", "default": "Par où commencer" },
+    { "type": "text", "id": "empty_title", "label": "Titre (panier vide)", "default": "Trois soins" },
+    { "type": "text", "id": "empty_em", "label": "Titre en couleur (panier vide)", "default": "pour démarrer." }
+  ],
+  "presets": [{ "name": "ORANE · Coach du panier" }],
+  "enabled_on": { "templates": ["cart"] }
+}
+{% endschema %}

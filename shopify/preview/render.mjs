@@ -8,7 +8,8 @@ import { fileURLToPath } from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
-const engine = new Liquid({ root: [path.join(root, 'sections'), path.join(root, 'snippets')], extname: '.liquid', globals: { cart: { total_price: 1340 } } });
+const cartGlobal = { total_price: 1340, item_count: 0, items: [] };
+const engine = new Liquid({ root: [path.join(root, 'sections'), path.join(root, 'snippets')], extname: '.liquid', globals: { cart: cartGlobal } });
 
 engine.registerTag('schema', class extends Tag {
   constructor(token, remain, liquid, parser) {
@@ -25,6 +26,7 @@ engine.registerFilter('image_tag', (src, ...args) => {
   return `<img src="${src}"${o.class ? ` class="${o.class}"` : ''} alt="${o.alt ?? ''}" loading="${o.loading ?? 'lazy'}">`;
 });
 engine.registerFilter('money', (c) => `${(c / 100).toFixed(2).replace('.', ',')} €`);
+engine.registerFilter('money_without_trailing_zeros', (c) => `${(c / 100).toFixed(2).replace('.', ',').replace(/,00$/, '')} €`);
 engine.registerFilter('asset_url', (f) => `shopify/assets/${f}`);
 engine.registerFilter('stylesheet_tag', (u) => `<link rel="stylesheet" href="${u}">`);
 
@@ -56,6 +58,15 @@ const extra = { collection: tpl === 'collection' ? { title: 'Soin du visage', ha
   product: tpl === 'product' ? products[process.argv[4] || 'patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c'] : null,
   all_products: products, cart: { total_price: 1340 } };
 if (extra.product) extra.product.selected_or_first_available_variant.price = extra.product.price;
+if (tpl === 'cart') {
+  // ORANE_CART=vide pour un panier vide ; sinon deux soins
+  const lines = process.env.ORANE_CART === 'vide' ? [] : [
+    ['patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c', 1], ['gel-visage-au-zinc-sans-huile-pour-hommes', 2]];
+  cartGlobal.items = lines.map(([h, q]) => ({ product: products[h], quantity: q, line_price: products[h].price * q }));
+  cartGlobal.item_count = lines.reduce((a, [, q]) => a + q, 0);
+  cartGlobal.total_price = cartGlobal.items.reduce((a, i) => a + i.line_price, 0);
+  extra.cart = cartGlobal;
+}
 
 const resolve = (v) => (typeof v === 'string' && products[v]) ? products[v] : (v === 'all' ? all : v);
 let html = '';
@@ -63,6 +74,8 @@ for (const id of index.order) {
   const s = index.sections[id];
   const ctxBase = { ...extra, shop: { name: 'ORANE', email: 'emilebonnairepro@gmail.com' }, routes: { root_url: '/', all_products_collection_url: '/collections/all', cart_add_url: '#panier' }, collections: { all } };
   if (s.type === 'custom-liquid') { html += await engine.parseAndRender(s.settings.custom_liquid, ctxBase); continue; }
+  if (s.type === 'main-cart-items') { html += await engine.parseAndRender(fs.readFileSync(path.join(here, 'mock-main-cart-items.liquid'), 'utf8'), ctxBase); continue; }
+  if (s.type === 'main-cart-footer') continue;
   if (s.type === 'main-product') { html += await engine.parseAndRender(fs.readFileSync(path.join(here, 'mock-main-product.liquid'), 'utf8'), ctxBase); continue; }
   if (!s.type.startsWith('orane-')) { html += `<div class="dawn-placeholder">Section existante du thème : ${s.type}${s.settings?.title ? ` — « ${s.settings.title} »` : ''}</div>`; continue; }
   const settings = Object.fromEntries(Object.entries(s.settings ?? {}).map(([k, v]) => [k, resolve(v)]));
@@ -100,7 +113,7 @@ const page = `<!doctype html>
 <body>
 <div class="demo-bar">Livraison offerte dès 50€ d'achat</div>
 <header class="demo-header"><span>orane</span><nav><span>Visage</span><span>Corps</span><span>Cheveux</span><span>Homme</span><span>Panier (0)</span></nav></header>
-<main>
+<main data-template="${tpl.split('.')[0]}">
 ${html}
 </main>
 <script>

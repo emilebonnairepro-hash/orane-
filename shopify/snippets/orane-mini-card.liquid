@@ -1,0 +1,25 @@
+{%- comment -%}
+  ORANE — petite carte produit avec ajout au panier.
+  {% render 'orane-mini-card', p: produit, note: 'texte au-dessus', cta: 'Ajouter', tone: 'citron' %}
+{%- endcomment -%}
+<article class="o-mini">
+  {%- if note != blank -%}<p class="o-mini__note">{{ note }}</p>{%- endif -%}
+  <a class="o-mini__media o-bg-{{ tone | default: 'citron' }}" href="{{ p.url }}">
+    {%- if p.featured_image -%}
+      {{ p.featured_image | image_url: width: 300 | image_tag: loading: 'lazy', alt: p.title }}
+    {%- else -%}
+      <span class="o-flask">orane</span>
+    {%- endif -%}
+  </a>
+  <div class="o-mini__body">
+    <p class="o-mini__name"><a href="{{ p.url }}">{{ p.title }}</a></p>
+    <p class="o-mini__price">{{ p.price | money }}</p>
+    {%- if p.available -%}
+      <form class="o-prod__form" action="{{ routes.cart_add_url }}" method="post">
+        <input type="hidden" name="id" value="{{ p.selected_or_first_available_variant.id }}">
+        <input type="hidden" name="quantity" value="1">
+        <button type="submit" class="o-add">{{ cta | default: 'Ajouter' }}</button>
+      </form>
+    {%- endif -%}
+  </div>
+</article>

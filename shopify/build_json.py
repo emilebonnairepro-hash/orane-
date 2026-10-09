@@ -315,17 +315,26 @@ dump("templates/list-collections.json", {"sections": {
   "promesses": promesses("creme"),
 }, "order": ["hero", "main", "promesses"]})
 
-# Panier
+# Panier : en-tête vivant, lignes Dawn en cartes, coach calculé à partir du panier
 dump("templates/cart.json", {"sections": {
-  "hero": hero(kicker="Le panier", title="presque" + NB + "à toi.", sticker="bon choix ✦", color="rose", show_count=False),
-  "cart-items": {"type": "main-cart-items", "settings": {"color_scheme": CREME, "padding_top": 36, "padding_bottom": 24}},
+  "tete": {"type": "orane-panier-tete", "settings": {
+    "kicker": "Le panier", "title_empty": "tout vide… pour l'instant.", "title_one": "un soin, une bouille ravie.",
+    "title_many": "[n] soins, zéro complexe.", "empty_text": "Pas de panique : on t'aide à trouver ton soin.",
+    "empty_cta": "Voir les soins", "quiz_label": "Faire le quiz", "threshold": 50,
+    "track_left": "Plus que ", "track_left_end": "et la livraison est offerte.", "track_done": "Livraison offerte. Tu gères ✦"}},
+  "cart-items": {"type": "main-cart-items", "settings": {"color_scheme": CREME, "padding_top": 48, "padding_bottom": 12}},
   "cart-footer": {"type": "main-cart-footer",
     "blocks": {"subtotal": {"type": "subtotal", "settings": {}}, "buttons": {"type": "buttons", "settings": {}}},
     "block_order": ["subtotal", "buttons"],
-    "settings": {"color_scheme": CREME, "padding_top": 12, "padding_bottom": 48}},
+    "settings": {"color_scheme": CREME, "padding_top": 12, "padding_bottom": 64}},
+  "coach": {"type": "orane-panier-coach", "settings": {
+    "threshold": 50, "kicker": "Le coach", "title": "Et avec ça,", "title_em": "ça donne quoi ?",
+    "boost_ok": "Ajoute-le et la livraison est offerte ✦", "boost_closer": "Le plus grand pas vers la livraison offerte",
+    "mate_note": "Va très bien avec : [produit]", "routine_kicker": "Ta routine, coche par coche",
+    "done_label": "c'est dans le panier", "add_label": "Ajouter",
+    "empty_kicker": "Par où commencer", "empty_title": "Trois soins", "empty_em": "pour démarrer."}},
   "promesses": promesses("aubergine"),
-  "shelf": shelf("Un petit dernier", "pour la route ?", "Avant de filer", 6),
-}, "order": ["hero", "cart-items", "cart-footer", "promesses", "shelf"]})
+}, "order": ["tete", "cart-items", "cart-footer", "coach", "promesses"]})
 
 # Contact
 faq_b, faq_o = blocks("q", [

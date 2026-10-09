@@ -1,0 +1,88 @@
+{%- comment -%}
+  ORANE — en-tête vivant du panier : le titre change selon le panier,
+  et la bouille avance sur une piste jusqu'à la livraison offerte.
+  Se met à jour tout seul quand le panier change (orane.js, data-o-refresh).
+{%- endcomment -%}
+{%- liquid
+  assign threshold = section.settings.threshold | times: 100
+  assign total = cart.total_price
+  assign left = threshold | minus: total
+  assign pct = total | times: 100 | divided_by: threshold
+  if pct > 100
+    assign pct = 100
+  endif
+  if cart.item_count == 0
+    assign title = section.settings.title_empty
+  elsif cart.item_count == 1
+    assign title = section.settings.title_one
+  else
+    assign title = section.settings.title_many | replace: '[n]', cart.item_count
+  endif
+-%}
+<section class="o-chead{% if cart.item_count == 0 %} is-empty{% endif %}" data-o-refresh="{{ section.id }}">
+  {%- render 'orane-spark', color: 'lime', class: 'o-s1' -%}
+  {%- render 'orane-spark', color: 'creme', class: 'o-s2' -%}
+  <div class="o-wrap">
+    <div class="o-chead__top">
+      <div>
+        <p class="o-kicker"><a href="{{ routes.root_url }}">orane</a> ✦ {{ section.settings.kicker }}</p>
+        <h1 class="o-chead__title">{{ title }}</h1>
+        {%- if cart.item_count > 0 -%}
+          <p class="o-chead__sum">
+            <span class="o-sticker o-bg-creme">{{ cart.item_count }} soin{% if cart.item_count > 1 %}s{% endif %}</span>
+            <span class="o-sticker o-bg-citron">{{ total | money }}</span>
+          </p>
+        {%- else -%}
+          <p class="o-chead__empty">{{ section.settings.empty_text }}</p>
+          <p class="o-chead__ctas">
+            <a class="o-btn" href="{{ routes.all_products_collection_url }}">{{ section.settings.empty_cta }} →</a>
+            {%- if section.settings.quiz_label != blank -%}
+              <a class="o-btn o-bg-creme" href="{{ routes.root_url }}#quiz">{{ section.settings.quiz_label }}</a>
+            {%- endif -%}
+          </p>
+        {%- endif -%}
+      </div>
+      {%- render 'orane-bouille', class: 'o-chead__bouille' -%}
+    </div>
+
+    {%- if cart.item_count > 0 -%}
+      <div class="o-track" style="--p: {{ pct }}%">
+        <p class="o-track__text">
+          {%- if left > 0 -%}
+            {{ section.settings.track_left }}<strong>{{ left | money }}</strong> {{ section.settings.track_left_end }}
+          {%- else -%}
+            <strong>{{ section.settings.track_done }}</strong>
+          {%- endif -%}
+        </p>
+        <div class="o-track__lane" aria-hidden="true">
+          <span class="o-track__fill"></span>
+          <span class="o-track__rider">{%- render 'orane-bouille' -%}</span>
+          <span class="o-track__flag">{{ threshold | money_without_trailing_zeros }}<small>offerte</small></span>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ORANE · Tête du panier",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Mention", "default": "Le panier" },
+    { "type": "text", "id": "title_empty", "label": "Titre (panier vide)", "default": "tout vide… pour l'instant." },
+    { "type": "text", "id": "title_one", "label": "Titre (1 soin)", "default": "un soin, une bouille ravie." },
+    { "type": "text", "id": "title_many", "label": "Titre (plusieurs soins)", "info": "[n] = nombre de soins", "default": "[n] soins, zéro complexe." },
+    { "type": "text", "id": "empty_text", "label": "Texte (panier vide)", "default": "Pas de panique : on t'aide à trouver ton soin." },
+    { "type": "text", "id": "empty_cta", "label": "Bouton (panier vide)", "default": "Voir les soins" },
+    { "type": "text", "id": "quiz_label", "label": "Lien vers le quiz", "default": "Faire le quiz" },
+    { "type": "range", "id": "threshold", "label": "Livraison offerte dès", "min": 10, "max": 150, "step": 5, "unit": "€", "default": 50 },
+    { "type": "text", "id": "track_left", "label": "Piste : début de phrase", "default": "Plus que " },
+    { "type": "text", "id": "track_left_end", "label": "Piste : fin de phrase", "default": "et la livraison est offerte." },
+    { "type": "text", "id": "track_done", "label": "Piste : objectif atteint", "default": "Livraison offerte. Tu gères ✦" }
+  ],
+  "presets": [{ "name": "ORANE · Tête du panier" }],
+  "enabled_on": { "templates": ["cart"] }
+}
+{% endschema %}
