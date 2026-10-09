@@ -1,0 +1,47 @@
+{
+  "gabarit": {
+    "source": "provisoire — à remplacer par le gabarit Selfnamed",
+    "largeur": 66,
+    "hauteur": 96,
+    "fond_perdu": 3,
+    "marge": 3,
+    "zones_vides": [
+      {
+        "x": 0,
+        "y": 72,
+        "l": 66,
+        "h": 24
+      }
+    ]
+  },
+  "produit": {
+    "numero": "05",
+    "univers": "homme",
+    "lignes": [
+      "gel",
+      "visage"
+    ],
+    "sous_titre": "au zinc · sans huile",
+    "bulle": "frais et net",
+    "pastilles": [
+      "au zinc",
+      "sans huile",
+      "zéro effet gras"
+    ],
+    "pied": "hydratant",
+    "volume": ""
+  },
+  "theme": {
+    "fond": "mandarine",
+    "accent": "citron",
+    "pastilles": [
+      "citron",
+      "creme",
+      "violet"
+    ],
+    "anneau": [
+      "citron",
+      "violet"
+    ]
+  }
+}

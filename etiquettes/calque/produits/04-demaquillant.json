@@ -1,0 +1,47 @@
+{
+  "gabarit": {
+    "source": "provisoire — à remplacer par le gabarit Selfnamed",
+    "largeur": 66,
+    "hauteur": 96,
+    "fond_perdu": 3,
+    "marge": 3,
+    "zones_vides": [
+      {
+        "x": 0,
+        "y": 72,
+        "l": 66,
+        "h": 24
+      }
+    ]
+  },
+  "produit": {
+    "numero": "04",
+    "univers": "visage",
+    "lignes": [
+      "démaquillant"
+    ],
+    "sous_titre": "biphasé · sans parfum",
+    "bulle": "un geste, et hop",
+    "pastilles": [
+      "sans parfum",
+      "aloe vera",
+      "acide hyaluronique"
+    ],
+    "pied": "agiter avant emploi",
+    "volume": ""
+  },
+  "theme": {
+    "fond": "violet",
+    "texte": "creme",
+    "accent": "citron",
+    "pastilles": [
+      "citron",
+      "creme",
+      "rose"
+    ],
+    "anneau": [
+      "citron",
+      "rose"
+    ]
+  }
+}

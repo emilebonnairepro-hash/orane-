@@ -1,0 +1,47 @@
+{
+  "gabarit": {
+    "source": "provisoire — à remplacer par le gabarit Selfnamed",
+    "largeur": 96,
+    "hauteur": 66,
+    "fond_perdu": 3,
+    "marge": 3,
+    "zones_vides": [
+      {
+        "x": 66,
+        "y": 0,
+        "l": 30,
+        "h": 66
+      }
+    ]
+  },
+  "produit": {
+    "numero": "06",
+    "univers": "visage",
+    "lignes": [
+      "patchs",
+      "yeux"
+    ],
+    "sous_titre": "caféine & vitamine C",
+    "bulle": "debout là-dedans !",
+    "pastilles": [
+      "caféine",
+      "vitamine C",
+      "7 paires"
+    ],
+    "pied": "hydrogel",
+    "volume": "7 paires"
+  },
+  "theme": {
+    "fond": "creme",
+    "accent": "rose",
+    "pastilles": [
+      "rose",
+      "mandarine",
+      "citron"
+    ],
+    "anneau": [
+      "mandarine",
+      "rose"
+    ]
+  }
+}
