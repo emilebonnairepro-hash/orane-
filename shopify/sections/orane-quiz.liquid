@@ -1,0 +1,74 @@
+{%- comment -%}
+  ORANE — « Ta peau, là, maintenant ? » : on choisit son humeur, la bouille propose un soin.
+  Chaque bloc = une humeur reliée à un produit (orane.js).
+{%- endcomment -%}
+<section class="o-quiz" data-o-quiz>
+  {%- render 'orane-spark', color: 'lime', class: 'o-s1' -%}
+  <div class="o-wrap o-quiz__grid">
+    <div>
+      {%- if section.settings.kicker != blank -%}<p class="o-kicker">{{ section.settings.kicker }}</p>{%- endif -%}
+      <h2 class="o-title">{{ section.settings.title }}</h2>
+      <div class="o-moods" role="group" aria-label="{{ section.settings.title | escape }}">
+        {%- for block in section.blocks -%}
+          <button type="button" class="o-mood" aria-pressed="false" data-target="o-match-{{ block.id }}" {{ block.shopify_attributes }}>{{ block.settings.mood }}</button>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="o-quiz__answer" aria-live="polite">
+      <div class="o-quiz__idle">
+        {%- render 'orane-bouille' -%}
+        <p>{{ section.settings.idle }}</p>
+      </div>
+      {%- for block in section.blocks -%}
+        {%- assign p = block.settings.product -%}
+        <div class="o-match" id="o-match-{{ block.id }}">
+          <p class="o-match__label">{{ section.settings.match_label }}</p>
+          {%- if p.featured_image -%}
+            {{ p.featured_image | image_url: width: 300 | image_tag: class: 'o-match__img', loading: 'lazy', alt: p.title }}
+          {%- else -%}
+            {%- render 'orane-bouille' -%}
+          {%- endif -%}
+          <h3 class="o-match__title">{{ p.title | default: block.settings.mood }}</h3>
+          {%- if block.settings.why != blank -%}<p class="o-match__why">{{ block.settings.why }}</p>{%- endif -%}
+          {%- if p != blank -%}
+            <div class="o-match__cta">
+              <span class="o-pill-price">{{ p.price | money }}</span>
+              <a class="o-btn" href="{{ p.url }}">{{ section.settings.cta_label }} →</a>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ORANE · Quiz humeur",
+  "tag": "div",
+  "class": "section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Mention", "default": "Le quiz qui dure 2 secondes" },
+    { "type": "text", "id": "title", "label": "Question", "default": "Ta peau, là, maintenant ?" },
+    { "type": "text", "id": "idle", "label": "Texte avant le choix", "default": "Choisis une humeur, je m'occupe du reste." },
+    { "type": "text", "id": "match_label", "label": "Étiquette du résultat", "default": "Ton match" },
+    { "type": "text", "id": "cta_label", "label": "Bouton du résultat", "default": "Je le veux" }
+  ],
+  "blocks": [
+    {
+      "type": "mood",
+      "name": "Humeur",
+      "settings": [
+        { "type": "text", "id": "mood", "label": "Humeur", "default": "fatiguée du regard" },
+        { "type": "product", "id": "product", "label": "Produit proposé" },
+        { "type": "text", "id": "why", "label": "Pourquoi ce produit" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "ORANE · Quiz humeur", "blocks": [{ "type": "mood" }, { "type": "mood" }, { "type": "mood" }] }
+  ]
+}
+{% endschema %}

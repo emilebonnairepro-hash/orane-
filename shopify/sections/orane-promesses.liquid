@@ -1,0 +1,64 @@
+{%- comment -%} ORANE — les promesses (livraison, retours…) en gros stickers ronds penchés {%- endcomment -%}
+<section class="o-promises o-promises--{{ section.settings.color }}">
+  <div class="o-wrap">
+    {%- if section.settings.title != blank -%}<p class="o-kicker o-promises__title">{{ section.settings.title }}</p>{%- endif -%}
+    <ul class="o-promises__list">
+      {%- for block in section.blocks -%}
+        <li class="o-sticker o-sticker--round o-bg-{{ block.settings.color }}" {{ block.shopify_attributes }}>
+          <strong>{{ block.settings.big }}</strong>
+          <small>{{ block.settings.small }}</small>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ORANE · Promesses",
+  "tag": "div",
+  "class": "section",
+  "max_blocks": 5,
+  "settings": [
+    { "type": "text", "id": "title", "label": "Mention" },
+    {
+      "type": "select", "id": "color", "label": "Fond", "default": "creme",
+      "options": [
+        { "value": "creme", "label": "Crème" },
+        { "value": "aubergine", "label": "Aubergine" },
+        { "value": "violet", "label": "Violet électrique" }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "promise",
+      "name": "Promesse",
+      "settings": [
+        { "type": "text", "id": "big", "label": "Gros texte", "default": "2 à 5 jours" },
+        { "type": "text", "id": "small", "label": "Petit texte", "default": "et c'est chez toi" },
+        {
+          "type": "select", "id": "color", "label": "Couleur", "default": "citron",
+          "options": [
+            { "value": "citron", "label": "Citron vert" },
+            { "value": "rose", "label": "Rose bonbon" },
+            { "value": "mandarine", "label": "Mandarine" },
+            { "value": "creme", "label": "Crème" },
+            { "value": "piscine", "label": "Bleu piscine" }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ORANE · Promesses",
+      "blocks": [
+        { "type": "promise", "settings": { "big": "2 à 5 jours", "small": "et c'est chez toi", "color": "citron" } },
+        { "type": "promise", "settings": { "big": "offerte dès 50 €", "small": "la livraison", "color": "rose" } },
+        { "type": "promise", "settings": { "big": "14 jours", "small": "pour changer d'avis", "color": "mandarine" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

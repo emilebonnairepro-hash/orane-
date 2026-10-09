@@ -1,0 +1,80 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "orane-page-hero",
+      "settings": {
+        "kicker": "Les collections",
+        "title": "tous les univers",
+        "text": "<p>Visage, corps, cheveux, homme : quatre façons de prendre soin de toi, toutes avec le sourire.</p>",
+        "show_description": true,
+        "show_count": false,
+        "sticker": "choisis ton camp",
+        "button_label": "",
+        "button_link": "",
+        "color": "violet"
+      }
+    },
+    "main": {
+      "type": "main-list-collections",
+      "settings": {
+        "title": "",
+        "sort": "alphabetical",
+        "image_ratio": "square",
+        "columns_desktop": 4,
+        "columns_mobile": "2"
+      }
+    },
+    "promesses": {
+      "type": "orane-promesses",
+      "blocks": {
+        "p0": {
+          "type": "promise",
+          "settings": {
+            "big": "2 à 5 jours",
+            "small": "et c'est chez toi",
+            "color": "citron"
+          }
+        },
+        "p1": {
+          "type": "promise",
+          "settings": {
+            "big": "offerte dès 50 €",
+            "small": "la livraison",
+            "color": "rose"
+          }
+        },
+        "p2": {
+          "type": "promise",
+          "settings": {
+            "big": "14 jours",
+            "small": "pour changer d'avis",
+            "color": "mandarine"
+          }
+        }
+      },
+      "block_order": [
+        "p0",
+        "p1",
+        "p2"
+      ],
+      "settings": {
+        "title": "",
+        "color": "creme"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "main",
+    "promesses"
+  ]
+}

@@ -1,0 +1,48 @@
+{%- comment -%}
+  ORANE — manifeste en très grand, qui s'allume mot après mot au défilement (orane.js).
+  Dans le texte : [mot] = surligné (mandarine, rose, citron à tour de rôle),
+  #bouille et #anneau = petites icônes dans la phrase.
+{%- endcomment -%}
+{%- capture icon_bouille -%}<svg class="o-inline-icon" viewBox="0 0 120 120" aria-hidden="true"><circle cx="58" cy="58" r="52" fill="#FF6A2B" stroke="#FFF3E3" stroke-width="6"/><ellipse cx="30" cy="70" rx="10" ry="7" fill="#FF5FA8"/><ellipse cx="86" cy="70" rx="10" ry="7" fill="#FF5FA8"/><circle cx="42" cy="48" r="7" fill="#2A1240"/><path d="M68 48 Q76 40 84 48" fill="none" stroke="#2A1240" stroke-width="5" stroke-linecap="round"/><path d="M36 66 Q58 98 82 66 Z" fill="#2A1240"/></svg>{%- endcapture -%}
+{%- capture icon_anneau -%}<svg class="o-inline-icon" viewBox="0 0 100 100" aria-hidden="true"><path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="#FF6A2B" stroke-width="18"/><path d="M90 50 A40 40 0 0 1 10 50" fill="none" stroke="#FF5FA8" stroke-width="18"/><circle cx="78.3" cy="21.7" r="10" fill="#D4F23A"/></svg>{%- endcapture -%}
+{%- assign colors = 'mandarine,rose,citron' | split: ',' -%}
+{%- assign parts = section.settings.text | escape | split: '[' -%}
+
+<section class="o-manifesto">
+  {%- render 'orane-spark', color: 'lime', class: 'o-s1' -%}
+  <div class="o-wrap">
+    {%- if section.settings.kicker != blank -%}<p class="o-kicker">{{ section.settings.kicker }}</p>{%- endif -%}
+    <p class="o-manifesto__text" data-o-reveal>
+      {%- for part in parts -%}
+        {%- if forloop.first -%}
+          {{- part | replace: '#bouille', icon_bouille | replace: '#anneau', icon_anneau -}}
+        {%- else -%}
+          {%- assign bits = part | split: ']' -%}
+          {%- assign c = forloop.index0 | minus: 1 | modulo: 3 -%}
+          {%- assign r = forloop.index0 | modulo: 2 | times: 4 | minus: 2 -%}
+          <span class="o-hl o-hl--{{ colors[c] }}" style="--r: {{ r }}deg">{{ bits[0] }}</span>
+          {{- bits[1] | replace: '#bouille', icon_bouille | replace: '#anneau', icon_anneau -}}
+        {%- endif -%}
+      {%- endfor -%}
+    </p>
+    {%- if section.settings.sign != blank -%}<p class="o-manifesto__sign">{{ section.settings.sign }}</p>{%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ORANE · Manifeste",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Mention", "default": "Pourquoi ORANE ne ressemble à personne" },
+    {
+      "type": "textarea", "id": "text", "label": "Texte",
+      "info": "[mot] = surligné. #bouille et #anneau = icônes.",
+      "default": "Le secteur chuchote en nude. Nous, on parle [fort]. Des couleurs qui crient #anneau des formes [rondes] partout et des formules [douces] pour ta peau. Le premier degré est interdit, le clin d'œil obligatoire #bouille"
+    },
+    { "type": "text", "id": "sign", "label": "Signature", "default": "— la bande ORANE" }
+  ],
+  "presets": [{ "name": "ORANE · Manifeste" }]
+}
+{% endschema %}

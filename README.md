@@ -11,11 +11,32 @@ Pour le voir : ouvrir `index.html` dans un navigateur. Pour le mettre en ligne g
 
 ## Thème Shopify
 
-Le dossier `shopify/` contient les fichiers ajoutés ou modifiés dans le thème
-« ORANE – identité décalée (brouillon) », copie du thème en ligne :
+Le dossier `shopify/` contient tout ce qui a été ajouté ou modifié dans le thème
+« ORANE – version 2, plus loin (brouillon) ».
 
-- `sections/orane-hero|orane-ticker|orane-esprit|orane-rituel.liquid` : sections ORANE, modifiables dans l'éditeur de thème
-- `snippets/orane-ring|orane-bouille|orane-spark.liquid` : l'anneau, la bouille et l'étincelle en SVG
-- `assets/orane-brand.css` : la couche de marque, chargée sur toutes les pages
-- `templates/index.json`, `sections/header-group.json`, `sections/footer-group.json`, `config/settings_data.json` : accueil, en-tête, pied de page et réglages (couleurs de la charte, contours et ombres)
-- `build_json.py` : génère les fichiers JSON ci-dessus
+Sections (toutes modifiables dans l'éditeur de thème) :
+
+- `orane-hero` : bannière avec le nom en géant, l'anneau, la bouille et des stickers qu'on peut décoller
+- `orane-ticker` : deux rubans de phrases qui se croisent
+- `orane-manifeste` : le manifeste qui s'allume mot après mot (`[mot]` = surligné, `#bouille` / `#anneau` = icônes)
+- `orane-etagere` : les produits en cartes penchées, ajout au panier sans quitter la page
+- `orane-quiz` : « Ta peau, là, maintenant ? », une humeur = un produit
+- `orane-rituel` : trois gestes, trois chiffres géants, chacun relié à un produit
+- `orane-outro` : le mot de la fin
+- `orane-page-hero` : en-tête des collections, du panier, du contact, des pages et de la 404
+- `orane-promesses` : livraison, retours… en gros stickers ronds
+- `orane-faq` : questions qui s'ouvrent
+
+Autres fichiers : `snippets/` (anneau, bouille, étincelle en SVG), `assets/orane-brand.css`
+(toute l'identité, y compris les pages Dawn : produit, collection, panier, tiroir, contact),
+`assets/orane.js` (interactions), `templates/*.json` et `config/settings_data.json`
+(générés par `build_json.py`).
+
+### Aperçu local
+
+`index.html` à la racine est la page d'accueil rendue à partir du vrai Liquid :
+
+```sh
+npm i liquidjs@10 && node shopify/preview/render.mjs              # page d'accueil → index.html
+node shopify/preview/render.mjs cart /tmp/panier.html               # autre modèle
+```

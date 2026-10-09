@@ -1,0 +1,75 @@
+{%- comment -%}
+  ORANE — en-tête de page réutilisable (collections, panier, contact, pages, 404…)
+  Sans titre saisi, prend le titre de la page ou de la collection.
+  Couleur « auto » sur une collection : suit l'univers (visage, corps, cheveux, homme).
+{%- endcomment -%}
+{%- assign t = section.settings.title -%}
+{%- if t == blank -%}{%- assign t = collection.title | default: page.title | default: page_title -%}{%- endif -%}
+{%- assign tone = section.settings.color -%}
+{%- if tone == 'auto' -%}
+  {%- assign h = collection.handle | default: page.handle | default: '' -%}
+  {%- if h contains 'visage' -%}{%- assign tone = 'mandarine' -%}
+  {%- elsif h contains 'corps' -%}{%- assign tone = 'citron' -%}
+  {%- elsif h contains 'chevelu' or h contains 'cheveu' -%}{%- assign tone = 'rose' -%}
+  {%- else -%}{%- assign tone = 'violet' -%}{%- endif -%}
+{%- endif -%}
+{%- assign desc = '' -%}
+{%- if section.settings.show_description -%}
+  {%- assign desc = collection.description | default: section.settings.text -%}
+{%- else -%}
+  {%- assign desc = section.settings.text -%}
+{%- endif -%}
+
+<section class="o-phero o-phero--{{ tone }}">
+  {%- render 'orane-spark', color: 'lime', class: 'o-s1' -%}
+  {%- render 'orane-spark', color: 'pink', class: 'o-s2' -%}
+  <div class="o-wrap o-phero__inner">
+    <div class="o-phero__text">
+      <p class="o-kicker">
+        <a href="{{ routes.root_url }}">orane</a> ✦ {{ section.settings.kicker | default: t }}
+        {%- if collection and section.settings.show_count %} · {{ collection.products_count }} soin{% if collection.products_count > 1 %}s{% endif %}{% endif -%}
+      </p>
+      <h1 class="o-phero__title">{{ t }}</h1>
+      {%- if desc != blank -%}<div class="o-phero__desc">{{ desc }}</div>{%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a class="o-btn" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label }} →</a>
+      {%- endif -%}
+    </div>
+    <div class="o-phero__art">
+      {%- if section.settings.sticker != blank -%}
+        <p class="o-sticker o-sticker--round o-phero__sticker">{{ section.settings.sticker }}</p>
+      {%- endif -%}
+      {%- render 'orane-bouille', class: 'o-phero__bouille' -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ORANE · En-tête de page",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Mention" },
+    { "type": "text", "id": "title", "label": "Titre", "info": "Vide = titre de la page ou de la collection." },
+    { "type": "richtext", "id": "text", "label": "Texte" },
+    { "type": "checkbox", "id": "show_description", "label": "Afficher la description de la collection", "default": true },
+    { "type": "checkbox", "id": "show_count", "label": "Afficher le nombre de soins (collections)", "default": true },
+    { "type": "text", "id": "sticker", "label": "Sticker", "default": "zéro filtre" },
+    { "type": "text", "id": "button_label", "label": "Bouton" },
+    { "type": "url", "id": "button_link", "label": "Lien du bouton" },
+    {
+      "type": "select", "id": "color", "label": "Couleur", "default": "auto",
+      "options": [
+        { "value": "auto", "label": "Automatique (selon l'univers)" },
+        { "value": "violet", "label": "Violet électrique" },
+        { "value": "mandarine", "label": "Mandarine" },
+        { "value": "rose", "label": "Rose bonbon" },
+        { "value": "citron", "label": "Citron vert" },
+        { "value": "aubergine", "label": "Aubergine" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ORANE · En-tête de page" }]
+}
+{% endschema %}

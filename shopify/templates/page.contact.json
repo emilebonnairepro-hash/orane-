@@ -1,0 +1,96 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "orane-page-hero",
+      "settings": {
+        "kicker": "Contact",
+        "title": "on papote ?",
+        "text": "<p>Une question sur un soin, une commande, ou juste envie de dire coucou ? Écris-nous, on répond vite (et gentiment).</p>",
+        "show_description": true,
+        "show_count": false,
+        "sticker": "réponse rapide",
+        "button_label": "",
+        "button_link": "",
+        "color": "violet"
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "form": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "color_scheme": "scheme-a38ac93a-7224-4079-9c68-70762ddc148e",
+        "padding_top": 24,
+        "padding_bottom": 72
+      }
+    },
+    "faq": {
+      "type": "orane-faq",
+      "blocks": {
+        "q0": {
+          "type": "question",
+          "settings": {
+            "question": "En combien de temps je reçois ma commande ?",
+            "answer": "<p>En 2 à 5 jours. Tu peux souffler, c'est bientôt chez toi.</p>"
+          }
+        },
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "La livraison, elle coûte combien ?",
+            "answer": "<p>Elle est offerte dès 50 € d'achat. En dessous, les frais s'affichent avant le paiement, pas de surprise.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Je peux changer d'avis ?",
+            "answer": "<p>Oui : tu as 14 jours. Écris-nous via le formulaire avec ton numéro de commande et on s'occupe du reste.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Comment je choisis le bon soin ?",
+            "answer": "<p>Chaque fiche produit indique les types de peau et les principes actifs. Tu peux aussi faire le quiz de la page d'accueil, ou nous écrire : on adore conseiller.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q0",
+        "q1",
+        "q2",
+        "q3"
+      ],
+      "settings": {
+        "kicker": "Avant de nous écrire",
+        "title": "Les questions",
+        "title_em": "qu'on adore.",
+        "show_contact": false,
+        "contact_text": "Pas trouvé ta réponse ? Écris-nous, on répond vite (et gentiment)."
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "main",
+    "form",
+    "faq"
+  ]
+}

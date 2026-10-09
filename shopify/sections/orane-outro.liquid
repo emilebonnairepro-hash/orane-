@@ -1,0 +1,23 @@
+{%- comment -%} ORANE — au revoir : une phrase, la bouille, et le nom en géant qui glisse (orane.js) {%- endcomment -%}
+<section class="o-outro">
+  <div class="o-wrap">
+    <p class="o-outro__line">
+      {%- render 'orane-bouille' -%}
+      <span>{{ section.settings.line }}</span>
+    </p>
+  </div>
+  <p class="o-outro__word" aria-hidden="true">{{ section.settings.word }}</p>
+</section>
+
+{% schema %}
+{
+  "name": "ORANE · Au revoir",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "line", "label": "Phrase", "default": "À toute, bouille de star ✦" },
+    { "type": "text", "id": "word", "label": "Grand mot", "default": "orane" }
+  ],
+  "presets": [{ "name": "ORANE · Au revoir" }]
+}
+{% endschema %}

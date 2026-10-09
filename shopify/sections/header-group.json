@@ -14,7 +14,7 @@
     "orane-brand": {
       "type": "custom-liquid",
       "settings": {
-        "custom_liquid": "{{ 'orane-brand.css' | asset_url | stylesheet_tag }}",
+        "custom_liquid": "{{ 'orane-brand.css' | asset_url | stylesheet_tag }}<script src=\"{{ 'orane.js' | asset_url }}\" defer></script>",
         "color_scheme": "scheme-a38ac93a-7224-4079-9c68-70762ddc148e",
         "padding_top": 0,
         "padding_bottom": 0

@@ -1,0 +1,217 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "orane-style": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "{{ 'orane-product.css' | asset_url | stylesheet_tag }}",
+        "color_scheme": "scheme-a38ac93a-7224-4079-9c68-70762ddc148e",
+        "padding_top": 0,
+        "padding_bottom": 16
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "rating": {
+          "type": "rating",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "none"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "livraison": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Livraison",
+            "icon": "truck",
+            "content": "<p>Livré en 2 à 5 jours. Livraison offerte dès 50 € d'achat ; en dessous, les frais s'affichent avant le paiement.</p>",
+            "page": ""
+          }
+        },
+        "retours": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Retours",
+            "icon": "return",
+            "content": "<p>Tu as 14 jours pour changer d'avis. Écris-nous depuis la page Contact avec ton numéro de commande.</p>",
+            "page": ""
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Partager"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "rating",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "livraison",
+        "retours",
+        "description",
+        "share"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-a38ac93a-7224-4079-9c68-70762ddc148e",
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 72
+      }
+    },
+    "orane-tapes": {
+      "type": "orane-ticker",
+      "blocks": {
+        "t0": {
+          "type": "phrase",
+          "settings": {
+            "text": "fais pas ta timide"
+          }
+        },
+        "t1": {
+          "type": "phrase",
+          "settings": {
+            "text": "zéro filtre"
+          }
+        },
+        "t2": {
+          "type": "phrase",
+          "settings": {
+            "text": "glow à la carte"
+          }
+        },
+        "t3": {
+          "type": "phrase",
+          "settings": {
+            "text": "bouille de star"
+          }
+        },
+        "t4": {
+          "type": "phrase",
+          "settings": {
+            "text": "100 % pep's"
+          }
+        }
+      },
+      "block_order": [
+        "t0",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ]
+    },
+    "orane-promesses": {
+      "type": "orane-promesses",
+      "blocks": {
+        "p0": {
+          "type": "promise",
+          "settings": {
+            "big": "2 à 5 jours",
+            "small": "et c'est chez toi",
+            "color": "citron"
+          }
+        },
+        "p1": {
+          "type": "promise",
+          "settings": {
+            "big": "offerte dès 50 €",
+            "small": "la livraison",
+            "color": "rose"
+          }
+        },
+        "p2": {
+          "type": "promise",
+          "settings": {
+            "big": "14 jours",
+            "small": "pour changer d'avis",
+            "color": "mandarine"
+          }
+        }
+      },
+      "block_order": [
+        "p0",
+        "p1",
+        "p2"
+      ],
+      "settings": {
+        "title": "",
+        "color": "creme"
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "Complète ta routine",
+        "heading_size": "h1",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-a38ac93a-7224-4079-9c68-70762ddc148e",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "padding_top": 36,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "orane-style",
+    "main",
+    "orane-tapes",
+    "orane-promesses",
+    "related-products"
+  ]
+}

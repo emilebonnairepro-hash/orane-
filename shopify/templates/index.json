@@ -11,15 +11,57 @@
   "sections": {
     "orane-hero": {
       "type": "orane-hero",
+      "blocks": {
+        "s0": {
+          "type": "sticker",
+          "settings": {
+            "text": "peau neuve, mine de rien.",
+            "small": "",
+            "round": false,
+            "color": "citron",
+            "x": 0,
+            "y": 64,
+            "rotate": -6
+          }
+        },
+        "s1": {
+          "type": "sticker",
+          "settings": {
+            "text": "zéro filtre",
+            "small": "100 % pep's",
+            "round": true,
+            "color": "rose",
+            "x": 36,
+            "y": 38,
+            "rotate": 10
+          }
+        },
+        "s2": {
+          "type": "sticker",
+          "settings": {
+            "text": "fais pas ta timide",
+            "small": "",
+            "round": false,
+            "color": "creme",
+            "x": 22,
+            "y": 74,
+            "rotate": 4
+          }
+        }
+      },
+      "block_order": [
+        "s0",
+        "s1",
+        "s2"
+      ],
       "settings": {
-        "eyebrow": "Visage · corps · cheveux · homme",
-        "title": "orane",
-        "sticker": "peau neuve, mine de rien.",
-        "text": "<p>Le secteur chuchote en nude. Nous, on parle fort, en couleurs, avec des formules toutes douces pour ta peau.</p>",
-        "button_label": "Découvrir les soins",
-        "button_link": "shopify://collections/all",
-        "button2_label": "C'est quoi, ce délire ?",
-        "button2_link": "#esprit"
+        "kicker_left": "N°01 — soins pour bouilles qui rigolent",
+        "kicker_right": "visage · corps · cheveux",
+        "lead": "<p>Le secteur chuchote en nude. Nous, on parle fort, en couleurs, avec des <strong>formules toutes douces</strong> pour ta peau.</p>",
+        "cta_label": "voir les soins",
+        "cta_link": "shopify://collections/all",
+        "word": "orane",
+        "hint": "psst : les stickers se décollent ✦"
       }
     },
     "orane-ticker": {
@@ -64,85 +106,131 @@
         "t4"
       ]
     },
+    "orane-manifeste": {
+      "type": "orane-manifeste",
+      "settings": {
+        "kicker": "Pourquoi ORANE ne ressemble à personne",
+        "text": "Le secteur chuchote en nude. Nous, on parle [fort]. Des couleurs qui crient #anneau des formes [rondes] partout et des formules [douces] pour ta peau. Le premier degré est interdit, le clin d'œil obligatoire #bouille",
+        "sign": "— la bande ORANE"
+      }
+    },
+    "orane-etagere": {
+      "type": "orane-etagere",
+      "settings": {
+        "kicker": "La boutique",
+        "title": "Tout ORANE,",
+        "title_em": "en vrac.",
+        "collection": "all",
+        "limit": 8,
+        "add_label": "Dans mon panier",
+        "soldout_label": "Voir le produit",
+        "all_label": "Tout voir"
+      }
+    },
     "multicolumn_garanties": {
-      "type": "multicolumn",
+      "type": "orane-promesses",
       "blocks": {
-        "g1": {
-          "type": "column",
+        "p0": {
+          "type": "promise",
           "settings": {
-            "title": "",
-            "text": "<h3>Livré en 2 à 5 jours</h3><p>Ta commande arrive vite.</p>",
-            "link_label": "",
-            "link": ""
+            "big": "2 à 5 jours",
+            "small": "et c'est chez toi",
+            "color": "citron"
           }
         },
-        "g2": {
-          "type": "column",
+        "p1": {
+          "type": "promise",
           "settings": {
-            "title": "",
-            "text": "<h3>Livraison offerte dès 50 €</h3><p>En dessous, les frais s'affichent avant de payer.</p>",
-            "link_label": "",
-            "link": ""
+            "big": "offerte dès 50 €",
+            "small": "la livraison",
+            "color": "rose"
           }
         },
-        "g3": {
-          "type": "column",
+        "p2": {
+          "type": "promise",
           "settings": {
-            "title": "",
-            "text": "<h3>14 jours pour changer d'avis</h3><p>Un retour simple, depuis la page Contact.</p>",
-            "link_label": "",
-            "link": ""
+            "big": "14 jours",
+            "small": "pour changer d'avis",
+            "color": "mandarine"
           }
         }
       },
       "block_order": [
-        "g1",
-        "g2",
-        "g3"
+        "p0",
+        "p1",
+        "p2"
       ],
       "settings": {
-        "title": "",
-        "heading_size": "h2",
-        "image_width": "third",
-        "image_ratio": "adapt",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "none",
-        "color_scheme": "scheme-a38ac93a-7224-4079-9c68-70762ddc148e",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 48,
-        "padding_bottom": 28
+        "title": "Les promesses ORANE",
+        "color": "creme"
       }
     },
-    "featured-collection-0": {
-      "type": "featured-collection",
+    "orane-quiz": {
+      "type": "orane-quiz",
+      "blocks": {
+        "m0": {
+          "type": "mood",
+          "settings": {
+            "mood": "fatiguée du regard",
+            "product": "patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c",
+            "why": "Caféine et vitamine C, le temps d'un café. Ton regard dit merci."
+          }
+        },
+        "m1": {
+          "type": "mood",
+          "settings": {
+            "mood": "maquillée jusqu'aux oreilles",
+            "product": "demaquillant-biphasic-sans-parfum-1",
+            "why": "Une phase huile, une phase eau : tout part en un geste, sans frotter."
+          }
+        },
+        "m2": {
+          "type": "mood",
+          "settings": {
+            "mood": "assoiffée mais sans gras",
+            "product": "gel-visage-au-zinc-sans-huile-pour-hommes",
+            "why": "Une hydratation express, texture légère, zéro effet brillant."
+          }
+        },
+        "m3": {
+          "type": "mood",
+          "settings": {
+            "mood": "barbe rebelle",
+            "product": "huile-a-barbe-adoucissante",
+            "why": "Quelques gouttes et la barbe se fait douce, sans effet gras."
+          }
+        },
+        "m4": {
+          "type": "mood",
+          "settings": {
+            "mood": "cuir chevelu chatouilleux",
+            "product": "shampooing-pour-cuir-chevelu-sensible",
+            "why": "La douceur qu'il faut aux cuirs chevelus sensibles."
+          }
+        },
+        "m5": {
+          "type": "mood",
+          "settings": {
+            "mood": "envie de fraîcheur",
+            "product": "gel-lavant-mains-corps-pamplemousse",
+            "why": "Mains et corps, parfum pamplemousse. Ça pétille sans dessécher."
+          }
+        }
+      },
+      "block_order": [
+        "m0",
+        "m1",
+        "m2",
+        "m3",
+        "m4",
+        "m5"
+      ],
       "settings": {
-        "collection": "all",
-        "products_to_show": 6,
-        "title": "Nos soins",
-        "heading_size": "h1",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 3,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "scheme-a38ac93a-7224-4079-9c68-70762ddc148e",
-        "image_ratio": "portrait",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": true,
-        "quick_add": "standard",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 56,
-        "padding_bottom": 56
+        "kicker": "Le quiz qui dure 2 secondes",
+        "title": "Ta peau, là, maintenant ?",
+        "idle": "Choisis une humeur, je m'occupe du reste.",
+        "match_label": "Ton match",
+        "cta_label": "Je le veux"
       }
     },
     "collection-list": {
@@ -185,51 +273,11 @@
         "image_ratio": "square",
         "columns_desktop": 4,
         "show_view_all": false,
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-4",
         "columns_mobile": "2",
         "swipe_on_mobile": false,
-        "padding_top": 56,
-        "padding_bottom": 56
-      }
-    },
-    "orane-esprit": {
-      "type": "orane-esprit",
-      "blocks": {
-        "e1": {
-          "type": "card",
-          "settings": {
-            "color": "mandarine",
-            "title": "Doux avant tout",
-            "text": "<p>Chaque soin est pensé pour nettoyer, hydrater ou apaiser sans agresser la peau. Rien de coupant, ni dans la forme ni dans la formule.</p>"
-          }
-        },
-        "e2": {
-          "type": "card",
-          "settings": {
-            "color": "rose",
-            "title": "Des actifs qui servent",
-            "text": "<p>Acide hyaluronique, aloe vera, caféine, vitamine C, zinc : des ingrédients connus, choisis pour leur rôle. Zéro jargon.</p>"
-          }
-        },
-        "e3": {
-          "type": "card",
-          "settings": {
-            "color": "citron",
-            "title": "Premier degré interdit",
-            "text": "<p>On parle de beauté sans se prendre au sérieux. Quatre univers, des associations évidentes et un dernier geste : sourire.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "e1",
-        "e2",
-        "e3"
-      ],
-      "settings": {
-        "eyebrow": "L'esprit ORANE",
-        "title": "Le soin, version sourire",
-        "background": "aubergine",
-        "intro": "<p>Le secteur mise sur le nude, le minimal et le chuchoté. ORANE fait l'inverse : de la couleur qui crie, des formes rondes et un clin d'œil.</p>"
+        "padding_top": 72,
+        "padding_bottom": 80
       }
     },
     "produit-vedette": {
@@ -237,7 +285,9 @@
       "blocks": {
         "title": {
           "type": "title",
-          "settings": {}
+          "settings": {
+            "heading_size": "h1"
+          }
         },
         "price": {
           "type": "price",
@@ -253,7 +303,8 @@
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
-            "show_dynamic_checkout": false
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
           }
         }
       },
@@ -268,87 +319,74 @@
         "secondary_background": false,
         "media_size": "large",
         "color_scheme": "scheme-2",
-        "padding_top": 56,
-        "padding_bottom": 56
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 72,
+        "padding_bottom": 72
       }
     },
     "orane-rituel": {
       "type": "orane-rituel",
       "blocks": {
-        "r1": {
+        "r0": {
           "type": "step",
           "settings": {
             "title": "Tu démaquilles",
-            "text": "<p>On secoue, on imbibe un coton, on glisse. Maquillage et impuretés s'en vont, ta bonne humeur reste.</p>",
+            "text": "<p>On secoue, on imbibe un coton, on glisse. Le maquillage s'en va, ta bonne humeur reste.</p>",
             "product": "demaquillant-biphasic-sans-parfum-1"
+          }
+        },
+        "r1": {
+          "type": "step",
+          "settings": {
+            "title": "Tu réveilles ton regard",
+            "text": "<p>Une paire de patchs sous les yeux, le temps d'un café. Fais pas ta timide.</p>",
+            "product": "patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c"
           }
         },
         "r2": {
           "type": "step",
           "settings": {
-            "title": "Tu réveilles ton regard",
-            "text": "<p>Une paire de patchs sous les yeux, le temps d'un café. Fais pas ta timide, ça se voit à peine.</p>",
-            "product": "patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c"
-          }
-        },
-        "r3": {
-          "type": "step",
-          "settings": {
             "title": "Tu hydrates",
-            "text": "<p>Une noisette de gel léger, sans effet gras. C'est bouclé : sourire obligatoire.</p>",
+            "text": "<p>Une noisette de gel léger, sans effet gras. C'est bouclé : sourire obligatoire.</p>",
             "product": "gel-visage-au-zinc-sans-huile-pour-hommes"
           }
         }
       },
       "block_order": [
+        "r0",
         "r1",
-        "r2",
-        "r3"
+        "r2"
       ],
       "settings": {
-        "eyebrow": "Le rituel",
-        "title": "Trois gestes, mine de rien",
+        "kicker": "Le rituel",
+        "title": "Trois gestes,",
+        "title_em": "mine de rien.",
         "sticker": "glow à la carte"
       }
     },
-    "featured-collection-homme": {
-      "type": "featured-collection",
+    "orane-outro": {
+      "type": "orane-outro",
       "settings": {
-        "collection": "homme",
-        "products_to_show": 2,
-        "title": "Pour lui",
-        "heading_size": "h1",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 2,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "scheme-a38ac93a-7224-4079-9c68-70762ddc148e",
-        "image_ratio": "portrait",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": true,
-        "quick_add": "standard",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 56,
-        "padding_bottom": 56
+        "line": "À toute, bouille de star ✦",
+        "word": "orane"
       }
     }
   },
   "order": [
     "orane-hero",
     "orane-ticker",
+    "orane-manifeste",
+    "orane-etagere",
     "multicolumn_garanties",
-    "featured-collection-0",
+    "orane-quiz",
     "collection-list",
-    "orane-esprit",
     "produit-vedette",
     "orane-rituel",
-    "featured-collection-homme"
+    "orane-outro"
   ]
 }

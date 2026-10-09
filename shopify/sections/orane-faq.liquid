@@ -1,0 +1,51 @@
+{%- comment -%} ORANE — questions fréquentes en bulles qui s'ouvrent, plus une carte de contact {%- endcomment -%}
+<section class="o-faq">
+  <div class="o-wrap o-faq__grid">
+    <div class="o-faq__side">
+      {%- if section.settings.kicker != blank -%}<p class="o-kicker">{{ section.settings.kicker }}</p>{%- endif -%}
+      <h2 class="o-title">{{ section.settings.title }}{% if section.settings.title_em != blank %}<br><em>{{ section.settings.title_em }}</em>{% endif %}</h2>
+      {%- if section.settings.show_contact -%}
+        <div class="o-faq__card">
+          {%- render 'orane-bouille' -%}
+          <p>{{ section.settings.contact_text }}</p>
+          {%- if shop.email != blank -%}<a class="o-btn" href="mailto:{{ shop.email }}">{{ shop.email }}</a>{%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+    <div class="o-faq__list">
+      {%- for block in section.blocks -%}
+        <details class="o-q" {% if forloop.first %}open{% endif %} {{ block.shopify_attributes }}>
+          <summary><span>{{ block.settings.question }}</span><i aria-hidden="true">+</i></summary>
+          <div class="o-q__a">{{ block.settings.answer }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ORANE · Questions",
+  "tag": "div",
+  "class": "section",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Mention", "default": "Les questions qu'on nous pose" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "On te dit" },
+    { "type": "text", "id": "title_em", "label": "Titre en couleur", "default": "tout." },
+    { "type": "checkbox", "id": "show_contact", "label": "Afficher la carte contact", "default": true },
+    { "type": "text", "id": "contact_text", "label": "Texte de la carte", "default": "Pas trouvé ta réponse ? Écris-nous, on répond vite (et gentiment)." }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "En combien de temps je reçois ma commande ?" },
+        { "type": "richtext", "id": "answer", "label": "Réponse", "default": "<p>En 2 à 5 jours.</p>" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ORANE · Questions", "blocks": [{ "type": "question" }] }]
+}
+{% endschema %}

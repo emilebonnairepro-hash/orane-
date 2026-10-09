@@ -1,16 +1,17 @@
-{%- comment -%} ORANE — bandeau de stickers qui défile {%- endcomment -%}
+{%- comment -%} ORANE — deux rubans de stickers qui se croisent et défilent en sens inverse {%- endcomment -%}
 {%- capture items -%}
   {%- for block in section.blocks -%}
     <span {{ block.shopify_attributes }}>{{ block.settings.text }}</span><i>✦</i>
   {%- endfor -%}
 {%- endcapture -%}
-<div class="orane-ticker" aria-hidden="true">
-  <div class="orane-ticker__track">{{ items }}{{ items }}{{ items }}{{ items }}</div>
+<div class="o-tapes" aria-hidden="true">
+  <div class="o-tape o-tape--b"><div class="o-tape__track">{{ items }}{{ items }}{{ items }}{{ items }}</div></div>
+  <div class="o-tape o-tape--a"><div class="o-tape__track">{{ items }}{{ items }}{{ items }}{{ items }}</div></div>
 </div>
 
 {% schema %}
 {
-  "name": "ORANE · Bandeau stickers",
+  "name": "ORANE · Rubans",
   "tag": "div",
   "class": "section",
   "max_blocks": 8,
@@ -23,7 +24,7 @@
   ],
   "presets": [
     {
-      "name": "ORANE · Bandeau stickers",
+      "name": "ORANE · Rubans",
       "blocks": [
         { "type": "phrase", "settings": { "text": "fais pas ta timide" } },
         { "type": "phrase", "settings": { "text": "zéro filtre" } },

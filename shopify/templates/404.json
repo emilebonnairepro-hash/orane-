@@ -1,0 +1,44 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "orane-page-hero",
+      "settings": {
+        "kicker": "Erreur 404",
+        "title": "oups.",
+        "text": "<p>Cette page fait sa timide : elle n'existe pas, ou plus. Mais les soins, eux, sont bien là.</p>",
+        "show_description": true,
+        "show_count": false,
+        "sticker": "pas de panique",
+        "button_label": "Retour aux soins",
+        "button_link": "shopify://collections/all",
+        "color": "aubergine"
+      }
+    },
+    "shelf": {
+      "type": "orane-etagere",
+      "settings": {
+        "kicker": "Petite consolation",
+        "title": "Tant qu'on",
+        "title_em": "y est…",
+        "collection": "all",
+        "limit": 6,
+        "add_label": "Dans mon panier",
+        "soldout_label": "Voir le produit",
+        "all_label": "Tout voir"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "shelf"
+  ]
+}

@@ -1,37 +1,35 @@
-{%- comment -%} ORANE — le rituel en étapes, chaque étape peut pointer vers un vrai produit {%- endcomment -%}
-<section class="orane-section orane-section--mandarine orane-rituel">
-  <div class="page-width orane-rituel__inner">
-    <div class="orane-rituel__main">
-      {%- if section.settings.eyebrow != blank -%}<p class="orane-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
-      {%- if section.settings.title != blank -%}<h2 class="orane-h2">{{ section.settings.title }}</h2>{%- endif -%}
-      <ol class="orane-steps">
-        {%- for block in section.blocks -%}
-          {%- assign p = block.settings.product -%}
-          <li class="orane-step" {{ block.shopify_attributes }}>
-            <span class="orane-num orane-num--rose">{{ forloop.index }}</span>
-            <div class="orane-step__body">
-              <h3>{{ block.settings.title }}</h3>
-              <div>{{ block.settings.text }}</div>
-              {%- if p != blank -%}
-                <a class="orane-step__product" href="{{ p.url }}">
-                  {%- if p.featured_image -%}
-                    {{ p.featured_image | image_url: width: 120 | image_tag: loading: 'lazy', alt: p.title | escape }}
-                  {%- endif -%}
-                  <span>{{ p.title }}</span>
-                  <strong>{{ p.price | money }}</strong>
-                </a>
-              {%- endif -%}
-            </div>
-          </li>
-        {%- endfor -%}
-      </ol>
-    </div>
-    <div class="orane-rituel__side" aria-hidden="true">
-      {%- render 'orane-bouille', class: 'orane-rituel__bouille' -%}
+{%- comment -%} ORANE — le rituel : trois chiffres géants en escalier, chaque étape reliée à un produit {%- endcomment -%}
+<section class="o-ritual">
+  <div class="o-wrap">
+    <div class="o-ritual__head">
+      <div>
+        {%- if section.settings.kicker != blank -%}<p class="o-kicker">{{ section.settings.kicker }}</p>{%- endif -%}
+        <h2 class="o-title">{{ section.settings.title }}{% if section.settings.title_em != blank %}<br><em>{{ section.settings.title_em }}</em>{% endif %}</h2>
+      </div>
       {%- if section.settings.sticker != blank -%}
-        <p class="orane-sticker orane-sticker--blue orane-tilt-r">{{ section.settings.sticker }}</p>
+        <p class="o-sticker o-sticker--round o-bg-piscine" style="--r: 8deg; --s: 14rem;">{{ section.settings.sticker }}</p>
       {%- endif -%}
     </div>
+    <ol class="o-steps">
+      {%- for block in section.blocks -%}
+        {%- assign p = block.settings.product -%}
+        <li class="o-step" {{ block.shopify_attributes }}>
+          <span class="o-step__num" aria-hidden="true">{{ forloop.index }}</span>
+          <h3>{{ block.settings.title }}</h3>
+          {{ block.settings.text }}
+          {%- if p != blank -%}
+            <a class="o-chip" href="{{ p.url }}">
+              {%- if p.featured_image -%}
+                {{ p.featured_image | image_url: width: 120 | image_tag: loading: 'lazy', alt: '' }}
+              {%- else -%}
+                <span class="o-chip__dot"></span>
+              {%- endif -%}
+              <span>{{ p.title }} · <strong>{{ p.price | money }}</strong></span>
+            </a>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ol>
   </div>
 </section>
 
@@ -40,11 +38,12 @@
   "name": "ORANE · Rituel",
   "tag": "div",
   "class": "section",
-  "max_blocks": 5,
+  "max_blocks": 3,
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Le rituel" },
-    { "type": "text", "id": "title", "label": "Titre", "default": "Trois gestes, mine de rien" },
-    { "type": "text", "id": "sticker", "label": "Sticker", "default": "fais pas ta timide" }
+    { "type": "text", "id": "kicker", "label": "Mention", "default": "Le rituel" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Trois gestes," },
+    { "type": "text", "id": "title_em", "label": "Titre en couleur", "default": "mine de rien." },
+    { "type": "text", "id": "sticker", "label": "Sticker", "default": "glow à la carte" }
   ],
   "blocks": [
     {
@@ -58,10 +57,7 @@
     }
   ],
   "presets": [
-    {
-      "name": "ORANE · Rituel",
-      "blocks": [{ "type": "step" }, { "type": "step" }, { "type": "step" }]
-    }
+    { "name": "ORANE · Rituel", "blocks": [{ "type": "step" }, { "type": "step" }, { "type": "step" }] }
   ]
 }
 {% endschema %}

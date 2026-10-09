@@ -1,0 +1,115 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "orane-page-hero",
+      "settings": {
+        "kicker": "Le panier",
+        "title": "presque à toi.",
+        "text": "",
+        "show_description": true,
+        "show_count": false,
+        "sticker": "bon choix ✦",
+        "button_label": "",
+        "button_link": "",
+        "color": "rose"
+      }
+    },
+    "cart-items": {
+      "type": "main-cart-items",
+      "settings": {
+        "color_scheme": "scheme-a38ac93a-7224-4079-9c68-70762ddc148e",
+        "padding_top": 36,
+        "padding_bottom": 24
+      }
+    },
+    "cart-footer": {
+      "type": "main-cart-footer",
+      "blocks": {
+        "subtotal": {
+          "type": "subtotal",
+          "settings": {}
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "subtotal",
+        "buttons"
+      ],
+      "settings": {
+        "color_scheme": "scheme-a38ac93a-7224-4079-9c68-70762ddc148e",
+        "padding_top": 12,
+        "padding_bottom": 48
+      }
+    },
+    "promesses": {
+      "type": "orane-promesses",
+      "blocks": {
+        "p0": {
+          "type": "promise",
+          "settings": {
+            "big": "2 à 5 jours",
+            "small": "et c'est chez toi",
+            "color": "citron"
+          }
+        },
+        "p1": {
+          "type": "promise",
+          "settings": {
+            "big": "offerte dès 50 €",
+            "small": "la livraison",
+            "color": "rose"
+          }
+        },
+        "p2": {
+          "type": "promise",
+          "settings": {
+            "big": "14 jours",
+            "small": "pour changer d'avis",
+            "color": "mandarine"
+          }
+        }
+      },
+      "block_order": [
+        "p0",
+        "p1",
+        "p2"
+      ],
+      "settings": {
+        "title": "",
+        "color": "aubergine"
+      }
+    },
+    "shelf": {
+      "type": "orane-etagere",
+      "settings": {
+        "kicker": "Avant de filer",
+        "title": "Un petit dernier",
+        "title_em": "pour la route ?",
+        "collection": "all",
+        "limit": 6,
+        "add_label": "Dans mon panier",
+        "soldout_label": "Voir le produit",
+        "all_label": "Tout voir"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "cart-items",
+    "cart-footer",
+    "promesses",
+    "shelf"
+  ]
+}

@@ -1,241 +1,288 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ORANE — peau neuve, mine de rien.</title>
-  <meta name="description" content="ORANE, le soin du visage qui ne chuchote pas. Des formules douces, de la couleur qui crie et un clin d'œil.">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600&family=Unbounded:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ORANE — peau neuve, mine de rien.</title>
+<meta name="description" content="Aperçu de la page d'accueil ORANE, rendu à partir des sections Liquid du thème Shopify.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600&family=Unbounded:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  /* Base façon Dawn, uniquement pour l'aperçu */
+  :root { --font-heading-family: "Unbounded", sans-serif; --font-body-family: "Bricolage Grotesque", sans-serif; }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { font-size: 62.5%; }
+  body { margin: 0; font-family: var(--font-body-family); font-size: 1.8rem; line-height: 1.5; background: #FFF3E3; color: #2A1240; overflow-x: hidden; }
+  .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .demo-bar { background: #6B2CF5; color: #FFF3E3; text-align: center; font: 700 1.3rem/1 var(--font-heading-family); padding: 1.2rem; letter-spacing: .04em; }
+  .demo-header { display: flex; align-items: center; justify-content: space-between; padding: 1.6rem clamp(1.6rem, 4vw, 5rem); border-bottom: 3px solid #2A1240; font: 800 2.6rem var(--font-heading-family); }
+  .demo-header nav { font: 600 1.6rem var(--font-body-family); display: flex; gap: 2.4rem; }
+  @media (max-width: 749px) { .demo-header nav span:not(:last-child) { display: none; } }
+  .dawn-placeholder { padding: 3rem; text-align: center; font: 600 1.4rem var(--font-body-family); background: repeating-linear-gradient(45deg, #fff3e3, #fff3e3 12px, #f6e6cf 12px, #f6e6cf 24px); border-block: 2px dashed #2A1240; }
+</style>
+<link rel="stylesheet" href="shopify/assets/orane-brand.css">
 </head>
 <body>
+<div class="demo-bar">Livraison offerte dès 50€ d'achat</div>
+<header class="demo-header"><span>orane</span><nav><span>Visage</span><span>Corps</span><span>Cheveux</span><span>Homme</span><span>Panier (0)</span></nav></header>
+<main>
+<section class="o-hero" id="o-hero-orane-hero"><svg class="o-ring o-hero__ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+  <path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="#FF6A2B" stroke-width="18"/>
+  <path d="M90 50 A40 40 0 0 1 10 50" fill="none" stroke="#FF5FA8" stroke-width="18"/>
+  <circle cx="78.3" cy="21.7" r="10" fill="#D4F23A"/>
+</svg>
+<svg class="o-spark o-spark--lime o-s1" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+  <path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/>
+</svg>
+<svg class="o-spark o-spark--pink o-s2" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+  <path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/>
+</svg>
+<svg class="o-spark o-spark--blue o-s3" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+  <path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/>
+</svg>
+<div class="o-wrap o-hero__top">
+    <p class="o-kicker">N°01 — soins pour bouilles qui rigolent</p>
+    <p class="o-kicker">visage · corps · cheveux</p>
+  </div>
 
-  <!-- Navigation -->
-  <header class="nav">
-    <a href="#top" class="nav__logo" aria-label="ORANE, accueil">
-      <svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><use href="#ring"/></svg>
-      <span>orane</span>
-    </a>
-    <button class="nav__toggle" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
-      <span></span><span></span>
-    </button>
-    <nav id="menu" class="nav__menu">
-      <a href="#esprit">L'esprit</a>
-      <a href="#produits">Les soins</a>
-      <a href="#rituel">Le rituel</a>
-      <a href="#club" class="btn btn--small">Le club</a>
-    </nav>
-  </header>
+  <div class="o-wrap o-hero__stage"><div class="o-hero__lead"><p>Le secteur chuchote en nude. Nous, on parle fort, en couleurs, avec des <strong>formules toutes douces</strong> pour ta peau.</p></div><p
+        class="o-sticker o-drag o-bg-citron"
+        style="left: 0%; top: 64%; --r: -6deg;"
+        
+      >
+        peau neuve, mine de rien.</p><p
+        class="o-sticker o-drag o-bg-rose o-sticker--round"
+        style="left: 36%; top: 38%; --r: 10deg;"
+        
+      >
+        zéro filtre<small>100 % pep's</small></p><p
+        class="o-sticker o-drag o-bg-creme"
+        style="left: 22%; top: 74%; --r: 4deg;"
+        
+      >
+        fais pas ta timide</p><svg class="o-bouille o-hero__bouille" viewBox="0 0 120 120" role="img" aria-label="La bouille ORANE" focusable="false">
+  <circle cx="64" cy="64" r="52" fill="#2A1240"/>
+  <circle cx="58" cy="58" r="52" fill="#FF6A2B" stroke="#2A1240" stroke-width="5"/>
+  <ellipse cx="30" cy="70" rx="10" ry="7" fill="#FF5FA8"/>
+  <ellipse cx="86" cy="70" rx="10" ry="7" fill="#FF5FA8"/>
+  <circle class="o-eye-open" cx="42" cy="48" r="7" fill="#2A1240"/>
+  <path class="o-eye-happy" d="M34 50 Q42 41 50 50" fill="none" stroke="#2A1240" stroke-width="5" stroke-linecap="round"/>
+  <path d="M68 48 Q76 40 84 48" fill="none" stroke="#2A1240" stroke-width="5" stroke-linecap="round"/>
+  <path d="M36 66 Q58 98 82 66 Z" fill="#2A1240" stroke="#2A1240" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M48 80 Q58 72 70 80 Q60 90 48 80 Z" fill="#FF5FA8"/>
+</svg>
+<a class="o-spin-cta o-hero__cta" href="shopify://collections/all">
+        <svg viewBox="0 0 150 150" aria-hidden="true">
+          <defs><path id="o-circle-orane-hero" d="M75 75 m-58 0 a58 58 0 1 1 116 0 a58 58 0 1 1 -116 0"/></defs>
+          <text><textPath href="#o-circle-orane-hero">voir les soins ✦ voir les soins ✦</textPath></text>
+        </svg>
+        <span aria-hidden="true">→</span>
+        <span class="visually-hidden">voir les soins</span>
+      </a><p class="o-hero__hint">psst : les stickers se décollent ✦</p></div>
 
-  <main id="top">
+  <div class="o-wrap">
+    <p class="o-hero__word" aria-label="ORANE">orane</p>
+  </div>
+</section>
 
-    <!-- Hero : violet électrique + mandarine/rose (anneau) + citron -->
-    <section class="hero">
-      <div class="hero__text">
-        <p class="eyebrow eyebrow--cream">Soin du visage · version loufoque</p>
-        <h1 class="hero__title">orane</h1>
-        <p class="sticker sticker--lime sticker--tilt-l">peau neuve, mine de rien.</p>
-        <p class="hero__lead">Le secteur chuchote en nude. Nous, on parle fort, en couleurs, avec des formules toutes douces pour ta peau.</p>
-        <div class="hero__ctas">
-          <a href="#produits" class="btn btn--lime">Voir les soins</a>
-          <a href="#esprit" class="btn btn--ghost">C'est quoi, ce délire ?</a>
-        </div>
+
+<div class="o-tapes" aria-hidden="true">
+  <div class="o-tape o-tape--b"><div class="o-tape__track"><span >fais pas ta timide</span><i>✦</i><span >zéro filtre</span><i>✦</i><span >glow à la carte</span><i>✦</i><span >bouille de star</span><i>✦</i><span >100 % pep's</span><i>✦</i><span >fais pas ta timide</span><i>✦</i><span >zéro filtre</span><i>✦</i><span >glow à la carte</span><i>✦</i><span >bouille de star</span><i>✦</i><span >100 % pep's</span><i>✦</i><span >fais pas ta timide</span><i>✦</i><span >zéro filtre</span><i>✦</i><span >glow à la carte</span><i>✦</i><span >bouille de star</span><i>✦</i><span >100 % pep's</span><i>✦</i><span >fais pas ta timide</span><i>✦</i><span >zéro filtre</span><i>✦</i><span >glow à la carte</span><i>✦</i><span >bouille de star</span><i>✦</i><span >100 % pep's</span><i>✦</i></div></div>
+  <div class="o-tape o-tape--a"><div class="o-tape__track"><span >fais pas ta timide</span><i>✦</i><span >zéro filtre</span><i>✦</i><span >glow à la carte</span><i>✦</i><span >bouille de star</span><i>✦</i><span >100 % pep's</span><i>✦</i><span >fais pas ta timide</span><i>✦</i><span >zéro filtre</span><i>✦</i><span >glow à la carte</span><i>✦</i><span >bouille de star</span><i>✦</i><span >100 % pep's</span><i>✦</i><span >fais pas ta timide</span><i>✦</i><span >zéro filtre</span><i>✦</i><span >glow à la carte</span><i>✦</i><span >bouille de star</span><i>✦</i><span >100 % pep's</span><i>✦</i><span >fais pas ta timide</span><i>✦</i><span >zéro filtre</span><i>✦</i><span >glow à la carte</span><i>✦</i><span >bouille de star</span><i>✦</i><span >100 % pep's</span><i>✦</i></div></div>
+</div>
+
+
+<section class="o-manifesto"><svg class="o-spark o-spark--lime o-s1" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+  <path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/>
+</svg>
+<div class="o-wrap"><p class="o-kicker">Pourquoi ORANE ne ressemble à personne</p><p class="o-manifesto__text" data-o-reveal>Le secteur chuchote en nude. Nous, on parle <span class="o-hl o-hl--mandarine" style="--r: 2deg">fort</span>. Des couleurs qui crient <svg class="o-inline-icon" viewBox="0 0 100 100" aria-hidden="true"><path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="#FF6A2B" stroke-width="18"/><path d="M90 50 A40 40 0 0 1 10 50" fill="none" stroke="#FF5FA8" stroke-width="18"/><circle cx="78.3" cy="21.7" r="10" fill="#D4F23A"/></svg> des formes <span class="o-hl o-hl--rose" style="--r: -2deg">rondes</span> partout et des formules <span class="o-hl o-hl--citron" style="--r: 2deg">douces</span> pour ta peau. Le premier degré est interdit, le clin d&#39;œil obligatoire <svg class="o-inline-icon" viewBox="0 0 120 120" aria-hidden="true"><circle cx="58" cy="58" r="52" fill="#FF6A2B" stroke="#FFF3E3" stroke-width="6"/><ellipse cx="30" cy="70" rx="10" ry="7" fill="#FF5FA8"/><ellipse cx="86" cy="70" rx="10" ry="7" fill="#FF5FA8"/><circle cx="42" cy="48" r="7" fill="#2A1240"/><path d="M68 48 Q76 40 84 48" fill="none" stroke="#2A1240" stroke-width="5" stroke-linecap="round"/><path d="M36 66 Q58 98 82 66 Z" fill="#2A1240"/></svg></p><p class="o-manifesto__sign">— la bande ORANE</p></div>
+</section>
+
+
+<section class="o-shelf" data-o-shelf>
+  <div class="o-wrap">
+    <div class="o-shelf__head">
+      <div><p class="o-kicker">La boutique</p><h2 class="o-title">Tout ORANE,<br><em>en vrac.</em></h2>
       </div>
-      <div class="hero__art" aria-hidden="true">
-        <svg class="hero__ring" viewBox="0 0 100 100"><use href="#ring"/></svg>
-        <svg class="bouille hero__bouille" viewBox="0 0 120 120"><use href="#bouille"/></svg>
-        <svg class="spark spark--lime s1" viewBox="0 0 40 40"><use href="#spark"/></svg>
-        <svg class="spark spark--pink s2" viewBox="0 0 40 40"><use href="#spark"/></svg>
-        <svg class="spark spark--blue s3" viewBox="0 0 40 40"><use href="#spark"/></svg>
-      </div>
-    </section>
-
-    <!-- Bandeau de stickers -->
-    <div class="ticker" aria-hidden="true">
-      <div class="ticker__track">
-        <span>fais pas ta timide</span><i>✦</i><span>zéro filtre</span><i>✦</i><span>glow à la carte</span><i>✦</i><span>bouille de star</span><i>✦</i><span>100 % pep's</span><i>✦</i>
-        <span>fais pas ta timide</span><i>✦</i><span>zéro filtre</span><i>✦</i><span>glow à la carte</span><i>✦</i><span>bouille de star</span><i>✦</i><span>100 % pep's</span><i>✦</i>
+      <div class="o-shelf__nav">
+        <button type="button" class="o-round-btn" data-dir="-1" aria-label="Produits précédents">←</button>
+        <button type="button" class="o-round-btn" data-dir="1" aria-label="Produits suivants">→</button>
+        <a class="o-btn" href="/collections/all">Tout voir</a>
       </div>
     </div>
 
-    <!-- Esprit : crème + mandarine/rose/citron -->
-    <section id="esprit" class="section section--cream">
-      <p class="eyebrow">01 — L'esprit</p>
-      <h2>Pourquoi ORANE ne ressemble à personne</h2>
-      <p class="section__intro">Le secteur mise sur le nude, le minimal et le chuchoté. ORANE fait l'inverse : de la couleur qui crie, des formes rondes et un clin d'œil.</p>
-      <div class="cards">
-        <article class="card card--mandarine reveal">
-          <span class="card__num">1</span>
-          <h3>Zéro timidité</h3>
-          <p>Des aplats francs et des contours épais. On nous reconnaît de loin, même sans logo.</p>
-        </article>
-        <article class="card card--pink reveal">
-          <span class="card__num">2</span>
-          <h3>Rond partout</h3>
-          <p>Anneau, lettres souples, coins ronds. Rien de coupant : la douceur passe par la forme, et par la formule.</p>
-        </article>
-        <article class="card card--lime reveal">
-          <span class="card__num">3</span>
-          <h3>Premier degré interdit</h3>
-          <p>On parle de beauté sans se prendre au sérieux. Pas de jargon, pas de promesse miracle. Juste du bon soin.</p>
-        </article>
-      </div>
-    </section>
+    <div class="o-shelf__track"><article class="o-prod">
+          <div class="o-prod__media"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%23D4F23A%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Gel lavant mains & corps, pamplemousse" loading="lazy"></div>
+          <p class="o-sticker o-sticker--round o-prod__price">8,30 €</p>
+          <div class="o-prod__body"><p class="o-prod__tag">Gel douche</p><h3 class="o-prod__title"><a href="/products/gel-lavant-mains-corps-pamplemousse">Gel lavant mains & corps, pamplemousse</a></h3>
+            <p class="o-prod__pitch">Frais, doux, et un parfum de pamplemousse. Un gel lavant pour les mains et…</p><form class="o-prod__form" action="#panier" method="post">
+                <input type="hidden" name="id" value="1">
+                <input type="hidden" name="quantity" value="1">
+                <button type="submit" class="o-add">Dans mon panier</button>
+              </form></div>
+        </article><article class="o-prod">
+          <div class="o-prod__media"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%23FFF3E3%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Shampooing pour cuir chevelu sensible" loading="lazy"></div>
+          <p class="o-sticker o-sticker--round o-prod__price">11,20 €</p>
+          <div class="o-prod__body"><p class="o-prod__tag">Shampooings</p><h3 class="o-prod__title"><a href="/products/shampooing-pour-cuir-chevelu-sensible">Shampooing pour cuir chevelu sensible</a></h3>
+            <p class="o-prod__pitch">La douceur qu'il faut aux cuirs chevelus sensibles. Doux mais efficace, ce shampooing prend…</p><form class="o-prod__form" action="#panier" method="post">
+                <input type="hidden" name="id" value="1">
+                <input type="hidden" name="quantity" value="1">
+                <button type="submit" class="o-add">Dans mon panier</button>
+              </form></div>
+        </article><article class="o-prod">
+          <div class="o-prod__media"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%23FF6A2B%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Huile à barbe adoucissante" loading="lazy"></div>
+          <p class="o-sticker o-sticker--round o-prod__price">11,10 €</p>
+          <div class="o-prod__body"><p class="o-prod__tag">Huiles pour le visage</p><h3 class="o-prod__title"><a href="/products/huile-a-barbe-adoucissante">Huile à barbe adoucissante</a></h3>
+            <p class="o-prod__pitch">Une barbe plus douce, sans effet gras. Un mélange d'huiles naturelles de première qualité,…</p><form class="o-prod__form" action="#panier" method="post">
+                <input type="hidden" name="id" value="1">
+                <input type="hidden" name="quantity" value="1">
+                <button type="submit" class="o-add">Dans mon panier</button>
+              </form></div>
+        </article><article class="o-prod">
+          <div class="o-prod__media"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%232CC8F5%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Démaquillant BiPhasic, sans parfum" loading="lazy"></div>
+          <p class="o-sticker o-sticker--round o-prod__price">6,30 €</p>
+          <div class="o-prod__body"><p class="o-prod__tag">Nettoyant</p><h3 class="o-prod__title"><a href="/products/demaquillant-biphasic-sans-parfum-1">Démaquillant BiPhasic, sans parfum</a></h3>
+            <p class="o-prod__pitch">Une double action, un seul geste. Une phase huileuse, une phase aqueuse : ce…</p><form class="o-prod__form" action="#panier" method="post">
+                <input type="hidden" name="id" value="1">
+                <input type="hidden" name="quantity" value="1">
+                <button type="submit" class="o-add">Dans mon panier</button>
+              </form></div>
+        </article><article class="o-prod">
+          <div class="o-prod__media"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%23FF5FA8%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Gel visage au zinc sans huile pour hommes" loading="lazy"></div>
+          <p class="o-sticker o-sticker--round o-prod__price">9,00 €</p>
+          <div class="o-prod__body"><p class="o-prod__tag">Hydratant</p><h3 class="o-prod__title"><a href="/products/gel-visage-au-zinc-sans-huile-pour-hommes">Gel visage au zinc sans huile pour hommes</a></h3>
+            <p class="o-prod__pitch">Hydratation instantanée, zéro effet gras. Ce gel hydratant sans huile se glisse dans la…</p><form class="o-prod__form" action="#panier" method="post">
+                <input type="hidden" name="id" value="1">
+                <input type="hidden" name="quantity" value="1">
+                <button type="submit" class="o-add">Dans mon panier</button>
+              </form></div>
+        </article><article class="o-prod">
+          <div class="o-prod__media"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%23FFF3E3%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Patchs hydrogel énergisants pour les yeux" loading="lazy"></div>
+          <p class="o-sticker o-sticker--round o-prod__price">13,40 €</p>
+          <div class="o-prod__body"><p class="o-prod__tag">Patches</p><h3 class="o-prod__title"><a href="/products/patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c">Patchs hydrogel énergisants pour les yeux</a></h3>
+            <p class="o-prod__pitch">Un petit moment rien que pour ton regard. Frais et légers, ces patchs hydrogel…</p><form class="o-prod__form" action="#panier" method="post">
+                <input type="hidden" name="id" value="1">
+                <input type="hidden" name="quantity" value="1">
+                <button type="submit" class="o-add">Dans mon panier</button>
+              </form></div>
+        </article></div>
+  </div>
+</section>
 
-    <!-- Produits : aubergine + mandarine/rose/violet -->
-    <section id="produits" class="section section--aubergine">
-      <p class="eyebrow eyebrow--cream">02 — Les soins</p>
-      <h2>Trois soins, zéro complexe</h2>
-      <p class="section__intro">Une routine courte, des textures qui font plaisir et des flacons qu'on a envie de laisser traîner sur le lavabo.</p>
-      <div class="products">
-        <article class="product reveal">
-          <div class="product__visual product__visual--mandarine">
-            <div class="bottle bottle--pump"><span>orane</span></div>
-            <p class="sticker sticker--cream sticker--abs">zéro filtre</p>
-          </div>
-          <div class="product__body">
-            <p class="product__tag">Nettoyer</p>
-            <h3>Gelée Réveil</h3>
-            <p>Une gelée fraîche qui mousse juste ce qu'il faut. Le maquillage part, ta bonne humeur reste.</p>
-            <div class="product__foot">
-              <span class="price">19 €</span>
-              <button class="btn btn--small btn--add" data-name="Gelée Réveil">Ajouter</button>
-            </div>
-          </div>
-        </article>
-        <article class="product reveal">
-          <div class="product__visual product__visual--pink">
-            <div class="bottle bottle--drop"><span>orane</span></div>
-            <p class="sticker sticker--cream sticker--abs">glow à la carte</p>
-          </div>
-          <div class="product__body">
-            <p class="product__tag">Booster</p>
-            <h3>Sérum Pep's</h3>
-            <p>Quelques gouttes et ton teint a l'air d'avoir dormi huit heures. Même si on sait que non.</p>
-            <div class="product__foot">
-              <span class="price">29 €</span>
-              <button class="btn btn--small btn--add" data-name="Sérum Pep's">Ajouter</button>
-            </div>
-          </div>
-        </article>
-        <article class="product reveal">
-          <div class="product__visual product__visual--violet">
-            <div class="bottle bottle--jar"><span>orane</span></div>
-            <p class="sticker sticker--cream sticker--abs">bouille de star</p>
-          </div>
-          <div class="product__body">
-            <p class="product__tag">Hydrater</p>
-            <h3>Crème Câline</h3>
-            <p>Une crème fondante qui fait un câlin à ta peau, matin et soir. Elle ne colle pas, promis.</p>
-            <div class="product__foot">
-              <span class="price">24 €</span>
-              <button class="btn btn--small btn--add" data-name="Crème Câline">Ajouter</button>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
 
-    <!-- Rituel : mandarine + crème (encarts) + rose + bleu piscine en surprise -->
-    <section id="rituel" class="section section--mandarine">
-      <p class="eyebrow">03 — Le rituel</p>
-      <h2>Trois gestes, mine de rien</h2>
-      <ol class="steps">
-        <li class="step reveal">
-          <span class="step__num">1</span>
-          <div>
-            <h3>Tu nettoies</h3>
-            <p>Une noisette de Gelée Réveil, un massage en petits ronds, on rince. Ça y est, t'es réveillée.</p>
-          </div>
-        </li>
-        <li class="step reveal">
-          <span class="step__num">2</span>
-          <div>
-            <h3>Tu boostes</h3>
-            <p>Trois gouttes de Sérum Pep's du bout des doigts. Pas besoin de plus, fais confiance.</p>
-          </div>
-        </li>
-        <li class="step reveal">
-          <span class="step__num">3</span>
-          <div>
-            <h3>Tu chouchoutes</h3>
-            <p>Un peu de Crème Câline et c'est bouclé. Ensuite, sourire obligatoire.</p>
-          </div>
-        </li>
-      </ol>
-      <div class="rituel__bouille" aria-hidden="true">
-        <svg class="bouille" viewBox="0 0 120 120"><use href="#bouille"/></svg>
-        <p class="sticker sticker--blue sticker--tilt-r">fais pas ta timide</p>
-      </div>
-    </section>
+<section class="o-promises o-promises--creme">
+  <div class="o-wrap"><p class="o-kicker o-promises__title">Les promesses ORANE</p><ul class="o-promises__list"><li class="o-sticker o-sticker--round o-bg-citron" >
+          <strong>2 à 5 jours</strong>
+          <small>et c'est chez toi</small>
+        </li><li class="o-sticker o-sticker--round o-bg-rose" >
+          <strong>offerte dès 50 €</strong>
+          <small>la livraison</small>
+        </li><li class="o-sticker o-sticker--round o-bg-mandarine" >
+          <strong>14 jours</strong>
+          <small>pour changer d'avis</small>
+        </li></ul>
+  </div>
+</section>
 
-    <!-- Club : violet + citron + rose -->
-    <section id="club" class="section section--violet club">
-      <div class="club__inner">
-        <p class="eyebrow eyebrow--cream">04 — Le club</p>
-        <h2>Rejoins la bande</h2>
-        <p class="section__intro">Des nouveautés en avant-première, des astuces sans prise de tête et -10 % sur ta première commande. Pas de spam, juste du pep's.</p>
-        <form class="club__form" novalidate>
-          <label for="email" class="sr-only">Ton adresse e-mail</label>
-          <input id="email" type="email" name="email" placeholder="ton@email.fr" required autocomplete="email">
-          <button type="submit" class="btn btn--lime">Je m'inscris</button>
-        </form>
-        <p class="club__msg" role="status" aria-live="polite"></p>
-      </div>
-      <svg class="spark spark--lime club__s1" viewBox="0 0 40 40" aria-hidden="true"><use href="#spark"/></svg>
-      <svg class="spark spark--pink club__s2" viewBox="0 0 40 40" aria-hidden="true"><use href="#spark"/></svg>
-    </section>
 
-  </main>
-
-  <footer class="footer">
-    <div class="footer__brand">
-      <svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><use href="#ring"/></svg>
-      <span class="footer__name">orane</span>
+<section class="o-quiz" data-o-quiz><svg class="o-spark o-spark--lime o-s1" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+  <path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/>
+</svg>
+<div class="o-wrap o-quiz__grid">
+    <div><p class="o-kicker">Le quiz qui dure 2 secondes</p><h2 class="o-title">Ta peau, là, maintenant ?</h2>
+      <div class="o-moods" role="group" aria-label="Ta peau, là, maintenant ?"><button type="button" class="o-mood" aria-pressed="false" data-target="o-match-m0" >fatiguée du regard</button><button type="button" class="o-mood" aria-pressed="false" data-target="o-match-m1" >maquillée jusqu'aux oreilles</button><button type="button" class="o-mood" aria-pressed="false" data-target="o-match-m2" >assoiffée mais sans gras</button><button type="button" class="o-mood" aria-pressed="false" data-target="o-match-m3" >barbe rebelle</button><button type="button" class="o-mood" aria-pressed="false" data-target="o-match-m4" >cuir chevelu chatouilleux</button><button type="button" class="o-mood" aria-pressed="false" data-target="o-match-m5" >envie de fraîcheur</button></div>
     </div>
-    <p class="footer__tagline">peau neuve, mine de rien.</p>
-    <nav class="footer__links" aria-label="Liens secondaires">
-      <a href="#esprit">L'esprit</a>
-      <a href="#produits">Les soins</a>
-      <a href="#rituel">Le rituel</a>
-      <a href="#club">Le club</a>
-    </nav>
-    <p class="footer__legal">© <span id="year"></span> ORANE · Fait avec beaucoup de couleurs.</p>
-  </footer>
 
-  <!-- Panier (toast) -->
-  <div class="toast" role="status" aria-live="polite"></div>
+    <div class="o-quiz__answer" aria-live="polite">
+      <div class="o-quiz__idle"><svg class="o-bouille " viewBox="0 0 120 120" role="img" aria-label="La bouille ORANE" focusable="false">
+  <circle cx="64" cy="64" r="52" fill="#2A1240"/>
+  <circle cx="58" cy="58" r="52" fill="#FF6A2B" stroke="#2A1240" stroke-width="5"/>
+  <ellipse cx="30" cy="70" rx="10" ry="7" fill="#FF5FA8"/>
+  <ellipse cx="86" cy="70" rx="10" ry="7" fill="#FF5FA8"/>
+  <circle class="o-eye-open" cx="42" cy="48" r="7" fill="#2A1240"/>
+  <path class="o-eye-happy" d="M34 50 Q42 41 50 50" fill="none" stroke="#2A1240" stroke-width="5" stroke-linecap="round"/>
+  <path d="M68 48 Q76 40 84 48" fill="none" stroke="#2A1240" stroke-width="5" stroke-linecap="round"/>
+  <path d="M36 66 Q58 98 82 66 Z" fill="#2A1240" stroke="#2A1240" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M48 80 Q58 72 70 80 Q60 90 48 80 Z" fill="#FF5FA8"/>
+</svg>
+<p>Choisis une humeur, je m'occupe du reste.</p>
+      </div><div class="o-match" id="o-match-m0">
+          <p class="o-match__label">Ton match</p><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%23FFF3E3%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" class="o-match__img" alt="Patchs hydrogel énergisants pour les yeux" loading="lazy"><h3 class="o-match__title">Patchs hydrogel énergisants pour les yeux</h3><p class="o-match__why">Caféine et vitamine C, le temps d'un café. Ton regard dit merci.</p><div class="o-match__cta">
+              <span class="o-pill-price">13,40 €</span>
+              <a class="o-btn" href="/products/patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c">Je le veux →</a>
+            </div></div><div class="o-match" id="o-match-m1">
+          <p class="o-match__label">Ton match</p><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%232CC8F5%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" class="o-match__img" alt="Démaquillant BiPhasic, sans parfum" loading="lazy"><h3 class="o-match__title">Démaquillant BiPhasic, sans parfum</h3><p class="o-match__why">Une phase huile, une phase eau : tout part en un geste, sans frotter.</p><div class="o-match__cta">
+              <span class="o-pill-price">6,30 €</span>
+              <a class="o-btn" href="/products/demaquillant-biphasic-sans-parfum-1">Je le veux →</a>
+            </div></div><div class="o-match" id="o-match-m2">
+          <p class="o-match__label">Ton match</p><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%23FF5FA8%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" class="o-match__img" alt="Gel visage au zinc sans huile pour hommes" loading="lazy"><h3 class="o-match__title">Gel visage au zinc sans huile pour hommes</h3><p class="o-match__why">Une hydratation express, texture légère, zéro effet brillant.</p><div class="o-match__cta">
+              <span class="o-pill-price">9,00 €</span>
+              <a class="o-btn" href="/products/gel-visage-au-zinc-sans-huile-pour-hommes">Je le veux →</a>
+            </div></div><div class="o-match" id="o-match-m3">
+          <p class="o-match__label">Ton match</p><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%23FF6A2B%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" class="o-match__img" alt="Huile à barbe adoucissante" loading="lazy"><h3 class="o-match__title">Huile à barbe adoucissante</h3><p class="o-match__why">Quelques gouttes et la barbe se fait douce, sans effet gras.</p><div class="o-match__cta">
+              <span class="o-pill-price">11,10 €</span>
+              <a class="o-btn" href="/products/huile-a-barbe-adoucissante">Je le veux →</a>
+            </div></div><div class="o-match" id="o-match-m4">
+          <p class="o-match__label">Ton match</p><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%23FFF3E3%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" class="o-match__img" alt="Shampooing pour cuir chevelu sensible" loading="lazy"><h3 class="o-match__title">Shampooing pour cuir chevelu sensible</h3><p class="o-match__why">La douceur qu'il faut aux cuirs chevelus sensibles.</p><div class="o-match__cta">
+              <span class="o-pill-price">11,20 €</span>
+              <a class="o-btn" href="/products/shampooing-pour-cuir-chevelu-sensible">Je le veux →</a>
+            </div></div><div class="o-match" id="o-match-m5">
+          <p class="o-match__label">Ton match</p><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%23D4F23A%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" class="o-match__img" alt="Gel lavant mains & corps, pamplemousse" loading="lazy"><h3 class="o-match__title">Gel lavant mains & corps, pamplemousse</h3><p class="o-match__why">Mains et corps, parfum pamplemousse. Ça pétille sans dessécher.</p><div class="o-match__cta">
+              <span class="o-pill-price">8,30 €</span>
+              <a class="o-btn" href="/products/gel-lavant-mains-corps-pamplemousse">Je le veux →</a>
+            </div></div></div>
+  </div>
+</section>
 
-  <!-- Symboles SVG réutilisables -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <!-- L'anneau : moitié haute mandarine, moitié basse rose, pastille citron -->
-      <symbol id="ring" viewBox="0 0 100 100">
-        <path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="#FF6A2B" stroke-width="18"/>
-        <path d="M90 50 A40 40 0 0 1 10 50" fill="none" stroke="#FF5FA8" stroke-width="18"/>
-        <circle cx="78.3" cy="21.7" r="10" fill="#D4F23A"/>
-      </symbol>
-      <!-- La bouille : mascotte qui fait un clin d'œil -->
-      <symbol id="bouille" viewBox="0 0 120 120">
-        <circle cx="64" cy="64" r="52" fill="#2A1240"/>
-        <circle cx="58" cy="58" r="52" fill="#FF6A2B" stroke="#2A1240" stroke-width="5"/>
-        <ellipse cx="30" cy="70" rx="10" ry="7" fill="#FF5FA8"/>
-        <ellipse cx="86" cy="70" rx="10" ry="7" fill="#FF5FA8"/>
-        <circle cx="42" cy="48" r="7" fill="#2A1240"/>
-        <path d="M68 48 Q76 40 84 48" fill="none" stroke="#2A1240" stroke-width="5" stroke-linecap="round"/>
-        <path d="M36 66 Q58 98 82 66 Z" fill="#2A1240" stroke="#2A1240" stroke-width="4" stroke-linejoin="round"/>
-        <path d="M48 80 Q58 72 70 80 Q60 90 48 80 Z" fill="#FF5FA8"/>
-      </symbol>
-      <!-- L'étincelle -->
-      <symbol id="spark" viewBox="0 0 40 40">
-        <path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/>
-      </symbol>
-    </defs>
-  </svg>
 
-  <script src="script.js"></script>
+<div class="dawn-placeholder">Section existante du thème : collection-list — « Choisis ton univers »</div><div class="dawn-placeholder">Section existante du thème : featured-product</div><section class="o-ritual">
+  <div class="o-wrap">
+    <div class="o-ritual__head">
+      <div><p class="o-kicker">Le rituel</p><h2 class="o-title">Trois gestes,<br><em>mine de rien.</em></h2>
+      </div><p class="o-sticker o-sticker--round o-bg-piscine" style="--r: 8deg; --s: 14rem;">glow à la carte</p></div>
+    <ol class="o-steps"><li class="o-step" >
+          <span class="o-step__num" aria-hidden="true">1</span>
+          <h3>Tu démaquilles</h3>
+          <p>On secoue, on imbibe un coton, on glisse. Le maquillage s'en va, ta bonne humeur reste.</p><a class="o-chip" href="/products/demaquillant-biphasic-sans-parfum-1"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%232CC8F5%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" alt="" loading="lazy"><span>Démaquillant BiPhasic, sans parfum · <strong>6,30 €</strong></span>
+            </a></li><li class="o-step" >
+          <span class="o-step__num" aria-hidden="true">2</span>
+          <h3>Tu réveilles ton regard</h3>
+          <p>Une paire de patchs sous les yeux, le temps d'un café. Fais pas ta timide.</p><a class="o-chip" href="/products/patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%23FFF3E3%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" alt="" loading="lazy"><span>Patchs hydrogel énergisants pour les yeux · <strong>13,40 €</strong></span>
+            </a></li><li class="o-step" >
+          <span class="o-step__num" aria-hidden="true">3</span>
+          <h3>Tu hydrates</h3>
+          <p>Une noisette de gel léger, sans effet gras. C'est bouclé : sourire obligatoire.</p><a class="o-chip" href="/products/gel-visage-au-zinc-sans-huile-pour-hommes"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%23FF5FA8%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" alt="" loading="lazy"><span>Gel visage au zinc sans huile pour hommes · <strong>9,00 €</strong></span>
+            </a></li></ol>
+  </div>
+</section>
+
+
+<section class="o-outro">
+  <div class="o-wrap">
+    <p class="o-outro__line"><svg class="o-bouille " viewBox="0 0 120 120" role="img" aria-label="La bouille ORANE" focusable="false">
+  <circle cx="64" cy="64" r="52" fill="#2A1240"/>
+  <circle cx="58" cy="58" r="52" fill="#FF6A2B" stroke="#2A1240" stroke-width="5"/>
+  <ellipse cx="30" cy="70" rx="10" ry="7" fill="#FF5FA8"/>
+  <ellipse cx="86" cy="70" rx="10" ry="7" fill="#FF5FA8"/>
+  <circle class="o-eye-open" cx="42" cy="48" r="7" fill="#2A1240"/>
+  <path class="o-eye-happy" d="M34 50 Q42 41 50 50" fill="none" stroke="#2A1240" stroke-width="5" stroke-linecap="round"/>
+  <path d="M68 48 Q76 40 84 48" fill="none" stroke="#2A1240" stroke-width="5" stroke-linecap="round"/>
+  <path d="M36 66 Q58 98 82 66 Z" fill="#2A1240" stroke="#2A1240" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M48 80 Q58 72 70 80 Q60 90 48 80 Z" fill="#FF5FA8"/>
+</svg>
+<span>À toute, bouille de star ✦</span>
+    </p>
+  </div>
+  <p class="o-outro__word" aria-hidden="true">orane</p>
+</section>
+
+
+
+</main>
+<script>
+  // Aperçu seulement : pas de vrai panier
+  document.addEventListener('submit', (e) => { const f = e.target.closest('.o-prod__form'); if (!f) return; e.preventDefault(); const b = f.querySelector('.o-add'); b.textContent = 'dans le panier ✦'; b.classList.add('is-added'); });
+</script>
+<script src="shopify/assets/orane.js" defer></script>
 </body>
 </html>
