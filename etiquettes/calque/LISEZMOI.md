@@ -29,6 +29,10 @@ taille exacte du gabarit), `etiquette.pdf`, `apercu.png` (avec les repères).
   (pas d'illustration au centre : identité en tête, puis toutes les infos essentielles en lignes qui remplissent la hauteur.
   Champs : `fiche` = [[intitulé, texte], …] (« Ce qu'il fait » en bandeau), `geste`, `plus`)
 
+- v7 simple : `python3 etiquettes/calque/calque.py --simple` → `sortie-v7-simple/`
+  (le plus simple pour le client : marque, nom, ce qu'il fait en une grande phrase, pour qui, volume ;
+  côté : le geste en 3 étapes et les pastilles)
+
 ## Ajouter un produit
 Copie `produits/07-gel-nettoyant-purifiant.json`, renomme-le, puis remplis :
 - `gabarit` : d'après le manuel Selfnamed du produit (zip « Download template »)

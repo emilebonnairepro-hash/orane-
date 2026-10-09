@@ -310,8 +310,8 @@ run();
 </body></html>"""
 
 def main(args):
-    style = "epure" if "--epure" in args else "signature" if "--signature" in args else "v5" if "--v5" in args else "fiche" if "--fiche" in args else "plein"
-    dossier = {"epure": "sortie-epure", "signature": "sortie-signature", "v5": "sortie-v5", "fiche": "sortie-v6-fiche"}.get(style, "sortie")
+    style = "epure" if "--epure" in args else "signature" if "--signature" in args else "v5" if "--v5" in args else "fiche" if "--fiche" in args else "simple" if "--simple" in args else "plein"
+    dossier = {"epure": "sortie-epure", "signature": "sortie-signature", "v5": "sortie-v5", "fiche": "sortie-v6-fiche", "simple": "sortie-v7-simple"}.get(style, "sortie")
     args = [a for a in args if not a.startswith("--")]
     fichiers = sorted((ICI / "produits").glob("*.json"))
     if args:
@@ -324,9 +324,9 @@ def main(args):
         g = spec["gabarit"]
         px = g.get("px") or [round(g["largeur"] / 25.4 * 600), round(g["hauteur"] / 25.4 * 600)]
         for nom, guides in (("etiquette", False), ("apercu", True)):
-            if style == "fiche":
+            if style in ("fiche", "simple"):
                 import fiche
-                contenu = fiche.page(spec, guides)
+                contenu = fiche.page(spec, guides, simple=style == "simple")
             elif style in ("signature", "v5"):
                 import signature
                 contenu = signature.page(spec, guides, leger=style == "v5")

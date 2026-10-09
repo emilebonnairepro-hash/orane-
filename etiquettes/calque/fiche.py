@@ -10,7 +10,7 @@ S'il y a un panneau côté : le geste et les atouts y vont ; sinon ils restent s
 from calque import C, FONCES, BOUILLE, svg_asset, e, geometrie
 
 
-def page(spec, guides=False):
+def page(spec, guides=False, simple=False):
     g, p, t = spec["gabarit"], spec["produit"], spec["theme"]
     G = geometrie(g)
     fond, texte = C[t["fond"]], C[t.get("texte", "aubergine")]
@@ -39,6 +39,13 @@ def page(spec, guides=False):
         if p.get("geste"): lignes.append(["Le geste", " · ".join(p["geste"])])
         if p.get("plus"): lignes.append(["En plus", " · ".join(p["plus"])])
     rows = ""
+    if simple:
+        d = {l[0].lower(): l[1] for l in p.get("fiche", [])}
+        claim = next((v for k, v in d.items() if k.startswith("ce qu")), p.get("sous_titre", ""))
+        pour = next((v for k, v in d.items() if k.startswith("pour qui")), "")
+        claim = claim[:1].upper() + claim[1:] + ("" if claim.endswith(".") else ".")
+        rows = f'<p class="claim">{e(claim)}</p>' + (f'<p class="pour">pour {e(pour)}</p>' if pour else "")
+        lignes = []
     for lab, val in lignes:
         hl = lab.lower().startswith("ce qu")
         rows += f'<div class="row{" hl" if hl else ""}"><p class="lab">{e(lab)}</p><p class="val">{e(val)}</p></div>'
@@ -53,7 +60,7 @@ def page(spec, guides=False):
         if p.get("geste"):
             steps = "".join(f'<li><b>{i + 1}</b><span>{e(x)}</span></li>' for i, x in enumerate(p["geste"]))
             blocs.append(f'<section><p class="ct">{e(p.get("titre_geste", "Le geste"))}</p><ol class="steps">{steps}</ol></section>')
-        if p.get("plus"):
+        if p.get("plus") and not simple:
             plus = "".join(f"<li>{e(x)}</li>" for x in p["plus"])
             blocs.append(f'<section><p class="ct">En plus</p><ul class="plus">{plus}</ul></section>')
         if p.get("pour_qui") and not any(l[0].lower().startswith("pour qui") for l in p.get("fiche", [])):
@@ -95,7 +102,7 @@ body {{ position: relative; color: {texte}; font-family: "Bricolage Grotesque", 
 /* ----- face avant ----- */
 .front {{ position: absolute; left: {fx0}mm; top: {fy0}mm; width: {FW}mm; height: {FH}mm; display: flex; flex-direction: column; }}
 .head {{ display: flex; align-items: center; gap: {1.6 * u:.2f}mm; padding-bottom: {1.2 * u:.2f}mm; border-bottom: {.45 * u:.2f}mm solid currentColor; }}
-.mark {{ flex: 0 0 44%; width: 44%; min-width: 0; overflow: hidden; font-family: Unbounded, sans-serif; font-weight: 900; letter-spacing: -.055em; line-height: .82; white-space: nowrap; }}
+.mark {{ flex: 0 0 40%; width: 40%; min-width: 0; overflow: hidden; font-family: Unbounded, sans-serif; font-weight: 900; letter-spacing: -.055em; line-height: .82; white-space: nowrap; }}
 .head .bouille {{ width: {8.5 * u:.2f}mm; flex: none; transform: rotate(8deg); }}
 .kick {{ flex: 1; min-width: 0; text-align: right; font-family: Unbounded, sans-serif; font-weight: 700; font-size: {pt(4.8)}; letter-spacing: .12em; text-transform: uppercase; line-height: 1.3; }}
 .kick b {{ display: block; font-weight: 900; font-size: {pt(8.5)}; letter-spacing: -.02em; }}
@@ -117,6 +124,8 @@ body {{ position: relative; color: {texte}; font-family: "Bricolage Grotesque", 
 .foot b {{ font-family: Unbounded, sans-serif; font-weight: 900; font-size: {max(5.5, 9 * u):.2f}pt; white-space: nowrap; }}
 .minis {{ display: flex; flex-wrap: wrap; gap: 1mm; }}
 .mini {{ border: {.35 * u:.2f}mm solid currentColor; border-radius: 99mm; padding: .3mm 1.6mm; font-weight: 800; font-size: {max(5.0, 5.4 * u):.2f}pt; white-space: nowrap; }}
+.claim {{ overflow-wrap: normal; width: 100%; font-family: Unbounded, sans-serif; font-weight: 800; font-size: calc({max(6, 9 * u):.2f}pt * var(--f)); line-height: 1.08; letter-spacing: -.02em; }}
+.pour {{ width: 100%; font-weight: 800; font-size: calc({max(5.5, 6.5 * u):.2f}pt * var(--f)); line-height: 1.2; border-top: {.3 * u:.2f}mm solid currentColor; padding-top: calc({1 * u:.2f}mm * var(--f)); }}
 .slog {{ white-space: nowrap; font-family: Unbounded, sans-serif; font-weight: 700; font-size: {max(4.6, 4.8 * u):.2f}pt; letter-spacing: .1em; text-transform: uppercase; }}
 
 /* ----- côté ----- */
@@ -164,7 +173,8 @@ async function run() {{
   await document.fonts.ready;
   const front = document.querySelector('.front'), fiche = document.querySelector('.fiche');
   const foot = document.querySelector('.foot');
-  const over = () => front.scrollHeight > front.clientHeight + .5 || fiche.scrollHeight > fiche.clientHeight + .5;
+  const over = () => front.scrollHeight > front.clientHeight + .5 || fiche.scrollHeight > fiche.clientHeight + .5
+    || [...fiche.children].some((c) => c.scrollWidth > fiche.clientWidth + .5);
   // 1. le nom remplit la largeur, sans prendre plus de 36 % de la hauteur
   let k = 1;
   for (let i = 0; i < 16; i++) {{
