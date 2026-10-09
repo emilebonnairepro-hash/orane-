@@ -11,3 +11,12 @@ remplace-les par celles des gabarits Selfnamed de chaque produit (bouton « Down
 Règles Selfnamed respectées : PNG, 600 dpi minimum, moins de 10 Mo, ~3 mm de fond perdu,
 zone des mentions obligatoires laissée vide (Selfnamed les ajoute).
 Charte : 7 couleurs, pas de texte crème sur mandarine ou rose, 3 couleurs vives maximum.
+
+## n°07 — Gel nettoyant purifiant (gabarit Selfnamed 150-004, 140 ml)
+
+Dossier `07-gel-nettoyant-purifiant/`, fait d'après le vrai gabarit Selfnamed :
+plan de travail 142,5 × 109 mm (3367 × 2575 px à 600 dpi), fond perdu 2 mm, marge 3 mm,
+zone des mentions obligatoires (x ≥ 107 mm) laissée vide et transparente.
+- `etiquette.png` : à téléverser (PNG 600 dpi, fond transparent) · `etiquette.pdf` : même chose en PDF
+- `apercu.png` : avec les repères · `apercu-flacon.png` : maquette approximative sur le flacon
+- `generer.py` : la source (relancer : `python3 etiquettes/07-gel-nettoyant-purifiant/generer.py`)
