@@ -35,7 +35,11 @@ A, CR = C["aubergine"], C["creme"]
 
 
 def e(t):
-    return h.escape(str(t))
+    # typographie française : espace insécable avant % ? ! :
+    t = str(t)
+    for c in "%?!:":
+        t = t.replace(" " + c, "\u00a0" + c)
+    return h.escape(t)
 
 
 def anneau(a, b):
