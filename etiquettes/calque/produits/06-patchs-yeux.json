@@ -30,7 +30,29 @@
     ],
     "pied": "hydrogel",
     "volume": "7 paires",
-    "accroche": "Un petit moment rien que pour ton regard."
+    "accroche": "Un petit moment rien que pour ton regard.",
+    "fiche": [
+      [
+        "Pour qui",
+        "le contour des yeux"
+      ],
+      [
+        "Ce qu'ils font",
+        "réveillent le regard fatigué"
+      ],
+      [
+        "Dedans",
+        "caféine, vitamine C, panthénol"
+      ]
+    ],
+    "geste": [
+      "15 min sous les yeux",
+      "masse",
+      "pas de rinçage"
+    ],
+    "plus": [
+      "testés dermatologiquement"
+    ]
   },
   "theme": {
     "fond": "creme",

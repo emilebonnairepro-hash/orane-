@@ -29,7 +29,29 @@
     ],
     "pied": "cuir chevelu sensible",
     "volume": "",
-    "accroche": "La douceur qu'il faut aux cuirs chevelus sensibles."
+    "accroche": "La douceur qu'il faut aux cuirs chevelus sensibles.",
+    "fiche": [
+      [
+        "Pour qui",
+        "cuirs chevelus sensibles ou facilement irrités"
+      ],
+      [
+        "Ce qu'il fait",
+        "lave en douceur, cuir chevelu confortable"
+      ],
+      [
+        "Dedans",
+        "bétaïne et protéines de blé"
+      ],
+      [
+        "Parfum",
+        "délicatement parfumé"
+      ]
+    ],
+    "plus": [
+      "certifié COSMOS Natural",
+      "testé dermatologiquement"
+    ]
   },
   "theme": {
     "fond": "rose",

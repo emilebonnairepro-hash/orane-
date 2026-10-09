@@ -25,6 +25,10 @@ taille exacte du gabarit), `etiquette.pdf`, `apercu.png` (avec les repères).
 - v5 équilibrée : `python3 etiquettes/calque/calque.py --v5` → `sortie-v5/`
   (la structure de la signature sans le texte circulaire, une seule pastille, côté sans « pour qui » ni pastilles d'actifs)
 
+- v6 fiche : `python3 etiquettes/calque/calque.py --fiche` → `sortie-v6-fiche/`
+  (pas d'illustration au centre : identité en tête, puis toutes les infos essentielles en lignes qui remplissent la hauteur.
+  Champs : `fiche` = [[intitulé, texte], …] (« Ce qu'il fait » en bandeau), `geste`, `plus`)
+
 ## Ajouter un produit
 Copie `produits/07-gel-nettoyant-purifiant.json`, renomme-le, puis remplis :
 - `gabarit` : d'après le manuel Selfnamed du produit (zip « Download template »)

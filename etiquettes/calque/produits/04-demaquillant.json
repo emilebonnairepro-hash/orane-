@@ -29,7 +29,30 @@
     ],
     "pied": "agiter avant emploi",
     "volume": "",
-    "accroche": "Une phase huile, une phase eau, un seul geste."
+    "accroche": "Une phase huile, une phase eau, un seul geste.",
+    "fiche": [
+      [
+        "Pour qui",
+        "tous les types de peau"
+      ],
+      [
+        "Ce qu'il fait",
+        "démaquille en douceur, en un seul geste"
+      ],
+      [
+        "Dedans",
+        "acide hyaluronique et jus d'aloe vera"
+      ],
+      [
+        "Parfum",
+        "sans parfum"
+      ]
+    ],
+    "geste": [
+      "agite",
+      "imbibe un coton",
+      "passe sur le visage"
+    ]
   },
   "theme": {
     "fond": "violet",

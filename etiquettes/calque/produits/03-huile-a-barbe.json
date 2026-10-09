@@ -30,7 +30,29 @@
     ],
     "pied": "pour la barbe",
     "volume": "",
-    "accroche": "Quelques gouttes, et la barbe se fait douce."
+    "accroche": "Quelques gouttes, et la barbe se fait douce.",
+    "fiche": [
+      [
+        "Pour qui",
+        "toutes les barbes, tous les types de peau"
+      ],
+      [
+        "Ce qu'elle fait",
+        "adoucit la barbe et facilite le coiffage"
+      ],
+      [
+        "Dedans",
+        "huiles naturelles et 1 % de CBD"
+      ],
+      [
+        "Texture",
+        "non grasse, vite absorbée"
+      ]
+    ],
+    "geste": [
+      "quelques gouttes dans les paumes",
+      "applique sur la barbe"
+    ]
   },
   "theme": {
     "fond": "aubergine",

@@ -30,7 +30,28 @@
     ],
     "pied": "hydratant",
     "volume": "",
-    "accroche": "Hydratation express, zéro effet brillant."
+    "accroche": "Hydratation express, zéro effet brillant.",
+    "fiche": [
+      [
+        "Pour qui",
+        "peaux grasses, normales et mixtes"
+      ],
+      [
+        "Ce qu'il fait",
+        "hydrate sans effet gras"
+      ],
+      [
+        "Dedans",
+        "zinc, acide hyaluronique, aloe vera"
+      ],
+      [
+        "Texture",
+        "gel sans huile, vite absorbé"
+      ]
+    ],
+    "geste": [
+      "sur peau propre"
+    ]
   },
   "theme": {
     "fond": "mandarine",

@@ -40,8 +40,8 @@
     "volume": "140 ml ℮",
     "geste": [
       "une noisette sur peau humide",
-      "on masse tout doucement",
-      "on rince, et c'est frais"
+      "masse tout doucement",
+      "rince bien"
     ],
     "dedans": [
       "maté bio",
@@ -59,7 +59,30 @@
     "logos": [
       "ecocert-cosmos-natural.svg"
     ],
-    "accroche": "Le premier geste de ta routine anti-imperfections."
+    "accroche": "Le premier geste de ta routine anti-imperfections.",
+    "fiche": [
+      [
+        "Pour qui",
+        "peaux à imperfections"
+      ],
+      [
+        "Ce qu'il fait",
+        "nettoie et purifie en douceur"
+      ],
+      [
+        "Dedans",
+        "maté bio, mousse d'Islande, cals de genévrier"
+      ],
+      [
+        "Parfum",
+        "thé vert, frais"
+      ]
+    ],
+    "plus": [
+      "sans tensioactifs agressifs",
+      "pH équilibré",
+      "certifié COSMOS Natural"
+    ]
   },
   "theme": {
     "fond": "citron",

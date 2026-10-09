@@ -30,7 +30,33 @@
     ],
     "pied": "nettoie sans dessécher",
     "volume": "",
-    "accroche": "Le petit plaisir pamplemousse, mains et corps."
+    "accroche": "Le petit plaisir pamplemousse, mains et corps.",
+    "fiche": [
+      [
+        "Pour qui",
+        "tous les types de peau"
+      ],
+      [
+        "Ce qu'il fait",
+        "nettoie mains et corps sans dessécher"
+      ],
+      [
+        "Dedans",
+        "bétaïne et ingrédients hydratants"
+      ],
+      [
+        "Parfum",
+        "pamplemousse, frais et délicat"
+      ]
+    ],
+    "geste": [
+      "sur peau humide",
+      "fais mousser",
+      "rince"
+    ],
+    "plus": [
+      "formule végétalienne"
+    ]
   },
   "theme": {
     "fond": "citron",
