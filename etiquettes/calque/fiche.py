@@ -163,7 +163,8 @@ function fit(el, max) {{
 async function run() {{
   await document.fonts.ready;
   const front = document.querySelector('.front'), fiche = document.querySelector('.fiche');
-  const over = () => front.scrollHeight > front.clientHeight + .5 || fiche.scrollHeight > fiche.clientHeight + .5;
+  const foot = document.querySelector('.foot');
+  const over = () => front.scrollHeight > front.clientHeight + .5 || fiche.scrollHeight > fiche.clientHeight + .5 || foot.scrollWidth > foot.clientWidth + .5;
   // 1. le nom remplit la largeur, sans prendre plus de 36 % de la hauteur
   let k = 1;
   for (let i = 0; i < 16; i++) {{
