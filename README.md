@@ -27,6 +27,11 @@ Sections (toutes modifiables dans l'éditeur de thème) :
 - `orane-promesses` : livraison, retours… en gros stickers ronds
 - `orane-faq` : questions qui s'ouvrent
 
+Panier en tiroir : `snippets/cart-drawer.liquid` appelle `orane-cart-drawer` (le tiroir de Dawn, mêmes
+identifiants) avec la piste de livraison offerte, le coup de pouce et « va très bien avec »
+(`orane-drawer-bonus`, `orane-drawer-row`). Il s'ouvre à chaque ajout depuis les cartes ORANE.
+L'appli Essential Cart Drawer est coupée dans ce thème (Personnaliser → Intégrations d'applications pour la remettre).
+
 Autres fichiers : `snippets/` (anneau, bouille, étincelle en SVG), `assets/orane-brand.css`
 (toute l'identité, y compris les pages Dawn : produit, collection, panier, tiroir, contact),
 `assets/orane.js` (interactions), `templates/*.json` et `config/settings_data.json`
