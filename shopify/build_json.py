@@ -192,12 +192,36 @@ def univers(size="big", title="Quatre univers,", em="zéro prise de tête.", kic
     return {"type": "orane-univers", "blocks": b, "block_order": o, "settings": {
       "kicker": kicker, "title": title, "title_em": em, "text": "", "size": size}}
 
+photo_b, photo_o = blocks("ph", [
+  {"type": "photo", "settings": {"caption": "le petit rituel du matin", "product": P_PATCHS, "shape": "tall", "alt": "",
+    "hint": "Photo portrait : quelqu'un qui pose les patchs sous les yeux, au réveil"}},
+  {"type": "photo", "settings": {"caption": "ça mousse, ça pétille", "product": P_CORPS, "shape": "wide", "alt": "",
+    "hint": "Photo large : la mousse du gel lavant sur les mains, sous l'eau"}},
+  {"type": "photo", "settings": {"caption": "la texture", "product": P_GEL, "shape": "square", "alt": "",
+    "hint": "Photo carrée : une noisette de gel sur le bout du doigt"}},
+  {"type": "photo", "settings": {"caption": "deux phases, un geste", "product": P_DEMAQ, "shape": "square", "alt": "",
+    "hint": "Photo carrée : le flacon biphasé qu'on secoue, avec un coton"}},
+])
+
 index = {"sections": {
   "orane-hero": {"type": "orane-hero", "blocks": hero_b, "block_order": hero_o, "settings": {
     "kicker_left": "N°01 — soins pour bouilles qui rigolent", "kicker_right": "visage · corps · cheveux",
     "lead": "<p>Le secteur chuchote en nude. Nous, on parle fort, en couleurs, avec des <strong>formules toutes douces</strong> pour ta peau.</p>",
     "cta_label": "voir les soins", "cta_link": "shopify://collections/all", "word": "orane",
     "hint": "psst : les stickers se décollent ✦"}},
+  "orane-hero-produits": {"type": "orane-hero-produits",
+    "blocks": {"a0": {"type": "argument", "settings": {"text": "Livraison offerte dès 50 €"}},
+               "a1": {"type": "argument", "settings": {"text": "Livré en 2 à 5 jours"}},
+               "a2": {"type": "argument", "settings": {"text": "14 jours pour changer d'avis"}}},
+    "block_order": ["a0", "a1", "a2"],
+    "settings": {"kicker": "Soins visage · corps · cheveux · homme", "title": "Des soins doux,", "title_em": "qui ont la pêche.",
+      "lead": "<p>Gel lavant, shampooing, patchs pour les yeux, démaquillant, gel hydratant, huile à barbe : des formules douces, des gestes simples, et un ton qui fait sourire.</p>",
+      "show_prices": True, "cta_label": "Voir les soins", "cta2_label": "Trouver mon soin en 2 s →", "cta2_link": "#quiz",
+      "image_alt": "", "photo_hint": "Ajoute ta photo principale ici (format portrait, tes soins en situation)",
+      "product": P_PATCHS, "tag_label": "À découvrir", "show_range": True, "range_label": "Toute la gamme, d'un coup d'œil"}},
+  "orane-photos": {"type": "orane-photos", "blocks": photo_b, "block_order": photo_o, "settings": {
+    "kicker": "En vrai", "title": "ORANE,", "title_em": "dans la vraie vie.",
+    "text": "La texture, le geste, la salle de bain : nos soins comme tu les utiliseras."}},
   "orane-ticker": {"type": "orane-ticker", "blocks": tape_b, "block_order": tape_o},
   "orane-manifeste": {"type": "orane-manifeste", "settings": {
     "kicker": "Pourquoi ORANE ne ressemble à personne",
@@ -228,8 +252,9 @@ index = {"sections": {
   "orane-rituel": {"type": "orane-rituel", "blocks": rit_b, "block_order": rit_o, "settings": {
     "kicker": "Le rituel", "title": "Trois gestes,", "title_em": "mine de rien.", "sticker": "glow à la carte"}},
   "orane-outro": {"type": "orane-outro", "settings": {"line": "À toute, bouille de star ✦", "word": "orane"}},
-}, "order": ["orane-hero", "orane-ticker", "orane-manifeste", "orane-univers", "orane-etagere", "multicolumn_garanties",
-             "orane-quiz", "orane-vedette", "orane-actifs", "orane-rituel", "orane-outro"]}
+}, "order": ["orane-hero-produits", "orane-ticker", "orane-etagere", "orane-univers", "orane-photos", "multicolumn_garanties",
+             "orane-manifeste", "orane-quiz", "orane-vedette", "orane-actifs", "orane-rituel", "orane-outro"]}
+del index["sections"]["orane-hero"]  # remplacée par la bannière produits (la section reste disponible dans l'éditeur)
 dump("templates/index.json", index)
 print("ok")
 

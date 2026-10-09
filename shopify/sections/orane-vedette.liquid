@@ -35,7 +35,9 @@
     <div class="o-vedette__stage">
       {%- render 'orane-ring', class: 'o-vedette__ring' -%}
       <a class="o-vedette__media" href="{{ p.url }}" tabindex="-1" aria-hidden="true">
-        {%- if p.featured_image -%}
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', alt: '', sizes: '(min-width: 990px) 40vw, 80vw' }}
+        {%- elsif p.featured_image -%}
           {{ p.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', alt: '', sizes: '(min-width: 990px) 40vw, 80vw' }}
         {%- else -%}
           <span class="o-flask">orane</span>
@@ -82,6 +84,7 @@
   "class": "section",
   "settings": [
     { "type": "product", "id": "product", "label": "Produit" },
+    { "type": "image_picker", "id": "image", "label": "Photo (facultatif)", "info": "Remplace la photo du produit dans le rond. Format carré conseillé." },
     { "type": "text", "id": "kicker", "label": "Mention", "default": "Le chouchou de la bande" },
     { "type": "text", "id": "add_label", "label": "Bouton d'ajout", "default": "Je le veux ✦" },
     { "type": "text", "id": "more_label", "label": "Lien vers la fiche", "default": "Tout savoir sur lui →" }

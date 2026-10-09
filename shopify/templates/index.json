@@ -9,59 +9,105 @@
  */
 {
   "sections": {
-    "orane-hero": {
-      "type": "orane-hero",
+    "orane-hero-produits": {
+      "type": "orane-hero-produits",
       "blocks": {
-        "s0": {
-          "type": "sticker",
+        "a0": {
+          "type": "argument",
           "settings": {
-            "text": "peau neuve, mine de rien.",
-            "small": "",
-            "round": false,
-            "color": "citron",
-            "x": 0,
-            "y": 64,
-            "rotate": -6
+            "text": "Livraison offerte dès 50 €"
           }
         },
-        "s1": {
-          "type": "sticker",
+        "a1": {
+          "type": "argument",
           "settings": {
-            "text": "zéro filtre",
-            "small": "100 % pep's",
-            "round": true,
-            "color": "rose",
-            "x": 36,
-            "y": 38,
-            "rotate": 10
+            "text": "Livré en 2 à 5 jours"
           }
         },
-        "s2": {
-          "type": "sticker",
+        "a2": {
+          "type": "argument",
           "settings": {
-            "text": "fais pas ta timide",
-            "small": "",
-            "round": false,
-            "color": "creme",
-            "x": 22,
-            "y": 74,
-            "rotate": 4
+            "text": "14 jours pour changer d'avis"
           }
         }
       },
       "block_order": [
-        "s0",
-        "s1",
-        "s2"
+        "a0",
+        "a1",
+        "a2"
       ],
       "settings": {
-        "kicker_left": "N°01 — soins pour bouilles qui rigolent",
-        "kicker_right": "visage · corps · cheveux",
-        "lead": "<p>Le secteur chuchote en nude. Nous, on parle fort, en couleurs, avec des <strong>formules toutes douces</strong> pour ta peau.</p>",
-        "cta_label": "voir les soins",
-        "cta_link": "shopify://collections/all",
-        "word": "orane",
-        "hint": "psst : les stickers se décollent ✦"
+        "kicker": "Soins visage · corps · cheveux · homme",
+        "title": "Des soins doux,",
+        "title_em": "qui ont la pêche.",
+        "lead": "<p>Gel lavant, shampooing, patchs pour les yeux, démaquillant, gel hydratant, huile à barbe : des formules douces, des gestes simples, et un ton qui fait sourire.</p>",
+        "show_prices": true,
+        "cta_label": "Voir les soins",
+        "cta2_label": "Trouver mon soin en 2 s →",
+        "cta2_link": "#quiz",
+        "image_alt": "",
+        "photo_hint": "Ajoute ta photo principale ici (format portrait, tes soins en situation)",
+        "product": "patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c",
+        "tag_label": "À découvrir",
+        "show_range": true,
+        "range_label": "Toute la gamme, d'un coup d'œil"
+      }
+    },
+    "orane-photos": {
+      "type": "orane-photos",
+      "blocks": {
+        "ph0": {
+          "type": "photo",
+          "settings": {
+            "caption": "le petit rituel du matin",
+            "product": "patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c",
+            "shape": "tall",
+            "alt": "",
+            "hint": "Photo portrait : quelqu'un qui pose les patchs sous les yeux, au réveil"
+          }
+        },
+        "ph1": {
+          "type": "photo",
+          "settings": {
+            "caption": "ça mousse, ça pétille",
+            "product": "gel-lavant-mains-corps-pamplemousse",
+            "shape": "wide",
+            "alt": "",
+            "hint": "Photo large : la mousse du gel lavant sur les mains, sous l'eau"
+          }
+        },
+        "ph2": {
+          "type": "photo",
+          "settings": {
+            "caption": "la texture",
+            "product": "gel-visage-au-zinc-sans-huile-pour-hommes",
+            "shape": "square",
+            "alt": "",
+            "hint": "Photo carrée : une noisette de gel sur le bout du doigt"
+          }
+        },
+        "ph3": {
+          "type": "photo",
+          "settings": {
+            "caption": "deux phases, un geste",
+            "product": "demaquillant-biphasic-sans-parfum-1",
+            "shape": "square",
+            "alt": "",
+            "hint": "Photo carrée : le flacon biphasé qu'on secoue, avec un coton"
+          }
+        }
+      },
+      "block_order": [
+        "ph0",
+        "ph1",
+        "ph2",
+        "ph3"
+      ],
+      "settings": {
+        "kicker": "En vrai",
+        "title": "ORANE,",
+        "title_em": "dans la vraie vie.",
+        "text": "La texture, le geste, la salle de bain : nos soins comme tu les utiliseras."
       }
     },
     "orane-ticker": {
@@ -355,12 +401,13 @@
     }
   },
   "order": [
-    "orane-hero",
+    "orane-hero-produits",
     "orane-ticker",
-    "orane-manifeste",
-    "orane-univers",
     "orane-etagere",
+    "orane-univers",
+    "orane-photos",
     "multicolumn_garanties",
+    "orane-manifeste",
     "orane-quiz",
     "orane-vedette",
     "orane-actifs",

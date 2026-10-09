@@ -1,0 +1,165 @@
+{%- comment -%}
+  ORANE — bannière d'accueil centrée produit : on comprend tout de suite ce qu'on vend.
+  À gauche : ce que c'est (soins visage, corps, cheveux, homme), la fourchette de prix calculée, deux boutons.
+  À droite : la photo principale (à ajouter dans l'éditeur). Sans photo, les photos des produits
+  s'affichent en éventail, donc la zone n'est jamais vide sur le site.
+  En bas : toute la gamme, produit par produit, avec le prix.
+{%- endcomment -%}
+{%- liquid
+  assign coll = section.settings.collection | default: collections.all
+  assign star = section.settings.product | default: coll.products.first
+  assign min_p = 999999999
+  assign max_p = 0
+  for p in coll.products limit: 50
+    if p.price < min_p
+      assign min_p = p.price
+    endif
+    if p.price > max_p
+      assign max_p = p.price
+    endif
+  endfor
+  assign count = coll.products_count | default: coll.products.size
+-%}
+<section class="o-hp" id="o-hp-{{ section.id }}">
+  {%- render 'orane-spark', color: 'lime', class: 'o-s1' -%}
+  {%- render 'orane-spark', color: 'pink', class: 'o-s2' -%}
+
+  <div class="o-wrap o-hp__grid">
+    <div class="o-hp__text">
+      <p class="o-kicker o-hp__kicker">{{ section.settings.kicker }}</p>
+      <h1 class="o-hp__title">
+        {{ section.settings.title }}
+        {%- if section.settings.title_em != blank -%}<em>{{ section.settings.title_em }}</em>{%- endif -%}
+      </h1>
+      <div class="o-hp__lead">
+        {{ section.settings.lead }}
+        {%- if section.settings.show_prices and max_p > 0 -%}
+          <p class="o-hp__range">
+            <strong>{{ count }} soin{% if count > 1 %}s{% endif %}</strong>
+            {% if min_p == max_p %}à {{ min_p | money }}{% else %}de {{ min_p | money }} à {{ max_p | money }}{% endif %}
+          </p>
+        {%- endif -%}
+      </div>
+      <div class="o-hp__ctas">
+        <a class="o-btn o-btn--big o-hp__main" href="{{ section.settings.cta_link | default: coll.url | default: routes.all_products_collection_url }}">{{ section.settings.cta_label }}</a>
+        {%- if section.settings.cta2_label != blank -%}
+          <a class="o-hp__second" href="{{ section.settings.cta2_link | default: '#quiz' }}">{{ section.settings.cta2_label }}</a>
+        {%- endif -%}
+      </div>
+      <ul class="o-hp__trust">
+        {%- for block in section.blocks -%}
+          <li {{ block.shopify_attributes }}><span aria-hidden="true">✦</span> {{ block.settings.text }}</li>
+        {%- endfor -%}
+      </ul>
+    </div>
+
+    <div class="o-hp__visual">
+      {%- render 'orane-ring', class: 'o-hp__ring' -%}
+      <div class="o-hp__frame{% if section.settings.image == blank %} o-hp__frame--auto{% endif %}">
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '(min-width: 990px) 46vw, 92vw', alt: section.settings.image.alt | default: section.settings.image_alt }}
+        {%- else -%}
+          <div class="o-hp__fan">
+            {%- for p in coll.products limit: 3 -%}
+              <a class="o-hp__pack" href="{{ p.url }}" style="--i: {{ forloop.index0 }}" tabindex="-1" aria-hidden="true">
+                {%- if p.featured_image -%}
+                  {{ p.featured_image | image_url: width: 700 | image_tag: loading: 'eager', alt: '', sizes: '(min-width: 990px) 20vw, 40vw' }}
+                {%- else -%}<span class="o-flask">orane</span>{%- endif -%}
+              </a>
+            {%- endfor -%}
+          </div>
+          {%- if request.design_mode -%}
+            <p class="o-photo-hint">📷 {{ section.settings.photo_hint }}</p>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+
+      {%- if star -%}
+        <div class="o-hp__tag">
+          <a class="o-hp__tag-img" href="{{ star.url }}" tabindex="-1" aria-hidden="true">
+            {%- if star.featured_image -%}{{ star.featured_image | image_url: width: 200 | image_tag: loading: 'eager', alt: '' }}{%- endif -%}
+          </a>
+          <div class="o-hp__tag-body">
+            <p class="o-hp__tag-kicker">{{ section.settings.tag_label }}</p>
+            <a class="o-hp__tag-name" href="{{ star.url }}">{{ star.title }}</a>
+            <span class="o-hp__tag-price">{{ star.price | money }}</span>
+          </div>
+          {%- if star.available -%}
+            <form class="o-prod__form o-hp__tag-form" action="{{ routes.cart_add_url }}" method="post">
+              <input type="hidden" name="id" value="{{ star.selected_or_first_available_variant.id }}">
+              <input type="hidden" name="quantity" value="1">
+              <button type="submit" class="o-drow__add" aria-label="Ajouter {{ star.title | escape }} au panier">+</button>
+            </form>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+      {%- render 'orane-bouille', class: 'o-hp__bouille' -%}
+    </div>
+  </div>
+
+  {%- if section.settings.show_range -%}
+    <div class="o-hp__range-strip">
+      <div class="o-wrap">
+        <p class="o-kicker">{{ section.settings.range_label }}</p>
+        <ul class="o-hp__line">
+          {%- assign tones = 'citron,rose,mandarine' | split: ',' -%}
+          {%- for p in coll.products limit: 12 -%}
+            {%- assign kind = '' -%}
+            {%- for tag in p.tags -%}
+              {%- if tag contains '(Type)' -%}{%- assign kind = tag | remove: ' (Type)' -%}{%- break -%}{%- endif -%}
+            {%- endfor -%}
+            {%- assign t = forloop.index0 | modulo: 3 -%}
+            <li class="o-hp__item">
+              <a href="{{ p.url }}">
+                <span class="o-hp__thumb o-bg-{{ tones[t] }}">
+                  {%- if p.featured_image -%}
+                    {{ p.featured_image | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}
+                  {%- else -%}<span class="o-flask">orane</span>{%- endif -%}
+                </span>
+                <span class="o-hp__info">
+                  {%- if kind != blank -%}<span class="o-hp__kind">{{ kind }}</span>{%- endif -%}
+                  <span class="o-hp__name">{{ p.title }}</span>
+                  <span class="o-hp__price">{{ p.price | money }}</span>
+                </span>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "ORANE · Bannière produits",
+  "tag": "div",
+  "class": "section",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Mention", "default": "Soins visage · corps · cheveux · homme" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Des soins doux," },
+    { "type": "text", "id": "title_em", "label": "Titre en couleur", "default": "qui ont la pêche." },
+    { "type": "richtext", "id": "lead", "label": "Texte", "default": "<p>Gel lavant, shampooing, patchs pour les yeux, démaquillant, gel hydratant, huile à barbe : des formules douces et des gestes simples.</p>" },
+    { "type": "checkbox", "id": "show_prices", "label": "Afficher le nombre de soins et les prix", "default": true },
+    { "type": "collection", "id": "collection", "label": "Collection (vide = tous les produits)" },
+    { "type": "text", "id": "cta_label", "label": "Bouton principal", "default": "Voir les soins" },
+    { "type": "url", "id": "cta_link", "label": "Lien du bouton principal" },
+    { "type": "text", "id": "cta2_label", "label": "Second lien", "default": "Trouver mon soin en 2 s →" },
+    { "type": "text", "id": "cta2_link", "label": "Adresse du second lien", "default": "#quiz" },
+    { "type": "header", "content": "Photo" },
+    { "type": "image_picker", "id": "image", "label": "Photo principale", "info": "Format portrait conseillé (4:5 ou 3:4), par exemple tes produits en situation. Sans photo, les photos des produits s'affichent en éventail." },
+    { "type": "text", "id": "image_alt", "label": "Description de la photo (accessibilité)" },
+    { "type": "text", "id": "photo_hint", "label": "Aide affichée dans l'éditeur seulement", "default": "Ajoute ta photo principale ici (portrait)" },
+    { "type": "product", "id": "product", "label": "Produit mis en avant sur la photo" },
+    { "type": "text", "id": "tag_label", "label": "Mention de l'étiquette produit", "default": "Le chouchou" },
+    { "type": "header", "content": "La gamme" },
+    { "type": "checkbox", "id": "show_range", "label": "Afficher toute la gamme en bas", "default": true },
+    { "type": "text", "id": "range_label", "label": "Titre de la gamme", "default": "Toute la gamme, d'un coup d'œil" }
+  ],
+  "blocks": [
+    { "type": "argument", "name": "Argument", "settings": [{ "type": "text", "id": "text", "label": "Texte", "default": "Livraison offerte dès 50 €" }] }
+  ],
+  "presets": [{ "name": "ORANE · Bannière produits", "blocks": [{ "type": "argument" }] }]
+}
+{% endschema %}

@@ -1,0 +1,85 @@
+{%- comment -%}
+  ORANE — la mosaïque photo : des photos d'ambiance (texture, geste, salle de bain…) avec une légende en sticker
+  et, si on veut, le produit qu'on voit sur la photo (lien + prix).
+  Sans photo : la photo du produit choisi prend la place. Sans photo ni produit, la case n'apparaît que
+  dans l'éditeur, avec une aide pour savoir quoi y mettre.
+{%- endcomment -%}
+<section class="o-photos">
+  <div class="o-wrap">
+    <div class="o-photos__head">
+      <div>
+        <p class="o-kicker">{{ section.settings.kicker }}</p>
+        <h2 class="o-title">{{ section.settings.title }}{% if section.settings.title_em != blank %}<br><em>{{ section.settings.title_em }}</em>{% endif %}</h2>
+      </div>
+      {%- if section.settings.text != blank -%}<p class="o-photos__lead">{{ section.settings.text }}</p>{%- endif -%}
+    </div>
+
+    <ul class="o-photos__grid">
+      {%- assign tones = 'rose,citron,mandarine,violet' | split: ',' -%}
+      {%- for block in section.blocks -%}
+        {%- assign p = block.settings.product -%}
+        {%- assign img = block.settings.image -%}
+        {%- assign fallback = false -%}
+        {%- if img == blank and p != blank -%}{%- assign img = p.featured_image -%}{%- assign fallback = true -%}{%- endif -%}
+        {%- if img != blank or request.design_mode -%}
+          {%- assign t = forloop.index0 | modulo: 4 -%}
+          <li class="o-photo o-photo--{{ block.settings.shape }} o-bg-{{ tones[t] }}{% if img == blank %} is-empty{% endif %}{% if fallback %} is-product{% endif %}" {{ block.shopify_attributes }}>
+            {%- if img != blank -%}
+              {{ img | image_url: width: 1200 | image_tag: loading: 'lazy', alt: block.settings.alt | default: img.alt, sizes: '(min-width: 990px) 40vw, 92vw' }}
+            {%- else -%}
+              <p class="o-photo-hint">📷 {{ block.settings.hint }}</p>
+            {%- endif -%}
+            {%- if fallback and request.design_mode -%}<p class="o-photo-badge">📷 {{ block.settings.hint }}</p>{%- endif -%}
+            {%- if block.settings.caption != blank -%}
+              <p class="o-sticker o-bg-creme o-photo__cap" style="--r: {% cycle '-4deg', '3deg', '-2deg', '4deg' %}">{{ block.settings.caption }}</p>
+            {%- endif -%}
+            {%- if p != blank -%}
+              <a class="o-photo__shop" href="{{ p.url }}">
+                <span class="o-photo__shop-name">{{ p.title }}</span>
+                <span class="o-photo__shop-price">{{ p.price | money }} →</span>
+              </a>
+            {%- endif -%}
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ORANE · Photos",
+  "tag": "div",
+  "class": "section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Mention", "default": "En vrai" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "ORANE," },
+    { "type": "text", "id": "title_em", "label": "Titre en couleur", "default": "dans la vraie vie." },
+    { "type": "text", "id": "text", "label": "Texte" }
+  ],
+  "blocks": [
+    {
+      "type": "photo",
+      "name": "Photo",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photo" },
+        { "type": "text", "id": "alt", "label": "Description de la photo (accessibilité)" },
+        { "type": "text", "id": "caption", "label": "Légende en sticker", "default": "la texture" },
+        { "type": "product", "id": "product", "label": "Produit sur la photo", "info": "Sans photo, la photo de ce produit s'affiche." },
+        {
+          "type": "select", "id": "shape", "label": "Forme",
+          "options": [
+            { "value": "tall", "label": "Haute" },
+            { "value": "square", "label": "Carrée" },
+            { "value": "wide", "label": "Large" }
+          ],
+          "default": "square"
+        },
+        { "type": "text", "id": "hint", "label": "Aide dans l'éditeur (case vide)", "default": "Ajoute une photo ici" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ORANE · Photos", "blocks": [{ "type": "photo" }, { "type": "photo" }] }]
+}
+{% endschema %}
