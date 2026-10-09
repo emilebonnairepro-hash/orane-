@@ -1,3 +1,12 @@
+# ✅ DESIGN VERROUILLÉ — à utiliser pour toutes les étiquettes ORANE
+
+Style V1 + fond « swirl » (formes exactes du modèle, `etiquettes/assets/swirl-modele.svg`)
+en **couleurs de catégorie** : visage rose · corps citron · cheveux mandarine · homme violet
+(fond pâle de la couleur, formes dans la couleur pleine — `etiquettes/couleurs.py`).
+Ne pas utiliser les anciens essais (`etiquettes/calque/`, `etiquettes/07-gel-nettoyant-purifiant/`) : archives seulement.
+
+Nouvelle étiquette : zip Selfnamed + description → un fichier dans `produits/` → `python3 etiquettes/v1/v1.py`.
+
 # Style V1 (retenu) — moteur pour tous les produits
 
 `python3 etiquettes/v1/v1.py` (ou `… v1.py 08` pour un seul produit) → `sortie/<produit>/` :

@@ -1,3 +1,5 @@
+# 👉 Design retenu et verrouillé : voir `v1/LISEZMOI.md` (style V1 + fond swirl, couleur par catégorie).
+
 # Étiquettes ORANE pour Selfnamed
 
 ## Une couleur par catégorie de soin (verrouillée)
