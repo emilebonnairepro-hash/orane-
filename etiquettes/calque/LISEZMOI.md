@@ -17,6 +17,11 @@ taille exacte du gabarit), `etiquette.pdf`, `apercu.png` (avec les repères).
 - épuré (v3) : `python3 etiquettes/calque/calque.py --epure` → `sortie-epure/`
   (une seule pastille, pas de bulle ni de motif à pois, la bouille dans l'anneau, côté en texte simple)
 
+- signature (v4) : `python3 etiquettes/calque/calque.py --signature` → `sortie-signature/`
+  (fenêtre crème où la bouille déborde dans un médaillon à texte circulaire, deux pastilles, accroche ;
+  côté : grands chiffres du geste, pastilles des actifs, séparateurs). Sur les petits formats, l'accroche
+  puis la 2e pastille disparaissent avant que le nom ne rapetisse. Champs en plus : `accroche`, `cercle` (facultatif).
+
 ## Ajouter un produit
 Copie `produits/07-gel-nettoyant-purifiant.json`, renomme-le, puis remplis :
 - `gabarit` : d'après le manuel Selfnamed du produit (zip « Download template »)

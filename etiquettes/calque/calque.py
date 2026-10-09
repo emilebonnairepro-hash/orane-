@@ -310,7 +310,8 @@ run();
 </body></html>"""
 
 def main(args):
-    style = "epure" if "--epure" in args else "plein"
+    style = "epure" if "--epure" in args else "signature" if "--signature" in args else "plein"
+    dossier = {"epure": "sortie-epure", "signature": "sortie-signature"}.get(style, "sortie")
     args = [a for a in args if not a.startswith("--")]
     fichiers = sorted((ICI / "produits").glob("*.json"))
     if args:
@@ -318,14 +319,19 @@ def main(args):
     jobs = []
     for f in fichiers:
         spec = json.loads(f.read_text(encoding="utf-8"))
-        out = ICI / ("sortie-epure" if style == "epure" else "sortie") / f.stem
+        out = ICI / dossier / f.stem
         out.mkdir(parents=True, exist_ok=True)
         g = spec["gabarit"]
         px = g.get("px") or [round(g["largeur"] / 25.4 * 600), round(g["hauteur"] / 25.4 * 600)]
         for nom, guides in (("etiquette", False), ("apercu", True)):
-            (out / f"{nom}.html").write_text(page(spec, guides, style), encoding="utf-8")
+            if style == "signature":
+                import signature
+                contenu = signature.page(spec, guides)
+            else:
+                contenu = page(spec, guides, style)
+            (out / f"{nom}.html").write_text(contenu, encoding="utf-8")
         jobs.append({"dir": str(out), "w": g["largeur"], "h": g["hauteur"], "px": px})
-    jf = ICI / ("sortie-epure" if style == "epure" else "sortie") / "jobs.json"
+    jf = ICI / dossier / "jobs.json"
     jf.write_text(json.dumps(jobs), encoding="utf-8")
     subprocess.run(["node", str(ICI / "rendre.mjs"), str(jf)], check=True)
 

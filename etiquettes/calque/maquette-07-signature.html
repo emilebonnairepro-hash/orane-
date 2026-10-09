@@ -1,0 +1,14 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;background:#FFF3E3;display:grid;place-items:center;height:100vh;font-family:sans-serif}
+.scene{position:relative;width:520px;height:760px}
+.pompe{position:absolute;left:50%;top:40px;width:70px;height:120px;transform:translateX(-50%);background:#f4f4f4;border:3px solid #2A1240;border-radius:14px 14px 6px 6px}
+.bec{position:absolute;left:calc(50% + 30px);top:52px;width:80px;height:22px;background:#f4f4f4;border:3px solid #2A1240;border-radius:6px}
+.flacon{position:absolute;left:50%;top:150px;width:260px;height:580px;transform:translateX(-50%);background:#fafafa;border:3px solid #2A1240;border-radius:60px 60px 26px 26px;overflow:hidden;box-shadow:12px 12px 0 #2A1240}
+/* étiquette : 105 mm de haut coupée → 400 px ; on montre la face avant (largeur visible ≈ 68 mm du tour) */
+.etiq{position:absolute;left:0;right:0;top:120px;height:415px;background-image:url(sortie-signature/07-gel-nettoyant-purifiant/etiquette.png);background-size:auto 415px;background-position:var(--x) 0}
+.reflet{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.18),rgba(255,255,255,0) 30%,rgba(255,255,255,.25) 55%,rgba(0,0,0,.2))}
+</style></head><body><div class="scene"><div class="bec"></div><div class="pompe"></div><div class="flacon"><div class="etiq"></div><div class="reflet"></div></div></div>
+<script>
+// centre de la face avant (39 mm sur 142,5) aligné au centre du flacon (130 px)
+const h=415, w=h*3367/2575, cx=40/142.5*w; document.querySelector('.etiq').style.setProperty('--x', (130-cx)+'px');
+</script></body></html>
