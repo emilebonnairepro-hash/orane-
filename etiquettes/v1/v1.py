@@ -21,7 +21,7 @@ import json, pathlib, re, subprocess, sys, html as h
 ICI = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(ICI.parent))
 sys.path.insert(0, str(ICI.parent / "calque"))
-from couleurs import C, palette, texte_sur          # noqa: E402
+from couleurs import C, palette, texte_sur, couleur_motif, motif_svg  # noqa: E402
 from calque import geometrie, BOUILLE               # noqa: E402
 
 A, CR = C["aubergine"], C["creme"]
@@ -130,7 +130,7 @@ def page(spec, guides=False):
 * {{ box-sizing: border-box; margin: 0; padding: 0; }}
 html, body {{ width: {G['W']}mm; height: {G['H']}mm; overflow: hidden; background: transparent; }}
 body {{ position: relative; color: {TEXTE}; font-family: "Bricolage Grotesque", sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; --k: 1; --q: 1; }}
-.fond {{ position: absolute; left: {bx0}mm; top: {by0}mm; width: {bx1 - bx0}mm; height: {by1 - by0}mm; background: {FOND}; overflow: hidden; }}
+.fond {{ position: absolute; left: {bx0}mm; top: {by0}mm; width: {bx1 - bx0}mm; height: {by1 - by0}mm; background-color: {FOND}; background-image: url("{motif_svg(couleur_motif(p['univers']))}"); background-size: {(by1 - by0) * 1.3:.2f}mm 100%; background-repeat: repeat-x; overflow: hidden; }}
 .fond::after {{ content: ""; position: absolute; right: 0; top: {G['b'] + G['m']}mm; bottom: {G['b'] + G['m']}mm; border-right: .5mm dashed {TEXTE}; opacity: .35; }}
 .trou {{ position: absolute; background: #fff; }}
 .sp {{ position: absolute; }}
