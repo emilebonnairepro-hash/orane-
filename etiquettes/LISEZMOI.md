@@ -1,5 +1,11 @@
 # Étiquettes ORANE pour Selfnamed
 
+## Une couleur par catégorie de soin (verrouillée)
+Fichier `couleurs.py`, lu par toutes les étiquettes (V1 et calque) — mêmes couleurs que les tuiles « univers » du site :
+visage → rose · corps → citron · cheveux → mandarine · homme → violet.
+Les accents (texte, sticker, anneau, étincelles) suivent automatiquement, dans le respect de la charte.
+Aperçu des 4 : `couleurs-par-categorie.png` · V1 dans une autre catégorie : `python3 etiquettes/07-gel-nettoyant-purifiant/generer.py corps`
+
 - `export/` : les fichiers à téléverser sur Selfnamed (PNG 600 dpi, 3 mm de fond perdu) + la même chose en PDF.
 - `apercu/` : les épreuves avec les repères (coupe, zone de sécurité 3 mm, zone laissée vide pour les mentions obligatoires).
 - `generer.py` : la source. Pour changer une taille, un texte ou une couleur, modifie la liste `PRODUITS`

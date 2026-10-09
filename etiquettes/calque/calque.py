@@ -319,6 +319,14 @@ def main(args):
     jobs = []
     for f in fichiers:
         spec = json.loads(f.read_text(encoding="utf-8"))
+        # couleur verrouillée par catégorie de soin (etiquettes/couleurs.py)
+        sys.path.insert(0, str(ICI.parent))
+        from couleurs import palette
+        P = palette(spec["produit"]["univers"])
+        th = spec["theme"]
+        th.update({"fond": P["fond"], "texte": P["texte"], "accent": P["accent"], "anneau": P["anneau"]})
+        th["pastilles"] = [("creme" if c == P["fond"] else c) for c in th.get("pastilles", ["creme", "citron", "rose"])]
+        if th.get("halo") == P["fond"]: th.pop("halo")
         out = ICI / dossier / f.stem
         out.mkdir(parents=True, exist_ok=True)
         g = spec["gabarit"]

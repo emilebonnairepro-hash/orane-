@@ -19,8 +19,15 @@ INFO_X = 107.0               # début de la zone des mentions obligatoires
 FRONT_CX = 39.0              # centre de la face avant
 FRONT_W = 32.0
 
-C = {"mandarine": "#FF6A2B", "rose": "#FF5FA8", "violet": "#6B2CF5", "citron": "#D4F23A",
-     "aubergine": "#2A1240", "creme": "#FFF3E3"}
+import sys
+sys.path.insert(0, str(ICI.parent))
+from couleurs import C, palette, texte_sur
+
+UNIVERS = "visage"          # la catégorie fixe la couleur de fond (etiquettes/couleurs.py)
+# aperçu dans une autre catégorie : python3 generer.py corps  → variantes/corps/
+if len(sys.argv) > 1: UNIVERS = sys.argv[1]
+P = palette(UNIVERS)
+FOND, TEXTE = C[P["fond"]], C[P["texte"]]
 
 BOUILLE = """<svg viewBox="0 0 120 120" class="bouille"><circle cx="64" cy="64" r="52" fill="#2A1240"/>
 <circle cx="58" cy="58" r="52" fill="#FF6A2B" stroke="#2A1240" stroke-width="5"/>
@@ -29,8 +36,8 @@ BOUILLE = """<svg viewBox="0 0 120 120" class="bouille"><circle cx="64" cy="64" 
 <path d="M68 48 Q76 40 84 48" fill="none" stroke="#2A1240" stroke-width="5" stroke-linecap="round"/>
 <path d="M36 66 Q58 98 82 66 Z" fill="#2A1240" stroke="#2A1240" stroke-width="4" stroke-linejoin="round"/>
 <path d="M48 80 Q58 72 70 80 Q60 90 48 80 Z" fill="#FF5FA8"/></svg>"""
-ANNEAU = f"""<svg viewBox="0 0 100 100" class="anneau"><path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="{C['violet']}" stroke-width="18"/>
-<path d="M90 50 A40 40 0 0 1 10 50" fill="none" stroke="{C['rose']}" stroke-width="18"/><circle cx="78.3" cy="21.7" r="10" fill="{C['creme']}" stroke="#2A1240" stroke-width="2"/></svg>"""
+ANNEAU = f"""<svg viewBox="0 0 100 100" class="anneau"><path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="{C[P['anneau'][0]]}" stroke-width="18"/>
+<path d="M90 50 A40 40 0 0 1 10 50" fill="none" stroke="{C[P['anneau'][1]]}" stroke-width="18"/><circle cx="78.3" cy="21.7" r="10" fill="{C['creme']}" stroke="#2A1240" stroke-width="2"/></svg>"""
 def spark(cls, fill):
     return f"""<svg viewBox="0 0 40 40" class="sp {cls}"><path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" fill="{fill}" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/></svg>"""
 
@@ -58,9 +65,9 @@ def html(guides=False):
 @page {{ size: {W}mm {H}mm; margin: 0; }}
 * {{ box-sizing: border-box; margin: 0; padding: 0; }}
 html, body {{ width: {W}mm; height: {H}mm; overflow: hidden; background: transparent; }}
-body {{ position: relative; color: {C['aubergine']}; font-family: "Bricolage Grotesque", sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }}
-.fond {{ position: absolute; left: 0; top: 0; bottom: 0; width: {INFO_X - 1.2}mm; background: {C['citron']}; overflow: hidden; }}
-.fond::after {{ content: ""; position: absolute; right: 0; top: {SAFE}mm; bottom: {SAFE}mm; border-right: .5mm dashed rgba(42,18,64,.35); }}
+body {{ position: relative; color: {TEXTE}; font-family: "Bricolage Grotesque", sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }}
+.fond {{ position: absolute; left: 0; top: 0; bottom: 0; width: {INFO_X - 1.2}mm; background: {FOND}; overflow: hidden; }}
+.fond::after {{ content: ""; position: absolute; right: 0; top: {SAFE}mm; bottom: {SAFE}mm; border-right: .5mm dashed {TEXTE}; opacity: .35; }}
 .anneau {{ position: absolute; width: 44mm; left: -22mm; top: 78mm; transform: rotate(-24deg); }}
 .sp {{ position: absolute; }}
 .s1 {{ width: 7mm; left: 9mm; top: 14mm; }} .s2 {{ width: 4.5mm; left: 86mm; top: 96mm; }} .s3 {{ width: 5mm; left: 98mm; top: 9mm; }}
@@ -73,7 +80,7 @@ body {{ position: relative; color: {C['aubergine']}; font-family: "Bricolage Gro
 .bouille {{ width: 21mm; margin: 5mm 0 0 4mm; transform: rotate(8deg); }}
 .nom {{ font-family: Unbounded, sans-serif; font-weight: 800; font-size: 12.5pt; line-height: 1; letter-spacing: -.03em; margin-top: auto; }}
 .sous {{ font-weight: 700; font-size: 7pt; margin-top: 1.6mm; line-height: 1.2; }}
-.sticker {{ margin-top: 2.6mm; background: {C['violet']}; color: {C['creme']}; border: .55mm solid {C['aubergine']}; border-radius: 99mm;
+.sticker {{ margin-top: 2.6mm; background: {C[P['sticker']]}; color: {texte_sur(P['sticker'])}; border: .55mm solid {C['aubergine']}; border-radius: 99mm;
   padding: .9mm 3mm; font-family: Unbounded, sans-serif; font-weight: 700; font-size: 7pt; box-shadow: .8mm .8mm 0 {C['aubergine']}; transform: rotate(-4deg); }}
 .volume {{ font-family: Unbounded, sans-serif; font-weight: 700; font-size: 6.5pt; margin-top: 4mm; }}
 
@@ -81,7 +88,7 @@ body {{ position: relative; color: {C['aubergine']}; font-family: "Bricolage Gro
 .side h3 {{ font-family: Unbounded, sans-serif; font-weight: 800; font-size: 8pt; letter-spacing: -.01em; margin-bottom: .8mm; }}
 .side p {{ font-size: 6.6pt; line-height: 1.3; font-weight: 600; }}
 .pastille {{ align-self: flex-start; display: grid; place-items: center; text-align: center; width: 17mm; height: 17mm; border-radius: 50%;
-  background: {C['creme']}; border: .55mm solid {C['aubergine']}; box-shadow: .8mm .8mm 0 {C['aubergine']};
+  background: {C['creme']}; color: {C['aubergine']}; border: .55mm solid {C['aubergine']}; box-shadow: .8mm .8mm 0 {C['aubergine']};
   font-family: Unbounded, sans-serif; font-weight: 800; font-size: 9pt; line-height: 1; transform: rotate(8deg); }}
 .pastille small {{ display: block; font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; font-size: 5.4pt; margin-top: .6mm; }}
 .bas {{ display: flex; align-items: center; gap: 3mm; margin-top: 1mm; }}
@@ -91,10 +98,10 @@ body {{ position: relative; color: {C['aubergine']}; font-family: "Bricolage Gro
 </style></head><body>
 <div class="fond">
   {ANNEAU}
-  {spark('s1', C['creme'])}{spark('s2', C['rose'])}{spark('s3', C['creme'])}
+  {spark('s1', C[P['etincelles'][0]])}{spark('s2', C[P['etincelles'][1]])}{spark('s3', C[P['etincelles'][0]])}
   <p class="slogan">peau neuve, mine de rien ✦</p>
   <div class="front">
-    <p class="kicker">n°07 · visage</p>
+    <p class="kicker">n°07 · {UNIVERS}</p>
     <p class="marque">orane</p>
     {BOUILLE}
     <p class="nom">gel<br>nettoyant</p>
@@ -116,9 +123,11 @@ body {{ position: relative; color: {C['aubergine']}; font-family: "Bricolage Gro
 </body></html>"""
 
 def main():
-    (ICI / "etiquette.html").write_text(html(False), encoding="utf-8")
-    (ICI / "apercu.html").write_text(html(True), encoding="utf-8")
-    subprocess.run(["node", str(ICI / "rendre.mjs"), str(ICI)], check=True)
+    out = ICI if len(sys.argv) == 1 else ICI / "variantes" / UNIVERS
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "etiquette.html").write_text(html(False), encoding="utf-8")
+    (out / "apercu.html").write_text(html(True), encoding="utf-8")
+    subprocess.run(["node", str(ICI / "rendre.mjs"), str(out)], check=True)
 
 if __name__ == "__main__":
     main()
