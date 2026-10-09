@@ -46,8 +46,11 @@ def _mix(a, b, t):
 # Motif de fond (vagues) : ton sur ton, plus clair sur les fonds vifs, plus foncé sur le violet (texte crème lisible)
 def couleur_motif(univers):
     fond = palette(univers)["fond"]
+    # dosage par couleur pour garder un bon contraste entre le fond et les formes
     if fond in ("violet", "aubergine"):
-        return _mix(C[fond], C["aubergine"], .38)
+        return _mix(C[fond], C["aubergine"], .68)   # violet : fond nettement plus sombre
+    if fond == "citron":
+        return _mix(C[fond], C["creme"], .82)       # citron : fond presque crème
     return _mix(C[fond], C["creme"], .5)
 
 
