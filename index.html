@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ORANE — peau neuve, mine de rien.</title>
+  <meta name="description" content="ORANE, le soin du visage qui ne chuchote pas. Des formules douces, de la couleur qui crie et un clin d'œil.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600&family=Unbounded:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="nav">
+    <a href="#top" class="nav__logo" aria-label="ORANE, accueil">
+      <svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><use href="#ring"/></svg>
+      <span>orane</span>
+    </a>
+    <button class="nav__toggle" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
+      <span></span><span></span>
+    </button>
+    <nav id="menu" class="nav__menu">
+      <a href="#esprit">L'esprit</a>
+      <a href="#produits">Les soins</a>
+      <a href="#rituel">Le rituel</a>
+      <a href="#club" class="btn btn--small">Le club</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- Hero : violet électrique + mandarine/rose (anneau) + citron -->
+    <section class="hero">
+      <div class="hero__text">
+        <p class="eyebrow eyebrow--cream">Soin du visage · version loufoque</p>
+        <h1 class="hero__title">orane</h1>
+        <p class="sticker sticker--lime sticker--tilt-l">peau neuve, mine de rien.</p>
+        <p class="hero__lead">Le secteur chuchote en nude. Nous, on parle fort, en couleurs, avec des formules toutes douces pour ta peau.</p>
+        <div class="hero__ctas">
+          <a href="#produits" class="btn btn--lime">Voir les soins</a>
+          <a href="#esprit" class="btn btn--ghost">C'est quoi, ce délire ?</a>
+        </div>
+      </div>
+      <div class="hero__art" aria-hidden="true">
+        <svg class="hero__ring" viewBox="0 0 100 100"><use href="#ring"/></svg>
+        <svg class="bouille hero__bouille" viewBox="0 0 120 120"><use href="#bouille"/></svg>
+        <svg class="spark spark--lime s1" viewBox="0 0 40 40"><use href="#spark"/></svg>
+        <svg class="spark spark--pink s2" viewBox="0 0 40 40"><use href="#spark"/></svg>
+        <svg class="spark spark--blue s3" viewBox="0 0 40 40"><use href="#spark"/></svg>
+      </div>
+    </section>
+
+    <!-- Bandeau de stickers -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <span>fais pas ta timide</span><i>✦</i><span>zéro filtre</span><i>✦</i><span>glow à la carte</span><i>✦</i><span>bouille de star</span><i>✦</i><span>100 % pep's</span><i>✦</i>
+        <span>fais pas ta timide</span><i>✦</i><span>zéro filtre</span><i>✦</i><span>glow à la carte</span><i>✦</i><span>bouille de star</span><i>✦</i><span>100 % pep's</span><i>✦</i>
+      </div>
+    </div>
+
+    <!-- Esprit : crème + mandarine/rose/citron -->
+    <section id="esprit" class="section section--cream">
+      <p class="eyebrow">01 — L'esprit</p>
+      <h2>Pourquoi ORANE ne ressemble à personne</h2>
+      <p class="section__intro">Le secteur mise sur le nude, le minimal et le chuchoté. ORANE fait l'inverse : de la couleur qui crie, des formes rondes et un clin d'œil.</p>
+      <div class="cards">
+        <article class="card card--mandarine reveal">
+          <span class="card__num">1</span>
+          <h3>Zéro timidité</h3>
+          <p>Des aplats francs et des contours épais. On nous reconnaît de loin, même sans logo.</p>
+        </article>
+        <article class="card card--pink reveal">
+          <span class="card__num">2</span>
+          <h3>Rond partout</h3>
+          <p>Anneau, lettres souples, coins ronds. Rien de coupant : la douceur passe par la forme, et par la formule.</p>
+        </article>
+        <article class="card card--lime reveal">
+          <span class="card__num">3</span>
+          <h3>Premier degré interdit</h3>
+          <p>On parle de beauté sans se prendre au sérieux. Pas de jargon, pas de promesse miracle. Juste du bon soin.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Produits : aubergine + mandarine/rose/violet -->
+    <section id="produits" class="section section--aubergine">
+      <p class="eyebrow eyebrow--cream">02 — Les soins</p>
+      <h2>Trois soins, zéro complexe</h2>
+      <p class="section__intro">Une routine courte, des textures qui font plaisir et des flacons qu'on a envie de laisser traîner sur le lavabo.</p>
+      <div class="products">
+        <article class="product reveal">
+          <div class="product__visual product__visual--mandarine">
+            <div class="bottle bottle--pump"><span>orane</span></div>
+            <p class="sticker sticker--cream sticker--abs">zéro filtre</p>
+          </div>
+          <div class="product__body">
+            <p class="product__tag">Nettoyer</p>
+            <h3>Gelée Réveil</h3>
+            <p>Une gelée fraîche qui mousse juste ce qu'il faut. Le maquillage part, ta bonne humeur reste.</p>
+            <div class="product__foot">
+              <span class="price">19 €</span>
+              <button class="btn btn--small btn--add" data-name="Gelée Réveil">Ajouter</button>
+            </div>
+          </div>
+        </article>
+        <article class="product reveal">
+          <div class="product__visual product__visual--pink">
+            <div class="bottle bottle--drop"><span>orane</span></div>
+            <p class="sticker sticker--cream sticker--abs">glow à la carte</p>
+          </div>
+          <div class="product__body">
+            <p class="product__tag">Booster</p>
+            <h3>Sérum Pep's</h3>
+            <p>Quelques gouttes et ton teint a l'air d'avoir dormi huit heures. Même si on sait que non.</p>
+            <div class="product__foot">
+              <span class="price">29 €</span>
+              <button class="btn btn--small btn--add" data-name="Sérum Pep's">Ajouter</button>
+            </div>
+          </div>
+        </article>
+        <article class="product reveal">
+          <div class="product__visual product__visual--violet">
+            <div class="bottle bottle--jar"><span>orane</span></div>
+            <p class="sticker sticker--cream sticker--abs">bouille de star</p>
+          </div>
+          <div class="product__body">
+            <p class="product__tag">Hydrater</p>
+            <h3>Crème Câline</h3>
+            <p>Une crème fondante qui fait un câlin à ta peau, matin et soir. Elle ne colle pas, promis.</p>
+            <div class="product__foot">
+              <span class="price">24 €</span>
+              <button class="btn btn--small btn--add" data-name="Crème Câline">Ajouter</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Rituel : mandarine + crème (encarts) + rose + bleu piscine en surprise -->
+    <section id="rituel" class="section section--mandarine">
+      <p class="eyebrow">03 — Le rituel</p>
+      <h2>Trois gestes, mine de rien</h2>
+      <ol class="steps">
+        <li class="step reveal">
+          <span class="step__num">1</span>
+          <div>
+            <h3>Tu nettoies</h3>
+            <p>Une noisette de Gelée Réveil, un massage en petits ronds, on rince. Ça y est, t'es réveillée.</p>
+          </div>
+        </li>
+        <li class="step reveal">
+          <span class="step__num">2</span>
+          <div>
+            <h3>Tu boostes</h3>
+            <p>Trois gouttes de Sérum Pep's du bout des doigts. Pas besoin de plus, fais confiance.</p>
+          </div>
+        </li>
+        <li class="step reveal">
+          <span class="step__num">3</span>
+          <div>
+            <h3>Tu chouchoutes</h3>
+            <p>Un peu de Crème Câline et c'est bouclé. Ensuite, sourire obligatoire.</p>
+          </div>
+        </li>
+      </ol>
+      <div class="rituel__bouille" aria-hidden="true">
+        <svg class="bouille" viewBox="0 0 120 120"><use href="#bouille"/></svg>
+        <p class="sticker sticker--blue sticker--tilt-r">fais pas ta timide</p>
+      </div>
+    </section>
+
+    <!-- Club : violet + citron + rose -->
+    <section id="club" class="section section--violet club">
+      <div class="club__inner">
+        <p class="eyebrow eyebrow--cream">04 — Le club</p>
+        <h2>Rejoins la bande</h2>
+        <p class="section__intro">Des nouveautés en avant-première, des astuces sans prise de tête et -10 % sur ta première commande. Pas de spam, juste du pep's.</p>
+        <form class="club__form" novalidate>
+          <label for="email" class="sr-only">Ton adresse e-mail</label>
+          <input id="email" type="email" name="email" placeholder="ton@email.fr" required autocomplete="email">
+          <button type="submit" class="btn btn--lime">Je m'inscris</button>
+        </form>
+        <p class="club__msg" role="status" aria-live="polite"></p>
+      </div>
+      <svg class="spark spark--lime club__s1" viewBox="0 0 40 40" aria-hidden="true"><use href="#spark"/></svg>
+      <svg class="spark spark--pink club__s2" viewBox="0 0 40 40" aria-hidden="true"><use href="#spark"/></svg>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__brand">
+      <svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><use href="#ring"/></svg>
+      <span class="footer__name">orane</span>
+    </div>
+    <p class="footer__tagline">peau neuve, mine de rien.</p>
+    <nav class="footer__links" aria-label="Liens secondaires">
+      <a href="#esprit">L'esprit</a>
+      <a href="#produits">Les soins</a>
+      <a href="#rituel">Le rituel</a>
+      <a href="#club">Le club</a>
+    </nav>
+    <p class="footer__legal">© <span id="year"></span> ORANE · Fait avec beaucoup de couleurs.</p>
+  </footer>
+
+  <!-- Panier (toast) -->
+  <div class="toast" role="status" aria-live="polite"></div>
+
+  <!-- Symboles SVG réutilisables -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- L'anneau : moitié haute mandarine, moitié basse rose, pastille citron -->
+      <symbol id="ring" viewBox="0 0 100 100">
+        <path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="#FF6A2B" stroke-width="18"/>
+        <path d="M90 50 A40 40 0 0 1 10 50" fill="none" stroke="#FF5FA8" stroke-width="18"/>
+        <circle cx="78.3" cy="21.7" r="10" fill="#D4F23A"/>
+      </symbol>
+      <!-- La bouille : mascotte qui fait un clin d'œil -->
+      <symbol id="bouille" viewBox="0 0 120 120">
+        <circle cx="64" cy="64" r="52" fill="#2A1240"/>
+        <circle cx="58" cy="58" r="52" fill="#FF6A2B" stroke="#2A1240" stroke-width="5"/>
+        <ellipse cx="30" cy="70" rx="10" ry="7" fill="#FF5FA8"/>
+        <ellipse cx="86" cy="70" rx="10" ry="7" fill="#FF5FA8"/>
+        <circle cx="42" cy="48" r="7" fill="#2A1240"/>
+        <path d="M68 48 Q76 40 84 48" fill="none" stroke="#2A1240" stroke-width="5" stroke-linecap="round"/>
+        <path d="M36 66 Q58 98 82 66 Z" fill="#2A1240" stroke="#2A1240" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M48 80 Q58 72 70 80 Q60 90 48 80 Z" fill="#FF5FA8"/>
+      </symbol>
+      <!-- L'étincelle -->
+      <symbol id="spark" viewBox="0 0 40 40">
+        <path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <script src="script.js"></script>
+</body>
+</html>
