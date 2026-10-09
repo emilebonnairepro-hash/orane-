@@ -130,7 +130,7 @@ def page(spec, guides=False):
 * {{ box-sizing: border-box; margin: 0; padding: 0; }}
 html, body {{ width: {G['W']}mm; height: {G['H']}mm; overflow: hidden; background: transparent; }}
 body {{ position: relative; color: {TEXTE}; font-family: "Bricolage Grotesque", sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; --k: 1; --q: 1; }}
-.fond {{ position: absolute; left: {bx0}mm; top: {by0}mm; width: {bx1 - bx0}mm; height: {by1 - by0}mm; background-color: {FOND}; background-image: url("{motif_svg(couleur_motif(p['univers']))}"); background-size: {(by1 - by0) * 1.3:.2f}mm 100%; background-repeat: repeat-x; overflow: hidden; }}
+.fond {{ position: absolute; left: {bx0}mm; top: {by0}mm; width: {bx1 - bx0}mm; height: {by1 - by0}mm; background-color: {couleur_motif(p['univers'])}; background-image: url("{motif_svg(FOND)}"); background-size: {(by1 - by0) * 1.3:.2f}mm 100%; background-repeat: repeat-x; overflow: hidden; }}
 .fond::after {{ content: ""; position: absolute; right: 0; top: {G['b'] + G['m']}mm; bottom: {G['b'] + G['m']}mm; border-right: .5mm dashed {TEXTE}; opacity: .35; }}
 .trou {{ position: absolute; background: #fff; }}
 .sp {{ position: absolute; }}

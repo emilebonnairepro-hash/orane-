@@ -48,23 +48,27 @@ def couleur_motif(univers):
     fond = palette(univers)["fond"]
     if fond in ("violet", "aubergine"):
         return _mix(C[fond], C["aubergine"], .38)
-    return _mix(C[fond], C["creme"], .42)
+    return _mix(C[fond], C["creme"], .5)
 
 
 def motif_svg(couleur):
-    """Tuile de vagues organiques, raccord horizontal (se répète sans couture), proportion 1,3 : 1."""
-    import math
-    W, H = 130.0, 100.0
-    def courbe(y0, amp, ph, k=1):
-        return [(W * i / 64, y0 + amp * math.sin(2 * math.pi * k * i / 64 + ph)) for i in range(65)]
-    def bande(haut, bas):
-        pts = haut + list(reversed(bas))
-        return "M" + " L".join(f"{x:.2f},{y:.2f}" for x, y in pts) + " Z"
-    b1 = bande(courbe(8, 24, 0.4), courbe(48, 30, 1.2))
-    b2 = bande(courbe(70, 22, 3.8), courbe(100, 16, 3.0))
-    blob = ("M96,4 C112,0 128,10 124,26 C121,40 104,40 98,30 C93,22 82,14 96,4 Z "
-            "M18,52 C28,46 42,52 40,62 C38,72 24,74 16,68 C9,62 10,56 18,52 Z")
-    svg = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W:.0f} {H:.0f}" preserveAspectRatio="none">'
-           f'<g fill="{couleur}"><path d="{b1}"/><path d="{b2}"/><path d="{blob}"/></g></svg>')
+    """Rubans liquides façon « swirl » (d'après le modèle) : gros rubans aux bouts arrondis + vague basse.
+    Tuile 140 × 110, dessinée 3 fois (décalée de ±140) pour se répéter sans couture."""
+    W, H = 140, 110
+    rubans = [
+        # grande vague en S : entre à gauche, remonte, puis plonge vers le bas à droite
+        (15, "M-12,58 C10,50 26,40 46,44 C66,48 70,30 86,30 C104,30 104,52 98,66 C92,80 104,96 120,104"),
+        # forme du haut : goutte qui pend, puis bras vers la droite
+        (14, "M58,-12 C54,8 60,22 70,20 C80,18 82,6 94,8 C112,10 116,30 132,34 C142,36 148,30 152,26"),
+        # bras qui part de la grosse forme et descend au milieu
+        (10, "M78,22 C70,40 58,54 60,70 C62,82 74,84 78,76"),
+        # petit ruban en haut à gauche
+        (9, "M-8,26 C4,22 12,14 14,4"),
+    ]
+    vague = "M-2,112 L-2,88 C14,78 26,96 40,92 C56,88 58,74 72,80 C84,85 84,100 96,98 C108,96 118,84 132,86 C138,87 140,88 142,88 L142,112 Z"
+    g = "".join(f'<path d="{d}" fill="none" stroke="{couleur}" stroke-width="{w}" stroke-linecap="round" stroke-linejoin="round"/>' for w, d in rubans)
+    g += f'<path d="{vague}" fill="{couleur}"/>'
+    corps = "".join(f'<g transform="translate({dx},0)">{g}</g>' for dx in (-W, 0, W))
+    svg = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" preserveAspectRatio="none">{corps}</svg>')
     from urllib.parse import quote
     return "data:image/svg+xml," + quote(svg)
