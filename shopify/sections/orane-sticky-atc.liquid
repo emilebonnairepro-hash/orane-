@@ -1,0 +1,32 @@
+{%- comment -%}
+  ORANE — barre d'achat qui suit quand le bouton principal sort de l'écran.
+  Le bouton clique le vrai bouton de la fiche (variante et quantité choisies conservées) — orane.js.
+{%- endcomment -%}
+{%- if product -%}
+<div class="o-sticky" data-o-sticky hidden>
+  <div class="o-sticky__inner">
+    {%- if product.featured_image -%}
+      {{ product.featured_image | image_url: width: 120 | image_tag: class: 'o-sticky__img', loading: 'lazy', alt: '' }}
+    {%- endif -%}
+    <p class="o-sticky__name">{{ product.title }}</p>
+    <p class="o-sticky__price">{{ product.selected_or_first_available_variant.price | money }}</p>
+    <button type="button" class="o-add o-sticky__btn" data-o-sticky-buy {% unless product.available %}disabled{% endunless %}>
+      {%- if product.available -%}{{ section.settings.label }}{%- else -%}{{ section.settings.soldout }}{%- endif -%}
+    </button>
+  </div>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ORANE · Barre d'achat",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Bouton", "default": "Dans mon panier ✦" },
+    { "type": "text", "id": "soldout", "label": "Bouton si épuisé", "default": "Bientôt de retour" }
+  ],
+  "presets": [{ "name": "ORANE · Barre d'achat" }],
+  "enabled_on": { "templates": ["product"] }
+}
+{% endschema %}

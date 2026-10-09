@@ -1,0 +1,44 @@
+{%- comment -%}
+  ORANE — bonus dans la colonne d'achat de la fiche produit :
+  l'accroche, des pastilles (type, peau), et la jauge « livraison offerte ».
+  Utilisation : {% render 'orane-buybox', product: product, threshold: 5000 %}
+{%- endcomment -%}
+{%- liquid
+  assign threshold = threshold | default: 5000
+  assign lead = ''
+  if product.description contains '<strong>'
+    assign lead = product.description | split: '</strong>' | first | split: '<strong>' | last | strip_html | strip
+  endif
+  assign kind = ''
+  assign skin = ''
+  for tag in product.tags
+    if tag contains '(Type)'
+      assign kind = tag | remove: ' (Type)'
+    elsif tag contains '(Types de peau)' and skin == blank
+      assign skin = tag | remove: ' (Types de peau)' | replace: 'All skin types', 'tous types de peau'
+    endif
+  endfor
+  assign left = threshold | minus: cart.total_price
+  assign pct = cart.total_price | times: 100 | divided_by: threshold
+  if pct > 100
+    assign pct = 100
+  endif
+-%}
+<div class="o-buybox">
+  {%- if lead != blank -%}<p class="o-buybox__lead">{{ lead }}</p>{%- endif -%}
+  <p class="o-buybox__chips">
+    {%- if kind != blank -%}<span class="o-chip-mini o-bg-citron">{{ kind }}</span>{%- endif -%}
+    {%- if skin != blank -%}<span class="o-chip-mini o-bg-rose">{{ skin }}</span>{%- endif -%}
+    <span class="o-chip-mini o-bg-creme">livré en 2 à 5 jours</span>
+  </p>
+  <div class="o-ship" style="--p: {{ pct }}%">
+    <p class="o-ship__text">
+      {%- if left > 0 -%}
+        Plus que <strong>{{ left | money }}</strong> pour la livraison offerte
+      {%- else -%}
+        <strong>Livraison offerte</strong>, bien joué ✦
+      {%- endif -%}
+    </p>
+    <span class="o-ship__bar" aria-hidden="true"><span></span></span>
+  </div>
+</div>

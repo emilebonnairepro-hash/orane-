@@ -4,7 +4,8 @@
    - le manifeste s'allume mot après mot au défilement
    - le quiz « ta peau, là, maintenant ? »
    - l'étagère produits défile avec les flèches
-   - le grand « orane » du bas glisse au défilement */
+   - le grand « orane » du bas glisse au défilement
+   - fiche produit : la barre d'achat qui suit */
 (() => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const SPARK = '<path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/>';
@@ -170,6 +171,31 @@
       setTimeout(() => { btn.textContent = label; btn.classList.remove('is-added'); }, 2200);
     });
   });
+
+  // Fiche produit : barre d'achat qui apparaît quand le vrai bouton sort de l'écran
+  const sticky = document.querySelector('[data-o-sticky]');
+  const realBtn = document.querySelector('product-form .product-form__submit, .product-form__submit');
+  if (sticky && realBtn && 'IntersectionObserver' in window) {
+    sticky.hidden = false;
+    new IntersectionObserver(([entry]) => {
+      const passed = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+      sticky.classList.toggle('is-on', passed);
+    }).observe(realBtn);
+    sticky.querySelector('[data-o-sticky-buy]')?.addEventListener('click', (e) => {
+      realBtn.click();
+      burst(e.clientX, e.clientY);
+    });
+    // Dawn remplace le bloc prix quand on change de variante : on suit toute la colonne
+    const info = document.querySelector('.product__info-container');
+    const target = sticky.querySelector('.o-sticky__price');
+    if (info && target && 'MutationObserver' in window) {
+      const sync = () => {
+        const price = info.querySelector('.price--on-sale .price-item--sale, .price:not(.price--on-sale) .price__regular .price-item--regular');
+        if (price && price.textContent.trim()) target.textContent = price.textContent.trim();
+      };
+      new MutationObserver(sync).observe(info, { subtree: true, childList: true });
+    }
+  }
 
   // Le grand « orane » du bas glisse au défilement
   const outro = document.querySelector('.o-outro__word');

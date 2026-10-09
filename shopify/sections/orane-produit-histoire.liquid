@@ -1,0 +1,258 @@
+{%- comment -%}
+  ORANE — la fiche produit racontée : tout est tiré de la description et des étiquettes du produit.
+  Description attendue : <p><strong>accroche</strong></p><p>texte</p> puis des <h3> :
+  « Ce que tu vas aimer » (liste), « Comment l'utiliser », « Les actifs », « Pour une routine complète » (avec un lien produit).
+  Étiquettes lues : « … (Principes actifs) », « … (Inquiétude) », « … (Types de peau) », « … (Réclamations) », « … (Type) ».
+  Si la description n'a pas cette forme, elle est affichée telle quelle.
+{%- endcomment -%}
+{%- liquid
+  assign d = product.description
+  assign chunks = d | split: '<h3>'
+  assign intro = chunks | first
+  assign lead = ''
+  if intro contains '<strong>'
+    assign lead = intro | split: '</strong>' | first | split: '<strong>' | last | strip_html | strip
+    assign intro_text = intro | split: '</strong>' | last | strip_html | strip
+  else
+    assign intro_text = intro | strip_html | strip
+  endif
+
+  assign loves = ''
+  assign howto = ''
+  assign howto_title = ''
+  assign actives_text = ''
+  assign routine_text = ''
+  assign routine_handle = ''
+  assign extras = ''
+  for chunk in chunks offset: 1
+    assign t = chunk | split: '</h3>' | first | strip_html | strip
+    assign tl = t | downcase
+    assign body = chunk | split: '</h3>' | last
+    if tl contains 'aimer'
+      assign loves = body
+    elsif tl contains 'utilis'
+      assign howto = body
+      assign howto_title = t
+    elsif tl contains 'actif'
+      assign actives_text = body
+    elsif tl contains 'routine'
+      assign routine_text = body
+      if body contains '/products/'
+        assign routine_handle = body | split: '/products/' | last | split: '"' | first | split: '?' | first
+      endif
+    else
+      assign extras = extras | append: '<h3>' | append: chunk
+    endif
+  endfor
+
+  assign kind = ''
+  assign actives = ''
+  assign concerns = ''
+  assign skins = ''
+  assign claims = ''
+  for tag in product.tags
+    if tag contains '(Type)'
+      assign kind = tag | remove: ' (Type)'
+    elsif tag contains '(Principes actifs)'
+      assign a = tag | remove: ' (Principes actifs)'
+      assign actives = actives | append: a | append: '|'
+    elsif tag contains '(Inquiétude)'
+      assign a = tag | remove: ' (Inquiétude)'
+      assign concerns = concerns | append: a | append: '|'
+    elsif tag contains '(Types de peau)'
+      assign a = tag | remove: ' (Types de peau)' | replace: 'All skin types', 'Tous les types de peau'
+      assign skins = skins | append: a | append: '|'
+    elsif tag contains '(Réclamations)'
+      assign a = tag | remove: ' (Réclamations)'
+      assign claims = claims | append: a | append: '|'
+    elsif tag == 'Végétalien'
+      assign claims = claims | append: 'Formule végétalienne|'
+    endif
+  endfor
+  assign actives = actives | split: '|'
+  assign concerns = concerns | split: '|'
+  assign skins = skins | split: '|'
+  assign claims = claims | split: '|'
+  assign colors = 'citron,rose,mandarine,creme' | split: ','
+-%}
+
+{%- if lead == blank and loves == blank -%}
+  {%- comment -%} Description libre : on l'affiche joliment, sans découpage. {%- endcomment -%}
+  <section class="o-pstory o-pstory--plain">
+    <div class="o-wrap"><div class="o-pstory__rte rte">{{ product.description }}</div></div>
+  </section>
+{%- else -%}
+<section class="o-pstory">
+
+  {%- comment -%} 1. L'accroche {%- endcomment -%}
+  <div class="o-pstory__lead">
+    {%- render 'orane-spark', color: 'creme', class: 'o-s1' -%}
+    <div class="o-wrap o-pstory__lead-grid">
+      <div>
+        <p class="o-kicker">{{ section.settings.lead_kicker }}</p>
+        <p class="o-pstory__punch">{{ lead }}</p>
+        {%- if intro_text != blank -%}<p class="o-pstory__intro">{{ intro_text }}</p>{%- endif -%}
+      </div>
+      <div class="o-pstory__lead-art" aria-hidden="true">
+        {%- if kind != blank -%}<p class="o-sticker o-sticker--round o-bg-creme o-pstory__kind">{{ kind }}</p>{%- endif -%}
+        {%- render 'orane-bouille', class: 'o-pstory__bouille' -%}
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} 2. Ce que tu vas aimer : un mur de stickers {%- endcomment -%}
+  {%- if loves != blank -%}
+    {%- assign items = loves | split: '<li>' -%}
+    <div class="o-pstory__loves">
+      <div class="o-wrap">
+        <h2 class="o-title">{{ section.settings.loves_title }}<br><em>{{ section.settings.loves_em }}</em></h2>
+        <ul class="o-wall">
+          {%- for it in items offset: 1 -%}
+            {%- assign c = forloop.index0 | modulo: 4 -%}
+            <li class="o-sticker o-bg-{{ colors[c] }}">{{ it | split: '</li>' | first | strip_html | strip }}</li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} 3. Mode d'emploi + actifs {%- endcomment -%}
+  {%- if howto != blank or actives.size > 0 or actives_text != blank -%}
+    <div class="o-pstory__how">
+      <div class="o-wrap o-pstory__how-grid">
+        {%- if howto != blank -%}
+          <article class="o-howto">
+            <p class="o-kicker">{{ howto_title | default: section.settings.howto_kicker }}</p>
+            <div class="o-howto__text">{{ howto }}</div>
+            <p class="o-sticker o-sticker--round o-bg-citron o-howto__stamp">{{ section.settings.howto_stamp }}</p>
+          </article>
+        {%- endif -%}
+        {%- if actives.size > 0 or actives_text != blank -%}
+          <article class="o-actives">
+            <p class="o-kicker">{{ section.settings.actives_kicker }}</p>
+            {%- if actives.size > 0 -%}
+              <ul class="o-actives__list">
+                {%- for a in actives -%}
+                  {%- liquid
+                    assign al = a | downcase
+                    assign why = ''
+                    if al contains 'hyaluronique'
+                      assign why = "Retient l'eau comme une éponge : la peau a l'air plus rebondie."
+                    elsif al contains 'aloe'
+                      assign why = 'Le grand classique tout doux, qui rafraîchit et apaise.'
+                    elsif al contains 'caféine'
+                      assign why = 'Le petit coup de fouet qui réveille le regard.'
+                    elsif al contains 'vitamine c'
+                      assign why = "Pour un teint qui a l'air plus lumineux."
+                    elsif al contains 'panthénol'
+                      assign why = 'Hydrate et adoucit, sans faire de bruit.'
+                    elsif al contains 'bétaïne'
+                      assign why = 'Aide la peau à garder son hydratation.'
+                    elsif al contains 'blé'
+                      assign why = 'Gainent la fibre, pour des cheveux plus doux.'
+                    elsif al contains 'zinc'
+                      assign why = "Aide la peau à garder un aspect net et frais."
+                    endif
+                    assign c = forloop.index0 | modulo: 3
+                  -%}
+                  <li class="o-active">
+                    <span class="o-active__dot o-bg-{{ colors[c] }}" aria-hidden="true">{{ a | slice: 0 }}</span>
+                    <span><strong>{{ a }}</strong>{% if why != blank %}<small>{{ why }}</small>{% endif %}</span>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+            {%- if actives_text != blank -%}<div class="o-actives__text">{{ actives_text }}</div>{%- endif -%}
+          </article>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} 4. Pensé pour {%- endcomment -%}
+  {%- if concerns.size > 0 or skins.size > 0 or claims.size > 0 -%}
+    <div class="o-pstory__for">
+      <div class="o-wrap">
+        <p class="o-kicker">{{ section.settings.for_kicker }}</p>
+        <div class="o-for">
+          {%- for x in concerns -%}<span class="o-sticker o-bg-rose">{{ x }}</span>{%- endfor -%}
+          {%- for x in skins -%}<span class="o-sticker o-bg-citron">{{ x }}</span>{%- endfor -%}
+        </div>
+        {%- if claims.size > 0 -%}
+          <ul class="o-claims">
+            {%- for x in claims -%}<li>✦ {{ x }}</li>{%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} 5. Le duo routine {%- endcomment -%}
+  {%- assign mate = blank -%}
+  {%- if routine_handle != blank -%}{%- assign mate = all_products[routine_handle] -%}{%- endif -%}
+  {%- if routine_text != blank -%}
+    <div class="o-pstory__duo">
+      <div class="o-wrap">
+        <h2 class="o-title">{{ section.settings.duo_title }}<br><em>{{ section.settings.duo_em }}</em></h2>
+        <div class="o-duo__text">{{ routine_text }}</div>
+        {%- if mate != blank and mate.id -%}
+          <div class="o-duo">
+            {%- for p in (1..2) -%}
+              {%- if forloop.first -%}{%- assign q = product -%}{%- else -%}{%- assign q = mate -%}{%- endif -%}
+              <article class="o-duo__card">
+                <a class="o-duo__media" href="{{ q.url }}">
+                  {%- if q.featured_image -%}
+                    {{ q.featured_image | image_url: width: 500 | image_tag: loading: 'lazy', alt: q.title }}
+                  {%- else -%}
+                    <span class="o-flask">orane</span>
+                  {%- endif -%}
+                </a>
+                <p class="o-duo__name"><a href="{{ q.url }}">{{ q.title }}</a></p>
+                <p class="o-duo__price">{{ q.price | money }}</p>
+                {%- if forloop.last and q.available -%}
+                  <form class="o-prod__form" action="{{ routes.cart_add_url }}" method="post">
+                    <input type="hidden" name="id" value="{{ q.selected_or_first_available_variant.id }}">
+                    <input type="hidden" name="quantity" value="1">
+                    <button type="submit" class="o-add">{{ section.settings.duo_add }}</button>
+                  </form>
+                {%- elsif forloop.first -%}
+                  <p class="o-duo__here">{{ section.settings.duo_here }}</p>
+                {%- endif -%}
+              </article>
+              {%- if forloop.first -%}<span class="o-duo__plus" aria-hidden="true">+</span>{%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- if extras != blank -%}
+    <div class="o-pstory__extras"><div class="o-wrap"><div class="o-pstory__rte rte">{{ extras }}</div></div></div>
+  {%- endif -%}
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ORANE · Histoire produit",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "paragraph", "content": "Tout est lu automatiquement dans la description et les étiquettes du produit." },
+    { "type": "text", "id": "lead_kicker", "label": "Mention de l'accroche", "default": "En deux mots" },
+    { "type": "text", "id": "loves_title", "label": "Titre « ce que tu vas aimer »", "default": "Ce que tu" },
+    { "type": "text", "id": "loves_em", "label": "Suite en couleur", "default": "vas adorer." },
+    { "type": "text", "id": "howto_kicker", "label": "Mention du mode d'emploi", "default": "Mode d'emploi" },
+    { "type": "text", "id": "howto_stamp", "label": "Tampon du mode d'emploi", "default": "facile !" },
+    { "type": "text", "id": "actives_kicker", "label": "Mention des actifs", "default": "Ce qu'il y a dedans" },
+    { "type": "text", "id": "for_kicker", "label": "Mention « pensé pour »", "default": "Pensé pour" },
+    { "type": "text", "id": "duo_title", "label": "Titre du duo", "default": "Le duo" },
+    { "type": "text", "id": "duo_em", "label": "Suite en couleur", "default": "qui va bien." },
+    { "type": "text", "id": "duo_here", "label": "Texte sous ce produit", "default": "tu es ici ✦" },
+    { "type": "text", "id": "duo_add", "label": "Bouton d'ajout du 2e produit", "default": "Je l'ajoute aussi" }
+  ],
+  "presets": [{ "name": "ORANE · Histoire produit" }],
+  "enabled_on": { "templates": ["product"] }
+}
+{% endschema %}

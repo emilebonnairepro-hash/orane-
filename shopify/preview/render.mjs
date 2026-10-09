@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
-const engine = new Liquid({ root: [path.join(root, 'sections'), path.join(root, 'snippets')], extname: '.liquid' });
+const engine = new Liquid({ root: [path.join(root, 'sections'), path.join(root, 'snippets')], extname: '.liquid', globals: { cart: { total_price: 1340 } } });
 
 engine.registerTag('schema', class extends Tag {
   constructor(token, remain, liquid, parser) {
@@ -26,6 +26,7 @@ engine.registerFilter('image_tag', (src, ...args) => {
 });
 engine.registerFilter('money', (c) => `${(c / 100).toFixed(2).replace('.', ',')} €`);
 engine.registerFilter('asset_url', (f) => `shopify/assets/${f}`);
+engine.registerFilter('stylesheet_tag', (u) => `<link rel="stylesheet" href="${u}">`);
 
 const tones = ['#ffffff'];
 const photo = (label, color) => 'data:image/svg+xml,' + encodeURIComponent(
@@ -43,18 +44,26 @@ const products = {
   'patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c': P('patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c', 'Patchs hydrogel énergisants pour les yeux', 1340, ['Patches (Type)'], 'Un petit moment rien que pour ton regard. Frais et légers, ces patchs hydrogel inspirés de la K-beauty apaisent et revitalisent.', '#FFF3E3'),
 };
 const all = { url: '/collections/all', products: Object.values(products) };
+const real = JSON.parse(fs.readFileSync(path.join(here, 'products.json'), 'utf8'));
+for (const r of real) Object.assign(products[r.handle], { description: r.descriptionHtml, tags: r.tags, id: r.id });
 
 const readJson = (f) => { const t = fs.readFileSync(path.join(root, f), 'utf8'); return JSON.parse(t.slice(t.indexOf('{\n'))); };
 const tpl = process.argv[2] || 'index';
 const out = process.argv[3] || path.resolve(root, '..', 'index.html');
 const index = readJson(`templates/${tpl}.json`);
 const extra = { collection: tpl === 'collection' ? { title: 'Soin du visage', handle: 'soin-du-visage', products_count: 4, description: '<p>Nettoyer, réveiller, hydrater : la routine visage, sans prise de tête.</p>' } : null,
-  page: tpl.startsWith('page') ? { title: 'Contact', handle: 'contact' } : null, page_title: tpl === 'cart' ? 'Panier' : '404' };
+  page: tpl.startsWith('page') ? { title: 'Contact', handle: 'contact' } : null, page_title: tpl === 'cart' ? 'Panier' : '404',
+  product: tpl === 'product' ? products[process.argv[4] || 'patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c'] : null,
+  all_products: products, cart: { total_price: 1340 } };
+if (extra.product) extra.product.selected_or_first_available_variant.price = extra.product.price;
 
 const resolve = (v) => (typeof v === 'string' && products[v]) ? products[v] : (v === 'all' ? all : v);
 let html = '';
 for (const id of index.order) {
   const s = index.sections[id];
+  const ctxBase = { ...extra, shop: { name: 'ORANE', email: 'emilebonnairepro@gmail.com' }, routes: { root_url: '/', all_products_collection_url: '/collections/all', cart_add_url: '#panier' }, collections: { all } };
+  if (s.type === 'custom-liquid') { html += await engine.parseAndRender(s.settings.custom_liquid, ctxBase); continue; }
+  if (s.type === 'main-product') { html += await engine.parseAndRender(fs.readFileSync(path.join(here, 'mock-main-product.liquid'), 'utf8'), ctxBase); continue; }
   if (!s.type.startsWith('orane-')) { html += `<div class="dawn-placeholder">Section existante du thème : ${s.type}${s.settings?.title ? ` — « ${s.settings.title} »` : ''}</div>`; continue; }
   const settings = Object.fromEntries(Object.entries(s.settings ?? {}).map(([k, v]) => [k, resolve(v)]));
   const blocks = (s.block_order ?? []).map((bid) => ({ id: bid, shopify_attributes: '', settings: Object.fromEntries(Object.entries(s.blocks[bid].settings).map(([k, v]) => [k, resolve(v)])) }));

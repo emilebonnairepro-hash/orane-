@@ -258,13 +258,16 @@ index["sections"]["multicolumn_garanties"] = promesses("creme", "Les promesses O
 dump("templates/index.json", index)
 
 # Fiche produit : on garde la fiche et les suggestions, on ajoute rubans et promesses
+TONE_CSS = ("{%- assign tones = 'mandarine,rose,citron' | split: ',' -%}{%- assign i = product.id | modulo: 3 -%}"
+            "<style>:root { --o-tone: var(--o-{{ tones[i] }}); }</style>{{ 'orane-product.css' | asset_url | stylesheet_tag }}")
 product = {"sections": {
-  "orane-style": {"type": "custom-liquid", "settings": {"custom_liquid": "{{ 'orane-product.css' | asset_url | stylesheet_tag }}",
-    "color_scheme": CREME, "padding_top": 0, "padding_bottom": 16}},
+  "orane-style": {"type": "custom-liquid", "settings": {"custom_liquid": TONE_CSS,
+    "color_scheme": CREME, "padding_top": 0, "padding_bottom": 0}},
   "main": {"type": "main-product",
     "blocks": {
       "title": {"type": "title", "settings": {}}, "rating": {"type": "rating", "settings": {}},
       "price": {"type": "price", "settings": {}},
+      "orane_bonus": {"type": "custom_liquid", "settings": {"custom_liquid": "{% render 'orane-buybox', product: product, threshold: 5000 %}"}},
       "variant_picker": {"type": "variant_picker", "settings": {"picker_type": "button", "swatch_shape": "none"}},
       "quantity_selector": {"type": "quantity_selector", "settings": {}},
       "buy_buttons": {"type": "buy_buttons", "settings": {"show_dynamic_checkout": True, "show_gift_card_recipient": True}},
@@ -272,19 +275,24 @@ product = {"sections": {
         "content": "<p>Livré en 2 à 5 jours. Livraison offerte dès 50 € d'achat ; en dessous, les frais s'affichent avant le paiement.</p>", "page": ""}},
       "retours": {"type": "collapsible_tab", "settings": {"heading": "Retours", "icon": "return",
         "content": "<p>Tu as 14 jours pour changer d'avis. Écris-nous depuis la page Contact avec ton numéro de commande.</p>", "page": ""}},
-      "description": {"type": "description", "settings": {}},
       "share": {"type": "share", "settings": {"share_label": "Partager"}}},
-    "block_order": ["title", "rating", "price", "variant_picker", "quantity_selector", "buy_buttons", "livraison", "retours", "description", "share"],
+    "block_order": ["title", "rating", "price", "orane_bonus", "variant_picker", "quantity_selector", "buy_buttons", "livraison", "retours", "share"],
     "settings": {"enable_sticky_info": True, "color_scheme": CREME, "media_size": "medium", "constrain_to_viewport": True,
       "media_fit": "contain", "gallery_layout": "thumbnail_slider", "mobile_thumbnails": "show", "media_position": "left",
-      "image_zoom": "lightbox", "hide_variants": True, "enable_video_looping": False, "padding_top": 36, "padding_bottom": 72}},
+      "image_zoom": "lightbox", "hide_variants": True, "enable_video_looping": False, "padding_top": 40, "padding_bottom": 80}},
+  "histoire": {"type": "orane-produit-histoire", "settings": {
+    "lead_kicker": "En deux mots", "loves_title": "Ce que tu", "loves_em": "vas adorer.",
+    "howto_kicker": "Mode d'emploi", "howto_stamp": "facile !", "actives_kicker": "Ce qu'il y a dedans",
+    "for_kicker": "Pensé pour", "duo_title": "Le duo", "duo_em": "qui va bien.",
+    "duo_here": "tu es ici ✦", "duo_add": "Je l'ajoute aussi"}},
   "orane-tapes": tapes(),
   "orane-promesses": promesses("creme"),
   "related-products": {"type": "related-products", "settings": {
     "heading": "Complète ta routine", "heading_size": "h1", "products_to_show": 4, "columns_desktop": 4, "columns_mobile": "2",
     "color_scheme": CREME, "image_ratio": "portrait", "image_shape": "default", "show_secondary_image": True,
-    "show_vendor": False, "show_rating": True, "padding_top": 36, "padding_bottom": 80}},
-}, "order": ["orane-style", "main", "orane-tapes", "orane-promesses", "related-products"]}
+    "show_vendor": False, "show_rating": True, "padding_top": 24, "padding_bottom": 100}},
+  "sticky": {"type": "orane-sticky-atc", "settings": {"label": "Dans mon panier ✦", "soldout": "Bientôt de retour"}},
+}, "order": ["orane-style", "main", "histoire", "orane-tapes", "orane-promesses", "related-products", "sticky"]}
 dump("templates/product.json", product)
 
 # Collections

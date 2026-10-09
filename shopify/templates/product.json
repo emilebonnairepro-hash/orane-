@@ -12,10 +12,10 @@
     "orane-style": {
       "type": "custom-liquid",
       "settings": {
-        "custom_liquid": "{{ 'orane-product.css' | asset_url | stylesheet_tag }}",
+        "custom_liquid": "{%- assign tones = 'mandarine,rose,citron' | split: ',' -%}{%- assign i = product.id | modulo: 3 -%}<style>:root { --o-tone: var(--o-{{ tones[i] }}); }</style>{{ 'orane-product.css' | asset_url | stylesheet_tag }}",
         "color_scheme": "scheme-a38ac93a-7224-4079-9c68-70762ddc148e",
         "padding_top": 0,
-        "padding_bottom": 16
+        "padding_bottom": 0
       }
     },
     "main": {
@@ -32,6 +32,12 @@
         "price": {
           "type": "price",
           "settings": {}
+        },
+        "orane_bonus": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'orane-buybox', product: product, threshold: 5000 %}"
+          }
         },
         "variant_picker": {
           "type": "variant_picker",
@@ -69,10 +75,6 @@
             "page": ""
           }
         },
-        "description": {
-          "type": "description",
-          "settings": {}
-        },
         "share": {
           "type": "share",
           "settings": {
@@ -84,12 +86,12 @@
         "title",
         "rating",
         "price",
+        "orane_bonus",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
         "livraison",
         "retours",
-        "description",
         "share"
       ],
       "settings": {
@@ -104,8 +106,24 @@
         "image_zoom": "lightbox",
         "hide_variants": true,
         "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 72
+        "padding_top": 40,
+        "padding_bottom": 80
+      }
+    },
+    "histoire": {
+      "type": "orane-produit-histoire",
+      "settings": {
+        "lead_kicker": "En deux mots",
+        "loves_title": "Ce que tu",
+        "loves_em": "vas adorer.",
+        "howto_kicker": "Mode d'emploi",
+        "howto_stamp": "facile !",
+        "actives_kicker": "Ce qu'il y a dedans",
+        "for_kicker": "Pensé pour",
+        "duo_title": "Le duo",
+        "duo_em": "qui va bien.",
+        "duo_here": "tu es ici ✦",
+        "duo_add": "Je l'ajoute aussi"
       }
     },
     "orane-tapes": {
@@ -202,16 +220,25 @@
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": true,
-        "padding_top": 36,
-        "padding_bottom": 80
+        "padding_top": 24,
+        "padding_bottom": 100
+      }
+    },
+    "sticky": {
+      "type": "orane-sticky-atc",
+      "settings": {
+        "label": "Dans mon panier ✦",
+        "soldout": "Bientôt de retour"
       }
     }
   },
   "order": [
     "orane-style",
     "main",
+    "histoire",
     "orane-tapes",
     "orane-promesses",
-    "related-products"
+    "related-products",
+    "sticky"
   ]
 }
