@@ -33,6 +33,26 @@ engine.registerFilter('inline_asset_content', (f) => f.includes('minus') ? '−'
 engine.registerFilter('standard_event_data', () => '{}');
 engine.registerFilter('item_count_for_variant', () => 1);
 engine.registerFilter('asset_url', (f) => `shopify/assets/${f}`);
+engine.registerFilter('handleize', (t) => String(t ?? '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''));
+engine.registerFilter('default_errors', () => '<ul><li>Erreur de démonstration</li></ul>');
+engine.registerFilter('newline_to_br', (t) => String(t ?? '').replace(/\n/g, '<br />\n'));
+// {% form 'contact' %} … {% endform %} : un vrai <form>, avec un objet « form » vide (ORANE_FORM=ok pour l'état envoyé)
+engine.registerTag('form', class extends Tag {
+  constructor(token, remain, liquid, parser) {
+    super(token, remain, liquid);
+    this.tpls = [];
+    const stream = parser.parseStream(remain);
+    stream.on('tag:endform', () => stream.stop()).on('template', (t) => this.tpls.push(t)).on('end', () => { throw new Error('form non fermé'); });
+    stream.start();
+  }
+  * render(ctx, emitter) {
+    ctx.push({ form: { 'posted_successfully?': process.env.ORANE_FORM === 'ok', errors: null } });
+    emitter.write('<form method="post" action="#contact" id="OraneContact" class="o-cform">');
+    yield this.liquid.renderer.renderTemplates(this.tpls, ctx, emitter);
+    emitter.write('</form>');
+    ctx.pop();
+  }
+});
 engine.registerFilter('stylesheet_tag', (u) => `<link rel="stylesheet" href="${u}">`);
 
 const tones = ['#ffffff'];
@@ -51,16 +71,23 @@ const products = {
   'patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c': P('patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c', 'Patchs hydrogel énergisants pour les yeux', 1340, ['Patches (Type)'], 'Un petit moment rien que pour ton regard. Frais et légers, ces patchs hydrogel inspirés de la K-beauty apaisent et revitalisent.', '#FFF3E3'),
 };
 const all = { url: '/collections/all', products: Object.values(products) };
+const coll = (handle, title, tag) => { const ps = Object.values(products).filter((p) => tag(p)); return { handle, title, url: `/collections/${handle}`, products: ps, products_count: ps.length }; };
 liquidGlobals.collections = { all }; liquidGlobals.all_products = products;
 const real = JSON.parse(fs.readFileSync(path.join(here, 'products.json'), 'utf8'));
 for (const r of real) Object.assign(products[r.handle], { description: r.descriptionHtml, tags: r.tags, id: r.id });
+const collMocks = {
+  'soin-du-visage': coll('soin-du-visage', 'Soin du visage', (p) => p.tags.includes('soins-du-visage')),
+  'soin-du-corps': coll('soin-du-corps', 'Soin du corps', (p) => p.tags.includes('soins-du-corps')),
+  'soin-du-cuit-chevelu': coll('soin-du-cuit-chevelu', 'Soin du cuir chevelu', (p) => p.tags.includes('soins-du-cheveu')),
+  homme: coll('homme', 'Soin pour homme', (p) => /barbe|hommes/.test(p.handle)),
+};
 
 const readJson = (f) => { const t = fs.readFileSync(path.join(root, f), 'utf8'); return JSON.parse(t.slice(t.indexOf('{\n'))); };
 const tpl = process.argv[2] || 'index';
 const out = process.argv[3] || path.resolve(root, '..', 'index.html');
 const index = tpl === 'drawer' ? { order: ['drawer'], sections: { drawer: { type: 'drawer' } } } : readJson(`templates/${tpl}.json`);
 const extra = { collection: tpl === 'collection' ? { title: 'Soin du visage', handle: 'soin-du-visage', products_count: 4, description: '<p>Nettoyer, réveiller, hydrater : la routine visage, sans prise de tête.</p>' } : null,
-  page: tpl.startsWith('page') ? { title: 'Contact', handle: 'contact' } : null, page_title: tpl === 'cart' ? 'Panier' : '404',
+  page: tpl.startsWith('page') ? (tpl === 'page.page' ? { title: "À propos d'ORANE", handle: 'a-propos' } : { title: 'Contact', handle: 'contact' }) : null, page_title: tpl === 'cart' ? 'Panier' : '404',
   product: tpl === 'product' ? products[process.argv[4] || 'patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c'] : null,
   all_products: products, cart: { total_price: 1340 } };
 if (extra.product) extra.product.selected_or_first_available_variant.price = extra.product.price;
@@ -74,7 +101,7 @@ if (tpl === 'cart' || tpl === 'drawer') {
   extra.cart = cartGlobal;
 }
 
-const resolve = (v) => (typeof v === 'string' && products[v]) ? products[v] : (v === 'all' ? all : v);
+const resolve = (v) => (typeof v === 'string' && products[v]) ? products[v] : (v === 'all' ? all : (typeof v === 'string' && collMocks[v]) ? collMocks[v] : v);
 let html = '';
 for (const id of index.order) {
   const s = index.sections[id];
@@ -123,6 +150,7 @@ const page = `<!doctype html>
   .dawn-placeholder { padding: 3rem; text-align: center; font: 600 1.4rem var(--font-body-family); background: repeating-linear-gradient(45deg, #fff3e3, #fff3e3 12px, #f6e6cf 12px, #f6e6cf 24px); border-block: 2px dashed #2A1240; }
 </style>
 <link rel="stylesheet" href="shopify/assets/orane-brand.css">
+<link rel="stylesheet" href="shopify/assets/orane-v4.css">
 </head>
 <body>
 <div class="demo-bar">Livraison offerte dès 50€ d'achat</div>
@@ -138,5 +166,5 @@ ${html}
 </body>
 </html>
 `;
-fs.writeFileSync(out, tpl === 'index' ? page : page.replaceAll('shopify/assets/', path.relative(path.dirname(out), path.join(root, 'assets')) + '/'));
+fs.writeFileSync(out, page.replaceAll('shopify/assets/', path.relative(path.dirname(out), path.join(root, 'assets')) + '/'));
 console.log(`${tpl} → ${out}`);

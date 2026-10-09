@@ -1,0 +1,24 @@
+{%- comment -%}
+  ORANE — une phrase simple pour expliquer un actif (sans promesse médicale).
+  {% render 'orane-actif-why', name: 'Caféine' %}
+{%- endcomment -%}
+{%- liquid
+  assign al = name | downcase
+  if al contains 'hyaluronique'
+    echo "Retient l'eau comme une éponge : la peau a l'air plus rebondie."
+  elsif al contains 'aloe'
+    echo 'Le grand classique tout doux, qui rafraîchit et apaise.'
+  elsif al contains 'caféine'
+    echo 'Le petit coup de fouet qui réveille le regard.'
+  elsif al contains 'vitamine c'
+    echo "Pour un teint qui a l'air plus lumineux."
+  elsif al contains 'panthénol'
+    echo 'Hydrate et adoucit, sans faire de bruit.'
+  elsif al contains 'bétaïne'
+    echo 'Aide la peau à garder son hydratation.'
+  elsif al contains 'blé'
+    echo 'Gainent la fibre, pour des cheveux plus doux.'
+  elsif al contains 'zinc'
+    echo 'Aide la peau à garder un aspect net et frais.'
+  endif
+-%}

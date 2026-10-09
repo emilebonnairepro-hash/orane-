@@ -1,0 +1,45 @@
+{%- comment -%}
+  ORANE — fais connaissance avec la bouille : une grande bouille qu'on clique, et une bulle qui change de phrase à chaque clic.
+{%- endcomment -%}
+<section class="o-meet" data-o-meet>
+  <div class="o-wrap o-meet__grid">
+    <div class="o-meet__stage">
+      <p class="o-meet__bubble" aria-live="polite" data-o-meet-bubble>{{ section.blocks.first.settings.text | default: section.settings.hello }}</p>
+      <button type="button" class="o-meet__btn" aria-label="{{ section.settings.click_label | escape }}" data-o-meet-btn>
+        {%- render 'orane-bouille', class: 'o-meet__bouille' -%}
+      </button>
+      <p class="o-meet__count" aria-hidden="true"><span data-o-meet-count>0</span> {{ section.settings.count_label }}</p>
+      <template data-o-meet-lines>
+        {%- for block in section.blocks -%}<span>{{ block.settings.text }}</span>{%- endfor -%}
+      </template>
+    </div>
+    <div class="o-meet__text">
+      <p class="o-kicker">{{ section.settings.kicker }}</p>
+      <h2 class="o-title">{{ section.settings.title }}<br><em>{{ section.settings.title_em }}</em></h2>
+      <div class="o-meet__rte">{{ section.settings.text }}</div>
+      <p class="o-sticker o-bg-citron o-meet__tip">{{ section.settings.click_label }}</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ORANE · La bouille",
+  "tag": "div",
+  "class": "section",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Mention", "default": "La mascotte" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Elle, c'est" },
+    { "type": "text", "id": "title_em", "label": "Titre en couleur", "default": "la bouille." },
+    { "type": "richtext", "id": "text", "label": "Texte", "default": "<p>Un clin d'œil, des joues roses, un grand sourire : la bouille, c'est l'esprit ORANE en une tête.</p>" },
+    { "type": "text", "id": "hello", "label": "Première phrase", "default": "coucou toi ✦" },
+    { "type": "text", "id": "click_label", "label": "Invitation", "default": "clique-la, elle adore" },
+    { "type": "text", "id": "count_label", "label": "Après le compteur", "default": "fous rires" }
+  ],
+  "blocks": [
+    { "type": "phrase", "name": "Phrase", "settings": [{ "type": "text", "id": "text", "label": "Phrase", "default": "fais pas ta timide" }] }
+  ],
+  "presets": [{ "name": "ORANE · La bouille", "blocks": [{ "type": "phrase" }] }]
+}
+{% endschema %}

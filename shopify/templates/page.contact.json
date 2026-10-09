@@ -23,21 +23,56 @@
         "color": "violet"
       }
     },
-    "main": {
-      "type": "main-page",
-      "settings": {
-        "padding_top": 36,
-        "padding_bottom": 0
-      }
-    },
     "form": {
-      "type": "contact-form",
+      "type": "orane-contact",
+      "blocks": {
+        "f0": {
+          "type": "fact",
+          "settings": {
+            "big": "2 à 5 jours",
+            "small": "pour être livré",
+            "color": "citron"
+          }
+        },
+        "f1": {
+          "type": "fact",
+          "settings": {
+            "big": "offerte dès 50 €",
+            "small": "la livraison",
+            "color": "rose"
+          }
+        },
+        "f2": {
+          "type": "fact",
+          "settings": {
+            "big": "14 jours",
+            "small": "pour changer d'avis",
+            "color": "creme"
+          }
+        }
+      },
+      "block_order": [
+        "f0",
+        "f1",
+        "f2"
+      ],
       "settings": {
-        "heading": "",
-        "heading_size": "h1",
-        "color_scheme": "scheme-a38ac93a-7224-4079-9c68-70762ddc148e",
-        "padding_top": 24,
-        "padding_bottom": 72
+        "bubble": "dis-moi tout ✦",
+        "show_email": true,
+        "mail_label": "Tu préfères l'e-mail ?",
+        "kicker": "Le formulaire",
+        "title": "Écris-nous un petit mot.",
+        "topics_label": "C'est à propos de…",
+        "topics": "Un soin | Je t'aide à choisir ✦\nMa commande | Ton numéro de commande m'aidera ! | commande\nUn retour | Pas de souci, on gère ✦ | commande\nJuste coucou | Coucou toi ✦",
+        "name_label": "Ton prénom",
+        "email_label": "Ton e-mail",
+        "order_label": "Ton numéro de commande",
+        "message_label": "Ton message",
+        "placeholder": "Raconte-nous…",
+        "send_label": "Envoyer ✦",
+        "done_title": "Message reçu !",
+        "done_text": "Merci, on lit tout et on te répond par e-mail.",
+        "done_cta": "En attendant, les soins →"
       }
     },
     "faq": {
@@ -89,7 +124,6 @@
   },
   "order": [
     "hero",
-    "main",
     "form",
     "faq"
   ]

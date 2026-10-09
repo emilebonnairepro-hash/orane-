@@ -1,0 +1,71 @@
+{%- comment -%}
+  ORANE — ce qu'on aime : de grandes cartes qui se retournent (survol ou clic) pour dire « en vrai, ça veut dire… ».
+{%- endcomment -%}
+<section class="o-vals">
+  <div class="o-wrap">
+    <p class="o-kicker">{{ section.settings.kicker }}</p>
+    <h2 class="o-title">{{ section.settings.title }}<br><em>{{ section.settings.title_em }}</em></h2>
+    <ul class="o-vals__list">
+      {%- for block in section.blocks -%}
+        <li class="o-val" style="--r: {% cycle '-3deg', '2deg', '-1.5deg' %}" {{ block.shopify_attributes }}>
+          <button type="button" class="o-val__card" aria-pressed="false">
+            <span class="o-val__face o-val__front o-bg-{{ block.settings.color }}">
+              <span class="o-val__icon" aria-hidden="true">
+                {%- case block.settings.icon -%}
+                  {%- when 'ring' -%}{%- render 'orane-ring' -%}
+                  {%- when 'bouille' -%}{%- render 'orane-bouille' -%}
+                  {%- else -%}{%- render 'orane-spark', color: 'creme' -%}
+                {%- endcase -%}
+              </span>
+              <span class="o-val__title">{{ block.settings.title }}</span>
+              <span class="o-val__short">{{ block.settings.short }}</span>
+              <span class="o-val__hint">{{ section.settings.hint }}</span>
+            </span>
+            <span class="o-val__face o-val__back">
+              <span class="o-kicker">{{ section.settings.back_kicker }}</span>
+              <span class="o-val__long">{{ block.settings.long }}</span>
+            </span>
+          </button>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ORANE · Valeurs",
+  "tag": "div",
+  "class": "section",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Mention", "default": "Ce qu'on aime" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Trois mots," },
+    { "type": "text", "id": "title_em", "label": "Titre en couleur", "default": "zéro blabla." },
+    { "type": "text", "id": "hint", "label": "Indication sur la carte", "default": "retourne-moi ↻" },
+    { "type": "text", "id": "back_kicker", "label": "Mention au dos", "default": "En vrai, ça veut dire" }
+  ],
+  "blocks": [
+    {
+      "type": "valeur",
+      "name": "Valeur",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Mot", "default": "Le doux" },
+        { "type": "text", "id": "short", "label": "Phrase courte", "default": "Des soins qui n'agressent pas." },
+        { "type": "textarea", "id": "long", "label": "Au dos de la carte", "default": "Des formules pensées pour nettoyer, hydrater ou apaiser sans agresser la peau." },
+        {
+          "type": "select", "id": "color", "label": "Couleur",
+          "options": [{ "value": "rose", "label": "Rose" }, { "value": "citron", "label": "Citron" }, { "value": "mandarine", "label": "Mandarine" }],
+          "default": "rose"
+        },
+        {
+          "type": "select", "id": "icon", "label": "Dessin",
+          "options": [{ "value": "spark", "label": "Étincelle" }, { "value": "ring", "label": "Anneau" }, { "value": "bouille", "label": "Bouille" }],
+          "default": "spark"
+        }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ORANE · Valeurs", "blocks": [{ "type": "valeur" }] }]
+}
+{% endschema %}

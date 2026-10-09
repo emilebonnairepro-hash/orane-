@@ -1,0 +1,93 @@
+{%- comment -%}
+  ORANE — l'explorateur d'actifs : tous les actifs de la boutique (étiquettes « … (Principes actifs) »).
+  On clique sur un actif : une phrase simple explique son rôle, et les soins qui en contiennent s'allument.
+{%- endcomment -%}
+{%- liquid
+  assign list = '|'
+  for p in collections.all.products limit: 50
+    for tag in p.tags
+      if tag contains '(Principes actifs)'
+        assign a = tag | remove: ' (Principes actifs)'
+        assign key = '|' | append: a | append: '|'
+        unless list contains key
+          assign list = list | append: a | append: '|'
+        endunless
+      endif
+    endfor
+  endfor
+  assign actives = list | remove_first: '|' | split: '|'
+  assign colors = 'citron,rose,mandarine' | split: ','
+-%}
+{%- if actives.size > 0 -%}
+<section class="o-actifs" data-o-actifs>
+  <div class="o-wrap">
+    <div class="o-actifs__head">
+      <p class="o-kicker">{{ section.settings.kicker }}</p>
+      <h2 class="o-title">{{ section.settings.title }}<br><em>{{ section.settings.title_em }}</em></h2>
+      {%- if section.settings.text != blank -%}<p class="o-actifs__lead">{{ section.settings.text }}</p>{%- endif -%}
+    </div>
+
+    <div class="o-actifs__grid">
+      <div class="o-actifs__chips" role="tablist" aria-label="{{ section.settings.kicker | escape }}">
+        {%- for a in actives -%}
+          {%- assign c = forloop.index0 | modulo: 3 -%}
+          <button type="button" role="tab" class="o-actif-chip o-actif-chip--{{ colors[c] }}"
+            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+            data-actif="{{ a | handleize }}" style="--r: {% cycle '-3deg', '2deg', '-1deg', '3deg' %}">{{ a }}</button>
+        {%- endfor -%}
+      </div>
+
+      <div class="o-actifs__panel">
+        {%- for a in actives -%}
+          <div class="o-actifs__why{% if forloop.first %} is-on{% endif %}" data-why="{{ a | handleize }}">
+            <p class="o-actifs__name">{{ a }}</p>
+            <p class="o-actifs__text">{%- render 'orane-actif-why', name: a -%}</p>
+          </div>
+        {%- endfor -%}
+        <p class="o-kicker o-actifs__in">{{ section.settings.in_label }}</p>
+        <ul class="o-actifs__prods">
+          {%- for p in collections.all.products limit: 50 -%}
+            {%- assign mine = '|' -%}
+            {%- for tag in p.tags -%}
+              {%- if tag contains '(Principes actifs)' -%}
+                {%- assign h = tag | remove: ' (Principes actifs)' | handleize -%}
+                {%- assign mine = mine | append: h | append: '|' -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if mine != '|' -%}
+              {%- assign first_key = actives.first | handleize | prepend: '|' | append: '|' -%}
+              <li class="o-actifs__prod{% if mine contains first_key %} is-on{% endif %}" data-actifs="{{ mine }}">
+                <a href="{{ p.url }}">
+                  <span class="o-actifs__img">
+                    {%- if p.featured_image -%}
+                      {{ p.featured_image | image_url: width: 240 | image_tag: loading: 'lazy', alt: '' }}
+                    {%- else -%}<span class="o-flask">orane</span>{%- endif -%}
+                  </span>
+                  <span class="o-actifs__pname">{{ p.title }}</span>
+                  <span class="o-actifs__price">{{ p.price | money }}</span>
+                </a>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ORANE · Actifs",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Mention", "default": "L'explorateur d'actifs" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Ce qu'on met dedans," },
+    { "type": "text", "id": "title_em", "label": "Titre en couleur", "default": "et pourquoi." },
+    { "type": "text", "id": "text", "label": "Texte", "default": "Pas de jargon : clique sur un actif, on te dit à quoi il sert et où le trouver." },
+    { "type": "text", "id": "in_label", "label": "Titre de la liste", "default": "On le trouve dans" }
+  ],
+  "presets": [{ "name": "ORANE · Actifs" }]
+}
+{% endschema %}

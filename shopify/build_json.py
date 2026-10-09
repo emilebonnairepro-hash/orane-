@@ -98,7 +98,7 @@ dump("sections/header-group.json", {
   "name": "t:sections.header.name", "type": "header",
   "sections": {
     "orane-brand": {"type": "custom-liquid", "settings": {
-      "custom_liquid": "{{ 'orane-brand.css' | asset_url | stylesheet_tag }}<script src=\"{{ 'orane.js' | asset_url }}\" defer></script>",
+      "custom_liquid": "{{ 'orane-brand.css' | asset_url | stylesheet_tag }}{{ 'orane-v4.css' | asset_url | stylesheet_tag }}<script src=\"{{ 'orane.js' | asset_url }}\" defer></script>",
       "color_scheme": CREME, "padding_top": 0, "padding_bottom": 0}},
     "announcement-bar": {"type": "announcement-bar",
       "blocks": {
@@ -181,6 +181,17 @@ rit_b, rit_o = blocks("r", [
   {"type": "step", "settings": {"title": "Tu hydrates", "text": "<p>Une noisette de gel léger, sans effet gras. C'est bouclé : sourire obligatoire.</p>", "product": P_GEL}},
 ])
 
+UNIVERS = [
+  ("soin-du-visage", "Visage", "Nettoyer, réveiller, hydrater : la routine sans prise de tête.", "rose"),
+  ("soin-du-corps", "Corps", "Mains et corps, ça pétille sans dessécher.", "citron"),
+  ("soin-du-cuit-chevelu", "Cheveux", "La douceur qu'il faut aux cuirs chevelus sensibles.", "mandarine"),
+  ("homme", "Homme", "Barbe douce et gel léger, zéro effet gras.", "violet"),
+]
+def univers(size="big", title="Quatre univers,", em="zéro prise de tête.", kicker="Choisis ton camp"):
+    b, o = blocks("u", [{"type": "univers", "settings": {"collection": h, "title": t, "text": x, "color": c}} for h, t, x, c in UNIVERS])
+    return {"type": "orane-univers", "blocks": b, "block_order": o, "settings": {
+      "kicker": kicker, "title": title, "title_em": em, "text": "", "size": size}}
+
 index = {"sections": {
   "orane-hero": {"type": "orane-hero", "blocks": hero_b, "block_order": hero_o, "settings": {
     "kicker_left": "N°01 — soins pour bouilles qui rigolent", "kicker_right": "visage · corps · cheveux",
@@ -208,26 +219,17 @@ index = {"sections": {
   "orane-quiz": {"type": "orane-quiz", "blocks": quiz_b, "block_order": quiz_o, "settings": {
     "kicker": "Le quiz qui dure 2 secondes", "title": "Ta peau, là, maintenant\u00a0?",
     "idle": "Choisis une humeur, je m'occupe du reste.", "match_label": "Ton match", "cta_label": "Je le veux"}},
-  "collection-list": {"type": "collection-list",
-    "blocks": {f"c{i+1}": {"type": "featured_collection", "settings": {"collection": h}} for i, h in enumerate(
-      ["soin-du-visage", "soin-du-corps", "soin-du-cuit-chevelu", "homme"])},
-    "block_order": ["c1", "c2", "c3", "c4"],
-    "settings": {"title": "Choisis ton univers", "heading_size": "h1", "image_ratio": "square",
-      "columns_desktop": 4, "show_view_all": False, "color_scheme": "scheme-4",
-      "columns_mobile": "2", "swipe_on_mobile": False, "padding_top": 72, "padding_bottom": 80}},
-  "produit-vedette": {"type": "featured-product",
-    "blocks": {"title": {"type": "title", "settings": {"heading_size": "h1"}}, "price": {"type": "price", "settings": {}},
-      "intro": {"type": "text", "settings": {"text": "7 paires de patchs hydrogel, à la caféine et à la vitamine C, pour le contour des yeux. Le petit coup de frais du matin.", "text_style": "body"}},
-      "buy_buttons": {"type": "buy_buttons", "settings": {"show_dynamic_checkout": False, "show_gift_card_recipient": True}}},
-    "block_order": ["title", "price", "intro", "buy_buttons"],
-    "settings": {"product": P_PATCHS, "secondary_background": False, "media_size": "large", "color_scheme": "scheme-2",
-      "constrain_to_viewport": True, "media_fit": "contain", "media_position": "left", "image_zoom": "lightbox",
-      "hide_variants": False, "enable_video_looping": False, "padding_top": 72, "padding_bottom": 72}},
+  "orane-univers": univers(),
+  "orane-vedette": {"type": "orane-vedette", "settings": {"product": P_PATCHS, "kicker": "Le chouchou de la bande",
+    "add_label": "Je le veux ✦", "more_label": "Tout savoir sur lui →"}},
+  "orane-actifs": {"type": "orane-actifs", "settings": {"kicker": "L'explorateur d'actifs", "title": "Ce qu'on met dedans,",
+    "title_em": "et pourquoi.", "text": "Pas de jargon : clique sur un actif, on te dit à quoi il sert et où le trouver.",
+    "in_label": "On le trouve dans"}},
   "orane-rituel": {"type": "orane-rituel", "blocks": rit_b, "block_order": rit_o, "settings": {
     "kicker": "Le rituel", "title": "Trois gestes,", "title_em": "mine de rien.", "sticker": "glow à la carte"}},
   "orane-outro": {"type": "orane-outro", "settings": {"line": "À toute, bouille de star ✦", "word": "orane"}},
-}, "order": ["orane-hero", "orane-ticker", "orane-manifeste", "orane-etagere", "multicolumn_garanties",
-             "orane-quiz", "collection-list", "produit-vedette", "orane-rituel", "orane-outro"]}
+}, "order": ["orane-hero", "orane-ticker", "orane-manifeste", "orane-univers", "orane-etagere", "multicolumn_garanties",
+             "orane-quiz", "orane-vedette", "orane-actifs", "orane-rituel", "orane-outro"]}
 dump("templates/index.json", index)
 print("ok")
 
@@ -287,18 +289,27 @@ product = {"sections": {
     "for_kicker": "Pensé pour", "duo_title": "Le duo", "duo_em": "qui va bien.",
     "duo_here": "tu es ici ✦", "duo_add": "Je l'ajoute aussi"}},
   "orane-tapes": tapes(),
+  "faq": {"type": "orane-produit-faq", "settings": {
+    "kicker": "Tes questions", "title": "On te répond", "title_em": "cash.",
+    "q_skin": "C'est pour moi ?", "q_howto": "Je l'utilise comment ?", "q_actives": "Il y a quoi dedans ?",
+    "q_routine": "Je l'associe avec quoi ?", "q_delivery": "Je le reçois quand ?",
+    "a_delivery": "<p>En 2 à 5 jours. Livraison offerte dès 50 € d'achat ; en dessous, les frais s'affichent avant le paiement.</p>",
+    "q_return": "Et si je change d'avis ?",
+    "a_return": "<p>Tu as 14 jours. Écris-nous depuis la page Contact avec ton numéro de commande.</p>",
+    "contact_text": "Une autre question ?", "contact_label": "Écris-nous ✦", "contact_link": "shopify://pages/contact"}},
   "orane-promesses": promesses("creme"),
   "related-products": {"type": "related-products", "settings": {
     "heading": "Complète ta routine", "heading_size": "h1", "products_to_show": 4, "columns_desktop": 4, "columns_mobile": "2",
     "color_scheme": CREME, "image_ratio": "portrait", "image_shape": "default", "show_secondary_image": True,
     "show_vendor": False, "show_rating": True, "padding_top": 24, "padding_bottom": 100}},
   "sticky": {"type": "orane-sticky-atc", "settings": {"label": "Dans mon panier ✦", "soldout": "Bientôt de retour"}},
-}, "order": ["orane-style", "main", "histoire", "orane-tapes", "orane-promesses", "related-products", "sticky"]}
+}, "order": ["orane-style", "main", "histoire", "orane-tapes", "faq", "related-products", "orane-promesses", "sticky"]}
 dump("templates/product.json", product)
 
 # Collections
 dump("templates/collection.json", {"sections": {
   "hero": hero(kicker="", sticker="zéro filtre"),
+  "univers": univers("compact", "", "", ""),
   "tapes": tapes(),
   "product-grid": {"type": "main-collection-product-grid", "settings": {
     "products_per_page": 24, "columns_desktop": 3, "columns_mobile": "2", "color_scheme": CREME,
@@ -306,15 +317,14 @@ dump("templates/collection.json", {"sections": {
     "show_rating": False, "quick_add": "standard", "enable_filtering": True, "filter_type": "horizontal",
     "enable_sorting": True, "padding_top": 24, "padding_bottom": 72}},
   "promesses": promesses("aubergine"),
-}, "order": ["hero", "tapes", "product-grid", "promesses"]})
+}, "order": ["hero", "univers", "tapes", "product-grid", "promesses"]})
 
 dump("templates/list-collections.json", {"sections": {
   "hero": hero(kicker="Les collections", title="tous les univers", sticker="choisis ton camp", color="violet", show_count=False,
                text="<p>Visage, corps, cheveux, homme : quatre façons de prendre soin de toi, toutes avec le sourire.</p>"),
-  "main": {"type": "main-list-collections", "settings": {"title": "", "sort": "alphabetical", "image_ratio": "square",
-    "columns_desktop": 4, "columns_mobile": "2"}},
+  "univers": univers("big", "", "", ""),
   "promesses": promesses("creme"),
-}, "order": ["hero", "main", "promesses"]})
+}, "order": ["hero", "univers", "promesses"]})
 
 # Panier : en-tête vivant, lignes Dawn en cartes, coach calculé à partir du panier
 dump("templates/cart.json", {"sections": {
@@ -348,16 +358,29 @@ faq_b, faq_o = blocks("q", [
   {"type": "question", "settings": {"question": "Comment je choisis le bon soin" + NB + "?",
     "answer": "<p>Chaque fiche produit indique les types de peau et les principes actifs. Tu peux aussi faire le quiz de la page d'accueil, ou nous écrire : on adore conseiller.</p>"}},
 ])
+def contact_form():
+    b, o = blocks("f", [
+      {"type": "fact", "settings": {"big": "2 à 5 jours", "small": "pour être livré", "color": "citron"}},
+      {"type": "fact", "settings": {"big": "offerte dès 50 €", "small": "la livraison", "color": "rose"}},
+      {"type": "fact", "settings": {"big": "14 jours", "small": "pour changer d'avis", "color": "creme"}},
+    ])
+    return {"type": "orane-contact", "blocks": b, "block_order": o, "settings": {
+      "bubble": "dis-moi tout ✦", "show_email": True, "mail_label": "Tu préfères l'e-mail ?",
+      "kicker": "Le formulaire", "title": "Écris-nous un petit mot.", "topics_label": "C'est à propos de…",
+      "topics": "Un soin | Je t'aide à choisir ✦\nMa commande | Ton numéro de commande m'aidera ! | commande\nUn retour | Pas de souci, on gère ✦ | commande\nJuste coucou | Coucou toi ✦",
+      "name_label": "Ton prénom", "email_label": "Ton e-mail", "order_label": "Ton numéro de commande",
+      "message_label": "Ton message", "placeholder": "Raconte-nous…", "send_label": "Envoyer ✦",
+      "done_title": "Message reçu !", "done_text": "Merci, on lit tout et on te répond par e-mail.",
+      "done_cta": "En attendant, les soins →"}}
+
 dump("templates/page.contact.json", {"sections": {
   "hero": hero(kicker="Contact", title="on papote" + NB + "?", sticker="réponse rapide", color="violet", show_count=False,
                text="<p>Une question sur un soin, une commande, ou juste envie de dire coucou ? Écris-nous, on répond vite (et gentiment).</p>"),
-  "main": {"type": "main-page", "settings": {"padding_top": 36, "padding_bottom": 0}},
-  "form": {"type": "contact-form", "settings": {"heading": "", "heading_size": "h1", "color_scheme": CREME,
-    "padding_top": 24, "padding_bottom": 72}},
+  "form": contact_form(),
   "faq": {"type": "orane-faq", "blocks": faq_b, "block_order": faq_o, "settings": {
     "kicker": "Avant de nous écrire", "title": "Les questions", "title_em": "qu'on adore.", "show_contact": False,
     "contact_text": "Pas trouvé ta réponse ? Écris-nous, on répond vite (et gentiment)."}},
-}, "order": ["hero", "main", "form", "faq"]})
+}, "order": ["hero", "form", "faq"]})
 
 # Pages simples
 dump("templates/page.json", {"sections": {
@@ -365,6 +388,58 @@ dump("templates/page.json", {"sections": {
   "main": {"type": "main-page", "settings": {"padding_top": 48, "padding_bottom": 72}},
   "promesses": promesses("creme"),
 }, "order": ["hero", "main", "promesses"]})
+
+intro_b, intro_o = blocks("s", [
+  {"type": "sticker", "settings": {"text": "zéro filtre", "color": "citron", "x": 52, "y": 2, "rotate": 6}},
+  {"type": "sticker", "settings": {"text": "fais pas ta timide", "color": "rose", "x": 70, "y": 90, "rotate": -5}},
+])
+stat_b, stat_o = blocks("n", [
+  {"type": "stat", "settings": {"number": 6, "unit": "", "label": "soins tout doux", "color": "citron"}},
+  {"type": "stat", "settings": {"number": 4, "unit": "", "label": "univers : visage, corps, cheveux, homme", "color": "rose"}},
+  {"type": "stat", "settings": {"number": 7, "unit": "", "label": "couleurs, pas une de plus", "color": "mandarine"}},
+  {"type": "stat", "settings": {"number": 50, "unit": "€", "label": "et la livraison est offerte", "color": "creme"}},
+])
+val_b, val_o = blocks("v", [
+  {"type": "valeur", "settings": {"title": "Le doux", "short": "Des soins qui n'agressent pas.", "color": "rose", "icon": "spark",
+    "long": "Des formules pensées pour nettoyer, hydrater ou apaiser sans agresser la peau."}},
+  {"type": "valeur", "settings": {"title": "Le malin", "short": "Des actifs connus, choisis pour leur rôle.", "color": "citron", "icon": "ring",
+    "long": "Acide hyaluronique, aloe vera, caféine, vitamine C… On les choisit pour ce qu'ils font, et on te l'explique sans jargon."}},
+  {"type": "valeur", "settings": {"title": "Le simple", "short": "Quatre univers, zéro prise de tête.", "color": "mandarine", "icon": "bouille",
+    "long": "Des gestes faciles et des associations évidentes : chaque fiche te dit avec quoi marier ton soin."}},
+])
+never_b, never_o = blocks("j", [
+  {"type": "ligne", "settings": {"text": "Te promettre des miracles", "instead": "On te dit ce que fait le soin, point."}},
+  {"type": "ligne", "settings": {"text": "Te noyer sous le jargon", "instead": "Des mots simples, et l'explorateur d'actifs pour le reste."}},
+  {"type": "ligne", "settings": {"text": "Chuchoter en nude", "instead": "Des couleurs qui crient, pour de vrai."}},
+  {"type": "ligne", "settings": {"text": "Se prendre au sérieux", "instead": "Le premier degré est interdit, le clin d'œil obligatoire."}},
+])
+meet_b, meet_o = blocks("b", [{"type": "phrase", "settings": {"text": t}} for t in
+  ["coucou toi ✦", "hihi, ça chatouille", "fais pas ta timide", "zéro filtre", "encore !", "glow à la carte",
+   "bouille de star", "100 % pep's", "peau neuve, mine de rien."]])
+dump("templates/page.page.json", {"sections": {
+  "intro": {"type": "orane-apropos-intro", "blocks": intro_b, "block_order": intro_o, "settings": {
+    "kicker": "À propos d'ORANE", "lines": "On fait des [soins].\nDoux pour ta peau.\nPas [tristes] pour tes yeux.",
+    "lead": "<p>ORANE réunit des soins pour le visage, le corps, le cuir chevelu et pour homme, avec une idée simple : prendre soin de soi ne devrait pas être compliqué.</p>",
+    "spin": "peau neuve · mine de rien"}},
+  "tapes": tapes(),
+  "manifeste": {"type": "orane-manifeste", "settings": {
+    "kicker": "L'idée de départ",
+    "text": "Prendre soin de soi ne devrait pas être [compliqué]. Alors on a fait des formules [douces] #anneau des gestes faciles et un ton [léger]. On parle fort, on rit beaucoup, et on te dit toujours ce que fait un soin #bouille",
+    "sign": "— la bande ORANE"}},
+  "valeurs": {"type": "orane-valeurs", "blocks": val_b, "block_order": val_o, "settings": {
+    "kicker": "Ce qu'on aime", "title": "Trois mots,", "title_em": "zéro blabla.", "hint": "retourne-moi ↻", "back_kicker": "En vrai, ça veut dire"}},
+  "chiffres": {"type": "orane-chiffres", "blocks": stat_b, "block_order": stat_o, "settings": {
+    "kicker": "En chiffres", "title": "Petits chiffres,", "title_em": "grande bouille.", "color": "aubergine"}},
+  "bouille": {"type": "orane-bouille-show", "blocks": meet_b, "block_order": meet_o, "settings": {
+    "kicker": "La mascotte", "title": "Elle, c'est", "title_em": "la bouille.",
+    "text": "<p>Un clin d'œil, des joues roses, un grand sourire : la bouille, c'est l'esprit ORANE en une tête. Tu la croises partout sur le site. Elle te suit des yeux, et elle rit quand on la clique.</p>",
+    "hello": "coucou toi ✦", "click_label": "clique-la, elle adore", "count_label": "fous rires"}},
+  "jamais": {"type": "orane-jamais", "blocks": never_b, "block_order": never_o, "settings": {
+    "kicker": "Promis, juré", "title": "Ce qu'on ne fera", "title_em": "jamais.",
+    "text": "Quatre règles qu'on s'est fixées. On les relit souvent."}},
+  "shelf": shelf("Bon, on", "se lance ?", "Les soins", 8),
+  "outro": {"type": "orane-outro", "settings": {"line": "Bienvenue dans la bande ✦", "word": "orane"}},
+}, "order": ["intro", "tapes", "manifeste", "valeurs", "chiffres", "bouille", "jamais", "shelf", "outro"]})
 
 # 404
 dump("templates/404.json", {"sections": {

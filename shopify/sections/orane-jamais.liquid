@@ -1,0 +1,46 @@
+{%- comment -%}
+  ORANE — « ce qu'on ne fera jamais » : chaque ligne se fait barrer d'un coup de feutre quand elle arrive à l'écran.
+{%- endcomment -%}
+<section class="o-never">
+  <div class="o-wrap o-never__grid">
+    <div>
+      <p class="o-kicker">{{ section.settings.kicker }}</p>
+      <h2 class="o-title">{{ section.settings.title }}<br><em>{{ section.settings.title_em }}</em></h2>
+      {%- if section.settings.text != blank -%}<p class="o-never__lead">{{ section.settings.text }}</p>{%- endif -%}
+    </div>
+    <ol class="o-never__list">
+      {%- for block in section.blocks -%}
+        <li class="o-never__item" style="--d: {{ forloop.index0 }}" {{ block.shopify_attributes }}>
+          <span class="o-never__strike">{{ block.settings.text }}</span>
+          {%- if block.settings.instead != blank -%}<span class="o-never__instead">{{ block.settings.instead }}</span>{%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ol>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ORANE · Jamais",
+  "tag": "div",
+  "class": "section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Mention", "default": "Promis, juré" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Ce qu'on ne fera" },
+    { "type": "text", "id": "title_em", "label": "Titre en couleur", "default": "jamais." },
+    { "type": "text", "id": "text", "label": "Texte" }
+  ],
+  "blocks": [
+    {
+      "type": "ligne",
+      "name": "Ligne",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Ce qu'on ne fera jamais", "default": "Te promettre des miracles" },
+        { "type": "text", "id": "instead", "label": "À la place", "default": "On te dit ce que fait le soin, point." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ORANE · Jamais", "blocks": [{ "type": "ligne" }] }]
+}
+{% endschema %}

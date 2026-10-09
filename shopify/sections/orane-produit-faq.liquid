@@ -1,0 +1,121 @@
+{%- comment -%}
+  ORANE — les questions sur ce soin : les réponses sont tirées de la description et des étiquettes du produit
+  (types de peau, mode d'emploi, actifs, routine). Les questions sans réponse ne s'affichent pas.
+  Livraison et retours viennent des réglages de la section.
+{%- endcomment -%}
+{%- liquid
+  assign chunks = product.description | split: '<h3>'
+  assign howto = ''
+  assign routine = ''
+  for chunk in chunks offset: 1
+    assign t = chunk | split: '</h3>' | first | downcase
+    assign body = chunk | split: '</h3>' | last
+    if t contains 'utilis'
+      assign howto = body
+    elsif t contains 'routine'
+      assign routine = body
+    endif
+  endfor
+  assign skins = ''
+  assign concerns = ''
+  assign actives = ''
+  for tag in product.tags
+    if tag contains '(Types de peau)'
+      assign a = tag | remove: ' (Types de peau)' | replace: 'All skin types', 'tous les types de peau' | downcase
+      assign skins = skins | append: a | append: '|'
+    elsif tag contains '(Inquiétude)'
+      assign a = tag | remove: ' (Inquiétude)' | downcase
+      assign concerns = concerns | append: a | append: '|'
+    elsif tag contains '(Principes actifs)'
+      assign a = tag | remove: ' (Principes actifs)'
+      assign actives = actives | append: a | append: '|'
+    endif
+  endfor
+  assign skins = skins | split: '|'
+  assign concerns = concerns | split: '|'
+  assign actives = actives | split: '|'
+-%}
+<section class="o-pfaq">
+  <div class="o-wrap o-faq__grid">
+    <div class="o-faq__side">
+      <p class="o-kicker">{{ section.settings.kicker }}</p>
+      <h2 class="o-title">{{ section.settings.title }}<br><em>{{ section.settings.title_em }}</em></h2>
+      <div class="o-pfaq__buddy">
+        {%- render 'orane-bouille' -%}
+        <p>{{ section.settings.contact_text }} <a href="{{ section.settings.contact_link | default: '/pages/contact' }}">{{ section.settings.contact_label }}</a></p>
+      </div>
+    </div>
+    <div class="o-faq__list">
+      {%- if skins.size > 0 or concerns.size > 0 -%}
+        <details class="o-q" open>
+          <summary><span>{{ section.settings.q_skin }}</span><i aria-hidden="true">+</i></summary>
+          <div class="o-q__a">
+            {%- if skins.size > 0 -%}<p>Pensé pour : {{ skins | join: ', ' }}.</p>{%- endif -%}
+            {%- if concerns.size > 0 -%}<p>On le choisit surtout pour : {{ concerns | join: ', ' }}.</p>{%- endif -%}
+          </div>
+        </details>
+      {%- endif -%}
+      {%- if howto != blank -%}
+        <details class="o-q">
+          <summary><span>{{ section.settings.q_howto }}</span><i aria-hidden="true">+</i></summary>
+          <div class="o-q__a">{{ howto }}</div>
+        </details>
+      {%- endif -%}
+      {%- if actives.size > 0 -%}
+        <details class="o-q">
+          <summary><span>{{ section.settings.q_actives }}</span><i aria-hidden="true">+</i></summary>
+          <div class="o-q__a">
+            <ul>
+              {%- for a in actives -%}
+                <li><strong>{{ a }}</strong> : {% render 'orane-actif-why', name: a %}</li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        </details>
+      {%- endif -%}
+      {%- if routine != blank -%}
+        <details class="o-q">
+          <summary><span>{{ section.settings.q_routine }}</span><i aria-hidden="true">+</i></summary>
+          <div class="o-q__a">{{ routine }}</div>
+        </details>
+      {%- endif -%}
+      {%- if section.settings.a_delivery != blank -%}
+        <details class="o-q">
+          <summary><span>{{ section.settings.q_delivery }}</span><i aria-hidden="true">+</i></summary>
+          <div class="o-q__a">{{ section.settings.a_delivery }}</div>
+        </details>
+      {%- endif -%}
+      {%- if section.settings.a_return != blank -%}
+        <details class="o-q">
+          <summary><span>{{ section.settings.q_return }}</span><i aria-hidden="true">+</i></summary>
+          <div class="o-q__a">{{ section.settings.a_return }}</div>
+        </details>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ORANE · Questions produit",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Mention", "default": "Tes questions" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "On te répond" },
+    { "type": "text", "id": "title_em", "label": "Titre en couleur", "default": "cash." },
+    { "type": "text", "id": "q_skin", "label": "Question : pour qui", "default": "C'est pour moi ?" },
+    { "type": "text", "id": "q_howto", "label": "Question : mode d'emploi", "default": "Je l'utilise comment ?" },
+    { "type": "text", "id": "q_actives", "label": "Question : actifs", "default": "Il y a quoi dedans ?" },
+    { "type": "text", "id": "q_routine", "label": "Question : routine", "default": "Je l'associe avec quoi ?" },
+    { "type": "text", "id": "q_delivery", "label": "Question : livraison", "default": "Je le reçois quand ?" },
+    { "type": "richtext", "id": "a_delivery", "label": "Réponse : livraison", "default": "<p>En 2 à 5 jours. Livraison offerte dès 50 € d'achat.</p>" },
+    { "type": "text", "id": "q_return", "label": "Question : retours", "default": "Et si je change d'avis ?" },
+    { "type": "richtext", "id": "a_return", "label": "Réponse : retours", "default": "<p>Tu as 14 jours. Écris-nous depuis la page Contact avec ton numéro de commande.</p>" },
+    { "type": "text", "id": "contact_text", "label": "Texte de contact", "default": "Une autre question ?" },
+    { "type": "text", "id": "contact_label", "label": "Lien de contact", "default": "Écris-nous ✦" },
+    { "type": "url", "id": "contact_link", "label": "Page de contact" }
+  ],
+  "presets": [{ "name": "ORANE · Questions produit" }]
+}
+{% endschema %}

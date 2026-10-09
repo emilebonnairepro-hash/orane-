@@ -1,0 +1,75 @@
+{%- comment -%}
+  ORANE — l'ouverture de la page À propos : une phrase en trois lignes qui arrivent l'une après l'autre,
+  la bouille dans l'anneau, une pastille qui tourne et des stickers à décoller.
+  Dans les lignes, [mot] = surligné.
+{%- endcomment -%}
+<section class="o-about">
+  {%- render 'orane-spark', color: 'pink', class: 'o-s1' -%}
+  {%- render 'orane-spark', color: 'lime', class: 'o-s2' -%}
+  <div class="o-wrap o-about__grid">
+    <div class="o-about__text">
+      <p class="o-kicker">{{ section.settings.kicker }}</p>
+      <h1 class="o-about__title">
+        {%- assign hls = 'citron,rose,mandarine' | split: ',' -%}
+        {%- assign lines = section.settings.lines | newline_to_br | split: '<br />' -%}
+        {%- for line in lines -%}
+          {%- assign l = line | strip -%}
+          {%- if l != blank -%}
+            {%- assign c = forloop.index0 | modulo: 3 -%}
+            <span class="o-about__line" style="--d: {{ forloop.index0 }}">
+              {{- l | replace: '[', '<span class="o-hl o-hl--HL">' | replace: 'HL', hls[c] | replace: ']', '</span>' -}}
+            </span>
+          {%- endif -%}
+        {%- endfor -%}
+      </h1>
+      {%- if section.settings.lead != blank -%}<div class="o-about__lead">{{ section.settings.lead }}</div>{%- endif -%}
+    </div>
+    <div class="o-about__art" aria-hidden="true">
+      {%- render 'orane-ring', class: 'o-about__ring' -%}
+      {%- render 'orane-bouille', class: 'o-about__bouille' -%}
+      <svg class="o-about__spin" viewBox="0 0 200 200">
+        <defs><path id="o-about-circle" d="M100 100 m-78 0 a78 78 0 1 1 156 0 a78 78 0 1 1 -156 0"/></defs>
+        <circle cx="100" cy="100" r="98" fill="#D4F23A" stroke="#2A1240" stroke-width="4"/>
+        <text font-family="Unbounded, sans-serif" font-weight="800" font-size="17" fill="#2A1240" letter-spacing="2">
+          <textPath href="#o-about-circle">{{ section.settings.spin }} ✦ {{ section.settings.spin }} ✦</textPath>
+        </text>
+      </svg>
+    </div>
+    {%- for block in section.blocks -%}
+      <p class="o-sticker o-drag o-bg-{{ block.settings.color }}" style="--r: {{ block.settings.rotate }}deg; left: {{ block.settings.x }}%; top: {{ block.settings.y }}%" {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ORANE · À propos (intro)",
+  "tag": "div",
+  "class": "section",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Mention", "default": "À propos d'ORANE" },
+    { "type": "textarea", "id": "lines", "label": "Les lignes du titre (une par ligne, [mot] = surligné)", "default": "On fait des [soins].\nDoux pour ta peau.\nPas [tristes] pour tes yeux." },
+    { "type": "richtext", "id": "lead", "label": "Texte" },
+    { "type": "text", "id": "spin", "label": "Texte de la pastille qui tourne", "default": "peau neuve · mine de rien" }
+  ],
+  "blocks": [
+    {
+      "type": "sticker",
+      "name": "Sticker",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Texte", "default": "zéro filtre" },
+        {
+          "type": "select", "id": "color", "label": "Couleur",
+          "options": [{ "value": "citron", "label": "Citron" }, { "value": "rose", "label": "Rose" }, { "value": "creme", "label": "Crème" }, { "value": "mandarine", "label": "Mandarine" }],
+          "default": "citron"
+        },
+        { "type": "range", "id": "x", "label": "Position horizontale (%)", "min": 0, "max": 90, "step": 1, "default": 60 },
+        { "type": "range", "id": "y", "label": "Position verticale (%)", "min": 0, "max": 90, "step": 1, "default": 80 },
+        { "type": "range", "id": "rotate", "label": "Inclinaison", "min": -15, "max": 15, "step": 1, "default": -4 }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ORANE · À propos (intro)" }]
+}
+{% endschema %}

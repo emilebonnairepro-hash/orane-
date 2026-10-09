@@ -1,0 +1,98 @@
+{%- comment -%}
+  ORANE — les univers : quatre grandes tuiles de couleur. Au survol, la tuile s'élargit,
+  les produits se déploient en éventail et la bouille passe une tête.
+  Sur une page collection, la tuile de la collection affichée est marquée « tu es ici ».
+{%- endcomment -%}
+<section class="o-uni o-uni--{{ section.settings.size }}">
+  <div class="o-wrap">
+    {%- if section.settings.title != blank -%}
+      <div class="o-uni__head">
+        <div>
+          {%- if section.settings.kicker != blank -%}<p class="o-kicker">{{ section.settings.kicker }}</p>{%- endif -%}
+          <h2 class="o-title">{{ section.settings.title }}{% if section.settings.title_em != blank %}<br><em>{{ section.settings.title_em }}</em>{% endif %}</h2>
+        </div>
+        {%- if section.settings.text != blank -%}<p class="o-uni__lead">{{ section.settings.text }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <ul class="o-uni__list">
+      {%- for block in section.blocks -%}
+        {%- assign c = block.settings.collection -%}
+        {%- assign here = false -%}
+        {%- if collection and c and collection.handle == c.handle -%}{%- assign here = true -%}{%- endif -%}
+        <li class="o-uni__tile o-uni__tile--{{ block.settings.color }}{% if here %} is-here{% endif %}" {{ block.shopify_attributes }}>
+          <a class="o-uni__link" href="{{ c.url | default: routes.all_products_collection_url }}">
+            <span class="o-uni__num">{{ forloop.index | prepend: '0' }}</span>
+            <span class="o-uni__fan" aria-hidden="true">
+              {%- for p in c.products limit: 3 -%}
+                <span class="o-uni__card" style="--i: {{ forloop.index0 }}">
+                  {%- if p.featured_image -%}
+                    {{ p.featured_image | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}
+                  {%- else -%}
+                    <span class="o-flask">orane</span>
+                  {%- endif -%}
+                </span>
+              {%- endfor -%}
+            </span>
+            {%- render 'orane-bouille', class: 'o-uni__bouille' -%}
+            <span class="o-uni__body">
+              <span class="o-uni__name">{{ block.settings.title | default: c.title }}</span>
+              {%- if block.settings.text != blank -%}<span class="o-uni__text">{{ block.settings.text }}</span>{%- endif -%}
+              <span class="o-uni__meta">
+                {%- if here -%}
+                  tu es ici ✦
+                {%- elsif c.products_count > 0 -%}
+                  {{ c.products_count }} soin{% if c.products_count > 1 %}s{% endif %}
+                {%- endif -%}
+              </span>
+            </span>
+            <span class="o-uni__go" aria-hidden="true">→</span>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ORANE · Univers",
+  "tag": "div",
+  "class": "section",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Mention", "default": "Choisis ton camp" },
+    { "type": "text", "id": "title", "label": "Titre (vide = tuiles seules)", "default": "Quatre univers," },
+    { "type": "text", "id": "title_em", "label": "Titre en couleur", "default": "zéro prise de tête." },
+    { "type": "text", "id": "text", "label": "Texte d'intro" },
+    {
+      "type": "select", "id": "size", "label": "Taille",
+      "options": [{ "value": "big", "label": "Grandes tuiles" }, { "value": "compact", "label": "Compactes (pages collection)" }],
+      "default": "big"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "univers",
+      "name": "Univers",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "text", "id": "title", "label": "Nom (vide = nom de la collection)" },
+        { "type": "text", "id": "text", "label": "Petite phrase" },
+        {
+          "type": "select", "id": "color", "label": "Couleur",
+          "options": [
+            { "value": "rose", "label": "Rose bonbon" },
+            { "value": "citron", "label": "Citron vert" },
+            { "value": "mandarine", "label": "Mandarine" },
+            { "value": "violet", "label": "Violet électrique" },
+            { "value": "creme", "label": "Crème" }
+          ],
+          "default": "rose"
+        }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ORANE · Univers", "blocks": [{ "type": "univers" }, { "type": "univers" }] }]
+}
+{% endschema %}

@@ -1,0 +1,59 @@
+{%- comment -%}
+  ORANE — les chiffres : de gros nombres qui comptent jusqu'à leur valeur quand on arrive dessus (orane.js).
+  Ne mets que des chiffres vrais.
+{%- endcomment -%}
+<section class="o-stats o-stats--{{ section.settings.color }}">
+  <div class="o-wrap">
+    {%- if section.settings.title != blank -%}
+      <p class="o-kicker">{{ section.settings.kicker }}</p>
+      <h2 class="o-title">{{ section.settings.title }}{% if section.settings.title_em != blank %}<br><em>{{ section.settings.title_em }}</em>{% endif %}</h2>
+    {%- endif -%}
+    <ul class="o-stats__list">
+      {%- for block in section.blocks -%}
+        <li class="o-stat o-stat--{{ block.settings.color }}" style="--r: {% cycle '-2deg', '1.5deg', '-1deg', '2deg' %}" {{ block.shopify_attributes }}>
+          <span class="o-stat__big">
+            <span class="o-stat__num" data-o-count="{{ block.settings.number }}">{{ block.settings.number }}</span>
+            {%- if block.settings.unit != blank -%}<span class="o-stat__unit">{{ block.settings.unit }}</span>{%- endif -%}
+          </span>
+          <span class="o-stat__label">{{ block.settings.label }}</span>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ORANE · Chiffres",
+  "tag": "div",
+  "class": "section",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Mention", "default": "En chiffres" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Petits chiffres," },
+    { "type": "text", "id": "title_em", "label": "Titre en couleur", "default": "grande bouille." },
+    {
+      "type": "select", "id": "color", "label": "Fond",
+      "options": [{ "value": "aubergine", "label": "Aubergine" }, { "value": "creme", "label": "Crème" }, { "value": "violet", "label": "Violet" }],
+      "default": "aubergine"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Chiffre",
+      "settings": [
+        { "type": "number", "id": "number", "label": "Nombre", "default": 6 },
+        { "type": "text", "id": "unit", "label": "Unité (facultatif)" },
+        { "type": "text", "id": "label", "label": "Légende", "default": "soins tout doux" },
+        {
+          "type": "select", "id": "color", "label": "Couleur",
+          "options": [{ "value": "citron", "label": "Citron" }, { "value": "rose", "label": "Rose" }, { "value": "mandarine", "label": "Mandarine" }, { "value": "creme", "label": "Crème" }],
+          "default": "citron"
+        }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ORANE · Chiffres", "blocks": [{ "type": "stat" }] }]
+}
+{% endschema %}

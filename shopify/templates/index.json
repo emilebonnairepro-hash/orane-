@@ -233,100 +233,77 @@
         "cta_label": "Je le veux"
       }
     },
-    "collection-list": {
-      "type": "collection-list",
+    "orane-univers": {
+      "type": "orane-univers",
       "blocks": {
-        "c1": {
-          "type": "featured_collection",
+        "u0": {
+          "type": "univers",
           "settings": {
-            "collection": "soin-du-visage"
+            "collection": "soin-du-visage",
+            "title": "Visage",
+            "text": "Nettoyer, réveiller, hydrater : la routine sans prise de tête.",
+            "color": "rose"
           }
         },
-        "c2": {
-          "type": "featured_collection",
+        "u1": {
+          "type": "univers",
           "settings": {
-            "collection": "soin-du-corps"
+            "collection": "soin-du-corps",
+            "title": "Corps",
+            "text": "Mains et corps, ça pétille sans dessécher.",
+            "color": "citron"
           }
         },
-        "c3": {
-          "type": "featured_collection",
+        "u2": {
+          "type": "univers",
           "settings": {
-            "collection": "soin-du-cuit-chevelu"
+            "collection": "soin-du-cuit-chevelu",
+            "title": "Cheveux",
+            "text": "La douceur qu'il faut aux cuirs chevelus sensibles.",
+            "color": "mandarine"
           }
         },
-        "c4": {
-          "type": "featured_collection",
+        "u3": {
+          "type": "univers",
           "settings": {
-            "collection": "homme"
+            "collection": "homme",
+            "title": "Homme",
+            "text": "Barbe douce et gel léger, zéro effet gras.",
+            "color": "violet"
           }
         }
       },
       "block_order": [
-        "c1",
-        "c2",
-        "c3",
-        "c4"
+        "u0",
+        "u1",
+        "u2",
+        "u3"
       ],
       "settings": {
-        "title": "Choisis ton univers",
-        "heading_size": "h1",
-        "image_ratio": "square",
-        "columns_desktop": 4,
-        "show_view_all": false,
-        "color_scheme": "scheme-4",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 72,
-        "padding_bottom": 80
+        "kicker": "Choisis ton camp",
+        "title": "Quatre univers,",
+        "title_em": "zéro prise de tête.",
+        "text": "",
+        "size": "big"
       }
     },
-    "produit-vedette": {
-      "type": "featured-product",
-      "blocks": {
-        "title": {
-          "type": "title",
-          "settings": {
-            "heading_size": "h1"
-          }
-        },
-        "price": {
-          "type": "price",
-          "settings": {}
-        },
-        "intro": {
-          "type": "text",
-          "settings": {
-            "text": "7 paires de patchs hydrogel, à la caféine et à la vitamine C, pour le contour des yeux. Le petit coup de frais du matin.",
-            "text_style": "body"
-          }
-        },
-        "buy_buttons": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": false,
-            "show_gift_card_recipient": true
-          }
-        }
-      },
-      "block_order": [
-        "title",
-        "price",
-        "intro",
-        "buy_buttons"
-      ],
+    "orane-vedette": {
+      "type": "orane-vedette",
       "settings": {
         "product": "patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c",
-        "secondary_background": false,
-        "media_size": "large",
-        "color_scheme": "scheme-2",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "media_position": "left",
-        "image_zoom": "lightbox",
-        "hide_variants": false,
-        "enable_video_looping": false,
-        "padding_top": 72,
-        "padding_bottom": 72
+        "kicker": "Le chouchou de la bande",
+        "add_label": "Je le veux ✦",
+        "more_label": "Tout savoir sur lui →"
+      }
+    },
+    "orane-actifs": {
+      "type": "orane-actifs",
+      "settings": {
+        "kicker": "L'explorateur d'actifs",
+        "title": "Ce qu'on met dedans,",
+        "title_em": "et pourquoi.",
+        "text": "Pas de jargon : clique sur un actif, on te dit à quoi il sert et où le trouver.",
+        "in_label": "On le trouve dans"
       }
     },
     "orane-rituel": {
@@ -381,11 +358,12 @@
     "orane-hero",
     "orane-ticker",
     "orane-manifeste",
+    "orane-univers",
     "orane-etagere",
     "multicolumn_garanties",
     "orane-quiz",
-    "collection-list",
-    "produit-vedette",
+    "orane-vedette",
+    "orane-actifs",
     "orane-rituel",
     "orane-outro"
   ]

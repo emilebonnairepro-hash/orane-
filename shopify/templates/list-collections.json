@@ -23,14 +23,58 @@
         "color": "violet"
       }
     },
-    "main": {
-      "type": "main-list-collections",
+    "univers": {
+      "type": "orane-univers",
+      "blocks": {
+        "u0": {
+          "type": "univers",
+          "settings": {
+            "collection": "soin-du-visage",
+            "title": "Visage",
+            "text": "Nettoyer, réveiller, hydrater : la routine sans prise de tête.",
+            "color": "rose"
+          }
+        },
+        "u1": {
+          "type": "univers",
+          "settings": {
+            "collection": "soin-du-corps",
+            "title": "Corps",
+            "text": "Mains et corps, ça pétille sans dessécher.",
+            "color": "citron"
+          }
+        },
+        "u2": {
+          "type": "univers",
+          "settings": {
+            "collection": "soin-du-cuit-chevelu",
+            "title": "Cheveux",
+            "text": "La douceur qu'il faut aux cuirs chevelus sensibles.",
+            "color": "mandarine"
+          }
+        },
+        "u3": {
+          "type": "univers",
+          "settings": {
+            "collection": "homme",
+            "title": "Homme",
+            "text": "Barbe douce et gel léger, zéro effet gras.",
+            "color": "violet"
+          }
+        }
+      },
+      "block_order": [
+        "u0",
+        "u1",
+        "u2",
+        "u3"
+      ],
       "settings": {
+        "kicker": "",
         "title": "",
-        "sort": "alphabetical",
-        "image_ratio": "square",
-        "columns_desktop": 4,
-        "columns_mobile": "2"
+        "title_em": "",
+        "text": "",
+        "size": "big"
       }
     },
     "promesses": {
@@ -74,7 +118,7 @@
   },
   "order": [
     "hero",
-    "main",
+    "univers",
     "promesses"
   ]
 }

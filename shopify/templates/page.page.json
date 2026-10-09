@@ -1,0 +1,353 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "intro": {
+      "type": "orane-apropos-intro",
+      "blocks": {
+        "s0": {
+          "type": "sticker",
+          "settings": {
+            "text": "zéro filtre",
+            "color": "citron",
+            "x": 52,
+            "y": 2,
+            "rotate": 6
+          }
+        },
+        "s1": {
+          "type": "sticker",
+          "settings": {
+            "text": "fais pas ta timide",
+            "color": "rose",
+            "x": 70,
+            "y": 90,
+            "rotate": -5
+          }
+        }
+      },
+      "block_order": [
+        "s0",
+        "s1"
+      ],
+      "settings": {
+        "kicker": "À propos d'ORANE",
+        "lines": "On fait des [soins].\nDoux pour ta peau.\nPas [tristes] pour tes yeux.",
+        "lead": "<p>ORANE réunit des soins pour le visage, le corps, le cuir chevelu et pour homme, avec une idée simple : prendre soin de soi ne devrait pas être compliqué.</p>",
+        "spin": "peau neuve · mine de rien"
+      }
+    },
+    "tapes": {
+      "type": "orane-ticker",
+      "blocks": {
+        "t0": {
+          "type": "phrase",
+          "settings": {
+            "text": "fais pas ta timide"
+          }
+        },
+        "t1": {
+          "type": "phrase",
+          "settings": {
+            "text": "zéro filtre"
+          }
+        },
+        "t2": {
+          "type": "phrase",
+          "settings": {
+            "text": "glow à la carte"
+          }
+        },
+        "t3": {
+          "type": "phrase",
+          "settings": {
+            "text": "bouille de star"
+          }
+        },
+        "t4": {
+          "type": "phrase",
+          "settings": {
+            "text": "100 % pep's"
+          }
+        }
+      },
+      "block_order": [
+        "t0",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ]
+    },
+    "manifeste": {
+      "type": "orane-manifeste",
+      "settings": {
+        "kicker": "L'idée de départ",
+        "text": "Prendre soin de soi ne devrait pas être [compliqué]. Alors on a fait des formules [douces] #anneau des gestes faciles et un ton [léger]. On parle fort, on rit beaucoup, et on te dit toujours ce que fait un soin #bouille",
+        "sign": "— la bande ORANE"
+      }
+    },
+    "valeurs": {
+      "type": "orane-valeurs",
+      "blocks": {
+        "v0": {
+          "type": "valeur",
+          "settings": {
+            "title": "Le doux",
+            "short": "Des soins qui n'agressent pas.",
+            "color": "rose",
+            "icon": "spark",
+            "long": "Des formules pensées pour nettoyer, hydrater ou apaiser sans agresser la peau."
+          }
+        },
+        "v1": {
+          "type": "valeur",
+          "settings": {
+            "title": "Le malin",
+            "short": "Des actifs connus, choisis pour leur rôle.",
+            "color": "citron",
+            "icon": "ring",
+            "long": "Acide hyaluronique, aloe vera, caféine, vitamine C… On les choisit pour ce qu'ils font, et on te l'explique sans jargon."
+          }
+        },
+        "v2": {
+          "type": "valeur",
+          "settings": {
+            "title": "Le simple",
+            "short": "Quatre univers, zéro prise de tête.",
+            "color": "mandarine",
+            "icon": "bouille",
+            "long": "Des gestes faciles et des associations évidentes : chaque fiche te dit avec quoi marier ton soin."
+          }
+        }
+      },
+      "block_order": [
+        "v0",
+        "v1",
+        "v2"
+      ],
+      "settings": {
+        "kicker": "Ce qu'on aime",
+        "title": "Trois mots,",
+        "title_em": "zéro blabla.",
+        "hint": "retourne-moi ↻",
+        "back_kicker": "En vrai, ça veut dire"
+      }
+    },
+    "chiffres": {
+      "type": "orane-chiffres",
+      "blocks": {
+        "n0": {
+          "type": "stat",
+          "settings": {
+            "number": 6,
+            "unit": "",
+            "label": "soins tout doux",
+            "color": "citron"
+          }
+        },
+        "n1": {
+          "type": "stat",
+          "settings": {
+            "number": 4,
+            "unit": "",
+            "label": "univers : visage, corps, cheveux, homme",
+            "color": "rose"
+          }
+        },
+        "n2": {
+          "type": "stat",
+          "settings": {
+            "number": 7,
+            "unit": "",
+            "label": "couleurs, pas une de plus",
+            "color": "mandarine"
+          }
+        },
+        "n3": {
+          "type": "stat",
+          "settings": {
+            "number": 50,
+            "unit": "€",
+            "label": "et la livraison est offerte",
+            "color": "creme"
+          }
+        }
+      },
+      "block_order": [
+        "n0",
+        "n1",
+        "n2",
+        "n3"
+      ],
+      "settings": {
+        "kicker": "En chiffres",
+        "title": "Petits chiffres,",
+        "title_em": "grande bouille.",
+        "color": "aubergine"
+      }
+    },
+    "bouille": {
+      "type": "orane-bouille-show",
+      "blocks": {
+        "b0": {
+          "type": "phrase",
+          "settings": {
+            "text": "coucou toi ✦"
+          }
+        },
+        "b1": {
+          "type": "phrase",
+          "settings": {
+            "text": "hihi, ça chatouille"
+          }
+        },
+        "b2": {
+          "type": "phrase",
+          "settings": {
+            "text": "fais pas ta timide"
+          }
+        },
+        "b3": {
+          "type": "phrase",
+          "settings": {
+            "text": "zéro filtre"
+          }
+        },
+        "b4": {
+          "type": "phrase",
+          "settings": {
+            "text": "encore !"
+          }
+        },
+        "b5": {
+          "type": "phrase",
+          "settings": {
+            "text": "glow à la carte"
+          }
+        },
+        "b6": {
+          "type": "phrase",
+          "settings": {
+            "text": "bouille de star"
+          }
+        },
+        "b7": {
+          "type": "phrase",
+          "settings": {
+            "text": "100 % pep's"
+          }
+        },
+        "b8": {
+          "type": "phrase",
+          "settings": {
+            "text": "peau neuve, mine de rien."
+          }
+        }
+      },
+      "block_order": [
+        "b0",
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6",
+        "b7",
+        "b8"
+      ],
+      "settings": {
+        "kicker": "La mascotte",
+        "title": "Elle, c'est",
+        "title_em": "la bouille.",
+        "text": "<p>Un clin d'œil, des joues roses, un grand sourire : la bouille, c'est l'esprit ORANE en une tête. Tu la croises partout sur le site. Elle te suit des yeux, et elle rit quand on la clique.</p>",
+        "hello": "coucou toi ✦",
+        "click_label": "clique-la, elle adore",
+        "count_label": "fous rires"
+      }
+    },
+    "jamais": {
+      "type": "orane-jamais",
+      "blocks": {
+        "j0": {
+          "type": "ligne",
+          "settings": {
+            "text": "Te promettre des miracles",
+            "instead": "On te dit ce que fait le soin, point."
+          }
+        },
+        "j1": {
+          "type": "ligne",
+          "settings": {
+            "text": "Te noyer sous le jargon",
+            "instead": "Des mots simples, et l'explorateur d'actifs pour le reste."
+          }
+        },
+        "j2": {
+          "type": "ligne",
+          "settings": {
+            "text": "Chuchoter en nude",
+            "instead": "Des couleurs qui crient, pour de vrai."
+          }
+        },
+        "j3": {
+          "type": "ligne",
+          "settings": {
+            "text": "Se prendre au sérieux",
+            "instead": "Le premier degré est interdit, le clin d'œil obligatoire."
+          }
+        }
+      },
+      "block_order": [
+        "j0",
+        "j1",
+        "j2",
+        "j3"
+      ],
+      "settings": {
+        "kicker": "Promis, juré",
+        "title": "Ce qu'on ne fera",
+        "title_em": "jamais.",
+        "text": "Quatre règles qu'on s'est fixées. On les relit souvent."
+      }
+    },
+    "shelf": {
+      "type": "orane-etagere",
+      "settings": {
+        "kicker": "Les soins",
+        "title": "Bon, on",
+        "title_em": "se lance ?",
+        "collection": "all",
+        "limit": 8,
+        "add_label": "Dans mon panier",
+        "soldout_label": "Voir le produit",
+        "all_label": "Tout voir"
+      }
+    },
+    "outro": {
+      "type": "orane-outro",
+      "settings": {
+        "line": "Bienvenue dans la bande ✦",
+        "word": "orane"
+      }
+    }
+  },
+  "order": [
+    "intro",
+    "tapes",
+    "manifeste",
+    "valeurs",
+    "chiffres",
+    "bouille",
+    "jamais",
+    "shelf",
+    "outro"
+  ]
+}

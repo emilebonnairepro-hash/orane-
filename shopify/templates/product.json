@@ -168,6 +168,25 @@
         "t4"
       ]
     },
+    "faq": {
+      "type": "orane-produit-faq",
+      "settings": {
+        "kicker": "Tes questions",
+        "title": "On te répond",
+        "title_em": "cash.",
+        "q_skin": "C'est pour moi ?",
+        "q_howto": "Je l'utilise comment ?",
+        "q_actives": "Il y a quoi dedans ?",
+        "q_routine": "Je l'associe avec quoi ?",
+        "q_delivery": "Je le reçois quand ?",
+        "a_delivery": "<p>En 2 à 5 jours. Livraison offerte dès 50 € d'achat ; en dessous, les frais s'affichent avant le paiement.</p>",
+        "q_return": "Et si je change d'avis ?",
+        "a_return": "<p>Tu as 14 jours. Écris-nous depuis la page Contact avec ton numéro de commande.</p>",
+        "contact_text": "Une autre question ?",
+        "contact_label": "Écris-nous ✦",
+        "contact_link": "shopify://pages/contact"
+      }
+    },
     "orane-promesses": {
       "type": "orane-promesses",
       "blocks": {
@@ -237,8 +256,9 @@
     "main",
     "histoire",
     "orane-tapes",
-    "orane-promesses",
+    "faq",
     "related-products",
+    "orane-promesses",
     "sticky"
   ]
 }

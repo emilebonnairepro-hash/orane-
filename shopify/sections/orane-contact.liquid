@@ -1,0 +1,130 @@
+{%- comment -%}
+  ORANE — le formulaire de contact : on choisit un sujet (la bulle de la bouille change, le champ « n° de commande »
+  apparaît si besoin), puis on écrit. Vrai formulaire Shopify : les messages arrivent dans la boîte mail de la boutique.
+{%- endcomment -%}
+<section class="o-contact" data-o-contact>
+  <div class="o-wrap o-contact__grid">
+    <div class="o-contact__side">
+      <div class="o-contact__buddy">
+        <p class="o-contact__bubble" aria-live="polite" data-o-contact-bubble>{{ section.settings.bubble }}</p>
+        {%- render 'orane-bouille', class: 'o-contact__bouille' -%}
+      </div>
+      <ul class="o-contact__facts">
+        {%- for block in section.blocks -%}
+          <li class="o-sticker o-bg-{{ block.settings.color }}" style="--r: {% cycle '-2deg', '1.5deg', '-1deg' %}" {{ block.shopify_attributes }}>
+            <strong>{{ block.settings.big }}</strong>{% if block.settings.small != blank %}<small>{{ block.settings.small }}</small>{% endif %}
+          </li>
+        {%- endfor -%}
+      </ul>
+      {%- if shop.email != blank and section.settings.show_email -%}
+        <p class="o-contact__mail">{{ section.settings.mail_label }} <a href="mailto:{{ shop.email }}">{{ shop.email }}</a></p>
+      {%- endif -%}
+    </div>
+
+    <div class="o-contact__card">
+      {%- form 'contact', id: 'OraneContact', class: 'o-cform' -%}
+        {%- if form.posted_successfully? -%}
+          <div class="o-cform__done" role="status" tabindex="-1" data-o-contact-done>
+            {%- render 'orane-bouille', class: 'o-cform__done-bouille' -%}
+            <p class="o-cform__done-title">{{ section.settings.done_title }}</p>
+            <p>{{ section.settings.done_text }}</p>
+            <a class="o-btn" href="{{ routes.all_products_collection_url }}">{{ section.settings.done_cta }}</a>
+          </div>
+        {%- else -%}
+          <p class="o-kicker">{{ section.settings.kicker }}</p>
+          <h2 class="o-cform__title">{{ section.settings.title }}</h2>
+          {%- if form.errors -%}
+            <div class="o-cform__errors" role="alert">{{ form.errors | default_errors }}</div>
+          {%- endif -%}
+
+          <fieldset class="o-cform__topics">
+            <legend>{{ section.settings.topics_label }}</legend>
+            {%- assign topics = section.settings.topics | newline_to_br | split: '<br />' -%}
+            {%- for t in topics -%}
+              {%- assign parts = t | strip | split: '|' -%}
+              {%- assign label = parts[0] | strip -%}
+              {%- if label != blank -%}
+                <label class="o-topic">
+                  <input type="radio" name="contact[sujet]" value="{{ label | escape }}"{% if forloop.first %} checked{% endif %}
+                    data-bubble="{{ parts[1] | strip | escape }}"{% if parts[2] contains 'commande' %} data-order{% endif %}>
+                  <span>{{ label }}</span>
+                </label>
+              {%- endif -%}
+            {%- endfor -%}
+          </fieldset>
+
+          <div class="o-cform__row">
+            <label class="o-field">
+              <span>{{ section.settings.name_label }}</span>
+              <input type="text" name="contact[name]" autocomplete="name" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}">
+            </label>
+            <label class="o-field">
+              <span>{{ section.settings.email_label }} *</span>
+              <input type="email" name="contact[email]" autocomplete="email" required aria-required="true"
+                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
+            </label>
+          </div>
+          <label class="o-field o-field--order" data-o-order hidden>
+            <span>{{ section.settings.order_label }}</span>
+            <input type="text" name="contact[commande]" placeholder="#1001" inputmode="text">
+          </label>
+          <label class="o-field">
+            <span>{{ section.settings.message_label }} *</span>
+            <textarea name="contact[body]" rows="6" required aria-required="true" placeholder="{{ section.settings.placeholder | escape }}" data-o-msg>{{ form.body }}</textarea>
+          </label>
+          <div class="o-cform__foot">
+            <p class="o-cform__meter" aria-hidden="true"><span data-o-meter></span></p>
+            <button type="submit" class="o-btn o-btn--big">{{ section.settings.send_label }}</button>
+          </div>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ORANE · Contact",
+  "tag": "div",
+  "class": "section",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "bubble", "label": "Première bulle de la bouille", "default": "dis-moi tout ✦" },
+    { "type": "checkbox", "id": "show_email", "label": "Afficher l'adresse e-mail de la boutique", "default": true },
+    { "type": "text", "id": "mail_label", "label": "Avant l'e-mail", "default": "Tu préfères l'e-mail ?" },
+    { "type": "text", "id": "kicker", "label": "Mention", "default": "Le formulaire" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Écris-nous un petit mot." },
+    { "type": "text", "id": "topics_label", "label": "Question des sujets", "default": "C'est à propos de…" },
+    {
+      "type": "textarea", "id": "topics", "label": "Sujets (un par ligne : sujet | bulle de la bouille | commande)",
+      "info": "Ajoute « commande » en troisième partie pour afficher le champ numéro de commande.",
+      "default": "Un soin | Je t'aide à choisir ✦\nMa commande | Ton numéro de commande m'aidera ! | commande\nJuste coucou | Coucou toi ✦"
+    },
+    { "type": "text", "id": "name_label", "label": "Champ nom", "default": "Ton prénom" },
+    { "type": "text", "id": "email_label", "label": "Champ e-mail", "default": "Ton e-mail" },
+    { "type": "text", "id": "order_label", "label": "Champ commande", "default": "Ton numéro de commande" },
+    { "type": "text", "id": "message_label", "label": "Champ message", "default": "Ton message" },
+    { "type": "text", "id": "placeholder", "label": "Exemple dans le message", "default": "Raconte-nous…" },
+    { "type": "text", "id": "send_label", "label": "Bouton", "default": "Envoyer ✦" },
+    { "type": "text", "id": "done_title", "label": "Titre après envoi", "default": "Message reçu !" },
+    { "type": "text", "id": "done_text", "label": "Texte après envoi", "default": "Merci, on lit tout et on te répond par e-mail." },
+    { "type": "text", "id": "done_cta", "label": "Bouton après envoi", "default": "En attendant, les soins →" }
+  ],
+  "blocks": [
+    {
+      "type": "fact",
+      "name": "Info en sticker",
+      "settings": [
+        { "type": "text", "id": "big", "label": "Gros texte", "default": "2 à 5 jours" },
+        { "type": "text", "id": "small", "label": "Petit texte", "default": "pour être livré" },
+        {
+          "type": "select", "id": "color", "label": "Couleur",
+          "options": [{ "value": "citron", "label": "Citron" }, { "value": "rose", "label": "Rose" }, { "value": "mandarine", "label": "Mandarine" }, { "value": "creme", "label": "Crème" }],
+          "default": "citron"
+        }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ORANE · Contact" }]
+}
+{% endschema %}

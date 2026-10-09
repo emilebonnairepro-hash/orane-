@@ -21,11 +21,12 @@
   .dawn-placeholder { padding: 3rem; text-align: center; font: 600 1.4rem var(--font-body-family); background: repeating-linear-gradient(45deg, #fff3e3, #fff3e3 12px, #f6e6cf 12px, #f6e6cf 24px); border-block: 2px dashed #2A1240; }
 </style>
 <link rel="stylesheet" href="shopify/assets/orane-brand.css">
+<link rel="stylesheet" href="shopify/assets/orane-v4.css">
 </head>
 <body>
 <div class="demo-bar">Livraison offerte dès 50€ d'achat</div>
 <header class="demo-header"><span>orane</span><nav><span>Visage</span><span>Corps</span><span>Cheveux</span><span>Homme</span><span>Panier (0)</span></nav></header>
-<main>
+<main data-template="index">
 <section class="o-hero" id="o-hero-orane-hero"><svg class="o-ring o-hero__ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
   <path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="#FF6A2B" stroke-width="18"/>
   <path d="M90 50 A40 40 0 0 1 10 50" fill="none" stroke="#FF5FA8" stroke-width="18"/>
@@ -96,6 +97,90 @@
   <path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/>
 </svg>
 <div class="o-wrap"><p class="o-kicker">Pourquoi ORANE ne ressemble à personne</p><p class="o-manifesto__text" data-o-reveal>Le secteur chuchote en nude. Nous, on parle <span class="o-hl o-hl--mandarine" style="--r: 2deg">fort</span>. Des couleurs qui crient <svg class="o-inline-icon" viewBox="0 0 100 100" aria-hidden="true"><path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="#FF6A2B" stroke-width="18"/><path d="M90 50 A40 40 0 0 1 10 50" fill="none" stroke="#FF5FA8" stroke-width="18"/><circle cx="78.3" cy="21.7" r="10" fill="#D4F23A"/></svg> des formes <span class="o-hl o-hl--rose" style="--r: -2deg">rondes</span> partout et des formules <span class="o-hl o-hl--citron" style="--r: 2deg">douces</span> pour ta peau. Le premier degré est interdit, le clin d&#39;œil obligatoire <svg class="o-inline-icon" viewBox="0 0 120 120" aria-hidden="true"><circle cx="58" cy="58" r="52" fill="#FF6A2B" stroke="#FFF3E3" stroke-width="6"/><ellipse cx="30" cy="70" rx="10" ry="7" fill="#FF5FA8"/><ellipse cx="86" cy="70" rx="10" ry="7" fill="#FF5FA8"/><circle cx="42" cy="48" r="7" fill="#2A1240"/><path d="M68 48 Q76 40 84 48" fill="none" stroke="#2A1240" stroke-width="5" stroke-linecap="round"/><path d="M36 66 Q58 98 82 66 Z" fill="#2A1240"/></svg></p><p class="o-manifesto__sign">— la bande ORANE</p></div>
+</section>
+
+
+<section class="o-uni o-uni--big">
+  <div class="o-wrap"><div class="o-uni__head">
+        <div><p class="o-kicker">Choisis ton camp</p><h2 class="o-title">Quatre univers,<br><em>zéro prise de tête.</em></h2>
+        </div></div><ul class="o-uni__list"><li class="o-uni__tile o-uni__tile--rose" >
+          <a class="o-uni__link" href="/collections/soin-du-visage">
+            <span class="o-uni__num">01</span>
+            <span class="o-uni__fan" aria-hidden="true"><span class="o-uni__card" style="--i: 0"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%23FF6A2B%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" alt="" loading="lazy"></span><span class="o-uni__card" style="--i: 1"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%232CC8F5%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" alt="" loading="lazy"></span><span class="o-uni__card" style="--i: 2"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%23FF5FA8%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" alt="" loading="lazy"></span></span><svg class="o-bouille o-uni__bouille" viewBox="0 0 120 120" role="img" aria-label="La bouille ORANE" focusable="false">
+  <circle cx="64" cy="64" r="52" fill="#2A1240"/>
+  <circle cx="58" cy="58" r="52" fill="#FF6A2B" stroke="#2A1240" stroke-width="5"/>
+  <ellipse cx="30" cy="70" rx="10" ry="7" fill="#FF5FA8"/>
+  <ellipse cx="86" cy="70" rx="10" ry="7" fill="#FF5FA8"/>
+  <circle class="o-eye-open" cx="42" cy="48" r="7" fill="#2A1240"/>
+  <path class="o-eye-happy" d="M34 50 Q42 41 50 50" fill="none" stroke="#2A1240" stroke-width="5" stroke-linecap="round"/>
+  <path d="M68 48 Q76 40 84 48" fill="none" stroke="#2A1240" stroke-width="5" stroke-linecap="round"/>
+  <path d="M36 66 Q58 98 82 66 Z" fill="#2A1240" stroke="#2A1240" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M48 80 Q58 72 70 80 Q60 90 48 80 Z" fill="#FF5FA8"/>
+</svg>
+<span class="o-uni__body">
+              <span class="o-uni__name">Visage</span><span class="o-uni__text">Nettoyer, réveiller, hydrater : la routine sans prise de tête.</span><span class="o-uni__meta">4 soins</span>
+            </span>
+            <span class="o-uni__go" aria-hidden="true">→</span>
+          </a>
+        </li><li class="o-uni__tile o-uni__tile--citron" >
+          <a class="o-uni__link" href="/collections/soin-du-corps">
+            <span class="o-uni__num">02</span>
+            <span class="o-uni__fan" aria-hidden="true"><span class="o-uni__card" style="--i: 0"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%23D4F23A%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" alt="" loading="lazy"></span></span><svg class="o-bouille o-uni__bouille" viewBox="0 0 120 120" role="img" aria-label="La bouille ORANE" focusable="false">
+  <circle cx="64" cy="64" r="52" fill="#2A1240"/>
+  <circle cx="58" cy="58" r="52" fill="#FF6A2B" stroke="#2A1240" stroke-width="5"/>
+  <ellipse cx="30" cy="70" rx="10" ry="7" fill="#FF5FA8"/>
+  <ellipse cx="86" cy="70" rx="10" ry="7" fill="#FF5FA8"/>
+  <circle class="o-eye-open" cx="42" cy="48" r="7" fill="#2A1240"/>
+  <path class="o-eye-happy" d="M34 50 Q42 41 50 50" fill="none" stroke="#2A1240" stroke-width="5" stroke-linecap="round"/>
+  <path d="M68 48 Q76 40 84 48" fill="none" stroke="#2A1240" stroke-width="5" stroke-linecap="round"/>
+  <path d="M36 66 Q58 98 82 66 Z" fill="#2A1240" stroke="#2A1240" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M48 80 Q58 72 70 80 Q60 90 48 80 Z" fill="#FF5FA8"/>
+</svg>
+<span class="o-uni__body">
+              <span class="o-uni__name">Corps</span><span class="o-uni__text">Mains et corps, ça pétille sans dessécher.</span><span class="o-uni__meta">1 soin</span>
+            </span>
+            <span class="o-uni__go" aria-hidden="true">→</span>
+          </a>
+        </li><li class="o-uni__tile o-uni__tile--mandarine" >
+          <a class="o-uni__link" href="/collections/soin-du-cuit-chevelu">
+            <span class="o-uni__num">03</span>
+            <span class="o-uni__fan" aria-hidden="true"><span class="o-uni__card" style="--i: 0"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%23FFF3E3%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" alt="" loading="lazy"></span></span><svg class="o-bouille o-uni__bouille" viewBox="0 0 120 120" role="img" aria-label="La bouille ORANE" focusable="false">
+  <circle cx="64" cy="64" r="52" fill="#2A1240"/>
+  <circle cx="58" cy="58" r="52" fill="#FF6A2B" stroke="#2A1240" stroke-width="5"/>
+  <ellipse cx="30" cy="70" rx="10" ry="7" fill="#FF5FA8"/>
+  <ellipse cx="86" cy="70" rx="10" ry="7" fill="#FF5FA8"/>
+  <circle class="o-eye-open" cx="42" cy="48" r="7" fill="#2A1240"/>
+  <path class="o-eye-happy" d="M34 50 Q42 41 50 50" fill="none" stroke="#2A1240" stroke-width="5" stroke-linecap="round"/>
+  <path d="M68 48 Q76 40 84 48" fill="none" stroke="#2A1240" stroke-width="5" stroke-linecap="round"/>
+  <path d="M36 66 Q58 98 82 66 Z" fill="#2A1240" stroke="#2A1240" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M48 80 Q58 72 70 80 Q60 90 48 80 Z" fill="#FF5FA8"/>
+</svg>
+<span class="o-uni__body">
+              <span class="o-uni__name">Cheveux</span><span class="o-uni__text">La douceur qu'il faut aux cuirs chevelus sensibles.</span><span class="o-uni__meta">1 soin</span>
+            </span>
+            <span class="o-uni__go" aria-hidden="true">→</span>
+          </a>
+        </li><li class="o-uni__tile o-uni__tile--violet" >
+          <a class="o-uni__link" href="/collections/homme">
+            <span class="o-uni__num">04</span>
+            <span class="o-uni__fan" aria-hidden="true"><span class="o-uni__card" style="--i: 0"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%23FF6A2B%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" alt="" loading="lazy"></span><span class="o-uni__card" style="--i: 1"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%23FF5FA8%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" alt="" loading="lazy"></span></span><svg class="o-bouille o-uni__bouille" viewBox="0 0 120 120" role="img" aria-label="La bouille ORANE" focusable="false">
+  <circle cx="64" cy="64" r="52" fill="#2A1240"/>
+  <circle cx="58" cy="58" r="52" fill="#FF6A2B" stroke="#2A1240" stroke-width="5"/>
+  <ellipse cx="30" cy="70" rx="10" ry="7" fill="#FF5FA8"/>
+  <ellipse cx="86" cy="70" rx="10" ry="7" fill="#FF5FA8"/>
+  <circle class="o-eye-open" cx="42" cy="48" r="7" fill="#2A1240"/>
+  <path class="o-eye-happy" d="M34 50 Q42 41 50 50" fill="none" stroke="#2A1240" stroke-width="5" stroke-linecap="round"/>
+  <path d="M68 48 Q76 40 84 48" fill="none" stroke="#2A1240" stroke-width="5" stroke-linecap="round"/>
+  <path d="M36 66 Q58 98 82 66 Z" fill="#2A1240" stroke="#2A1240" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M48 80 Q58 72 70 80 Q60 90 48 80 Z" fill="#FF5FA8"/>
+</svg>
+<span class="o-uni__body">
+              <span class="o-uni__name">Homme</span><span class="o-uni__text">Barbe douce et gel léger, zéro effet gras.</span><span class="o-uni__meta">2 soins</span>
+            </span>
+            <span class="o-uni__go" aria-hidden="true">→</span>
+          </a>
+        </li></ul>
+  </div>
 </section>
 
 
@@ -185,7 +270,7 @@
 </section>
 
 
-<section class="o-quiz" data-o-quiz><svg class="o-spark o-spark--lime o-s1" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+<section class="o-quiz" id="quiz" data-o-quiz><svg class="o-spark o-spark--lime o-s1" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
   <path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/>
 </svg>
 <div class="o-wrap o-quiz__grid">
@@ -235,7 +320,117 @@
 </section>
 
 
-<div class="dawn-placeholder">Section existante du thème : collection-list — « Choisis ton univers »</div><div class="dawn-placeholder">Section existante du thème : featured-product</div><section class="o-ritual">
+<section class="o-vedette"><svg class="o-spark o-spark--creme o-s1" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+  <path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/>
+</svg>
+<svg class="o-spark o-spark--lime o-s2" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+  <path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/>
+</svg>
+<div class="o-wrap o-vedette__grid">
+    <div class="o-vedette__stage"><svg class="o-ring o-vedette__ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+  <path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="#FF6A2B" stroke-width="18"/>
+  <path d="M90 50 A40 40 0 0 1 10 50" fill="none" stroke="#FF5FA8" stroke-width="18"/>
+  <circle cx="78.3" cy="21.7" r="10" fill="#D4F23A"/>
+</svg>
+<a class="o-vedette__media" href="/products/patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c" tabindex="-1" aria-hidden="true"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%23FFF3E3%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" alt="" loading="lazy"></a>
+      <p class="o-sticker o-sticker--round o-bg-citron o-vedette__price">13,40 €</p>
+      <ul class="o-vedette__orbit" aria-label="Les actifs"><li class="o-sticker o-bg-creme" style="--i: 0">Caféine</li><li class="o-sticker o-bg-creme" style="--i: 1">Panthénol</li><li class="o-sticker o-bg-creme" style="--i: 2">Vitamine C</li></ul>
+    </div>
+
+    <div class="o-vedette__info">
+      <p class="o-kicker">Le chouchou de la bande</p>
+      <h2 class="o-vedette__title"><a href="/products/patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c">Patchs hydrogel énergisants pour les yeux</a></h2><p class="o-vedette__lead">Un petit moment rien que pour ton regard.</p><ul class="o-vedette__loves"><li>Caféine : aide à décongestionner le regard fatigué</li><li>Vitamine C : aide à éclaircir le teint</li><li>Panthénol et glycérine : peau hydratée et apaisée</li></ul><div class="o-vedette__ctas"><form class="o-prod__form" action="#panier" method="post">
+            <input type="hidden" name="id" value="1">
+            <input type="hidden" name="quantity" value="1">
+            <button type="submit" class="o-btn o-btn--big o-add">Je le veux ✦</button>
+          </form><a class="o-vedette__more" href="/products/patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c">Tout savoir sur lui →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="o-actifs" data-o-actifs>
+  <div class="o-wrap">
+    <div class="o-actifs__head">
+      <p class="o-kicker">L'explorateur d'actifs</p>
+      <h2 class="o-title">Ce qu'on met dedans,<br><em>et pourquoi.</em></h2><p class="o-actifs__lead">Pas de jargon : clique sur un actif, on te dit à quoi il sert et où le trouver.</p></div>
+
+    <div class="o-actifs__grid">
+      <div class="o-actifs__chips" role="tablist" aria-label="L&#39;explorateur d&#39;actifs"><button type="button" role="tab" class="o-actif-chip o-actif-chip--citron"
+            aria-selected="true"
+            data-actif="betaine" style="--r: -3deg">Bétaïne</button><button type="button" role="tab" class="o-actif-chip o-actif-chip--rose"
+            aria-selected="false"
+            data-actif="proteines-de-ble" style="--r: 2deg">Protéines de blé</button><button type="button" role="tab" class="o-actif-chip o-actif-chip--mandarine"
+            aria-selected="false"
+            data-actif="acide-hyaluronique" style="--r: -1deg">Acide hyaluronique</button><button type="button" role="tab" class="o-actif-chip o-actif-chip--citron"
+            aria-selected="false"
+            data-actif="jus-d-aloe-vera" style="--r: 3deg">Jus d’aloe vera</button><button type="button" role="tab" class="o-actif-chip o-actif-chip--rose"
+            aria-selected="false"
+            data-actif="cafeine" style="--r: -3deg">Caféine</button><button type="button" role="tab" class="o-actif-chip o-actif-chip--mandarine"
+            aria-selected="false"
+            data-actif="panthenol" style="--r: 2deg">Panthénol</button><button type="button" role="tab" class="o-actif-chip o-actif-chip--citron"
+            aria-selected="false"
+            data-actif="vitamine-c" style="--r: -1deg">Vitamine C</button></div>
+
+      <div class="o-actifs__panel"><div class="o-actifs__why is-on" data-why="betaine">
+            <p class="o-actifs__name">Bétaïne</p>
+            <p class="o-actifs__text">Aide la peau à garder son hydratation.</p>
+          </div><div class="o-actifs__why" data-why="proteines-de-ble">
+            <p class="o-actifs__name">Protéines de blé</p>
+            <p class="o-actifs__text">Gainent la fibre, pour des cheveux plus doux.</p>
+          </div><div class="o-actifs__why" data-why="acide-hyaluronique">
+            <p class="o-actifs__name">Acide hyaluronique</p>
+            <p class="o-actifs__text">Retient l'eau comme une éponge : la peau a l'air plus rebondie.</p>
+          </div><div class="o-actifs__why" data-why="jus-d-aloe-vera">
+            <p class="o-actifs__name">Jus d’aloe vera</p>
+            <p class="o-actifs__text">Le grand classique tout doux, qui rafraîchit et apaise.</p>
+          </div><div class="o-actifs__why" data-why="cafeine">
+            <p class="o-actifs__name">Caféine</p>
+            <p class="o-actifs__text">Le petit coup de fouet qui réveille le regard.</p>
+          </div><div class="o-actifs__why" data-why="panthenol">
+            <p class="o-actifs__name">Panthénol</p>
+            <p class="o-actifs__text">Hydrate et adoucit, sans faire de bruit.</p>
+          </div><div class="o-actifs__why" data-why="vitamine-c">
+            <p class="o-actifs__name">Vitamine C</p>
+            <p class="o-actifs__text">Pour un teint qui a l'air plus lumineux.</p>
+          </div><p class="o-kicker o-actifs__in">On le trouve dans</p>
+        <ul class="o-actifs__prods"><li class="o-actifs__prod is-on" data-actifs="|betaine|">
+                <a href="/products/gel-lavant-mains-corps-pamplemousse">
+                  <span class="o-actifs__img"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%23D4F23A%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" alt="" loading="lazy"></span>
+                  <span class="o-actifs__pname">Gel lavant mains & corps, pamplemousse</span>
+                  <span class="o-actifs__price">8,30 €</span>
+                </a>
+              </li><li class="o-actifs__prod is-on" data-actifs="|betaine|proteines-de-ble|">
+                <a href="/products/shampooing-pour-cuir-chevelu-sensible">
+                  <span class="o-actifs__img"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%23FFF3E3%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" alt="" loading="lazy"></span>
+                  <span class="o-actifs__pname">Shampooing pour cuir chevelu sensible</span>
+                  <span class="o-actifs__price">11,20 €</span>
+                </a>
+              </li><li class="o-actifs__prod" data-actifs="|acide-hyaluronique|jus-d-aloe-vera|">
+                <a href="/products/demaquillant-biphasic-sans-parfum-1">
+                  <span class="o-actifs__img"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%232CC8F5%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" alt="" loading="lazy"></span>
+                  <span class="o-actifs__pname">Démaquillant BiPhasic, sans parfum</span>
+                  <span class="o-actifs__price">6,30 €</span>
+                </a>
+              </li><li class="o-actifs__prod" data-actifs="|acide-hyaluronique|jus-d-aloe-vera|">
+                <a href="/products/gel-visage-au-zinc-sans-huile-pour-hommes">
+                  <span class="o-actifs__img"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%23FF5FA8%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" alt="" loading="lazy"></span>
+                  <span class="o-actifs__pname">Gel visage au zinc sans huile pour hommes</span>
+                  <span class="o-actifs__price">9,00 €</span>
+                </a>
+              </li><li class="o-actifs__prod" data-actifs="|cafeine|panthenol|vitamine-c|">
+                <a href="/products/patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c">
+                  <span class="o-actifs__img"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%22150%22%20y%3D%2270%22%20width%3D%22100%22%20height%3D%2250%22%20rx%3D%2210%22%20fill%3D%22%232A1240%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22110%22%20width%3D%22160%22%20height%3D%22230%22%20rx%3D%2240%22%20fill%3D%22%23FFF3E3%22%20stroke%3D%22%232A1240%22%20stroke-width%3D%226%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22235%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20fill%3D%22%232A1240%22%3Eorane%3C%2Ftext%3E%3C%2Fsvg%3E" alt="" loading="lazy"></span>
+                  <span class="o-actifs__pname">Patchs hydrogel énergisants pour les yeux</span>
+                  <span class="o-actifs__price">13,40 €</span>
+                </a>
+              </li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="o-ritual">
   <div class="o-wrap">
     <div class="o-ritual__head">
       <div><p class="o-kicker">Le rituel</p><h2 class="o-title">Trois gestes,<br><em>mine de rien.</em></h2>

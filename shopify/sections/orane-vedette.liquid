@@ -1,0 +1,91 @@
+{%- comment -%}
+  ORANE — le produit vedette : le produit au centre de l'anneau qui tourne, ses actifs en orbite,
+  l'accroche et « ce que tu vas aimer » tirés de sa description, ajout au panier sur place.
+{%- endcomment -%}
+{%- assign p = section.settings.product -%}
+{%- if p == blank -%}{%- assign p = collections.all.products.first -%}{%- endif -%}
+{%- liquid
+  assign d = p.description
+  assign chunks = d | split: '<h3>'
+  assign intro = chunks | first
+  assign lead = ''
+  if intro contains '<strong>'
+    assign lead = intro | split: '</strong>' | first | split: '<strong>' | last | strip_html | strip
+  endif
+  assign loves = ''
+  for chunk in chunks offset: 1
+    assign t = chunk | split: '</h3>' | first | downcase
+    if t contains 'aimer'
+      assign loves = chunk | split: '</h3>' | last
+    endif
+  endfor
+  assign actives = ''
+  for tag in p.tags
+    if tag contains '(Principes actifs)'
+      assign a = tag | remove: ' (Principes actifs)'
+      assign actives = actives | append: a | append: '|'
+    endif
+  endfor
+  assign actives = actives | split: '|'
+-%}
+<section class="o-vedette">
+  {%- render 'orane-spark', color: 'creme', class: 'o-s1' -%}
+  {%- render 'orane-spark', color: 'lime', class: 'o-s2' -%}
+  <div class="o-wrap o-vedette__grid">
+    <div class="o-vedette__stage">
+      {%- render 'orane-ring', class: 'o-vedette__ring' -%}
+      <a class="o-vedette__media" href="{{ p.url }}" tabindex="-1" aria-hidden="true">
+        {%- if p.featured_image -%}
+          {{ p.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', alt: '', sizes: '(min-width: 990px) 40vw, 80vw' }}
+        {%- else -%}
+          <span class="o-flask">orane</span>
+        {%- endif -%}
+      </a>
+      <p class="o-sticker o-sticker--round o-bg-citron o-vedette__price">{{ p.price | money }}</p>
+      <ul class="o-vedette__orbit" aria-label="Les actifs">
+        {%- for a in actives limit: 3 -%}
+          <li class="o-sticker o-bg-creme" style="--i: {{ forloop.index0 }}">{{ a }}</li>
+        {%- endfor -%}
+      </ul>
+    </div>
+
+    <div class="o-vedette__info">
+      <p class="o-kicker">{{ section.settings.kicker }}</p>
+      <h2 class="o-vedette__title"><a href="{{ p.url }}">{{ p.title }}</a></h2>
+      {%- if lead != blank -%}<p class="o-vedette__lead">{{ lead }}</p>{%- endif -%}
+      {%- if loves != blank -%}
+        {%- assign items = loves | split: '<li>' -%}
+        <ul class="o-vedette__loves">
+          {%- for it in items offset: 1 limit: 3 -%}
+            <li>{{ it | split: '</li>' | first | strip_html | strip }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+      <div class="o-vedette__ctas">
+        {%- if p.available -%}
+          <form class="o-prod__form" action="{{ routes.cart_add_url }}" method="post">
+            <input type="hidden" name="id" value="{{ p.selected_or_first_available_variant.id }}">
+            <input type="hidden" name="quantity" value="1">
+            <button type="submit" class="o-btn o-btn--big o-add">{{ section.settings.add_label }}</button>
+          </form>
+        {%- endif -%}
+        <a class="o-vedette__more" href="{{ p.url }}">{{ section.settings.more_label }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ORANE · Produit vedette",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Produit" },
+    { "type": "text", "id": "kicker", "label": "Mention", "default": "Le chouchou de la bande" },
+    { "type": "text", "id": "add_label", "label": "Bouton d'ajout", "default": "Je le veux ✦" },
+    { "type": "text", "id": "more_label", "label": "Lien vers la fiche", "default": "Tout savoir sur lui →" }
+  ],
+  "presets": [{ "name": "ORANE · Produit vedette" }]
+}
+{% endschema %}
