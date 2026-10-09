@@ -21,7 +21,14 @@ import json, pathlib, re, subprocess, sys, html as h
 ICI = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(ICI.parent))
 sys.path.insert(0, str(ICI.parent / "calque"))
-from couleurs import C, palette, texte_sur, couleur_motif, motif_svg  # noqa: E402
+from couleurs import C, palette, texte_sur, couleur_motif  # noqa: E402
+from urllib.parse import quote
+
+
+def swirl(couleur):
+    """Les formes exactes du modèle (etiquettes/assets/swirl-modele.svg), recolorées."""
+    svg = (ICI.parent / "assets" / "swirl-modele.svg").read_text(encoding="utf-8").replace("#B8ADFF", couleur)
+    return "data:image/svg+xml," + quote(svg)
 from calque import geometrie, BOUILLE               # noqa: E402
 
 A, CR = C["aubergine"], C["creme"]
@@ -56,6 +63,8 @@ def page(spec, guides=False):
     G = geometrie(g)
     P = palette(p["univers"])
     FOND, TEXTE = C[P["fond"]], C[P["texte"]]
+    if p.get("couleurs_modele"):          # couleurs exactes du modèle (menthe + lavande) : texte aubergine partout
+        TEXTE = C["aubergine"]
     fx0, fy0, fx1, fy1 = G["front"]
     FW, FH = fx1 - fx0, fy1 - fy0
     bx0, by0, bx1, by1 = G["bg"]
@@ -130,7 +139,7 @@ def page(spec, guides=False):
 * {{ box-sizing: border-box; margin: 0; padding: 0; }}
 html, body {{ width: {G['W']}mm; height: {G['H']}mm; overflow: hidden; background: transparent; }}
 body {{ position: relative; color: {TEXTE}; font-family: "Bricolage Grotesque", sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; --k: 1; --q: 1; }}
-.fond {{ position: absolute; left: {bx0}mm; top: {by0}mm; width: {bx1 - bx0}mm; height: {by1 - by0}mm; background-color: {couleur_motif(p['univers'])}; background-image: url("{motif_svg(FOND)}"); background-size: {(by1 - by0) * 1.3:.2f}mm 100%; background-repeat: repeat-x; overflow: hidden; }}
+.fond {{ position: absolute; left: {bx0}mm; top: {by0}mm; width: {bx1 - bx0}mm; height: {by1 - by0}mm; background-color: {'#C9FFF7' if p.get('couleurs_modele') else couleur_motif(p['univers'])}; background-image: url("{swirl('#B8ADFF' if p.get('couleurs_modele') else FOND)}"); background-size: cover; background-position: left center; background-repeat: no-repeat; overflow: hidden; }}
 .fond::after {{ content: ""; position: absolute; right: 0; top: {G['b'] + G['m']}mm; bottom: {G['b'] + G['m']}mm; border-right: .5mm dashed {TEXTE}; opacity: .35; }}
 .trou {{ position: absolute; background: #fff; }}
 .sp {{ position: absolute; }}
