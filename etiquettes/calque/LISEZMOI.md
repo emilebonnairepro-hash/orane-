@@ -22,6 +22,9 @@ taille exacte du gabarit), `etiquette.pdf`, `apercu.png` (avec les repères).
   côté : grands chiffres du geste, pastilles des actifs, séparateurs). Sur les petits formats, l'accroche
   puis la 2e pastille disparaissent avant que le nom ne rapetisse. Champs en plus : `accroche`, `cercle` (facultatif).
 
+- v5 équilibrée : `python3 etiquettes/calque/calque.py --v5` → `sortie-v5/`
+  (la structure de la signature sans le texte circulaire, une seule pastille, côté sans « pour qui » ni pastilles d'actifs)
+
 ## Ajouter un produit
 Copie `produits/07-gel-nettoyant-purifiant.json`, renomme-le, puis remplis :
 - `gabarit` : d'après le manuel Selfnamed du produit (zip « Download template »)

@@ -310,8 +310,8 @@ run();
 </body></html>"""
 
 def main(args):
-    style = "epure" if "--epure" in args else "signature" if "--signature" in args else "plein"
-    dossier = {"epure": "sortie-epure", "signature": "sortie-signature"}.get(style, "sortie")
+    style = "epure" if "--epure" in args else "signature" if "--signature" in args else "v5" if "--v5" in args else "plein"
+    dossier = {"epure": "sortie-epure", "signature": "sortie-signature", "v5": "sortie-v5"}.get(style, "sortie")
     args = [a for a in args if not a.startswith("--")]
     fichiers = sorted((ICI / "produits").glob("*.json"))
     if args:
@@ -324,9 +324,9 @@ def main(args):
         g = spec["gabarit"]
         px = g.get("px") or [round(g["largeur"] / 25.4 * 600), round(g["hauteur"] / 25.4 * 600)]
         for nom, guides in (("etiquette", False), ("apercu", True)):
-            if style == "signature":
+            if style in ("signature", "v5"):
                 import signature
-                contenu = signature.page(spec, guides)
+                contenu = signature.page(spec, guides, leger=style == "v5")
             else:
                 contenu = page(spec, guides, style)
             (out / f"{nom}.html").write_text(contenu, encoding="utf-8")

@@ -11,7 +11,7 @@ Même géométrie et mêmes fichiers produits que les autres styles (voir calque
 from calque import C, FONCES, BOUILLE, anneau, spark, svg_asset, e, geometrie
 
 
-def page(spec, guides=False):
+def page(spec, guides=False, leger=False):
     g, p, t = spec["gabarit"], spec["produit"], spec["theme"]
     G = geometrie(g)
     fond, texte = C[t["fond"]], C[t.get("texte", "aubergine")]
@@ -35,7 +35,7 @@ def page(spec, guides=False):
     nom_html = "".join(
         f'<span class="ln{" em" if i % 2 else ""}" data-fit data-max="{p.get("taille_max", 40) * u:.1f}">{e(l)}</span>'
         for i, l in enumerate(lignes))
-    two = p.get("pastilles", [])[:2]
+    two = p.get("pastilles", [])[:1 if leger else 2]
     pills_html = "".join(
         f'<span class="pill" style="--bg:{pills[i % len(pills)]};--fg:{CR if pills[i % len(pills)] in (C["violet"], A) else A};--r:{[-5, 4][i % 2]}deg">{e(x)}</span>'
         for i, x in enumerate(two))
@@ -49,15 +49,18 @@ def page(spec, guides=False):
         if p.get("geste"):
             steps = "".join(f'<li><b>{i + 1}</b><span>{e(x)}</span></li>' for i, x in enumerate(p["geste"]))
             blocs.append(f'<section><p class="ct">{e(p.get("titre_geste", "Le geste"))}</p><ol class="steps">{steps}</ol></section>')
-        if p.get("dedans"):
+        if p.get("dedans") and leger:
+            blocs.append(f'<section><p class="ct">{e(p.get("titre_dedans", "Dedans"))}</p><p class="txt">{e(" · ".join(p["dedans"]))}.'
+                         f'{(" " + e(p["parfum"])) if p.get("parfum") else ""}</p></section>')
+        elif p.get("dedans"):
             chips = "".join(f'<span class="chip">{e(x)}</span>' for x in p["dedans"])
             blocs.append(f'<section><p class="ct">{e(p.get("titre_dedans", "Dedans"))}</p><div class="chips">{chips}</div>'
                          f'{"<p class=note>" + e(p["parfum"]) + "</p>" if p.get("parfum") else ""}</section>')
-        if p.get("pour_qui"):
+        if p.get("pour_qui") and not leger:
             blocs.append(f'<section><p class="ct">Pour qui ?</p><p class="txt">{e(p["pour_qui"])}</p></section>')
         badges = "".join(f'<p class="badge"><span>{e(x["grand"])}<small>{e(x.get("petit", ""))}</small></span></p>' for x in p.get("badges", []))
         logos = "".join(svg_asset(l, "logo") for l in p.get("logos", []))
-        sep = f'<div class="sep">{spark("", accent if not fonce else C["citron"]).replace('class="sp "', 'class="sepsp"')}</div>'
+        sep = '<div class="sep sep--fin"></div>' if leger else f'<div class="sep">{spark("", accent if not fonce else C["citron"]).replace('class="sp "', 'class="sepsp"')}</div>'
         corps = sep.join(blocs)
         side_html = (f'<div class="side" style="left:{sx0}mm;top:{sy0}mm;width:{sx1 - sx0}mm;height:{sy1 - sy0}mm">'
                      f'<div class="side-in">{corps}</div>{"<div class=badges>" + badges + logos + "</div>" if (badges or logos) else ""}</div>')
@@ -109,20 +112,21 @@ body {{ position: relative; color: {texte}; font-family: "Bricolage Grotesque", 
   border: {.55 * u:.2f}mm solid {A}; border-radius: {5 * u:.2f}mm; box-shadow: {1.1 * u:.2f}mm {1.1 * u:.2f}mm 0 {A}; }}
 .halo {{ position: relative; flex: none; width: min(86cqw, 66cqh); aspect-ratio: 1; }}
 .halo svg.cercle {{ position: absolute; inset: 0; width: 100%; height: 100%; animation: none; }}
-.halo .bouille {{ position: absolute; width: 56%; left: 22%; top: 21%; transform: rotate(8deg); }}
+.halo .bouille {{ position: absolute; width: {68 if leger else 56}%; left: {16 if leger else 22}%; top: {15 if leger else 21}%; transform: rotate(8deg); }}
 .halo .sp {{ width: 16%; right: -6%; top: 2%; }}
 .win-foot {{ position: relative; flex: 1; align-self: stretch; padding: {1.6 * u:.2f}mm {2.4 * u:.2f}mm {2 * u:.2f}mm; color: {A}; display: flex; flex-direction: column; justify-content: space-between; gap: {1.6 * u:.2f}mm; align-items: center; }}
 .pills {{ display: flex; flex-wrap: wrap; justify-content: center; gap: {1.2 * u:.2f}mm; }}
 .pill {{ background: var(--bg); color: var(--fg); border: {.45 * u:.2f}mm solid {A}; border-radius: 99mm; padding: {.7 * u:.2f}mm {2.2 * u:.2f}mm;
   font-family: Unbounded, sans-serif; font-weight: 700; font-size: {pt(5.8)}; white-space: nowrap; transform: rotate(var(--r)); box-shadow: {.55 * u:.2f}mm {.55 * u:.2f}mm 0 {A}; }}
 .acc {{ font-family: Unbounded, sans-serif; font-weight: 800; font-size: {pt(6.4)}; line-height: 1.15; text-align: center; letter-spacing: -.01em; max-width: 92%; }}
+{'.win-foot {{ justify-content: flex-start; gap: ' + format(2.6 * u, '.2f') + 'mm; }} .win-foot .acc {{ margin: auto 0; font-size: ' + format(max(5.0, 7.2 * u), '.2f') + 'pt; font-weight: 700; }}' if leger else ''}
 .vol {{ align-self: stretch; display: flex; justify-content: space-between; align-items: baseline; border-top: {.3 * u:.2f}mm dashed {A}; padding-top: {1 * u:.2f}mm; }}
 .vol span {{ font-weight: 700; font-size: {pt(5.2)}; }}
 .vol b {{ font-family: Unbounded, sans-serif; font-weight: 800; font-size: {pt(6.4)}; white-space: nowrap; }}
 
 /* ----- côté ----- */
 .side {{ position: absolute; display: flex; flex-direction: column; }}
-.side-in {{ display: flex; flex-direction: column; gap: 2.2mm; }}
+.side-in {{ display: flex; flex-direction: column; gap: {4 if leger else 2.2}mm; }}
 .ct {{ font-family: Unbounded, sans-serif; font-weight: 800; font-size: 8pt; letter-spacing: -.01em; margin-bottom: 1.6mm; }}
 .steps {{ list-style: none; display: grid; gap: 1.4mm; }}
 .steps li {{ display: grid; grid-template-columns: 7mm 1fr; align-items: center; gap: 1.6mm; font-weight: 700; font-size: 6.6pt; line-height: 1.2; }}
@@ -134,6 +138,8 @@ body {{ position: relative; color: {texte}; font-family: "Bricolage Grotesque", 
 .txt {{ font-weight: 600; font-size: 6.6pt; line-height: 1.32; }}
 .sep {{ display: flex; align-items: center; gap: 2mm; }}
 .sep::before, .sep::after {{ content: ""; flex: 1; border-top: .3mm solid currentColor; opacity: .5; }}
+.sep--fin {{ border-top: .3mm solid currentColor; opacity: .35; }}
+.sep--fin::before, .sep--fin::after {{ display: none; }}
 .sepsp {{ width: 3.6mm; height: 3.6mm; flex: none; }}
 .badges {{ display: flex; align-items: center; gap: 2.6mm; margin-top: auto; padding-top: 2mm; }}
 .badge {{ width: 15mm; height: 15mm; flex: none; border-radius: 50%; background: {CR}; color: {A}; border: .5mm solid {A}; box-shadow: .8mm .8mm 0 {A};
@@ -160,8 +166,8 @@ body {{ position: relative; color: {texte}; font-family: "Bricolage Grotesque", 
       <svg class="cercle" viewBox="0 0 200 200">
         <defs><path id="c" d="M100 100 m-76 0 a76 76 0 1 1 152 0 a76 76 0 1 1 -152 0"/></defs>
         <circle cx="100" cy="100" r="97" fill="{halo}" stroke="{A}" stroke-width="4"/>
-        <circle cx="100" cy="100" r="60" fill="{CR}" stroke="{A}" stroke-width="3"/>
-        <text font-family="Unbounded, sans-serif" font-weight="800" font-size="15.5" letter-spacing="1.2" fill="{halo_txt}"><textPath href="#c" textLength="470" lengthAdjust="spacingAndGlyphs">{e(cercle)} ✦ </textPath></text>
+        <circle cx="100" cy="100" r="{80 if leger else 60}" fill="{CR}" stroke="{A}" stroke-width="3"/>
+        {'' if leger else ''}<text {'display="none"' if leger else ''} font-family="Unbounded, sans-serif" font-weight="800" font-size="15.5" letter-spacing="1.2" fill="{halo_txt}"><textPath href="#c" textLength="470" lengthAdjust="spacingAndGlyphs">{e(cercle)} ✦ </textPath></text>
       </svg>
       {BOUILLE}
       {spark('', C['citron'] if t['fond'] != 'citron' else CR)}
@@ -169,7 +175,7 @@ body {{ position: relative; color: {texte}; font-family: "Bricolage Grotesque", 
     <div class="win-foot">
       <div class="pills">{pills_html}</div>
       {'<p class="acc">' + e(p['accroche']) + '</p>' if p.get('accroche') else ''}
-      <div class="vol"><span>{e(p.get('pied', ''))}</span><b>{e(p.get('volume', ''))}</b></div>
+      <div class="vol"><span>{'' if leger else e(p.get('pied', ''))}</span><b>{e(p.get('volume', ''))}</b></div>
     </div>
   </div>
 </div>
@@ -200,7 +206,7 @@ async function run() {{
     const H0 = side.clientHeight, W0 = side.clientWidth;
     const apply = (z) => {{ side.style.transformOrigin = '0 0'; side.style.transform = `scale(${{z}})`; side.style.width = (W0 / z) + 'px'; side.style.height = (H0 / z) + 'px'; }};
     const inner = () => side.querySelector('.side-in').scrollHeight + (side.querySelector('.badges')?.scrollHeight || 0) + 8;
-    let lo = .6, hi = 1.3;
+    let lo = .6, hi = {1.12 if leger else 1.3};
     for (let i = 0; i < 16; i++) {{ const mid = (lo + hi) / 2; apply(mid); if (inner() > side.clientHeight) hi = mid; else lo = mid; }}
     apply(lo * .97);
   }}
