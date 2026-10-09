@@ -5,6 +5,11 @@ en **couleurs de catégorie** : visage rose · corps citron · cheveux mandarine
 (fond pâle de la couleur, formes dans la couleur pleine — `etiquettes/couleurs.py`).
 Ne pas utiliser les anciens essais (`etiquettes/calque/`, `etiquettes/07-gel-nettoyant-purifiant/`) : archives seulement.
 
+🔒 **Verrou** : `VERROU.json` garde l'empreinte des fichiers du design (mise en page, couleurs, formes du fond,
+bouille, rendu). Si l'un d'eux change, `v1.py` refuse de générer. Images de référence : `reference/`.
+Déverrouiller (changement voulu uniquement) : `python3 etiquettes/v1/v1.py --deverrouiller`, puis recalculer VERROU.json.
+Ce qui reste libre pour chaque produit : les textes et le gabarit (fichier dans `produits/`).
+
 Nouvelle étiquette : zip Selfnamed + description → un fichier dans `produits/` → `python3 etiquettes/v1/v1.py`.
 
 # Style V1 (retenu) — moteur pour tous les produits

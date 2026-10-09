@@ -215,7 +215,20 @@ run();
 </body></html>"""
 
 
+def verifier_verrou(args):
+    """Le design est verrouillé : on refuse de générer si un fichier du design a changé (--deverrouiller pour forcer)."""
+    import hashlib
+    v = json.loads((ICI / "VERROU.json").read_text(encoding="utf-8"))
+    changes = [f for f, h in v["empreintes"].items()
+               if hashlib.sha256((ICI.parent / f).read_bytes()).hexdigest() != h]
+    if changes and "--deverrouiller" not in args:
+        sys.exit("🔒 Design verrouillé : ces fichiers ont changé → " + ", ".join(changes)
+                 + "\nAnnule la modification, ou relance avec --deverrouiller si le changement est voulu.")
+
+
 def main(args):
+    verifier_verrou(args)
+    args = [a for a in args if not a.startswith("--")]
     fichiers = sorted((ICI / "produits").glob("*.json"))
     if args:
         fichiers = [f for f in fichiers if any(a in f.stem for a in args)]
