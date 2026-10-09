@@ -1,0 +1,54 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Unbounded:wght@700;800&display=block" rel="stylesheet">
+<style>
+@page { size: 66mm 96mm; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 66mm; height: 96mm; overflow: hidden; }
+body { position: relative; background: #2A1240; color: #FFF3E3; font-family: "Bricolage Grotesque", sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.anneau { position: absolute; width: 38.0mm; right: -14.0mm; top: -12.0mm; transform: rotate(-18deg); }
+.etincelle { position: absolute; width: 7.0mm; }
+.e1 { left: 13.2mm; top: 32.7mm; }
+.e2 { right: 8.0mm; top: 59.400000000000006mm; width: 4.5mm; }
+.contenu { position: absolute; left: 6mm; right: 6mm; top: 6mm;
+  height: 62.400000000000006mm; display: flex; flex-direction: column;  }
+.kicker { font-family: Unbounded, sans-serif; font-weight: 700; font-size: 5.2pt; letter-spacing: .22em; text-transform: uppercase; }
+.marque { font-family: Unbounded, sans-serif; font-weight: 800; font-size: 27.0pt; letter-spacing: -.05em; line-height: .9; margin-top: 1.6mm; }
+.nom { font-family: Unbounded, sans-serif; font-weight: 800; font-size: 13.0pt; line-height: .98; letter-spacing: -.03em; margin-top: auto; }
+.sous { font-weight: 700; font-size: 7.0pt; margin-top: 1.4mm; }
+.sticker { display: inline-block; align-self: flex-start; margin-top: 2.4mm; background: #D4F23A; color: #2A1240; border: 0.5mm solid #2A1240;
+  border-radius: 99mm; padding: 0.9mm 2.6mm; font-family: Unbounded, sans-serif; font-weight: 700; font-size: 6.0pt;
+  box-shadow: 0.8mm 0.8mm 0 #2A1240; transform: rotate(-4deg); }
+.slogan { font-weight: 600; font-size: 5.4pt; margin-top: 2.2mm; opacity: .9; }
+.bouille { position: absolute; width: 15.0mm; right: 8.0mm;
+  top: 27.3mm; transform: rotate(8deg); }
+.trait { position: absolute; left: 6mm; right: 6mm; top: 69.60000000000001mm; border-top: 0.45mm dashed #FFF3E3; opacity: .55; }
+.g { position: absolute; pointer-events: none; }
+.coupe { inset: 3mm; border: .25mm solid #000; }
+.securite { inset: 6mm; border: .25mm dashed #000; opacity: .6; }
+.mentions { left: 6mm; right: 6mm; bottom: 6mm; height: 19.599999999999998mm;
+  border: .5mm dashed #FF6A2B; background: rgba(255,255,255,.55); display: grid; place-items: center; text-align: center; padding: 1mm;
+  font: 600 4.4pt "Bricolage Grotesque", sans-serif; color: #2A1240; }
+.legende { left: 3mm; bottom: .6mm; font: 600 3.6pt sans-serif; color: #000; background: rgba(255,255,255,.8); padding: 0 1mm; }
+</style></head><body>
+<svg viewBox="0 0 100 100" class="anneau"><path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="#FF6A2B" stroke-width="18"/>
+<path d="M90 50 A40 40 0 0 1 10 50" fill="none" stroke="#D4F23A" stroke-width="18"/><circle cx="78.3" cy="21.7" r="10" fill="#D4F23A"/></svg>
+<svg viewBox="0 0 40 40" class="etincelle e1"><path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" fill="#FFF3E3" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/></svg>
+<svg viewBox="0 0 40 40" class="etincelle e2"><path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" fill="#FFF3E3" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/></svg>
+<svg viewBox="0 0 120 120" class="bouille"><circle cx="64" cy="64" r="52" fill="#2A1240"/>
+<circle cx="58" cy="58" r="52" fill="#FF6A2B" stroke="#2A1240" stroke-width="5"/>
+<ellipse cx="30" cy="70" rx="10" ry="7" fill="#FF5FA8"/><ellipse cx="86" cy="70" rx="10" ry="7" fill="#FF5FA8"/>
+<circle cx="42" cy="48" r="7" fill="#2A1240"/>
+<path d="M68 48 Q76 40 84 48" fill="none" stroke="#2A1240" stroke-width="5" stroke-linecap="round"/>
+<path d="M36 66 Q58 98 82 66 Z" fill="#2A1240" stroke="#2A1240" stroke-width="4" stroke-linejoin="round"/>
+<path d="M48 80 Q58 72 70 80 Q60 90 48 80 Z" fill="#FF5FA8"/></svg>
+<div class="contenu">
+  <p class="kicker">n°03 · homme</p>
+  <p class="marque">orane</p>
+  <p class="nom">huile à barbe</p>
+  <p class="sous">adoucissante</p>
+  <p class="sticker">non grasse</p>
+  <p class="slogan">peau neuve, mine de rien.</p>
+</div>
+<div class="trait"></div>
+
+</body></html>
