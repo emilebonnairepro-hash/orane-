@@ -87,7 +87,8 @@ def geometrie(g):
     return dict(W=W, H=H, b=b, m=m, bg=bg, trous=trous, U=U, front=front, side=side, strip=strip)
 
 # ---------------------------------------------------------------- page
-def page(spec, guides=False):
+def page(spec, guides=False, style="plein"):
+    epure = style == "epure"
     g, p, t = spec["gabarit"], spec["produit"], spec["theme"]
     G = geometrie(g)
     fond, texte = C[t["fond"]], C[t.get("texte", "aubergine")]
@@ -110,6 +111,28 @@ def page(spec, guides=False):
     else:
         RB = RBX = RBY = 0
 
+    EPURE_CSS = f"""
+/* ----- style épuré : moins d'éléments, plus d'air ----- */
+.fond {{ background-image: none; }}
+.top {{ flex-direction: column; align-items: flex-start; gap: {.8 * u:.2f}mm; }}
+.mark {{ flex: none; width: 74%; }}
+.kick-r {{ font-family: Unbounded, sans-serif; font-weight: 700; font-size: {max(5.0, 5.2 * u):.2f}pt; letter-spacing: .18em; text-transform: uppercase; white-space: nowrap; }}
+.front {{ gap: {2.4 * u:.2f}mm; }}
+.ln.em {{ -webkit-text-stroke: {.35 * u:.2f}mm {C['aubergine']}; }}
+.arch {{ display: none; }}
+.art .bouille {{ height: min(52%, 46cqw); bottom: auto; top: 50%; transform: translate(-50%, -50%) rotate(8deg); }}
+.art .ring-solo {{ position: absolute; height: min(92%, 82cqw); aspect-ratio: 1; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-25deg); }}
+.art .s2 {{ display: none; }}
+.pill {{ font-size: {max(5.0, 6.2 * u):.2f}pt; padding: {.8 * u:.2f}mm {2.6 * u:.2f}mm; }}
+.foot {{ border-top-style: solid; border-top-width: {.3 * u:.2f}mm; opacity: .9; justify-content: flex-end; }}
+.side {{ justify-content: flex-start !important; gap: 5mm; padding-top: 1mm; }}
+.ep .ct {{ font-size: 8pt; margin-bottom: 1mm; }}
+.ep p {{ font-weight: 600; font-size: 7pt; line-height: 1.35; }}
+.badges {{ margin-top: auto; }}
+.badge {{ box-shadow: none; transform: none; }}
+.slogan {{ opacity: .85; }}
+"""
+
     def pt(v):
         return f"{max(5.0, v * u):.2f}pt"
 
@@ -119,7 +142,7 @@ def page(spec, guides=False):
         for i, l in enumerate(lignes))
     pills_html = "".join(
         f'<span class="pill" style="--bg:{pills[i % len(pills)]};--fg:{C["creme"] if pills[i % len(pills)] in (C["violet"], C["aubergine"]) else C["aubergine"]};--r:{[-4, 3, -2, 4][i % 4]}deg">{e(x)}</span>'
-        for i, x in enumerate(p.get("pastilles", [])))
+        for i, x in enumerate(p.get("pastilles", [])[:1] if epure else p.get("pastilles", [])))
 
     side_html = ""
     if G["side"]:
@@ -129,10 +152,15 @@ def page(spec, guides=False):
         badges = "".join(f'<p class="badge"><span>{e(x["grand"])}<small>{e(x.get("petit", ""))}</small></span></p>' for x in p.get("badges", []))
         logos = "".join(svg_asset(l, "logo") for l in p.get("logos", []))
         blocs = []
-        if geste: blocs.append(f'<div class="card"><p class="ct">{e(p.get("titre_geste", "Le geste"))}</p><ol class="steps">{geste}</ol></div>')
+        if geste and not epure: blocs.append(f'<div class="card"><p class="ct">{e(p.get("titre_geste", "Le geste"))}</p><ol class="steps">{geste}</ol></div>')
+        if epure:
+            blocs = []
+            if p.get("geste"): blocs.append(f'<div class="ep"><p class="ct">{e(p.get("titre_geste", "Le geste"))}</p><p>{e(" · ".join(p["geste"]))}.</p></div>')
+            if p.get("dedans"): blocs.append(f'<div class="ep"><p class="ct">{e(p.get("titre_dedans", "Dedans"))}</p><p>{e(", ".join(p["dedans"]))}.{(" " + e(p["parfum"])) if p.get("parfum") else ""}</p></div>')
+            dedans = ""
         if dedans: blocs.append(f'<div class="card alt"><p class="ct">{e(p.get("titre_dedans", "Dedans"))}</p><div class="chips">{dedans}</div>'
                                 f'{"<p class=note>" + e(p["parfum"]) + "</p>" if p.get("parfum") else ""}</div>')
-        if p.get("pour_qui"): blocs.append(f'<div class="pq"><p class="ct">Pour qui ?</p><p>{e(p["pour_qui"])}</p></div>')
+        if p.get("pour_qui") and not epure: blocs.append(f'<div class="pq"><p class="ct">Pour qui ?</p><p>{e(p["pour_qui"])}</p></div>')
         if badges or logos: blocs.append(f'<div class="badges">{badges}{logos}</div>')
         side_html = f'<div class="side" style="left:{sx0}mm;top:{sy0}mm;width:{sx1 - sx0}mm;height:{sy1 - sy0}mm">{"".join(blocs)}</div>'
 
@@ -219,6 +247,7 @@ body {{ position: relative; color: {texte}; font-family: "Bricolage Grotesque", 
 .slogan {{ position: absolute; transform: translate(-50%, -50%) rotate(-90deg); white-space: nowrap; font-family: Unbounded, sans-serif; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }}
 .strip-sp {{ width: 5mm; }}
 
+{EPURE_CSS if epure else ''}
 /* ----- repères (aperçu seulement) ----- */
 .gl {{ position: absolute; pointer-events: none; }}
 .gz {{ position: absolute; border: .6mm dashed #FF6A2B; background: repeating-linear-gradient(45deg, rgba(255,106,43,.14) 0 2mm, transparent 2mm 4mm); display: grid; place-items: center; }}
@@ -226,22 +255,23 @@ body {{ position: relative; color: {texte}; font-family: "Bricolage Grotesque", 
 .gt {{ position: absolute; left: {G['b'] + 1}mm; bottom: .2mm; }}
 </style></head><body>
 <div class="fond">
-  {anneau('ring-big', ring_a, ring_b) if G['strip'] else ''}
-  {spark('', C['creme'] if t['fond'] != 'creme' else C['citron']).replace('class="sp "', f'class="sp" style="width:6mm;left:{(G["strip"][0] + G["strip"][2]) / 2 - bx0 - 3 if G["strip"] else 2}mm;top:{fy0 - by0 + 4}mm"') if G['strip'] else ''}
+  {anneau('ring-big', ring_a, ring_b) if G['strip'] and not epure else ''}
+  {spark('', C['creme'] if t['fond'] != 'creme' else C['citron']).replace('class="sp "', f'class="sp" style="width:6mm;left:{(G["strip"][0] + G["strip"][2]) / 2 - bx0 - 3 if G["strip"] else 2}mm;top:{fy0 - by0 + 4}mm"') if G['strip'] and not epure else ''}
 </div>
 {trous_html}
 {strip_html}
 <div class="front">
-  <div class="top"><p class="mark" data-fit data-max="{30 * u:.1f}">orane</p><p class="num">n°{e(p['numero'])}<small>{e(p['univers'])}</small></p></div>
+  <div class="top"><p class="mark" data-fit data-max="{30 * u:.1f}">orane</p>{'<p class="kick-r">n°' + e(p['numero']) + ' · ' + e(p['univers']) + '</p>' if epure else '<p class="num">n°' + e(p['numero']) + '<small>' + e(p['univers']) + '</small></p>'}</div>
   <div class="name">{nom_html}{'<p class="sous">' + e(p['sous_titre']) + '</p>' if p.get('sous_titre') else ''}</div>
   <div class="art">
+    {anneau('ring-solo', ring_a, ring_b) if epure else ''}
     <div class="arch">{anneau('ring-in', ring_a, ring_b)}</div>
     {BOUILLE}
-    {'<p class="bubble">' + e(p['bulle']) + '</p>' if p.get('bulle') else ''}
+    {'<p class="bubble">' + e(p['bulle']) + '</p>' if p.get('bulle') and not epure else ''}
     {spark('s1', C['citron'] if t['fond'] != 'citron' else C['creme'])}{spark('s2', C['rose'] if t['fond'] != 'rose' else C['creme'])}
   </div>
   <div class="pills">{pills_html}</div>
-  <div class="foot"><span>{e(p.get('pied', ''))}</span><b>{e(p.get('volume', ''))}</b></div>
+  <div class="foot"><span>{'' if epure else e(p.get('pied', ''))}</span><b>{e(p.get('volume', ''))}</b></div>
 </div>
 {side_html}
 {guides_html}
@@ -268,7 +298,7 @@ async function run() {{
     const H0 = side.clientHeight, W0 = side.clientWidth;
     side.style.justifyContent = 'flex-start';
     const apply = (z) => {{ side.style.transformOrigin = '0 0'; side.style.transform = `scale(${{z}})`; side.style.width = (W0 / z) + 'px'; side.style.height = (H0 / z) + 'px'; }};
-    let lo = .6, hi = 1.6;
+    let lo = .6, hi = {1.12 if epure else 1.6};
     for (let i = 0; i < 16; i++) {{ const mid = (lo + hi) / 2; apply(mid); if (side.scrollHeight > side.clientHeight + .5) hi = mid; else lo = mid; }}
     apply(lo * .97);
     side.style.justifyContent = 'space-between';
@@ -280,21 +310,24 @@ run();
 </body></html>"""
 
 def main(args):
+    style = "epure" if "--epure" in args else "plein"
+    args = [a for a in args if not a.startswith("--")]
     fichiers = sorted((ICI / "produits").glob("*.json"))
     if args:
         fichiers = [f for f in fichiers if any(a in f.stem for a in args)]
     jobs = []
     for f in fichiers:
         spec = json.loads(f.read_text(encoding="utf-8"))
-        out = ICI / "sortie" / f.stem
+        out = ICI / ("sortie-epure" if style == "epure" else "sortie") / f.stem
         out.mkdir(parents=True, exist_ok=True)
         g = spec["gabarit"]
         px = g.get("px") or [round(g["largeur"] / 25.4 * 600), round(g["hauteur"] / 25.4 * 600)]
         for nom, guides in (("etiquette", False), ("apercu", True)):
-            (out / f"{nom}.html").write_text(page(spec, guides), encoding="utf-8")
+            (out / f"{nom}.html").write_text(page(spec, guides, style), encoding="utf-8")
         jobs.append({"dir": str(out), "w": g["largeur"], "h": g["hauteur"], "px": px})
-    (ICI / "sortie" / "jobs.json").write_text(json.dumps(jobs), encoding="utf-8")
-    subprocess.run(["node", str(ICI / "rendre.mjs"), str(ICI / "sortie" / "jobs.json")], check=True)
+    jf = ICI / ("sortie-epure" if style == "epure" else "sortie") / "jobs.json"
+    jf.write_text(json.dumps(jobs), encoding="utf-8")
+    subprocess.run(["node", str(ICI / "rendre.mjs"), str(jf)], check=True)
 
 if __name__ == "__main__":
     main(sys.argv[1:])

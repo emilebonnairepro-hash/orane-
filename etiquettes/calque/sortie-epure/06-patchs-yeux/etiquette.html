@@ -1,0 +1,152 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Unbounded:wght@700;800;900&display=block" rel="stylesheet">
+<style>
+@page { size: 96mm 66mm; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 96mm; height: 66mm; overflow: hidden; background: transparent; }
+body { position: relative; color: #2A1240; font-family: "Bricolage Grotesque", sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.fond { position: absolute; left: 0.0mm; top: 0.0mm; width: 65.0mm; height: 66.0mm; overflow: hidden;
+  background-color: #FFF3E3; background-image: radial-gradient(rgba(42,18,64,.10) 0.42mm, transparent 0.5mm); background-size: 3.4mm 3.4mm; }
+.trou { position: absolute; background: #fff; border-radius: 2mm; }
+.sp { position: absolute; }
+.ring-big { position: absolute; width: 0mm; left: 0mm; top: 0mm; transform: rotate(-20deg); }
+
+/* ----- face avant ----- */
+.front { position: absolute; left: 6mm; top: 6mm; width: 56mm; height: 54mm; display: flex; flex-direction: column; gap: 1.05mm; }
+.top { display: flex; align-items: center; justify-content: space-between; gap: 1.32mm; }
+.mark { font-family: Unbounded, sans-serif; font-weight: 900; letter-spacing: -.055em; line-height: .85; flex: 1; min-width: 0; white-space: nowrap; }
+.num { flex: none; width: 13.50mm; height: 13.50mm; border-radius: 50%; background: #2A1240; color: #FFF3E3;
+  display: grid; place-items: center; text-align: center; font-family: Unbounded, sans-serif; font-weight: 800; font-size: 5.00pt; line-height: .9; transform: rotate(10deg); }
+.num small { display: block; font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; font-size: 5.00pt; letter-spacing: .02em; margin-top: .4mm; text-transform: uppercase; }
+.kick { font-family: Unbounded, sans-serif; font-weight: 700; font-size: 5.00pt; letter-spacing: .22em; text-transform: uppercase; margin-top: -0.26mm; }
+.name { display: flex; flex-direction: column; }
+.ln { display: block; width: 100%; white-space: nowrap; font-family: Unbounded, sans-serif; font-weight: 900; line-height: .92; letter-spacing: -.045em; }
+.ln.em { color: #FF5FA8; -webkit-text-stroke: 0.36mm #2A1240; paint-order: stroke fill; }
+.sous { font-weight: 800; font-size: 5.00pt; line-height: 1.15; margin-top: 0.66mm; }
+.art { position: relative; flex: 1; min-height: 10.54mm; container-type: size; }
+.arch { position: absolute; left: 50%; width: min(84%, 105cqh); transform: translateX(-50%); top: 6%; bottom: 0; background: #FFF3E3; border: 0.40mm solid #2A1240;
+  border-radius: 999mm 999mm 1.98mm 1.98mm; box-shadow: 0.72mm 0.72mm 0 #2A1240; overflow: hidden;
+  background-image: radial-gradient(rgba(42,18,64,.08) .45mm, transparent .55mm); background-size: 3mm 3mm; }
+.ring-in { position: absolute; width: 90%; left: 30%; top: 22%; }
+.art .bouille { position: absolute; height: min(62%, 58cqw); max-width: 70%; aspect-ratio: 1; left: 50%; bottom: 7%; transform: translateX(-50%) rotate(8deg); }
+.bubble { position: absolute; left: max(0%, calc(50% - 52cqh - 4%)); top: 0; max-width: 60%; background: #D4F23A; color: #2A1240;
+  border: 0.33mm solid #2A1240; border-radius: 1.71mm; padding: 0.59mm 1.19mm;
+  font-family: Unbounded, sans-serif; font-weight: 800; font-size: 5.00pt; line-height: 1.1; transform: rotate(-6deg); box-shadow: 0.46mm 0.46mm 0 #2A1240; z-index: 2; }
+.art .s1 { width: 3.95mm; right: 2%; top: 4%; z-index: 2; }
+.art .s2 { width: 2.63mm; left: 4%; bottom: 14%; z-index: 2; }
+.pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.72mm 0.79mm; }
+.pill { background: var(--bg); color: var(--fg); border: 0.30mm solid #2A1240; border-radius: 99mm; padding: 0.40mm 1.25mm;
+  font-family: Unbounded, sans-serif; font-weight: 700; font-size: 5.00pt; white-space: nowrap; transform: rotate(var(--r)); box-shadow: 0.36mm 0.36mm 0 #2A1240; }
+.foot { display: flex; justify-content: space-between; align-items: baseline; gap: 2mm; border-top: 0.26mm dashed currentColor; padding-top: 0.72mm; }
+.foot span { font-weight: 700; font-size: 5.00pt; }
+.foot b { font-family: Unbounded, sans-serif; font-weight: 800; font-size: 5.00pt; white-space: nowrap; }
+
+/* ----- côté ----- */
+.side { position: absolute; display: flex; flex-direction: column; justify-content: space-between; gap: 2.4mm; }
+.card { background: #FFF3E3; color: #2A1240; border: .5mm solid #2A1240; border-radius: 3mm; padding: 2.2mm 2.6mm; box-shadow: 1mm 1mm 0 #2A1240; }
+.card.alt { transform: rotate(-1.2deg); }
+.ct { font-family: Unbounded, sans-serif; font-weight: 800; font-size: 7.5pt; margin-bottom: 1.2mm; }
+.steps { list-style: none; display: grid; gap: 1mm; }
+.steps li { display: flex; align-items: center; gap: 1.6mm; font-weight: 700; font-size: 6.4pt; line-height: 1.15; }
+.steps b { flex: none; width: 4.4mm; height: 4.4mm; border-radius: 50%; background: #FF5FA8; border: .35mm solid #2A1240; display: grid; place-items: center;
+  font-family: Unbounded, sans-serif; font-size: 6pt; color: #2A1240; }
+.chips { display: flex; flex-wrap: wrap; gap: 1mm; }
+.chip { border: .35mm solid #2A1240; border-radius: 99mm; padding: .35mm 1.6mm; font-weight: 700; font-size: 6.2pt; background: #fff; }
+.note { font-weight: 600; font-size: 6pt; margin-top: 1.2mm; }
+.pq p { font-weight: 600; font-size: 6.4pt; line-height: 1.3; }
+.pq .ct { margin-bottom: .6mm; }
+.badges { display: flex; align-items: center; gap: 2.4mm; }
+.badge { width: 15mm; height: 15mm; flex: none; border-radius: 50%; background: #FFF3E3; color: #2A1240; border: .5mm solid #2A1240;
+  box-shadow: .8mm .8mm 0 #2A1240; display: grid; place-items: center; text-align: center; font-family: Unbounded, sans-serif; font-weight: 800; font-size: 8pt; line-height: 1; transform: rotate(8deg); }
+.badge small { display: block; font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; font-size: 5pt; margin-top: .5mm; }
+.logo { width: 12mm; height: 12mm; background: #fff; border-radius: 50%; flex: none; }
+.slogan { position: absolute; transform: translate(-50%, -50%) rotate(-90deg); white-space: nowrap; font-family: Unbounded, sans-serif; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+.strip-sp { width: 5mm; }
+
+
+/* ----- style épuré : moins d'éléments, plus d'air ----- */
+.fond { background-image: none; }
+.top { flex-direction: column; align-items: flex-start; gap: 0.53mm; }
+.mark { flex: none; width: 74%; }
+.kick-r { font-family: Unbounded, sans-serif; font-weight: 700; font-size: 5.00pt; letter-spacing: .18em; text-transform: uppercase; white-space: nowrap; }
+.front { gap: 1.58mm; }
+.ln.em { -webkit-text-stroke: 0.23mm #2A1240; }
+.arch { display: none; }
+.art .bouille { height: min(52%, 46cqw); bottom: auto; top: 50%; transform: translate(-50%, -50%) rotate(8deg); }
+.art .ring-solo { position: absolute; height: min(92%, 82cqw); aspect-ratio: 1; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-25deg); }
+.art .s2 { display: none; }
+.pill { font-size: 5.00pt; padding: 0.53mm 1.71mm; }
+.foot { border-top-style: solid; border-top-width: 0.20mm; opacity: .9; justify-content: flex-end; }
+.side { justify-content: flex-start !important; gap: 5mm; padding-top: 1mm; }
+.ep .ct { font-size: 8pt; margin-bottom: 1mm; }
+.ep p { font-weight: 600; font-size: 7pt; line-height: 1.35; }
+.badges { margin-top: auto; }
+.badge { box-shadow: none; transform: none; }
+.slogan { opacity: .85; }
+
+/* ----- repères (aperçu seulement) ----- */
+.gl { position: absolute; pointer-events: none; }
+.gz { position: absolute; border: .6mm dashed #FF6A2B; background: repeating-linear-gradient(45deg, rgba(255,106,43,.14) 0 2mm, transparent 2mm 4mm); display: grid; place-items: center; }
+.gz span, .gt { font: 700 5pt sans-serif; color: #c2410c; background: rgba(255,255,255,.9); padding: .4mm 1mm; text-align: center; }
+.gt { position: absolute; left: 4mm; bottom: .2mm; }
+</style></head><body>
+<div class="fond">
+  
+  
+</div>
+
+
+<div class="front">
+  <div class="top"><p class="mark" data-fit data-max="19.8">orane</p><p class="kick-r">n°06 · visage</p></div>
+  <div class="name"><span class="ln" data-fit data-max="26.3">patchs</span><span class="ln em" data-fit data-max="26.3">yeux</span><p class="sous">caféine &amp; vitamine C</p></div>
+  <div class="art">
+    <svg viewBox="0 0 100 100" class="ring-solo"><path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="#FF6A2B" stroke-width="18"/><path d="M90 50 A40 40 0 0 1 10 50" fill="none" stroke="#FF5FA8" stroke-width="18"/><circle cx="78.3" cy="21.7" r="10" fill="#D4F23A" stroke="#2A1240" stroke-width="2"/></svg>
+    <div class="arch"><svg viewBox="0 0 100 100" class="ring-in"><path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="#FF6A2B" stroke-width="18"/><path d="M90 50 A40 40 0 0 1 10 50" fill="none" stroke="#FF5FA8" stroke-width="18"/><circle cx="78.3" cy="21.7" r="10" fill="#D4F23A" stroke="#2A1240" stroke-width="2"/></svg></div>
+    <svg viewBox="0 0 120 120" class="bouille"><circle cx="64" cy="64" r="52" fill="#2A1240"/>
+<circle cx="58" cy="58" r="52" fill="#FF6A2B" stroke="#2A1240" stroke-width="5"/>
+<ellipse cx="30" cy="70" rx="10" ry="7" fill="#FF5FA8"/><ellipse cx="86" cy="70" rx="10" ry="7" fill="#FF5FA8"/>
+<circle cx="42" cy="48" r="7" fill="#2A1240"/>
+<path d="M68 48 Q76 40 84 48" fill="none" stroke="#2A1240" stroke-width="5" stroke-linecap="round"/>
+<path d="M36 66 Q58 98 82 66 Z" fill="#2A1240" stroke="#2A1240" stroke-width="4" stroke-linejoin="round"/>
+<path d="M48 80 Q58 72 70 80 Q60 90 48 80 Z" fill="#FF5FA8"/></svg>
+    
+    <svg viewBox="0 0 40 40" class="sp s1"><path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" fill="#D4F23A" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/></svg><svg viewBox="0 0 40 40" class="sp s2"><path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" fill="#FF5FA8" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/></svg>
+  </div>
+  <div class="pills"><span class="pill" style="--bg:#FF5FA8;--fg:#2A1240;--r:-4deg">caféine</span></div>
+  <div class="foot"><span></span><b>7 paires</b></div>
+</div>
+
+
+<script>
+// Ajuste chaque texte [data-fit] à la largeur disponible, puis réduit le nom si la face avant déborde
+function fit(el, max) {
+  let lo = 4, hi = max;
+  for (let i = 0; i < 18; i++) { const mid = (lo + hi) / 2; el.style.fontSize = mid + 'pt'; if (el.scrollWidth > el.clientWidth + .5) hi = mid; else lo = mid; }
+  el.style.fontSize = lo + 'pt';
+}
+async function run() {
+  await document.fonts.ready;
+  const front = document.querySelector('.front');
+  let k = 1;
+  for (let pass = 0; pass < 12; pass++) {
+    document.querySelectorAll('[data-fit]').forEach((el) => fit(el, parseFloat(el.dataset.max) * (el.classList.contains('ln') ? k : 1)));
+    const art = document.querySelector('.art');
+    if (front.scrollHeight <= front.clientHeight + .5 && art.getBoundingClientRect().height >= front.clientHeight * .24) break;
+    k *= .9;
+  }
+  const side = document.querySelector('.side');
+  if (side) {
+    // le côté remplit sa hauteur : on cherche la plus grande échelle (0,6 à 1,6) où tout tient
+    const H0 = side.clientHeight, W0 = side.clientWidth;
+    side.style.justifyContent = 'flex-start';
+    const apply = (z) => { side.style.transformOrigin = '0 0'; side.style.transform = `scale(${z})`; side.style.width = (W0 / z) + 'px'; side.style.height = (H0 / z) + 'px'; };
+    let lo = .6, hi = 1.12;
+    for (let i = 0; i < 16; i++) { const mid = (lo + hi) / 2; apply(mid); if (side.scrollHeight > side.clientHeight + .5) hi = mid; else lo = mid; }
+    apply(lo * .97);
+    side.style.justifyContent = 'space-between';
+  }
+  document.body.dataset.ready = '1';
+}
+run();
+</script>
+</body></html>

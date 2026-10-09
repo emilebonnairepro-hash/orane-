@@ -12,6 +12,11 @@ bande décorative sur la gauche, zones des mentions obligatoires laissées vides
 Résultats dans `sortie/<produit>/` : `etiquette.png` (à téléverser sur Selfnamed : 600 dpi, fond transparent,
 taille exacte du gabarit), `etiquette.pdf`, `apercu.png` (avec les repères).
 
+## Deux styles
+- plein (v2) : `python3 etiquettes/calque/calque.py` → `sortie/`
+- épuré (v3) : `python3 etiquettes/calque/calque.py --epure` → `sortie-epure/`
+  (une seule pastille, pas de bulle ni de motif à pois, la bouille dans l'anneau, côté en texte simple)
+
 ## Ajouter un produit
 Copie `produits/07-gel-nettoyant-purifiant.json`, renomme-le, puis remplis :
 - `gabarit` : d'après le manuel Selfnamed du produit (zip « Download template »)

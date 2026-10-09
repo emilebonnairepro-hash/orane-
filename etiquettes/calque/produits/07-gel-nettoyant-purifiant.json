@@ -1,24 +1,78 @@
 {
   "gabarit": {
     "source": "Selfnamed 150-004 Blemish Purifying Face Wash 140 ml",
-    "largeur": 142.5, "hauteur": 109, "fond_perdu": 2, "marge": 3,
-    "zones_vides": [{"x": 107, "y": 0, "l": 35.5, "h": 109}],
-    "face": {"cx": 40, "largeur": 36},
-    "px": [3367, 2575]
+    "largeur": 142.5,
+    "hauteur": 109,
+    "fond_perdu": 2,
+    "marge": 3,
+    "zones_vides": [
+      {
+        "x": 107,
+        "y": 0,
+        "l": 35.5,
+        "h": 109
+      }
+    ],
+    "face": {
+      "cx": 40,
+      "largeur": 36
+    },
+    "px": [
+      3367,
+      2575
+    ]
   },
   "produit": {
-    "numero": "07", "univers": "visage",
-    "lignes": ["gel", "nettoyant"],
-    "sous_titre": "purifiant · peaux à imperfections",
+    "numero": "07",
+    "univers": "visage",
+    "lignes": [
+      "gel",
+      "nettoyant"
+    ],
+    "sous_titre": "visage · peaux à imperfections",
     "bulle": "frais comme un thé vert !",
-    "pastilles": ["purifiant", "thé vert", "pH équilibré"],
-    "pied": "nettoie sans agresser", "volume": "140 ml ℮",
-    "geste": ["une noisette sur peau humide", "on masse tout doucement", "on rince, et c'est frais"],
-    "dedans": ["maté bio", "mousse d'Islande", "cals de genévrier"],
+    "pastilles": [
+      "purifiant",
+      "thé vert",
+      "pH équilibré"
+    ],
+    "pied": "nettoie sans agresser",
+    "volume": "140 ml ℮",
+    "geste": [
+      "une noisette sur peau humide",
+      "on masse tout doucement",
+      "on rince, et c'est frais"
+    ],
+    "dedans": [
+      "maté bio",
+      "mousse d'Islande",
+      "cals de genévrier"
+    ],
     "parfum": "Parfum frais de thé vert.",
     "pour_qui": "Les peaux à imperfections qui veulent un nettoyage doux, sans tensioactifs agressifs.",
-    "badges": [{"grand": "98 %", "petit": "d'origine naturelle"}],
-    "logos": ["ecocert-cosmos-natural.svg"]
+    "badges": [
+      {
+        "grand": "98 %",
+        "petit": "d'origine naturelle"
+      }
+    ],
+    "logos": [
+      "ecocert-cosmos-natural.svg"
+    ]
   },
-  "theme": {"fond": "citron", "texte": "aubergine", "accent": "mandarine", "pastilles": ["violet", "creme", "rose"], "anneau": ["mandarine", "violet"], "arche": "creme"}
+  "theme": {
+    "fond": "citron",
+    "texte": "aubergine",
+    "accent": "mandarine",
+    "pastilles": [
+      "violet",
+      "creme",
+      "rose"
+    ],
+    "anneau": [
+      "mandarine",
+      "violet"
+    ],
+    "arche": "creme"
+  }
 }
