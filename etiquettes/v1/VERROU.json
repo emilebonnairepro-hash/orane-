@@ -2,11 +2,15 @@
   "verrouille_le": "2026-10-09",
   "design": "V1 + fond swirl, couleurs de catégorie",
   "empreintes": {
-    "v1/v1.py": "e118723346aebc4ade9026530b1cf94c70d5c948cd614c62ba973f5ebeee4762",
+    "v1/v1.py": "9b4f9c23bcee0abcd029c43fb9e93271dc65651b865b709d93b646e555c9ad04",
     "couleurs.py": "8d78c203a2a9c09a102af88c97ac85419a6ae604ebbb74898d3a58c3d9e83d5d",
     "assets/swirl-modele.svg": "f005f3a54dd855b29e77e914ff94cc06f1d6f7b1204bbb1c11fe83cb61c7f583",
     "calque/calque.py": "462205b6ad3e622abe50366e4a2a8eea13b07fe5027f4bcc8b04fe8e11cf33b7",
     "calque/rendre.mjs": "291160a21dd21d8acd0c708fd6eab371a22c932e994d327bd75f33838ba78712",
     "v1/assets/ecocert-cosmos-natural.svg": "5f59129cc25cbc67c30d8a5a3fdb4e395c4bc5508acae17bf43187b88eaf7b66"
-  }
+  },
+  "historique": [
+    "correctif : le logo ne doit pas dépasser du côté (pas de changement de design)",
+    "correctif : pastille et logo passent à la ligne sur les côtés étroits"
+  ]
 }

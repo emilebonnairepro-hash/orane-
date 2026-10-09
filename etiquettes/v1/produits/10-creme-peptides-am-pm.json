@@ -1,0 +1,57 @@
+{
+  "gabarit": {
+    "source": "Selfnamed UZL50-001 Peptide AM/PM cream 50 ml (TEMPLATE_UZL50-001-Peptide AMPM cream-ALT.ai)",
+    "largeur": 96,
+    "hauteur": 113,
+    "fond_perdu": 2,
+    "marge": 3,
+    "zones_vides": [
+      {
+        "x": 78.9,
+        "y": 0,
+        "l": 17.1,
+        "h": 113
+      }
+    ],
+    "face": {
+      "cx": 24.9,
+      "largeur": 34
+    },
+    "px": [
+      2268,
+      2669
+    ]
+  },
+  "produit": {
+    "numero": "10",
+    "univers": "visage",
+    "nom": [
+      "crème",
+      "peptides"
+    ],
+    "sous_titre": "anti-âge · jour & nuit",
+    "sticker": "AM / PM",
+    "volume": "50 ml ℮",
+    "cote": [
+      [
+        "Le geste",
+        "Matin et soir, sur peau propre. Une seule crème pour le jour et la nuit."
+      ],
+      [
+        "Ce qu'on aime",
+        "Hydrate, aide à améliorer l'élasticité et à atténuer l'apparence des ridules. Texture légère, vite absorbée."
+      ],
+      [
+        "Dedans",
+        "Complexe peptidique · acide hyaluronique · vitamines C et E · sodium PCA."
+      ]
+    ],
+    "pastille": {
+      "grand": "99 %",
+      "petit": "d'origine naturelle"
+    },
+    "logos": [
+      "ecocert-cosmos-natural.svg"
+    ]
+  }
+}
