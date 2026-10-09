@@ -1,0 +1,54 @@
+{
+  "gabarit": {
+    "source": "Selfnamed UZL30-002 Sunscreen SPF30 with tint 30 ml (LABEL_30-002_Template.ai)",
+    "largeur": 100.1,
+    "hauteur": 46.1,
+    "fond_perdu": 2,
+    "marge": 3,
+    "zones_vides": [
+      {
+        "x": 74.1,
+        "y": 0,
+        "l": 26,
+        "h": 46.1
+      }
+    ],
+    "face": {
+      "cx": 26.1,
+      "largeur": 26
+    },
+    "px": [
+      2365,
+      1089
+    ]
+  },
+  "produit": {
+    "numero": "08",
+    "univers": "visage",
+    "nom": [
+      "crème solaire",
+      "teintée"
+    ],
+    "sous_titre": "hydratante · sans traces blanches",
+    "sticker": "SPF 30",
+    "volume": "30 ml ℮",
+    "cote": [
+      [
+        "Ce qu'on aime",
+        "Facile à étaler, sans traces blanches. Une teinte légère qui aide à uniformiser le teint."
+      ],
+      [
+        "Dedans",
+        "Filtre minéral (oxyde de zinc) · argousier · acide hyaluronique."
+      ]
+    ],
+    "pastille": {
+      "grand": "99 %",
+      "petit": "d'origine naturelle"
+    },
+    "logos": [
+      "ecocert-cosmos-natural.svg"
+    ],
+    "sticker_fort": true
+  }
+}

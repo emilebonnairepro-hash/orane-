@@ -1,0 +1,57 @@
+{
+  "gabarit": {
+    "source": "Selfnamed 150-004 Blemish Purifying Face Wash 140 ml",
+    "largeur": 142.5,
+    "hauteur": 109,
+    "fond_perdu": 2,
+    "marge": 3,
+    "zones_vides": [
+      {
+        "x": 107,
+        "y": 0,
+        "l": 35.5,
+        "h": 109
+      }
+    ],
+    "face": {
+      "cx": 39,
+      "largeur": 32
+    },
+    "px": [
+      3367,
+      2575
+    ]
+  },
+  "produit": {
+    "numero": "07",
+    "univers": "visage",
+    "nom": [
+      "gel",
+      "nettoyant"
+    ],
+    "sous_titre": "purifiant · peaux à imperfections",
+    "sticker": "thé vert",
+    "volume": "140 ml ℮",
+    "cote": [
+      [
+        "Le geste",
+        "Une petite noisette sur peau humide. On masse tout doucement, on rince bien. C'est tout, et c'est frais."
+      ],
+      [
+        "Pour qui ?",
+        "Les peaux à imperfections qui veulent un nettoyage doux, sans tensioactifs agressifs. pH équilibré."
+      ],
+      [
+        "Dedans",
+        "Maté bio · mousse d'Islande · cals de genévrier. Parfum frais de thé vert."
+      ]
+    ],
+    "pastille": {
+      "grand": "98 %",
+      "petit": "d'origine naturelle"
+    },
+    "logos": [
+      "ecocert-cosmos-natural.svg"
+    ]
+  }
+}
