@@ -1,0 +1,67 @@
+{%- comment -%} ORANE — le rituel en étapes, chaque étape peut pointer vers un vrai produit {%- endcomment -%}
+<section class="orane-section orane-section--mandarine orane-rituel">
+  <div class="page-width orane-rituel__inner">
+    <div class="orane-rituel__main">
+      {%- if section.settings.eyebrow != blank -%}<p class="orane-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      {%- if section.settings.title != blank -%}<h2 class="orane-h2">{{ section.settings.title }}</h2>{%- endif -%}
+      <ol class="orane-steps">
+        {%- for block in section.blocks -%}
+          {%- assign p = block.settings.product -%}
+          <li class="orane-step" {{ block.shopify_attributes }}>
+            <span class="orane-num orane-num--rose">{{ forloop.index }}</span>
+            <div class="orane-step__body">
+              <h3>{{ block.settings.title }}</h3>
+              <div>{{ block.settings.text }}</div>
+              {%- if p != blank -%}
+                <a class="orane-step__product" href="{{ p.url }}">
+                  {%- if p.featured_image -%}
+                    {{ p.featured_image | image_url: width: 120 | image_tag: loading: 'lazy', alt: p.title | escape }}
+                  {%- endif -%}
+                  <span>{{ p.title }}</span>
+                  <strong>{{ p.price | money }}</strong>
+                </a>
+              {%- endif -%}
+            </div>
+          </li>
+        {%- endfor -%}
+      </ol>
+    </div>
+    <div class="orane-rituel__side" aria-hidden="true">
+      {%- render 'orane-bouille', class: 'orane-rituel__bouille' -%}
+      {%- if section.settings.sticker != blank -%}
+        <p class="orane-sticker orane-sticker--blue orane-tilt-r">{{ section.settings.sticker }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ORANE · Rituel",
+  "tag": "div",
+  "class": "section",
+  "max_blocks": 5,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Le rituel" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Trois gestes, mine de rien" },
+    { "type": "text", "id": "sticker", "label": "Sticker", "default": "fais pas ta timide" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Étape",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Titre", "default": "Tu nettoies" },
+        { "type": "richtext", "id": "text", "label": "Texte", "default": "<p>Un geste doux, et c'est parti.</p>" },
+        { "type": "product", "id": "product", "label": "Produit associé" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ORANE · Rituel",
+      "blocks": [{ "type": "step" }, { "type": "step" }, { "type": "step" }]
+    }
+  ]
+}
+{% endschema %}

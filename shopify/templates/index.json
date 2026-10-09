@@ -1,0 +1,354 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "orane-hero": {
+      "type": "orane-hero",
+      "settings": {
+        "eyebrow": "Visage · corps · cheveux · homme",
+        "title": "orane",
+        "sticker": "peau neuve, mine de rien.",
+        "text": "<p>Le secteur chuchote en nude. Nous, on parle fort, en couleurs, avec des formules toutes douces pour ta peau.</p>",
+        "button_label": "Découvrir les soins",
+        "button_link": "shopify://collections/all",
+        "button2_label": "C'est quoi, ce délire ?",
+        "button2_link": "#esprit"
+      }
+    },
+    "orane-ticker": {
+      "type": "orane-ticker",
+      "blocks": {
+        "t0": {
+          "type": "phrase",
+          "settings": {
+            "text": "fais pas ta timide"
+          }
+        },
+        "t1": {
+          "type": "phrase",
+          "settings": {
+            "text": "zéro filtre"
+          }
+        },
+        "t2": {
+          "type": "phrase",
+          "settings": {
+            "text": "glow à la carte"
+          }
+        },
+        "t3": {
+          "type": "phrase",
+          "settings": {
+            "text": "bouille de star"
+          }
+        },
+        "t4": {
+          "type": "phrase",
+          "settings": {
+            "text": "100 % pep's"
+          }
+        }
+      },
+      "block_order": [
+        "t0",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ]
+    },
+    "multicolumn_garanties": {
+      "type": "multicolumn",
+      "blocks": {
+        "g1": {
+          "type": "column",
+          "settings": {
+            "title": "",
+            "text": "<h3>Livré en 2 à 5 jours</h3><p>Ta commande arrive vite.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "g2": {
+          "type": "column",
+          "settings": {
+            "title": "",
+            "text": "<h3>Livraison offerte dès 50 €</h3><p>En dessous, les frais s'affichent avant de payer.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "g3": {
+          "type": "column",
+          "settings": {
+            "title": "",
+            "text": "<h3>14 jours pour changer d'avis</h3><p>Un retour simple, depuis la page Contact.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "g1",
+        "g2",
+        "g3"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "image_width": "third",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "color_scheme": "scheme-a38ac93a-7224-4079-9c68-70762ddc148e",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 48,
+        "padding_bottom": 28
+      }
+    },
+    "featured-collection-0": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "all",
+        "products_to_show": 6,
+        "title": "Nos soins",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 3,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-a38ac93a-7224-4079-9c68-70762ddc148e",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "collection-list": {
+      "type": "collection-list",
+      "blocks": {
+        "c1": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "soin-du-visage"
+          }
+        },
+        "c2": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "soin-du-corps"
+          }
+        },
+        "c3": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "soin-du-cuit-chevelu"
+          }
+        },
+        "c4": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "homme"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4"
+      ],
+      "settings": {
+        "title": "Choisis ton univers",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 4,
+        "show_view_all": false,
+        "color_scheme": "scheme-1",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "orane-esprit": {
+      "type": "orane-esprit",
+      "blocks": {
+        "e1": {
+          "type": "card",
+          "settings": {
+            "color": "mandarine",
+            "title": "Doux avant tout",
+            "text": "<p>Chaque soin est pensé pour nettoyer, hydrater ou apaiser sans agresser la peau. Rien de coupant, ni dans la forme ni dans la formule.</p>"
+          }
+        },
+        "e2": {
+          "type": "card",
+          "settings": {
+            "color": "rose",
+            "title": "Des actifs qui servent",
+            "text": "<p>Acide hyaluronique, aloe vera, caféine, vitamine C, zinc : des ingrédients connus, choisis pour leur rôle. Zéro jargon.</p>"
+          }
+        },
+        "e3": {
+          "type": "card",
+          "settings": {
+            "color": "citron",
+            "title": "Premier degré interdit",
+            "text": "<p>On parle de beauté sans se prendre au sérieux. Quatre univers, des associations évidentes et un dernier geste : sourire.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "e1",
+        "e2",
+        "e3"
+      ],
+      "settings": {
+        "eyebrow": "L'esprit ORANE",
+        "title": "Le soin, version sourire",
+        "background": "aubergine",
+        "intro": "<p>Le secteur mise sur le nude, le minimal et le chuchoté. ORANE fait l'inverse : de la couleur qui crie, des formes rondes et un clin d'œil.</p>"
+      }
+    },
+    "produit-vedette": {
+      "type": "featured-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "intro": {
+          "type": "text",
+          "settings": {
+            "text": "7 paires de patchs hydrogel, à la caféine et à la vitamine C, pour le contour des yeux. Le petit coup de frais du matin.",
+            "text_style": "body"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "intro",
+        "buy_buttons"
+      ],
+      "settings": {
+        "product": "patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c",
+        "secondary_background": false,
+        "media_size": "large",
+        "color_scheme": "scheme-2",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "orane-rituel": {
+      "type": "orane-rituel",
+      "blocks": {
+        "r1": {
+          "type": "step",
+          "settings": {
+            "title": "Tu démaquilles",
+            "text": "<p>On secoue, on imbibe un coton, on glisse. Maquillage et impuretés s'en vont, ta bonne humeur reste.</p>",
+            "product": "demaquillant-biphasic-sans-parfum-1"
+          }
+        },
+        "r2": {
+          "type": "step",
+          "settings": {
+            "title": "Tu réveilles ton regard",
+            "text": "<p>Une paire de patchs sous les yeux, le temps d'un café. Fais pas ta timide, ça se voit à peine.</p>",
+            "product": "patchs-hydrogel-energisants-pour-les-yeux-a-la-cafeine-et-a-la-vitamine-c"
+          }
+        },
+        "r3": {
+          "type": "step",
+          "settings": {
+            "title": "Tu hydrates",
+            "text": "<p>Une noisette de gel léger, sans effet gras. C'est bouclé : sourire obligatoire.</p>",
+            "product": "gel-visage-au-zinc-sans-huile-pour-hommes"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3"
+      ],
+      "settings": {
+        "eyebrow": "Le rituel",
+        "title": "Trois gestes, mine de rien",
+        "sticker": "glow à la carte"
+      }
+    },
+    "featured-collection-homme": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "homme",
+        "products_to_show": 2,
+        "title": "Pour lui",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 2,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-a38ac93a-7224-4079-9c68-70762ddc148e",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    }
+  },
+  "order": [
+    "orane-hero",
+    "orane-ticker",
+    "multicolumn_garanties",
+    "featured-collection-0",
+    "collection-list",
+    "orane-esprit",
+    "produit-vedette",
+    "orane-rituel",
+    "featured-collection-homme"
+  ]
+}

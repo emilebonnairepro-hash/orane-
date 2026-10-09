@@ -1,0 +1,59 @@
+{%- comment -%}
+  ORANE — bannière d'accueil (charte « Identité décalée »)
+  Fond violet électrique à points, nom en crème, sticker citron, anneau et bouille.
+{%- endcomment -%}
+<section class="orane-hero" id="orane-hero-{{ section.id }}">
+  <div class="orane-hero__inner page-width">
+    <div class="orane-hero__text">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="orane-eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h1 class="orane-hero__title">{{ section.settings.title }}</h1>
+      {%- if section.settings.sticker != blank -%}
+        <p class="orane-sticker orane-sticker--lime orane-tilt-l">{{ section.settings.sticker }}</p>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <div class="orane-hero__lead">{{ section.settings.text }}</div>
+      {%- endif -%}
+      <div class="orane-hero__ctas">
+        {%- if section.settings.button_label != blank -%}
+          <a href="{{ section.settings.button_link | default: routes.all_products_collection_url }}" class="orane-btn orane-btn--lime">{{ section.settings.button_label }}</a>
+        {%- endif -%}
+        {%- if section.settings.button2_label != blank -%}
+          <a href="{{ section.settings.button2_link | default: '#' }}" class="orane-btn orane-btn--ghost">{{ section.settings.button2_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+    <div class="orane-hero__art" aria-hidden="true">
+      {%- render 'orane-ring', class: 'orane-hero__ring' -%}
+      {%- if section.settings.mascot != blank -%}
+        {{ section.settings.mascot | image_url: width: 500 | image_tag: class: 'orane-hero__bouille', loading: 'eager', alt: '' }}
+      {%- else -%}
+        {%- render 'orane-bouille', class: 'orane-hero__bouille' -%}
+      {%- endif -%}
+      {%- render 'orane-spark', color: 'lime', class: 'orane-hero__s1' -%}
+      {%- render 'orane-spark', color: 'pink', class: 'orane-hero__s2' -%}
+      {%- render 'orane-spark', color: 'blue', class: 'orane-hero__s3' -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ORANE · Bannière",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Soin du visage, du corps et des cheveux" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "orane" },
+    { "type": "text", "id": "sticker", "label": "Sticker", "default": "peau neuve, mine de rien." },
+    { "type": "richtext", "id": "text", "label": "Texte", "default": "<p>Le secteur chuchote en nude. Nous, on parle fort, en couleurs, avec des formules toutes douces pour ta peau.</p>" },
+    { "type": "text", "id": "button_label", "label": "Bouton principal", "default": "Découvrir les soins" },
+    { "type": "url", "id": "button_link", "label": "Lien du bouton principal" },
+    { "type": "text", "id": "button2_label", "label": "Bouton secondaire", "default": "C'est quoi, ce délire ?" },
+    { "type": "text", "id": "button2_link", "label": "Lien du bouton secondaire", "default": "#esprit" },
+    { "type": "image_picker", "id": "mascot", "label": "Image de la bouille (facultatif)", "info": "Sinon, la bouille dessinée est utilisée." }
+  ],
+  "presets": [{ "name": "ORANE · Bannière" }]
+}
+{% endschema %}

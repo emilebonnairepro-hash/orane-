@@ -1,0 +1,37 @@
+{%- comment -%} ORANE — bandeau de stickers qui défile {%- endcomment -%}
+{%- capture items -%}
+  {%- for block in section.blocks -%}
+    <span {{ block.shopify_attributes }}>{{ block.settings.text }}</span><i>✦</i>
+  {%- endfor -%}
+{%- endcapture -%}
+<div class="orane-ticker" aria-hidden="true">
+  <div class="orane-ticker__track">{{ items }}{{ items }}{{ items }}{{ items }}</div>
+</div>
+
+{% schema %}
+{
+  "name": "ORANE · Bandeau stickers",
+  "tag": "div",
+  "class": "section",
+  "max_blocks": 8,
+  "blocks": [
+    {
+      "type": "phrase",
+      "name": "Phrase",
+      "settings": [{ "type": "text", "id": "text", "label": "Texte", "default": "zéro filtre" }]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ORANE · Bandeau stickers",
+      "blocks": [
+        { "type": "phrase", "settings": { "text": "fais pas ta timide" } },
+        { "type": "phrase", "settings": { "text": "zéro filtre" } },
+        { "type": "phrase", "settings": { "text": "glow à la carte" } },
+        { "type": "phrase", "settings": { "text": "bouille de star" } },
+        { "type": "phrase", "settings": { "text": "100 % pep's" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
