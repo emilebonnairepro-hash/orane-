@@ -31,7 +31,7 @@ body { position: relative; color: #2A1240; font-family: "Bricolage Grotesque", s
 .volume { font-family: Unbounded, sans-serif; font-weight: 700; font-size: max(4.8pt, calc(6.50pt * var(--k))); margin-top: auto; padding-top: calc(1.5mm * var(--k)); white-space: nowrap; }
 
 /* côté : tailles × --q */
-.side { position: absolute; display: flex; flex-direction: column; gap: calc(3mm * var(--q)); padding-bottom: 1.6mm; }
+.side { position: absolute; display: flex; flex-direction: column; gap: calc(3mm * var(--q)); padding-bottom: 2.4mm; }
 .side h3 { font-family: Unbounded, sans-serif; font-weight: 800; font-size: max(5pt, calc(8pt * var(--q))); margin-bottom: calc(.8mm * var(--q)); }
 .side p { font-size: max(4.6pt, calc(6.6pt * var(--q))); line-height: 1.3; font-weight: 600; }
 .bas { display: flex; flex-wrap: wrap; align-items: center; gap: calc(3mm * var(--q)); margin-top: auto; }
@@ -46,7 +46,7 @@ body { position: relative; color: #2A1240; font-family: "Bricolage Grotesque", s
 .gz span, .gt { font: 700 4.6pt sans-serif; color: #c2410c; background: rgba(255,255,255,.9); padding: .3mm .8mm; text-align: center; }
 .gt { position: absolute; left: 3mm; bottom: .1mm; }
 </style></head><body>
-<div class="fond"><p class="slogan" style="left:12.0mm;top:46.58mm;font-size:6.50pt">peau neuve, mine de rien ✦</p><div style="position:absolute;width:42.0mm;left:-16.0mm;top:85.9mm;transform:rotate(-24deg)"><svg viewBox="0 0 100 100" class="anneau"><path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="#6B2CF5" stroke-width="18"/><path d="M90 50 A40 40 0 0 1 10 50" fill="none" stroke="#D4F23A" stroke-width="18"/><circle cx="78.3" cy="21.7" r="10" fill="#FFF3E3" stroke="#2A1240" stroke-width="2"/></svg></div><svg viewBox="0 0 40 40" class="sp" style="width:7.00mm;left:8.50mm;top:6.00mm"><path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" fill="#FFF3E3" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/></svg><svg viewBox="0 0 40 40" class="sp" style="width:4.5mm;left:98.00mm;top:5.50mm"><path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" fill="#FFF3E3" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/></svg><svg viewBox="0 0 40 40" class="sp" style="width:3.8mm;left:91.00mm;top:99.00mm"><path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" fill="#D4F23A" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+<div class="fond"><p class="slogan" style="left:12.0mm;top:48.95mm;font-size:6.50pt">peau neuve, mine de rien ✦</p><div style="position:absolute;width:42.0mm;left:-16.0mm;top:85.9mm;transform:rotate(-24deg)"><svg viewBox="0 0 100 100" class="anneau"><path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="#6B2CF5" stroke-width="18"/><path d="M90 50 A40 40 0 0 1 10 50" fill="none" stroke="#D4F23A" stroke-width="18"/><circle cx="78.3" cy="21.7" r="10" fill="#FFF3E3" stroke="#2A1240" stroke-width="2"/></svg></div><svg viewBox="0 0 40 40" class="sp" style="width:7.00mm;left:8.50mm;top:6.00mm"><path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" fill="#FFF3E3" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/></svg><svg viewBox="0 0 40 40" class="sp" style="width:4.5mm;left:98.00mm;top:5.50mm"><path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" fill="#FFF3E3" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/></svg><svg viewBox="0 0 40 40" class="sp" style="width:3.8mm;left:91.00mm;top:99.00mm"><path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" fill="#D4F23A" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
 
 <div class="front" style="left:23.0mm;top:5mm;width:32.0mm;height:99mm">
     <p class="kicker">n°07 · visage</p>
@@ -772,7 +772,7 @@ async function run() {
   body.style.setProperty('--k', lo);
   const sides = [...document.querySelectorAll('.side')];
   if (sides.length) {
-    const overS = () => sides.some((side) => side.scrollHeight > side.clientHeight + 4 || side.scrollWidth > side.clientWidth + 1 || wide(side));
+    const overS = () => sides.some((side) => side.scrollHeight > side.clientHeight + 1 || side.scrollWidth > side.clientWidth + 1 || wide(side));
     let a = .4, b = 1.25;
     for (let i = 0; i < 18; i++) { const m = (a + b) / 2; body.style.setProperty('--q', m); if (overS()) b = m; else a = m; }
     body.style.setProperty('--q', a);

@@ -31,7 +31,7 @@ body { position: relative; color: #2A1240; font-family: "Bricolage Grotesque", s
 .volume { font-family: Unbounded, sans-serif; font-weight: 700; font-size: max(4.8pt, calc(5.28pt * var(--k))); margin-top: auto; padding-top: calc(1.5mm * var(--k)); white-space: nowrap; }
 
 /* côté : tailles × --q */
-.side { position: absolute; display: flex; flex-direction: column; gap: calc(3mm * var(--q)); padding-bottom: 1.6mm; }
+.side { position: absolute; display: flex; flex-direction: column; gap: calc(3mm * var(--q)); padding-bottom: 2.4mm; }
 .side h3 { font-family: Unbounded, sans-serif; font-weight: 800; font-size: max(5pt, calc(8pt * var(--q))); margin-bottom: calc(.8mm * var(--q)); }
 .side p { font-size: max(4.6pt, calc(6.6pt * var(--q))); line-height: 1.3; font-weight: 600; }
 .bas { display: flex; flex-wrap: wrap; align-items: center; gap: calc(3mm * var(--q)); margin-top: auto; }
@@ -772,7 +772,7 @@ async function run() {
   body.style.setProperty('--k', lo);
   const sides = [...document.querySelectorAll('.side')];
   if (sides.length) {
-    const overS = () => sides.some((side) => side.scrollHeight > side.clientHeight + 4 || side.scrollWidth > side.clientWidth + 1 || wide(side));
+    const overS = () => sides.some((side) => side.scrollHeight > side.clientHeight + 1 || side.scrollWidth > side.clientWidth + 1 || wide(side));
     let a = .4, b = 1.25;
     for (let i = 0; i < 18; i++) { const m = (a + b) / 2; body.style.setProperty('--q', m); if (overS()) b = m; else a = m; }
     body.style.setProperty('--q', a);

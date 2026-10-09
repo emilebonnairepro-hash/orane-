@@ -1,0 +1,51 @@
+{
+  "gabarit": {
+    "source": "Selfnamed Urea Body Cream 280 ml (Template_Urea_Body_Cream_280ml_label.ai)",
+    "largeur": 172.0,
+    "hauteur": 64.0,
+    "fond_perdu": 2,
+    "marge": 3,
+    "zones_vides": [
+      {
+        "x": 109.3,
+        "y": 0,
+        "l": 62.7,
+        "h": 64.0
+      }
+    ],
+    "face": {
+      "cx": 44.0,
+      "largeur": 36
+    },
+    "px": [
+      4063,
+      1512
+    ]
+  },
+  "produit": {
+    "numero": "12",
+    "univers": "corps",
+    "nom": [
+      "crème",
+      "corps"
+    ],
+    "sous_titre": "peaux sèches & rugueuses",
+    "sticker": "5 % d'urée",
+    "sticker_fort": true,
+    "volume": "280 ml ℮",
+    "cote": [
+      [
+        "Ce qu'on aime",
+        "Une hydratation intense et durable. Apaise et adoucit les peaux rugueuses. Texture nourrissante, non grasse."
+      ],
+      [
+        "Dedans",
+        "5 % d'hydroxyéthylurée · 2 % de panthénol · acide hyaluronique · glycérine."
+      ],
+      [
+        "Le duo parfait",
+        "Avec notre gel lavant mains & corps n°01."
+      ]
+    ]
+  }
+}

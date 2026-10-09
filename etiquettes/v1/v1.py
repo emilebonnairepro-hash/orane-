@@ -114,9 +114,12 @@ def page(spec, guides=False):
     if G["strip"]:
         lx0, ly0, lx1, ly1 = G["strip"]
         sw = lx1 - lx0
-        cx, cy = (lx0 + lx1) / 2 - bx0, ly0 + (ly1 - ly0) * .42 - by0
-        rw = max(18, sw * 3)
-        deco += (f'<p class="slogan" style="left:{cx}mm;top:{cy}mm;font-size:{min(6.5, max(4.6, sw * .9)):.2f}pt">peau neuve, mine de rien ✦</p>'
+        rw = min(max(18, sw * 3), (ly1 - ly0) * .55)          # anneau plus petit sur les formats bas
+        haut, bas_ = ly0 + 9, H - rw * .55 - 2                 # le slogan tient entre l'étincelle et l'anneau
+        slogan = "peau neuve, mine de rien ✦"
+        fs = max(4.6, min(6.5, sw * .9, (bas_ - haut) / (len(slogan) * .95 * .3528)))
+        cx, cy = (lx0 + lx1) / 2 - bx0, (haut + bas_) / 2 - by0
+        deco += (f'<p class="slogan" style="left:{cx}mm;top:{cy}mm;font-size:{fs:.2f}pt">{slogan}</p>'
                  f'<div style="position:absolute;width:{rw}mm;left:{lx0 - bx0 - rw * .5}mm;top:{H - by0 - rw * .55}mm;transform:rotate(-24deg)">{anneau(C[P["anneau"][0]], C[P["anneau"][1]])}</div>'
                  + spark(f"width:{min(7, sw * .8):.2f}mm;left:{cx - min(7, sw * .8) / 2:.2f}mm;top:{fy0 - by0 + 1:.2f}mm", C[P["etincelles"][0]]))
     if G["side"]:
@@ -170,7 +173,7 @@ body {{ position: relative; color: {TEXTE}; font-family: "Bricolage Grotesque", 
 .volume {{ font-family: Unbounded, sans-serif; font-weight: 700; font-size: max(4.8pt, calc({6.5 * s:.2f}pt * var(--k))); margin-top: auto; padding-top: calc(1.5mm * var(--k)); white-space: nowrap; }}
 
 /* côté : tailles × --q */
-.side {{ position: absolute; display: flex; flex-direction: column; gap: calc(3mm * var(--q)); padding-bottom: 1.6mm; }}
+.side {{ position: absolute; display: flex; flex-direction: column; gap: calc(3mm * var(--q)); padding-bottom: 2.4mm; }}
 .side h3 {{ font-family: Unbounded, sans-serif; font-weight: 800; font-size: max(5pt, calc(8pt * var(--q))); margin-bottom: calc(.8mm * var(--q)); }}
 .side p {{ font-size: max(4.6pt, calc(6.6pt * var(--q))); line-height: 1.3; font-weight: 600; }}
 .bas {{ display: flex; flex-wrap: wrap; align-items: center; gap: calc(3mm * var(--q)); margin-top: auto; }}
@@ -201,7 +204,7 @@ async function run() {{
   body.style.setProperty('--k', lo);
   const sides = [...document.querySelectorAll('.side')];
   if (sides.length) {{
-    const overS = () => sides.some((side) => side.scrollHeight > side.clientHeight + 4 || side.scrollWidth > side.clientWidth + 1 || wide(side));
+    const overS = () => sides.some((side) => side.scrollHeight > side.clientHeight + 1 || side.scrollWidth > side.clientWidth + 1 || wide(side));
     let a = .4, b = 1.25;
     for (let i = 0; i < 18; i++) {{ const m = (a + b) / 2; body.style.setProperty('--q', m); if (overS()) b = m; else a = m; }}
     body.style.setProperty('--q', a);
