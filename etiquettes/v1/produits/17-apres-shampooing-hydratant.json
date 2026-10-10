@@ -1,0 +1,61 @@
+{
+  "gabarit": {
+    "source": "Selfnamed Moisturising Conditioner 290 ml (Template_Moisturising Conditioner, 300ml_label.ai)",
+    "largeur": 196.0,
+    "hauteur": 100.0,
+    "fond_perdu": 2,
+    "marge": 3,
+    "zones_vides": [
+      {
+        "x": 158.6,
+        "y": 0,
+        "l": 37.4,
+        "h": 100.0
+      }
+    ],
+    "face": {
+      "cx": 49.6,
+      "largeur": 40
+    },
+    "px": [
+      4630,
+      2362
+    ]
+  },
+  "produit": {
+    "numero": "17",
+    "univers": "cheveux",
+    "nom": [
+      "après-",
+      "shampooing"
+    ],
+    "sous_titre": "hydratant · pointes sèches",
+    "sticker": "cheveux lisses",
+    "volume": "290 ml ℮",
+    "cote": [
+      [
+        "Le geste",
+        "Sur les pointes, laisse agir 2 à 5 minutes, puis rince."
+      ],
+      [
+        "Ce qu'on aime",
+        "Nourrit les cheveux et aide à réparer les pointes sèches. Cheveux lisses et faciles à coiffer."
+      ],
+      [
+        "Dedans",
+        "Huile d'argan · protéines de blé · jus d'aloe vera · extraits de plantes."
+      ],
+      [
+        "Le duo parfait",
+        "Après notre shampooing cuir chevelu sensible n°02."
+      ]
+    ],
+    "pastille": {
+      "grand": "99 %",
+      "petit": "d'origine naturelle"
+    },
+    "logos": [
+      "ecocert-cosmos-natural.svg"
+    ]
+  }
+}

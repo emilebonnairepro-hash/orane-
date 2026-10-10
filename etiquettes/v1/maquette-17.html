@@ -1,0 +1,10 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;background:#FFF3E3;display:grid;place-items:center;height:100vh}
+.scene{position:relative;width:520px;height:720px}
+.pompe{position:absolute;left:50%;top:30px;width:60px;height:100px;transform:translateX(-50%);background:#f4f4f4;border:3px solid #2A1240;border-radius:12px 12px 4px 4px}
+.bec{position:absolute;left:calc(50% + 26px);top:44px;width:70px;height:20px;background:#f4f4f4;border:3px solid #2A1240;border-radius:6px}
+.flacon{position:absolute;left:50%;top:126px;width:300px;height:560px;transform:translateX(-50%);background:linear-gradient(90deg,#e9e9e9,#fff 40%,#dcdcdc);border:3px solid #2A1240;border-radius:50px 50px 26px 26px;overflow:hidden;box-shadow:12px 12px 0 #2A1240}
+.etiq{position:absolute;left:0;right:0;top:150px;height:300px;background-image:url(sortie/17-apres-shampooing-hydratant/etiquette.png);background-size:auto 300px;background-position:var(--x) 0}
+.reflet{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.16),rgba(255,255,255,0) 30%,rgba(255,255,255,.3) 55%,rgba(0,0,0,.18))}
+</style></head><body><div class="scene"><div class="bec"></div><div class="pompe"></div><div class="flacon"><div class="etiq"></div><div class="reflet"></div></div></div>
+<script>const h=300,w=h*4630/2362,cx=49.6/196*w;document.querySelector('.etiq').style.setProperty('--x',(150-cx)+'px');</script></body></html>

@@ -33,3 +33,4 @@ Les tailles s'ajustent toutes seules au format (texte jamais sous 4,6 pt).
 - 15 Sérum corps ambre boisé & cuir — gabarit 270 ml (172 × 64 mm, identique à la crème corps) — citron (corps)
 - 16 Masque capillaire kératine — gabarit 170 ml (301 × 55 mm, deux zones de mentions, face au centre) — mandarine (cheveux)
 - 02 Shampooing cuir chevelu sensible — gabarit 400 ml (217 × 103 mm) — mandarine (cheveux)
+- 17 Après-shampooing hydratant — gabarit 290 ml (196 × 100 mm) — mandarine (cheveux) · lecteur de gabarit : lire_gabarit.py
