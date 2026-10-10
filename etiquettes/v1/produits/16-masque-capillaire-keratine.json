@@ -1,0 +1,63 @@
+{
+  "gabarit": {
+    "source": "Selfnamed Keratin hair mask 170 ml (TEMPLATE_Keratin hair mask.ai, zones lues sur le manuel)",
+    "largeur": 301.27,
+    "hauteur": 54.86,
+    "fond_perdu": 2,
+    "marge": 3,
+    "zones_vides": [
+      {
+        "x": 0,
+        "y": 0,
+        "l": 63.2,
+        "h": 54.86
+      },
+      {
+        "x": 248.4,
+        "y": 0,
+        "l": 52.87,
+        "h": 54.86
+      }
+    ],
+    "face": {
+      "cx": 150.6,
+      "largeur": 40
+    },
+    "px": [
+      7110,
+      1302
+    ]
+  },
+  "produit": {
+    "numero": "16",
+    "univers": "cheveux",
+    "nom": [
+      "masque",
+      "kératine"
+    ],
+    "sous_titre": "réparateur intensif",
+    "sticker": "brillance",
+    "volume": "170 ml ℮",
+    "cote": [
+      [
+        "Le geste",
+        "Sur cheveux propres et humides, insiste sur les longueurs et les pointes. Laisse poser 5 à 10 minutes, puis rince abondamment."
+      ],
+      [
+        "Ce qu'on aime",
+        "Nourrit en profondeur, aide à réduire la casse et les pointes fourchues. Cheveux doux, brillants et faciles à coiffer."
+      ],
+      [
+        "Dedans",
+        "Kératine hydrolysée · protéines de blé · peptides · complexe biominéral · vitamine E · beurre de karité."
+      ]
+    ],
+    "pastille": {
+      "grand": "98 %",
+      "petit": "d'origine naturelle"
+    },
+    "logos": [
+      "ecocert-cosmos-natural.svg"
+    ]
+  }
+}

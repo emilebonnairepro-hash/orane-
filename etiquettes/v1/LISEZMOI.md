@@ -31,3 +31,4 @@ Les tailles s'ajustent toutes seules au format (texte jamais sous 4,6 pt).
 - 13 Gel douche mains & corps cardamome — gabarit LABEL_490-001 (490 ml, 207 × 81 mm) — citron (corps)
 - 14 Gel douche mains & corps vanille ambrée — gabarit LABEL_490-001 (490 ml, 207 × 81 mm) — citron (corps)
 - 15 Sérum corps ambre boisé & cuir — gabarit 270 ml (172 × 64 mm, identique à la crème corps) — citron (corps)
+- 16 Masque capillaire kératine — gabarit 170 ml (301 × 55 mm, deux zones de mentions, face au centre) — mandarine (cheveux)
