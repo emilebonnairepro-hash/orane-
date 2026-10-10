@@ -1,0 +1,53 @@
+{
+  "gabarit": {
+    "source": "Selfnamed LABEL_490-001 Hand & Body Wash Amber 490 ml (même gabarit que la cardamome)",
+    "largeur": 207.0,
+    "hauteur": 81.0,
+    "fond_perdu": 2,
+    "marge": 3,
+    "zones_vides": [
+      {
+        "x": 160.1,
+        "y": 0,
+        "l": 46.9,
+        "h": 81.0
+      }
+    ],
+    "face": {
+      "cx": 52.7,
+      "largeur": 40
+    },
+    "px": [
+      4890,
+      1913
+    ]
+  },
+  "produit": {
+    "numero": "14",
+    "univers": "corps",
+    "nom": [
+      "gel",
+      "douche"
+    ],
+    "sous_titre": "mains & corps · patchouli",
+    "sticker": "vanille ambrée",
+    "volume": "490 ml ℮",
+    "cote": [
+      [
+        "Le geste",
+        "Sur peau humide, fais mousser, puis rince abondamment."
+      ],
+      [
+        "Ce qu'on aime",
+        "Nettoie mains et peau sans les dessécher. Peau fraîche, douce et délicatement parfumée de vanille, d'ambre et de patchouli."
+      ],
+      [
+        "Dedans",
+        "Bétaïne hydratante · extrait de coing bio."
+      ]
+    ],
+    "logos": [
+      "ecocert-cosmos-natural.svg"
+    ]
+  }
+}
