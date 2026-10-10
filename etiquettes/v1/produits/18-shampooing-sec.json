@@ -1,0 +1,36 @@
+{
+  "gabarit": {
+    "source": "Selfnamed UZL100-003 Dry Shampoo 100 ml (US)",
+    "largeur": 106.19,
+    "hauteur": 93.13,
+    "fond_perdu": 2,
+    "marge": 3,
+    "zones_vides": [
+      {
+        "x": 61.9,
+        "y": 0,
+        "l": 44.29,
+        "h": 93.13
+      }
+    ],
+    "face": {
+      "cx": 27.6,
+      "largeur": 44
+    },
+    "px": [
+      2508,
+      2220
+    ]
+  },
+  "produit": {
+    "numero": "18",
+    "univers": "cheveux",
+    "nom": [
+      "shampooing",
+      "sec"
+    ],
+    "sous_titre": "spray sans gaz",
+    "sticker": "zéro trace blanche",
+    "volume": "100 ml ℮"
+  }
+}
