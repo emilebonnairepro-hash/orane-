@@ -30,3 +30,4 @@ Les tailles s'ajustent toutes seules au format (texte jamais sous 4,6 pt).
 - 12 Crème corps 5 % d'urée — gabarit Urea Body Cream (280 ml, 172 × 64 mm) — citron (corps)
 - 13 Gel douche mains & corps cardamome — gabarit LABEL_490-001 (490 ml, 207 × 81 mm) — citron (corps)
 - 14 Gel douche mains & corps vanille ambrée — gabarit LABEL_490-001 (490 ml, 207 × 81 mm) — citron (corps)
+- 15 Sérum corps ambre boisé & cuir — gabarit 270 ml (172 × 64 mm, identique à la crème corps) — citron (corps)

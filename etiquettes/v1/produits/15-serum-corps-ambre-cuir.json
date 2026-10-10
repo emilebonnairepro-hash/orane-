@@ -1,0 +1,53 @@
+{
+  "gabarit": {
+    "source": "Selfnamed LBL300-002 Body Serum Woody Amber & Leather 270 ml (même gabarit que la crème corps à l'urée)",
+    "largeur": 172.0,
+    "hauteur": 64.0,
+    "fond_perdu": 2,
+    "marge": 3,
+    "zones_vides": [
+      {
+        "x": 109.3,
+        "y": 0,
+        "l": 62.7,
+        "h": 64.0
+      }
+    ],
+    "face": {
+      "cx": 44.0,
+      "largeur": 36
+    },
+    "px": [
+      4063,
+      1512
+    ]
+  },
+  "produit": {
+    "numero": "15",
+    "univers": "corps",
+    "nom": [
+      "sérum",
+      "corps"
+    ],
+    "sous_titre": "ambre boisé & cuir",
+    "sticker": "peau de soie",
+    "volume": "270 ml ℮",
+    "cote": [
+      [
+        "Ce qu'on aime",
+        "Hydrate en profondeur et apaise. Texture légère, absorbée en un instant : peau douce et lisse."
+      ],
+      [
+        "Dedans",
+        "Huile de jojoba · huile de rose musquée · sodium PCA · cresson · ginkgo."
+      ],
+      [
+        "Le duo parfait",
+        "Après nos gels douche mains & corps n°13 et n°14."
+      ]
+    ],
+    "logos": [
+      "ecocert-cosmos-natural.svg"
+    ]
+  }
+}
