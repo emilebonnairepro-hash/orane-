@@ -88,7 +88,8 @@ def page(spec, guides=False):
   </div>"""
 
     side2 = None
-    if G["strip"] and G["strip"][2] - G["strip"][0] >= 20:
+    if (G["strip"] and G["strip"][2] - G["strip"][0] >= 20 and G["side"]
+            and G["strip"][2] - G["strip"][0] >= .6 * (G["side"][2] - G["side"][0])):   # 2e côté seulement si les deux sont comparables
         side2, G["strip"] = G["strip"], None
     side = ""
     if G["side"]:

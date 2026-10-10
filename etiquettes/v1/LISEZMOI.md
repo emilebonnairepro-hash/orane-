@@ -28,3 +28,4 @@ Les tailles s'ajustent toutes seules au format (texte jamais sous 4,6 pt).
 - 10 Crème peptides AM/PM — gabarit UZL50-001 (50 ml, 96 × 113 mm) — rose (visage)
 - 11 Gel double hydratation — gabarit LABEL_30-002 (30 ml, 100 × 46 mm, identique à la crème solaire) — rose (visage)
 - 12 Crème corps 5 % d'urée — gabarit Urea Body Cream (280 ml, 172 × 64 mm) — citron (corps)
+- 13 Gel douche mains & corps cardamome — gabarit LABEL_490-001 (490 ml, 207 × 81 mm) — citron (corps)
