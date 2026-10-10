@@ -1,0 +1,56 @@
+{
+  "gabarit": {
+    "source": "Selfnamed A5939 Sensitive Scalp Shampoo 400 ml (Template_Shampoo_400ml_label.ai)",
+    "largeur": 217.17,
+    "hauteur": 103.15,
+    "fond_perdu": 2,
+    "marge": 3,
+    "zones_vides": [
+      {
+        "x": 177.6,
+        "y": 0,
+        "l": 39.57,
+        "h": 103.15
+      }
+    ],
+    "face": {
+      "cx": 55.7,
+      "largeur": 42
+    },
+    "px": [
+      5130,
+      2437
+    ]
+  },
+  "produit": {
+    "numero": "02",
+    "univers": "cheveux",
+    "nom": [
+      "shampooing"
+    ],
+    "sous_titre": "cuir chevelu sensible",
+    "sticker": "tout doux",
+    "volume": "400 ml ℮",
+    "cote": [
+      [
+        "Pour qui ?",
+        "Les cuirs chevelus secs, sensibles ou facilement irrités. Convient à tous les types de peau."
+      ],
+      [
+        "Ce qu'on aime",
+        "Lave en douceur et nourrit les cheveux : cuir chevelu équilibré et confortable, cheveux d'apparence plus saine. Délicatement parfumé."
+      ],
+      [
+        "Dedans",
+        "Bétaïne · protéines de blé · fleur de tilleul · jasmin · prune."
+      ]
+    ],
+    "pastille": {
+      "grand": "98 %",
+      "petit": "d'origine naturelle"
+    },
+    "logos": [
+      "ecocert-cosmos-natural.svg"
+    ]
+  }
+}
