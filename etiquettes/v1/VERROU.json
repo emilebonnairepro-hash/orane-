@@ -2,7 +2,7 @@
   "verrouille_le": "2026-10-09",
   "design": "V1 + fond swirl, couleurs de catégorie",
   "empreintes": {
-    "v1/v1.py": "29e6a9b902463a71e3f02b697bc7e4621b285e7ee208665a91aca80e24262bd7",
+    "v1/v1.py": "db6f94468349862ba119ee1f86dd66983826504aab2eb46a88c9d52aceb10a3d",
     "couleurs.py": "8d78c203a2a9c09a102af88c97ac85419a6ae604ebbb74898d3a58c3d9e83d5d",
     "assets/swirl-modele.svg": "f005f3a54dd855b29e77e914ff94cc06f1d6f7b1204bbb1c11fe83cb61c7f583",
     "calque/calque.py": "462205b6ad3e622abe50366e4a2a8eea13b07fe5027f4bcc8b04fe8e11cf33b7",
@@ -14,6 +14,7 @@
     "correctif : pastille et logo passent à la ligne sur les côtés étroits",
     "correctif : pas d'étincelle sur le texte du côté des petits formats",
     "correctif : slogan et anneau ajustés aux formats bas ; texte du côté dans la marge de sécurité",
-    "correctif : 2e côté seulement si les deux côtés ont une largeur comparable"
+    "correctif : 2e côté seulement si les deux côtés ont une largeur comparable",
+    "correctif : plus aucune tolérance de dépassement de la marge sur la face avant"
   ]
 }

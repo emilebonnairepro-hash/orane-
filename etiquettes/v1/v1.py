@@ -199,7 +199,7 @@ async function run() {{
   await document.fonts.ready;
   const body = document.body, front = document.querySelector('.front');
   const wide = (el) => [...el.querySelectorAll('p')].some((c) => c.scrollWidth > el.clientWidth + .5);
-  const overF = () => front.scrollHeight > front.clientHeight + .5 || wide(front) || document.querySelector('.art').clientHeight < 5 * 3.78;
+  const overF = () => front.lastElementChild.getBoundingClientRect().bottom > front.getBoundingClientRect().bottom + .01 || front.scrollHeight > front.clientHeight || wide(front) || document.querySelector('.art').clientHeight < 5 * 3.78;
   let lo = .3, hi = 1.25;
   for (let i = 0; i < 18; i++) {{ const m = (lo + hi) / 2; body.style.setProperty('--k', m); if (overF()) hi = m; else lo = m; }}
   body.style.setProperty('--k', lo);
