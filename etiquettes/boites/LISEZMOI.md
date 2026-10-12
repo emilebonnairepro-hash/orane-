@@ -17,7 +17,7 @@ Ce dossier ne modifie aucun fichier verrouillé : il lit `etiquettes/couleurs.py
 **Comment c'est organisé :**
 - `gabarit/box30-001.json` : la découpe, le fond perdu, les fentes et les plis, en pt, relus dans le .ai avec `lire_boite_ai.py`.
 - `gabarit/mentions-selfnamed.png` : ce que Selfnamed imprime, superposé sur `apercu.png` pour contrôle.
-- Les sorties sont `boite.png`, `boite.pdf`, `apercu.png` (découpe, plis et mentions) et `maquette.png` (boîte montée).
+- Les sorties sont `boite.png` (600 dpi, transparent), `boite.pdf` (600 dpi, taille exacte), `boite-600dpi.tif` (sans perte), `apercu.png` (découpe, plis et mentions) et `maquette.png` (boîte montée).
 
 **Lancer le rendu :** `python3 etiquettes/boites/08-creme-solaire-teintee-spf30/generer.py`
 

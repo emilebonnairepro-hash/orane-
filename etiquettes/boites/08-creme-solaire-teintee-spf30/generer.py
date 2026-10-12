@@ -11,7 +11,7 @@ Gabarit (gabarit/box30-001.json, relu dans BOX_30-001_Template.ai) :
   - texte seulement sur la face avant et le côté droit, à 3 mm des plis ; fond perdu jusqu'au tracé bleu
 
 Usage : python3 etiquettes/boites/08-creme-solaire-teintee-spf30/generer.py
-Sorties (sortie/) : boite.png (à téléverser), boite.pdf, apercu.png (avec découpe, plis et mentions), maquette.png (boîte montée)
+Sorties (sortie/) : boite.png (à téléverser, 600 dpi), boite.pdf (600 dpi, taille exacte), apercu.png (avec découpe, plis et mentions), maquette.png (boîte montée)
 """
 import json, pathlib, subprocess, sys, re, html as h
 from urllib.parse import quote
@@ -203,6 +203,11 @@ def main():
         im.resize(tuple(PX), Image.LANCZOS).save(out / "boite.png", dpi=(600, 600))
     else:
         im.save(out / "boite.png", dpi=(600, 600))
+    # PDF d'impression : l'image 600 dpi posée à la taille exacte du plan de travail (174,96 × 212,05 mm)
+    im = Image.open(out / "boite.png").convert("RGBA")
+    blanc = Image.new("RGB", im.size, "white"); blanc.paste(im, mask=im.split()[3])
+    blanc.save(out / "boite.pdf", "PDF", resolution=600.0, quality=100)
+    blanc.save(out / "boite-600dpi.tif", dpi=(600, 600), compression="tiff_lzw")   # sans perte, pour l'imprimeur
     faces = {"plan": [W, H], "face": [FACE[0], YH, FACE[1], YB], "cote": [COTE[0], YH, COTE[1], YB],
              "dessus": [COUVERCLE[0], 40.7, COUVERCLE[2], YH]}
     flacon = ET.parent / "instagram" / "assets" / "08-creme-solaire-teintee-spf30.png"   # flacon détouré

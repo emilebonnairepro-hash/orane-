@@ -1,4 +1,4 @@
-// Rend une boîte : boite.html → boite.png (px exacts, fond transparent) + boite.pdf ; apercu.html → apercu.png
+// Rend une boîte : boite.html → boite.png (px exacts, fond transparent) ; apercu.html → apercu.png
 // Usage : node rendre-boite.mjs <dossier sortie> <largeur pt> <hauteur pt> <px l> <px h>
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
@@ -15,7 +15,6 @@ for (const [nom, scale] of [['boite', +pxw / cssW], ['apercu', 1800 / cssW]]) {
   const err = JSON.parse(await p.evaluate(() => document.body.dataset.erreurs || '[]'));
   if (err.length) { console.error('✗ marges :\n  ' + err.join('\n  ')); process.exitCode = 1; }
   await p.screenshot({ path: dir + '/' + nom + '.png', omitBackground: nom === 'boite', clip: { x: 0, y: 0, width: cssW, height: cssH } });
-  if (nom === 'boite') await p.pdf({ path: dir + '/boite.pdf', width: (cssW / 96) + 'in', height: (cssH / 96) + 'in', printBackground: true, pageRanges: '1' });
   console.log('✓', nom);
   await p.close();
 }
