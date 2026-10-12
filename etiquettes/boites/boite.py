@@ -10,7 +10,7 @@ Chaque boîte a son dossier etiquettes/boites/<produit>/ avec :
                           "flacon": "<image détourée pour la maquette>", "face_extra": "ligne sous le sticker",
                           "cote": [["Titre", "texte"], ...] (facultatif, sinon celui de l'étiquette) }
   gabarit/<x>.json      tracés relus dans le .ai (lire_boite_ai.py) + position des faces, en pt
-  gabarit/mentions-selfnamed.png   ce que Selfnamed imprime (contrôle sur l'aperçu)
+  gabarit/mentions-selfnamed.png   ce que Selfnamed imprime (contrôle sur l'aperçu, si le zip fournit le SVG)
 
 Usage : python3 etiquettes/boites/boite.py            → toutes les boîtes
         python3 etiquettes/boites/boite.py 10         → une seule
@@ -126,7 +126,9 @@ class Boite:
         extra = f'<p class="sous2">{e(self.cfg["face_extra"])}</p>' if self.cfg.get("face_extra") else ""
         logos = "".join(logo(l) for l in p.get("logos", []))
         ref = (f'<img src="../gabarit/mentions-selfnamed.png" style="position:absolute;left:0;top:0;width:{W}pt;height:{H}pt;opacity:.55;z-index:4">'
-               if guides else "")
+               if guides and (self.dir / "gabarit" / "mentions-selfnamed.png").exists() else "")
+        pastille = (f'<p class="pastille"><span>{e(p["pastille"]["grand"])}<small>{e(p["pastille"]["petit"])}</small></span></p>'
+                    if p.get("pastille") else "")
         st = P["sticker"]
         return f"""<!doctype html><html><head><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Unbounded:wght@700;800&display=block" rel="stylesheet">
@@ -188,11 +190,14 @@ body {{ position: relative; color: {C[P['texte']]}; font-family: "Bricolage Grot
   <div><p class="tete">orane</p></div>
   <p class="slog">peau neuve,<br>mine de rien ✦</p>
   {sec}
-  <div class="bas"><p class="pastille"><span>{e(p['pastille']['grand'])}<small>{e(p['pastille']['petit'])}</small></span></p>{logos}</div>
+  <div class="bas">{pastille}{logos}</div>
 </div>
 {self.guides_svg() if guides else ''}
 <script>document.fonts.ready.then(() => {{
   const pt = 96 / 72, err = [];
+  // le sticker rétrécit s'il est plus large que la face (jamais sous 7 pt)
+  const st = document.querySelector('.front .sticker');
+  for (let fs = 14; st.getBoundingClientRect().width > ({fx1 - fx0} - 6) * pt && fs > 7; ) {{ fs -= .5; st.style.fontSize = fs + 'pt'; }}
   for (const [sel, x0, y0, x1, y1] of [['.front', {fx0}, {y0}, {fx1}, {y1}], ['.side', {cx0}, {y0}, {cx1}, {y1}]]) {{
     for (const el of document.querySelectorAll(sel + ' p, ' + sel + ' h3, ' + sel + ' .logo')) {{
       const r = el.getBoundingClientRect();

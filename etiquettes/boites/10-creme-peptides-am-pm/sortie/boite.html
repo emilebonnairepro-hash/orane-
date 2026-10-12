@@ -774,6 +774,9 @@ MafvBbmtbxyJnEICU4V/FFCsgiFYDX3tv+aQ/SPtYMtAN3zdMnzJ14o43g6LXlqebA==
 
 <script>document.fonts.ready.then(() => {
   const pt = 96 / 72, err = [];
+  // le sticker rétrécit s'il est plus large que la face (jamais sous 7 pt)
+  const st = document.querySelector('.front .sticker');
+  for (let fs = 14; st.getBoundingClientRect().width > (101.392125984252 - 6) * pt && fs > 7; ) { fs -= .5; st.style.fontSize = fs + 'pt'; }
   for (const [sel, x0, y0, x1, y1] of [['.front', 279.903937007874, 147.703937007874, 381.296062992126, 559.596062992126], ['.side', 398.303937007874, 147.703937007874, 481.296062992126, 559.596062992126]]) {
     for (const el of document.querySelectorAll(sel + ' p, ' + sel + ' h3, ' + sel + ' .logo')) {
       const r = el.getBoundingClientRect();

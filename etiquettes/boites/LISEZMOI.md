@@ -6,6 +6,7 @@ Ce dossier ne modifie aucun fichier verrouillé : il lit `etiquettes/couleurs.py
 | N° | Produit | Gabarit | Plan de travail | Fichier à téléverser |
 |----|---------|---------|-----------------|----------------------|
 | 08 | Crème solaire teintée SPF 30 | BOX30-001 | 174,96 × 212,05 mm · 4133 × 5009 px (600 dpi) | `08-creme-solaire-teintee-spf30/sortie/boite.png` |
+| 11 | Gel double hydratation | BOX30-001 (version du zip n°11) | 175,00 × 212,00 mm · 4133 × 5008 px (600 dpi) | `11-gel-double-hydratation/sortie/boite.png` |
 | 10 | Crème anti-âge peptides AM/PM | BOX50-001 (manuel « ALTERNATIVE ») | 175,00 × 250,00 mm · 4133 × 5909 px (600 dpi) | `10-creme-peptides-am-pm/sortie/boite.png` |
 
 **Règles appliquées (manuel Selfnamed) :**
