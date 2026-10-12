@@ -1,0 +1,11 @@
+{
+ "produit": "08-creme-solaire-teintee-spf30",
+ "gabarit": "gabarit/box30-001.json",
+ "flacon": "instagram/assets/08-creme-solaire-teintee-spf30.png",
+ "face_extra": "haute protection · filtre minéral",
+ "cote": [
+  ["Le geste", "Applique généreusement avant l'exposition et renouvelle souvent, surtout après la baignade."],
+  ["Ce qu'on aime", "Facile à étaler, sans traces blanches. Une teinte légère qui aide à uniformiser le teint."],
+  ["Dedans", "Filtre minéral (oxyde de zinc) · argousier · acide hyaluronique."]
+ ]
+}
