@@ -125,6 +125,20 @@ On ne publie jamais de faux avis ni d'offre qui n'existe pas.
 
 ---
 
+## 10 · Spécial Halloween : le seul masque qui fait peur… à tes pores
+
+*À publier le 31 octobre (ou la veille au soir).*
+
+> Cette nuit, il y a des masques partout 🎃
+> Mais un seul fait vraiment peur… à tes pores 👻
+> Le masque à l'argile n°09 (argiles blanche et verte) : 5 à 10 minutes de pose, puis on rince. Il absorbe l'excès de sébum et aide à affiner l'apparence des pores.
+>
+> Et toi, tu te déguises en quoi ce soir ? 👇
+
+#orane #halloween #halloween2026 #masqueargile #soinvisage #skincare #selfcare #spooky
+
+---
+
 ## Astuces pour faire grandir le compte
 
 - **Les stories.** Reprends les posts 03 (quiz) et 07 (ça ou ça) en story avec un sticker sondage. Ça fait beaucoup réagir.

@@ -207,6 +207,42 @@ P.append(("09-moi-apres-masque", page("violet", f"""
 """, acc=C["rose"])))
 
 
+# 10 — Halloween : la bouille en citrouille-sorcière + le masque à l'argile n°09
+CHAPEAU = f"""<svg viewBox="0 0 200 170" style="position:absolute;width:380px;left:160px;top:446px;transform:rotate(-8deg)">
+<path d="M8 140 Q100 112 192 140 Q196 158 100 160 Q4 158 8 140 Z" fill="{C['violet']}" stroke="{A}" stroke-width="6" stroke-linejoin="round"/>
+<path d="M52 136 L96 14 Q104 2 112 16 L150 136 Z" fill="{C['violet']}" stroke="{A}" stroke-width="6" stroke-linejoin="round"/>
+<path d="M60 116 Q100 104 142 116 L148 134 Q100 122 54 134 Z" fill="{C['citron']}" stroke="{A}" stroke-width="5" stroke-linejoin="round"/></svg>"""
+
+
+def chauve_souris(style, fill):
+    return (f'<svg viewBox="0 0 120 60" style="position:absolute;{style}"><path d="M60 22 C56 12 50 12 48 20 C40 8 22 4 2 14 C14 20 18 30 16 40 '
+            f'C26 32 36 34 42 44 C48 36 54 38 60 46 C66 38 72 36 78 44 C84 34 94 32 104 40 C102 30 106 20 118 14 C98 4 80 8 72 20 '
+            f'C70 12 64 12 60 22 Z" fill="{fill}" stroke="{A}" stroke-width="3" stroke-linejoin="round"/></svg>')
+
+
+TOILE = f"""<svg viewBox="0 0 300 300" style="position:absolute;right:0;top:0;width:330px;opacity:.5">
+<g fill="none" stroke="{CR}" stroke-width="2.5" stroke-linecap="round">
+<path d="M300 0 L40 0 M300 0 L90 150 M300 0 L190 260 M300 0 L300 300"/>
+<path d="M240 0 Q250 30 262 34 Q272 50 300 58"/><path d="M170 0 Q190 56 214 68 Q236 98 300 116"/><path d="M100 0 Q130 84 166 104 Q196 146 300 176"/>
+</g><path d="M190 260 L190 300" stroke="{CR}" stroke-width="2"/></svg>"""
+
+P.append(("10-halloween", page("aubergine", f"""
+{TOILE}
+<p class="kicker" style="position:absolute;left:70px;top:80px;color:{C['mandarine']}">spécial halloween 🎃</p>
+<p class="title" style="position:absolute;left:66px;top:150px;font-size:104px">Le seul masque<br>qui fait peur…<br><em>à tes pores.</em></p>
+{chauve_souris('width:150px;left:840px;top:470px;transform:rotate(10deg)', C['violet'])}
+{chauve_souris('width:96px;left:640px;top:560px;transform:rotate(-14deg)', C['violet'])}
+{chauve_souris('width:70px;left:110px;top:1000px;transform:rotate(-6deg)', C['violet'])}
+{anneau(C['citron'], C['rose'], 'width:520px;left:100px;top:620px;transform:rotate(-20deg)')}
+{bouille('bouille" style="position:absolute;width:400px;left:170px;top:660px;transform:rotate(-8deg)')}
+{CHAPEAU}
+<img class="bottle" src="{img('09-masque-argile')}" style="width:400px;right:60px;top:800px;transform:rotate(7deg)">
+<p class="sticker" style="position:absolute;right:60px;top:690px;font-size:30px;background:{C['citron']};transform:rotate(5deg)">argiles blanche &amp; verte</p>
+<p class="sticker" style="position:absolute;right:120px;top:1110px;font-size:32px;background:{C['mandarine']};transform:rotate(-4deg)">5 à 10 min de frisson</p>
+{spark('width:60px;left:80px;top:600px', C['mandarine'])}{spark('width:44px;left:90px;top:1130px', C['citron'])}
+""", acc=C["mandarine"])))
+
+
 def main():
     out = ICI / "posts"; out.mkdir(exist_ok=True)
     src = ICI / "source"; src.mkdir(exist_ok=True)
@@ -217,9 +253,9 @@ def main():
     (src / "jobs.json").write_text(json.dumps(jobs))
     subprocess.run(["node", str(ICI / "rendre.mjs"), str(src / "jobs.json")], check=True)
     (src / "jobs.json").unlink()
-    # aperçu de la grille du profil (le post le plus récent s'affiche en haut à gauche)
+    # aperçu de la grille du profil : les 9 derniers posts (le plus récent en haut à gauche)
     from PIL import Image
-    ims = [Image.open(j["png"]).convert("RGB").resize((360, 450)) for j in reversed(jobs)]
+    ims = [Image.open(j["png"]).convert("RGB").resize((360, 450)) for j in reversed(jobs[-9:])]
     g = Image.new("RGB", (360 * 3 + 8, 450 * 3 + 8), "white")
     for i, im in enumerate(ims):
         g.paste(im, ((i % 3) * 364, (i // 3) * 454))
