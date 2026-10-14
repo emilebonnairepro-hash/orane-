@@ -105,12 +105,12 @@ class Boite:
         zones = "".join(f'<rect x="{x0 + 1}" y="{y0 + 1}" width="{x1 - x0 - 2}" height="{y1 - y0 - 2}" fill="none" stroke="#FF6A2B" stroke-width="1.2" stroke-dasharray="4 3"/>'
                         for x0, y0, x1, y1 in g["mentions"])
         zt = "".join(f'<rect x="{x0 + MARGE}" y="{YH + MARGE}" width="{x1 - x0 - 2 * MARGE}" height="{YB - YH - 2 * MARGE}" fill="none" stroke="#2a6cff" stroke-width=".5" stroke-dasharray="2 2"/>'
-                     for x0, x1 in (self.FACE, self.COTE))
-        m0, m1 = g["mentions"][0], g["mentions"][1]
+                     for x0, x1 in (self.FACE, self.COTE) + ((tuple(g["cote_gauche"]),) if g.get("cote_gauche") else ()))
+        noms = "".join(f'<text x="{(m[0] + m[2]) / 2}" y="{m[1] + 11 if m[3] - m[1] > 150 else (m[1] + m[3]) / 2 + 22}" font-family="sans-serif" font-size="{9 if m[3] - m[1] > 150 else 7}" font-weight="700" fill="#c2410c" text-anchor="middle">'
+                       f'{"mentions obligatoires (ajoutées par Selfnamed)" if m[3] - m[1] > 150 else "PAO / lot (Selfnamed)"}</text>' for m in g["mentions"])
         return f"""<svg class="fond" viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" style="z-index:5">
 {fp}{f'<path d="{g["decoupe"]}" fill="none" stroke="#6B2CF5" stroke-width="1"/>' if g.get("decoupe") else ""}{plis}{fentes}{zones}{zt}
-<text x="{(m0[0] + m0[2]) / 2}" y="{m0[1] + 11}" font-family="sans-serif" font-size="9" font-weight="700" fill="#c2410c" text-anchor="middle">mentions obligatoires (ajoutées par Selfnamed)</text>
-<text x="{(m1[0] + m1[2]) / 2}" y="{(m1[1] + m1[3]) / 2 + 22}" font-family="sans-serif" font-size="7" font-weight="700" fill="#c2410c" text-anchor="middle">PAO / lot (Selfnamed)</text>
+{noms}
 <text x="6" y="{H - 3}" font-family="sans-serif" font-size="6" font-weight="700" fill="#c2410c">{'violet : découpe · bleu : fond perdu' if g.get('decoupe') else 'bleu : fond perdu (la coupe est juste à l’intérieur)'} · rouge : plis · bleu pointillé : marge 3 mm</text></svg>"""
 
     # ---------------------------------------------------------------- page
@@ -129,6 +129,15 @@ class Boite:
         art_h, ann_w = bou_h + 16 + .25 * x, min(56 + .44 * x, bou_h * .9)
         cote = self.cfg.get("cote") or p["cote"]
         sec = "".join(f'<div><h3>{e(t)}</h3><p>{e(s)}</p></div>' for t, s in cote)
+        sec_d, side_g, zg = sec, "", ""
+        if self.g.get("cote_gauche"):          # côté gauche libre : la première moitié des textes y passe
+            gx0, gx1 = self.g["cote_gauche"][0] + MARGE, self.g["cote_gauche"][1] - MARGE
+            n = (len(cote) + 1) // 2
+            mk = lambda l: "".join(f'<div><h3>{e(t)}</h3><p>{e(s)}</p></div>' for t, s in l)
+            sec_d = mk(cote[n:])
+            side_g = (f'<!-- côté gauche -->\n<div class="side gauche" style="left:{gx0}pt;width:{gx1 - gx0}pt">'
+                      f'<p class="slog" style="margin-top:0">n°{e(p["numero"])} · {e(p["univers"])}</p>{mk(cote[:n])}</div>')
+            zg = f", ['.gauche', {gx0}, {y0}, {gx1}, {y1}]"
         nom = "<br>".join(e(l) for l in p["nom"])
         extra = f'<p class="sous2">{e(self.cfg["face_extra"])}</p>' if self.cfg.get("face_extra") else ""
         logos = "".join(logo(l) for l in p.get("logos", []))
@@ -174,7 +183,7 @@ body {{ position: relative; color: {C[P['texte']]}; font-family: "Bricolage Grot
 {self.fond_svg()}
 {ref}
 <!-- couvercle (dessus de la boîte) : la bouille, sans texte (zone sans texte du gabarit) -->
-{anneau(C['violet'], C['citron'], f'width:70pt;left:{(k0 + k1) / 2 - 35}pt;top:{ky0 + 13}pt;transform:rotate(-20deg)')}
+{anneau(C[P['anneau'][0]], C[P['anneau'][1]], f'width:70pt;left:{(k0 + k1) / 2 - 35}pt;top:{ky0 + 13}pt;transform:rotate(-20deg)')}
 {BOUILLE.format(cls='z" style="width:48pt;left:' + str((k0 + k1) / 2 - 22) + 'pt;top:' + str(ky0 + 24) + 'pt;transform:rotate(8deg)')}
 {spark(f'width:12pt;left:{k0 + 14}pt;top:{ky0 + 16}pt', CR)}{spark(f'width:9pt;left:{k1 - 22}pt;top:{ky1 - 26}pt', C['citron'])}
 
@@ -192,11 +201,12 @@ body {{ position: relative; color: {C[P['texte']]}; font-family: "Bricolage Grot
   <p class="volume">{e(p['volume'])}</p>
 </div>
 
+{side_g}
 <!-- côté droit -->
 <div class="side">
   <div><p class="tete">orane</p></div>
   <p class="slog">peau neuve,<br>mine de rien ✦</p>
-  {sec}
+  {sec_d}
   <div class="bas">{pastille}{logos}</div>
 </div>
 {self.guides_svg() if guides else ''}
@@ -208,7 +218,7 @@ body {{ position: relative; color: {C[P['texte']]}; font-family: "Bricolage Grot
   // le nom aussi, s'il a un mot trop long pour la face (jamais sous 9 pt)
   const nm = document.querySelector('.front .nom');
   for (let fs = 14; nm.getBoundingClientRect().width > ({fx1 - fx0} - 2) * pt && fs > 9; ) {{ fs -= .5; nm.style.fontSize = fs + 'pt'; }}
-  for (const [sel, x0, y0, x1, y1] of [['.front', {fx0}, {y0}, {fx1}, {y1}], ['.side', {cx0}, {y0}, {cx1}, {y1}]]) {{
+  for (const [sel, x0, y0, x1, y1] of [['.front', {fx0}, {y0}, {fx1}, {y1}], ['.side:not(.gauche)', {cx0}, {y0}, {cx1}, {y1}]{zg}]) {{
     for (const el of document.querySelectorAll(sel + ' p, ' + sel + ' h3, ' + sel + ' .logo')) {{
       const r = el.getBoundingClientRect();
       if (r.width === 0) continue;

@@ -1,0 +1,50 @@
+{
+  "gabarit": {
+    "source": "Selfnamed Oil-Free Zinc Face Gel 50 ml (Template_Oil-Free Zinc Face Gel, 50ml_label.ai)",
+    "largeur": 96,
+    "hauteur": 113,
+    "fond_perdu": 2,
+    "marge": 3,
+    "zones_vides": [
+      {
+        "x": 78.9,
+        "y": 0,
+        "l": 17.1,
+        "h": 113
+      }
+    ],
+    "face": {
+      "cx": 24.9,
+      "largeur": 34
+    },
+    "px": [
+      2268,
+      2669
+    ]
+  },
+  "produit": {
+    "numero": "22",
+    "univers": "homme",
+    "nom": [
+      "gel visage",
+      "zinc"
+    ],
+    "sous_titre": "sans huile · hydratant",
+    "sticker": "0 % huile",
+    "volume": "50 ml ℮",
+    "cote": [
+      [
+        "Le geste",
+        "Sur peau propre. Ça pénètre vite, sans effet gras."
+      ],
+      [
+        "Ce qu'on aime",
+        "Hydrate sans alourdir et laisse la peau fraîche et rebondie. Pensé pour les peaux mixtes à grasses."
+      ],
+      [
+        "Dedans",
+        "Zinc PCA · jus d'aloe vera · acide hyaluronique · cresson. Parfum agrumes, thé vert, boisé."
+      ]
+    ]
+  }
+}

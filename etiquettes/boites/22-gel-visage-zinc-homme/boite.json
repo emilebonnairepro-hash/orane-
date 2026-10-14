@@ -1,0 +1,12 @@
+{
+ "produit": "22-gel-visage-zinc-homme",
+ "gabarit": "gabarit/box50-001.json",
+ "flacon": "instagram/assets/22-gel-visage-zinc-homme.png",
+ "face_extra": "peaux mixtes à grasses",
+ "cote": [
+  ["Pour qui ?", "Les hommes aux peaux mixtes à grasses, qui veulent de l'hydratation sans effet gras."],
+  ["Le geste", "Sur peau propre. Ça pénètre vite, sans effet gras."],
+  ["Ce qu'on aime", "Zéro huile. Hydrate sans alourdir et laisse la peau fraîche et rebondie."],
+  ["Dedans", "Zinc PCA · jus d'aloe vera · acide hyaluronique · cresson. Parfum agrumes, thé vert, boisé."]
+ ]
+}

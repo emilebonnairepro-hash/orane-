@@ -68,6 +68,7 @@ body { position: relative; color: #2A1240; font-family: "Bricolage Grotesque", s
   <p class="volume">100 ml ℮</p>
 </div>
 
+
 <!-- côté droit -->
 <div class="side">
   <div><p class="tete">orane</p></div>
@@ -780,7 +781,7 @@ MafvBbmtbxyJnEICU4V/FFCsgiFYDX3tv+aQ/SPtYMtAN3zdMnzJ14o43g6LXlqebA==
   // le nom aussi, s'il a un mot trop long pour la face (jamais sous 9 pt)
   const nm = document.querySelector('.front .nom');
   for (let fs = 14; nm.getBoundingClientRect().width > (91.092125984252 - 2) * pt && fs > 9; ) { fs -= .5; nm.style.fontSize = fs + 'pt'; }
-  for (const [sel, x0, y0, x1, y1] of [['.front', 267.703937007874, 159.703937007874, 358.796062992126, 510.39606299212596], ['.side', 375.803937007874, 159.703937007874, 467.196062992126, 510.39606299212596]]) {
+  for (const [sel, x0, y0, x1, y1] of [['.front', 267.703937007874, 159.703937007874, 358.796062992126, 510.39606299212596], ['.side:not(.gauche)', 375.803937007874, 159.703937007874, 467.196062992126, 510.39606299212596]]) {
     for (const el of document.querySelectorAll(sel + ' p, ' + sel + ' h3, ' + sel + ' .logo')) {
       const r = el.getBoundingClientRect();
       if (r.width === 0) continue;
