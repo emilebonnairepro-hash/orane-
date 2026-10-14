@@ -1,0 +1,52 @@
+{
+  "gabarit": {
+    "source": "Selfnamed LABEL_490-001 Hand & Body Wash Grapefruit 490 ml, flacon vert (LABEL_490-001-Template.ai)",
+    "largeur": 207.0,
+    "hauteur": 81.0,
+    "fond_perdu": 2,
+    "marge": 3,
+    "zones_vides": [
+      {
+        "x": 160.1,
+        "y": 0,
+        "l": 46.9,
+        "h": 81.0
+      }
+    ],
+    "face": {
+      "cx": 52.7,
+      "largeur": 40
+    },
+    "px": [
+      4890,
+      1913
+    ]
+  },
+  "produit": {
+    "numero": "21",
+    "univers": "corps",
+    "nom": [
+      "gel lavant"
+    ],
+    "sous_titre": "mains & corps · hydratant",
+    "sticker": "pamplemousse",
+    "volume": "490 ml ℮",
+    "cote": [
+      [
+        "Le geste",
+        "Sur peau humide, fais mousser, puis rince abondamment."
+      ],
+      [
+        "Ce qu'on aime",
+        "Nettoie mains et peau en douceur, sans les dessécher. Peau fraîche, douce et délicatement parfumée au pamplemousse."
+      ],
+      [
+        "Dedans",
+        "Bétaïne hydratante · extrait de myrtille bio. Formule vegan."
+      ]
+    ],
+    "logos": [
+      "ecocert-cosmos-natural.svg"
+    ]
+  }
+}
