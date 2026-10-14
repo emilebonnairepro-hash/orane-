@@ -4,7 +4,7 @@ Le tarif « Livraison offerte » (0 € dès 65 € d'achat, France) est **déj�
 Le thème publié (ORANE – v5) annonce encore « dès 50 € ». L'API ne permet pas de modifier le thème publié :
 il faut faire le changement dans **Boutique en ligne → Thèmes → Personnaliser**, ou dans **Modifier le code**.
 
-**Le plus rapide.** Dans Thèmes, ouvre « … → Modifier le code ». Pour chacun des 9 fichiers ci-dessous, remplace le contenu par celui du fichier du même nom dans ce dossier. Ce sont les fichiers du thème publié, où seuls les 50 € deviennent 65 €.
+**Le plus rapide.** Dans Thèmes, ouvre « … → Modifier le code ». Pour chacun des 8 fichiers ci-dessous, remplace le contenu par celui du fichier du même nom dans ce dossier. Ce sont les fichiers du thème publié, où seuls les 50 € deviennent 65 €.
 
 | Fichier du thème | Ce qui change |
 |---|---|
