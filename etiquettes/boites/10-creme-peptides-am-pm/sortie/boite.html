@@ -49,7 +49,7 @@ body { position: relative; color: #2A1240; font-family: "Bricolage Grotesque", s
 <svg viewBox="0 0 40 40" style="position:absolute;width:12pt;left:285.4pt;top:56.7pt"><path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" fill="#FFF3E3" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/></svg><svg viewBox="0 0 40 40" style="position:absolute;width:9pt;left:367.8pt;top:113.19999999999999pt"><path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" fill="#D4F23A" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/></svg>
 
 <!-- face avant -->
-<svg viewBox="0 0 40 40" style="position:absolute;width:13pt;left:279.903937007874pt;top:220.62393700787402pt"><path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" fill="#FFF3E3" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/></svg><svg viewBox="0 0 40 40" style="position:absolute;width:9pt;left:371.296062992126pt;top:243.10393700787398pt"><path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" fill="#D4F23A" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/></svg>
+<svg viewBox="0 0 40 40" style="position:absolute;width:13pt;left:279.903937007874pt;top:220.62393700787402pt"><path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" fill="#FFF3E3" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/></svg><svg viewBox="0 0 40 40" style="position:absolute;width:9pt;left:371.296062992126pt;top:242.703937007874pt"><path d="M20 2 C22 14 26 18 38 20 C26 22 22 26 20 38 C18 26 14 22 2 20 C14 18 18 14 20 2 Z" fill="#D4F23A" stroke="#2A1240" stroke-width="2.5" stroke-linejoin="round"/></svg>
 <div class="front">
   <p class="kicker">n°10 · visage</p>
   <p class="marque">orane</p>
@@ -777,6 +777,9 @@ MafvBbmtbxyJnEICU4V/FFCsgiFYDX3tv+aQ/SPtYMtAN3zdMnzJ14o43g6LXlqebA==
   // le sticker rétrécit s'il est plus large que la face (jamais sous 7 pt)
   const st = document.querySelector('.front .sticker');
   for (let fs = 14; st.getBoundingClientRect().width > (101.392125984252 - 6) * pt && fs > 7; ) { fs -= .5; st.style.fontSize = fs + 'pt'; }
+  // le nom aussi, s'il a un mot trop long pour la face (jamais sous 9 pt)
+  const nm = document.querySelector('.front .nom');
+  for (let fs = 14; nm.getBoundingClientRect().width > (101.392125984252 - 2) * pt && fs > 9; ) { fs -= .5; nm.style.fontSize = fs + 'pt'; }
   for (const [sel, x0, y0, x1, y1] of [['.front', 279.903937007874, 147.703937007874, 381.296062992126, 559.596062992126], ['.side', 398.303937007874, 147.703937007874, 481.296062992126, 559.596062992126]]) {
     for (const el of document.querySelectorAll(sel + ' p, ' + sel + ' h3, ' + sel + ' .logo')) {
       const r = el.getBoundingClientRect();

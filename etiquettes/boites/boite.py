@@ -82,7 +82,11 @@ class Boite:
     def fond_svg(self):
         g, W, H = self.g, self.W, self.H
         trous = "".join(f'<rect x="{x0}" y="{y0}" width="{x1 - x0}" height="{y1 - y0}" fill="#000"/>' for x0, y0, x1, y1 in g["mentions"])
-        if g.get("fond_perdu"):
+        if g.get("fond_perdu_masque"):   # gabarit sans tracé continu : masque reconstruit depuis les pointillés du fond perdu
+            import base64
+            png = base64.b64encode((self.dir / g["fond_perdu_masque"]).read_bytes()).decode()
+            zone = f'<image href="data:image/png;base64,{png}" x="0" y="0" width="{W}" height="{H}" preserveAspectRatio="none"/>'
+        elif g.get("fond_perdu"):
             zone = f'<path d="{g["fond_perdu"]}" fill="#fff"/>'
         else:   # pas de tracé de fond perdu dans le gabarit : la découpe élargie de chaque côté
             zone = f'<path d="{g["decoupe"]}" fill="#fff" stroke="#fff" stroke-width="{2 * g["fond_perdu_pt"]}" stroke-linejoin="round"/>'
@@ -93,7 +97,8 @@ class Boite:
 
     def guides_svg(self):
         g, W, H, YH, YB = self.g, self.W, self.H, self.YH, self.YB
-        fp = (f'<path d="{g["fond_perdu"]}" fill="none" stroke="#2a6cff" stroke-width=".5"/>' if g.get("fond_perdu") else
+        fp = (f'<path d="{g["pointilles"]}" fill="#2a6cff"/>' if g.get("pointilles") else
+              f'<path d="{g["fond_perdu"]}" fill="none" stroke="#2a6cff" stroke-width=".5"/>' if g.get("fond_perdu") else
               f'<path d="{g["decoupe"]}" fill="none" stroke="#2a6cff" stroke-opacity=".18" stroke-width="{2 * g["fond_perdu_pt"]}" stroke-linejoin="round"/>')
         plis = "".join(f'<path d="{d}" fill="none" stroke="#e11d48" stroke-width=".6" stroke-dasharray="3 2"/>' for d in g["plis"])
         fentes = "".join(f'<path d="{d}" fill="none" stroke="#111" stroke-width=".6"/>' for d in g["fentes"])
@@ -103,10 +108,10 @@ class Boite:
                      for x0, x1 in (self.FACE, self.COTE))
         m0, m1 = g["mentions"][0], g["mentions"][1]
         return f"""<svg class="fond" viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" style="z-index:5">
-{fp}<path d="{g['decoupe']}" fill="none" stroke="#6B2CF5" stroke-width="1"/>{plis}{fentes}{zones}{zt}
+{fp}{f'<path d="{g["decoupe"]}" fill="none" stroke="#6B2CF5" stroke-width="1"/>' if g.get("decoupe") else ""}{plis}{fentes}{zones}{zt}
 <text x="{(m0[0] + m0[2]) / 2}" y="{m0[1] + 11}" font-family="sans-serif" font-size="9" font-weight="700" fill="#c2410c" text-anchor="middle">mentions obligatoires (ajoutées par Selfnamed)</text>
 <text x="{(m1[0] + m1[2]) / 2}" y="{(m1[1] + m1[3]) / 2 + 22}" font-family="sans-serif" font-size="7" font-weight="700" fill="#c2410c" text-anchor="middle">PAO / lot (Selfnamed)</text>
-<text x="6" y="{H - 3}" font-family="sans-serif" font-size="6" font-weight="700" fill="#c2410c">violet : découpe · bleu : fond perdu · rouge : plis · bleu pointillé : marge 3 mm</text></svg>"""
+<text x="6" y="{H - 3}" font-family="sans-serif" font-size="6" font-weight="700" fill="#c2410c">{'violet : découpe · bleu : fond perdu' if g.get('decoupe') else 'bleu : fond perdu (la coupe est juste à l’intérieur)'} · rouge : plis · bleu pointillé : marge 3 mm</text></svg>"""
 
     # ---------------------------------------------------------------- page
     def html(self, guides=False):
@@ -172,7 +177,7 @@ body {{ position: relative; color: {C[P['texte']]}; font-family: "Bricolage Grot
 {spark(f'width:12pt;left:{k0 + 14}pt;top:{ky0 + 16}pt', CR)}{spark(f'width:9pt;left:{k1 - 22}pt;top:{ky1 - 26}pt', C['citron'])}
 
 <!-- face avant -->
-{spark(f'width:13pt;left:{fx0}pt;top:{y0 + 62 + .1 * x}pt', CR)}{spark(f'width:9pt;left:{fx1 - 10}pt;top:{y0 + 150 - .5 * x}pt', C['citron'])}
+{spark(f'width:13pt;left:{fx0}pt;top:{y0 + 62 + .1 * x}pt', CR)}{spark(f'width:9pt;left:{fx1 - 10}pt;top:{y0 + (150 if x < 20 else 95)}pt', C['citron'])}
 <div class="front">
   <p class="kicker">n°{e(p['numero'])} · {e(p['univers'])}</p>
   <p class="marque">orane</p>
@@ -198,6 +203,9 @@ body {{ position: relative; color: {C[P['texte']]}; font-family: "Bricolage Grot
   // le sticker rétrécit s'il est plus large que la face (jamais sous 7 pt)
   const st = document.querySelector('.front .sticker');
   for (let fs = 14; st.getBoundingClientRect().width > ({fx1 - fx0} - 6) * pt && fs > 7; ) {{ fs -= .5; st.style.fontSize = fs + 'pt'; }}
+  // le nom aussi, s'il a un mot trop long pour la face (jamais sous 9 pt)
+  const nm = document.querySelector('.front .nom');
+  for (let fs = 14; nm.getBoundingClientRect().width > ({fx1 - fx0} - 2) * pt && fs > 9; ) {{ fs -= .5; nm.style.fontSize = fs + 'pt'; }}
   for (const [sel, x0, y0, x1, y1] of [['.front', {fx0}, {y0}, {fx1}, {y1}], ['.side', {cx0}, {y0}, {cx1}, {y1}]]) {{
     for (const el of document.querySelectorAll(sel + ' p, ' + sel + ' h3, ' + sel + ' .logo')) {{
       const r = el.getBoundingClientRect();
