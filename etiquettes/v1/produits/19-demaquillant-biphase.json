@@ -1,0 +1,53 @@
+{
+  "gabarit": {
+    "source": "Selfnamed BiPhasic Make-up Remover 100 ml (Template_BiPhasic make up remover, 100ml_label.ai)",
+    "largeur": 99.0,
+    "hauteur": 74.0,
+    "fond_perdu": 2,
+    "marge": 3,
+    "zones_vides": [
+      {
+        "x": 80.0,
+        "y": 0,
+        "l": 19.0,
+        "h": 74.0
+      }
+    ],
+    "face": {
+      "cx": 25.7,
+      "largeur": 33
+    },
+    "px": [
+      2339,
+      1748
+    ]
+  },
+  "produit": {
+    "numero": "19",
+    "univers": "visage",
+    "nom": [
+      "démaquillant",
+      "biphasé"
+    ],
+    "sous_titre": "sans parfum · doux pour la peau",
+    "sticker": "huile + eau",
+    "volume": "100 ml ℮",
+    "cote": [
+      [
+        "Le geste",
+        "Agite pour mélanger les deux phases, imbibe un coton et passe-le doucement sur la peau."
+      ],
+      [
+        "Ce qu'on aime",
+        "Une phase huile, une phase eau : le maquillage et les impuretés partent sans frotter. Nettoie en douceur, apaise et laisse la peau hydratée."
+      ],
+      [
+        "Dedans",
+        "Jus d'aloe vera · camomille · argousier · framboise · acide hyaluronique."
+      ]
+    ],
+    "logos": [
+      "ecocert-cosmos-natural.svg"
+    ]
+  }
+}
