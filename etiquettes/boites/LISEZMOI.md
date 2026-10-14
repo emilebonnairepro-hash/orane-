@@ -10,6 +10,7 @@ Ce dossier ne modifie aucun fichier verrouillé : il lit `etiquettes/couleurs.py
 | 19 | Démaquillant biphasé | BiPhasic Make-up Remover 100 ml (fond perdu reconstruit depuis les pointillés) | 170,00 × 236,00 mm · 4016 × 5575 px (600 dpi) | `19-demaquillant-biphase/sortie/boite.png` |
 | 20 | Patchs yeux caféine (étui plat) | BOX001-001 (disposition « etui_plat » : textes en bandeau sous la face, tranche verticale) | 233,19 × 196,50 mm · 5508 × 4642 px (600 dpi) | `20-patchs-yeux-cafeine/sortie/boite.png` |
 | 22 | Gel visage zinc homme | 50 ml (même découpe que BOX50-001 ; côté gauche libre, mentions = PAO seulement) | 175,00 × 250,00 mm · 4133 × 5909 px (600 dpi) | `22-gel-visage-zinc-homme/sortie/boite.png` |
+| 23 | Huile à barbe | BOX20-001 (face étroite : textes mis à l'échelle de la largeur) | 140,00 × 200,45 mm · 3307 × 4735 px (600 dpi) | `23-huile-barbe/sortie/boite.png` |
 | 10 | Crème anti-âge peptides AM/PM | BOX50-001 (manuel « ALTERNATIVE ») | 175,00 × 250,00 mm · 4133 × 5909 px (600 dpi) | `10-creme-peptides-am-pm/sortie/boite.png` |
 
 **Règles appliquées (manuel Selfnamed) :**

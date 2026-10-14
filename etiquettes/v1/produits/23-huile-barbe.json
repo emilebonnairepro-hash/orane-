@@ -1,0 +1,49 @@
+{
+  "gabarit": {
+    "source": "Selfnamed UZL20-002 Beard Oil 20 ml (EUK, Template_UZL20-002_EUK.ai)",
+    "largeur": 93.13,
+    "hauteur": 42.33,
+    "fond_perdu": 2,
+    "marge": 3,
+    "zones_vides": [
+      {
+        "x": 65.6,
+        "y": 0,
+        "l": 27.53,
+        "h": 42.33
+      }
+    ],
+    "face": {
+      "cx": 24.3,
+      "largeur": 22
+    },
+    "px": [
+      2200,
+      1000
+    ]
+  },
+  "produit": {
+    "numero": "23",
+    "univers": "homme",
+    "nom": [
+      "huile",
+      "à barbe"
+    ],
+    "sous_titre": "adoucissante · non grasse",
+    "sticker": "1 % CBD",
+    "volume": "20 ml ℮",
+    "cote": [
+      [
+        "Le geste",
+        "Quelques gouttes dans les paumes, puis sur la barbe."
+      ],
+      [
+        "Ce qu'on aime",
+        "Barbe lisse, douce et facile à coiffer. Non grasse."
+      ]
+    ],
+    "logos": [
+      "ecocert-cosmos-organic.svg"
+    ]
+  }
+}

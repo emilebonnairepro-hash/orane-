@@ -1,0 +1,13 @@
+{
+ "produit": "23-huile-barbe",
+ "gabarit": "gabarit/box20-001.json",
+ "flacon": "instagram/assets/23-huile-barbe.png",
+ "face_extra": "lavande · vert · boisé",
+ "pastille": {"grand": "100 %", "petit": "d'origine naturelle"},
+ "cote": [
+  ["Le geste", "Quelques gouttes dans les paumes, puis sur la barbe."],
+  ["Ce qu'on aime", "Pénètre vite, sans effet gras : barbe lisse, plus douce et facile à coiffer. Le cannabidiol aide à apaiser la peau en dessous."],
+  ["Dedans", "Huile de chanvre · cannabidiol (1 %) · vitamine E."],
+  ["Le duo parfait", "En base, notre gel visage zinc n°22."]
+ ]
+}

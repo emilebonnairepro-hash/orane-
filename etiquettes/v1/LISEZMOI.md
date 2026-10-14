@@ -39,3 +39,4 @@ Les tailles s'ajustent toutes seules au format (texte jamais sous 4,6 pt).
 - 20 Patchs yeux hydrogel caféine & vitamine C — gabarit UZL2-001 (sachet, 69 × 104 mm, mentions en bande en bas, face seule) — rose (visage)
 - 21 Gel lavant mains & corps pamplemousse — gabarit LABEL_490-001 (490 ml flacon vert, 207 × 81 mm, même gabarit que le n°13) — citron (corps)
 - 22 Gel visage zinc sans huile (homme) — gabarit 50 ml airless (96 × 113 mm, même gabarit que le n°10) — violet (homme)
+- 23 Huile à barbe adoucissante 1 % CBD (homme) — gabarit UZL20-002 (20 ml compte-gouttes, 93 × 42 mm ; face réduite à 22 mm pour laisser un côté lisible) — violet (homme) · logo COSMOS ORGANIC

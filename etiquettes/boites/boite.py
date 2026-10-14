@@ -125,6 +125,9 @@ class Boite:
         x = max(0, (YB - YH) - H_REF)                     # hauteur en plus par rapport à la boîte n°08
         # la bouille grandit avec la hauteur, sans jamais passer le pli de droite (bord droit = 50 % + 64 % de sa hauteur)
         larg = (self.FACE[1] - self.FACE[0]) - 2 * MARGE
+        fw = min(1, larg / 101.4)                         # face plus étroite que la boîte n°08 : le texte rétrécit
+        qw = min(1, ((self.COTE[1] - self.COTE[0]) - 2 * MARGE) / 83)   # idem pour le côté
+        z = lambda v, mini=4.6: f'{max(mini, v):.2f}pt'
         bou_h = min(64 + .5 * x, (larg / 2 - 4) / .64)
         art_h, ann_w = bou_h + 16 + .25 * x, min(56 + .44 * x, bou_h * .9)
         cote = self.cfg.get("cote") or p["cote"]
@@ -145,6 +148,8 @@ class Boite:
                if guides and (self.dir / "gabarit" / "mentions-selfnamed.png").exists() else "")
         pastille = (f'<p class="pastille"><span>{e(p["pastille"]["grand"])}<small>{e(p["pastille"]["petit"])}</small></span></p>'
                     if p.get("pastille") else "")
+        if self.cfg.get("pastille"):        # pastille propre à la boîte (l'étiquette n'a pas la place)
+            pastille = f'<p class="pastille"><span>{e(self.cfg["pastille"]["grand"])}<small>{e(self.cfg["pastille"]["petit"])}</small></span></p>'
         st = P["sticker"]
         return f"""<!doctype html><html><head><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Unbounded:wght@700;800&display=block" rel="stylesheet">
@@ -157,28 +162,28 @@ body {{ position: relative; color: {C[P['texte']]}; font-family: "Bricolage Grot
 .z {{ position: absolute; overflow: visible; }}
 
 .front {{ position: absolute; left: {fx0}pt; top: {y0 + 4}pt; width: {fx1 - fx0}pt; height: {y1 - y0 - 6}pt; display: flex; flex-direction: column; align-items: center; text-align: center; }}
-.kicker {{ font-family: Unbounded, sans-serif; font-weight: 700; font-size: 7pt; letter-spacing: .22em; text-transform: uppercase; white-space: nowrap; }}
-.marque {{ font-family: Unbounded, sans-serif; font-weight: 800; font-size: 25pt; letter-spacing: -.05em; line-height: .9; margin-top: 6pt; }}
+.kicker {{ font-family: Unbounded, sans-serif; font-weight: 700; font-size: {z(7 * fw)}; letter-spacing: .22em; text-transform: uppercase; white-space: nowrap; }}
+.marque {{ font-family: Unbounded, sans-serif; font-weight: 800; font-size: {z(25 * fw)}; letter-spacing: -.05em; line-height: .9; margin-top: 6pt; }}
 .art {{ position: relative; flex: none; width: 100%; height: {art_h}pt; margin: {12 + .12 * x}pt 0 10pt; }}
 .art .bouille {{ position: absolute; height: {bou_h}pt; left: 50%; top: {8 + .05 * x}pt; transform: translateX(-36%) rotate(8deg); }}
 .nom {{ font-family: Unbounded, sans-serif; font-weight: 800; font-size: 14pt; line-height: 1; letter-spacing: -.03em; margin-top: auto; }}
-.sous {{ font-weight: 700; font-size: 7pt; margin-top: 5pt; line-height: 1.2; }}
+.sous {{ font-weight: 700; font-size: {z(7 * fw)}; margin-top: 5pt; line-height: 1.2; }}
 .sticker {{ margin-top: 12pt; background: {C[st]}; color: {texte_sur(st)}; border: 1.3pt solid {A}; border-radius: 99pt;
   padding: 3.5pt 11pt; font-family: Unbounded, sans-serif; font-weight: 700; font-size: 14pt; box-shadow: 2pt 2pt 0 {A}; transform: rotate(-4deg); white-space: nowrap; }}
-.sous2 {{ font-family: Unbounded, sans-serif; font-weight: 700; font-size: 6pt; letter-spacing: .14em; text-transform: uppercase; margin-top: 9pt; }}
-.volume {{ font-family: Unbounded, sans-serif; font-weight: 700; font-size: 8pt; margin-top: {16 + .1 * x}pt; white-space: nowrap; }}
+.sous2 {{ font-family: Unbounded, sans-serif; font-weight: 700; font-size: {z(6 * fw, 4.8)}; letter-spacing: .14em; text-transform: uppercase; margin-top: 9pt; }}
+.volume {{ font-family: Unbounded, sans-serif; font-weight: 700; font-size: {z(8 * fw, 4.8)}; margin-top: {16 + .1 * x}pt; white-space: nowrap; }}
 
 .side {{ position: absolute; left: {cx0}pt; top: {y0 + 4}pt; width: {cx1 - cx0}pt; height: {y1 - y0 - 6}pt; display: flex; flex-direction: column; gap: {8 + .1 * x}pt; }}
-.side .tete {{ font-family: Unbounded, sans-serif; font-weight: 800; font-size: 15pt; letter-spacing: -.05em; line-height: .9; }}
-.side .slog {{ font-family: Unbounded, sans-serif; font-weight: 700; font-size: 5.6pt; letter-spacing: .16em; text-transform: uppercase; margin-top: -5pt; line-height: 1.4; }}
-.side h3 {{ font-family: Unbounded, sans-serif; font-weight: 800; font-size: 7.8pt; margin-bottom: 2pt; }}
-.side p {{ font-size: 6.6pt; line-height: 1.28; font-weight: 600; }}
+.side .tete {{ font-family: Unbounded, sans-serif; font-weight: 800; font-size: {z(15 * qw)}; letter-spacing: -.05em; line-height: .9; }}
+.side .slog {{ font-family: Unbounded, sans-serif; font-weight: 700; font-size: {z(5.6 * qw)}; letter-spacing: .16em; text-transform: uppercase; margin-top: -5pt; line-height: 1.4; }}
+.side h3 {{ font-family: Unbounded, sans-serif; font-weight: 800; font-size: {z(7.8 * qw, 5.5)}; margin-bottom: 2pt; }}
+.side p {{ font-size: {z(6.6 * qw)}; line-height: 1.28; font-weight: 600; }}
 .bas {{ display: flex; flex-wrap: wrap; align-items: center; gap: 8pt; margin-top: auto; padding: 0 0 4pt 4pt; }}
-.pastille {{ flex: none; display: grid; place-items: center; text-align: center; width: 40pt; height: 40pt; border-radius: 50%;
+.pastille {{ flex: none; display: grid; place-items: center; text-align: center; width: {40 * qw:.1f}pt; height: {40 * qw:.1f}pt; border-radius: 50%;
   background: {CR}; color: {A}; border: 1.3pt solid {A}; box-shadow: 2pt 2pt 0 {A};
-  font-family: Unbounded, sans-serif; font-weight: 800; font-size: 10pt; line-height: 1; transform: rotate(8deg); }}
+  font-family: Unbounded, sans-serif; font-weight: 800; font-size: {z(10 * qw)}; line-height: 1; transform: rotate(8deg); }}
 .pastille small {{ display: block; font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; font-size: 5.4pt; margin-top: 1.5pt; }}
-.logo {{ width: 28pt; height: 28pt; background: #fff; border-radius: 50%; flex: none; }}
+.logo {{ width: {28 * qw:.1f}pt; height: {28 * qw:.1f}pt; background: #fff; border-radius: 50%; flex: none; }}
 </style></head><body>
 {self.fond_svg()}
 {ref}

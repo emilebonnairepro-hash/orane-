@@ -1,0 +1,10 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;background:#FFF3E3;display:grid;place-items:center;height:100vh}
+.scene{position:relative;width:520px;height:720px}
+.poire{position:absolute;left:50%;top:40px;width:70px;height:120px;transform:translateX(-50%);background:linear-gradient(90deg,#111,#3a3a3a 45%,#0c0c0c);border:3px solid #2A1240;border-radius:34px 34px 8px 8px}
+.bague{position:absolute;left:50%;top:150px;width:118px;height:70px;transform:translateX(-50%);background:linear-gradient(90deg,#141414,#454545 45%,#101010);border:3px solid #2A1240;border-radius:8px}
+.flacon{position:absolute;left:50%;top:214px;width:300px;height:450px;transform:translateX(-50%);background:linear-gradient(90deg,#5a2a08,#a65a1c 40%,#4a2206);border:3px solid #2A1240;border-radius:60px 60px 30px 30px;overflow:hidden;box-shadow:12px 12px 0 #2A1240}
+.etiq{position:absolute;left:0;right:0;top:150px;height:250px;background-image:url(sortie/23-huile-barbe/etiquette.png);background-size:auto 250px;background-position:var(--x) 0}
+.reflet{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.18),rgba(255,255,255,0) 30%,rgba(255,255,255,.22) 55%,rgba(0,0,0,.2))}
+</style></head><body><div class="scene"><div class="poire"></div><div class="bague"></div><div class="flacon"><div class="etiq"></div><div class="reflet"></div></div></div>
+<script>const h=250,w=h*2200/1000,cx=24.3/93.13*w;document.querySelector('.etiq').style.setProperty('--x',(150-cx)+'px');</script></body></html>
