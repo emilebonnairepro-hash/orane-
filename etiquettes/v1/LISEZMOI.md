@@ -36,3 +36,4 @@ Les tailles s'ajustent toutes seules au format (texte jamais sous 4,6 pt).
 - 17 Après-shampooing hydratant — gabarit 290 ml (196 × 100 mm) — mandarine (cheveux) · lecteur de gabarit : lire_gabarit.py
 - 18 Shampooing sec Quick Refresh — gabarit UZL100-003 (100 ml, 106 × 93 mm, face seule) — mandarine (cheveux)
 - 19 Démaquillant biphasé sans parfum — gabarit BiPhasic Make-up Remover 100 ml (99 × 74 mm) — rose (visage)
+- 20 Patchs yeux hydrogel caféine & vitamine C — gabarit UZL2-001 (sachet, 69 × 104 mm, mentions en bande en bas, face seule) — rose (visage)

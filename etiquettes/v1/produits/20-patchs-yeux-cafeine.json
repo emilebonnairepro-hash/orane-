@@ -1,0 +1,36 @@
+{
+  "gabarit": {
+    "source": "Selfnamed UZL2-001 Caffeine Hydrogel Eye Patches (EUK, UZL2-001_Template.ai)",
+    "largeur": 69.14,
+    "hauteur": 104.07,
+    "fond_perdu": 2,
+    "marge": 3,
+    "zones_vides": [
+      {
+        "x": 0,
+        "y": 87.84,
+        "l": 69.14,
+        "h": 16.23
+      }
+    ],
+    "face": {
+      "cx": 34.57,
+      "largeur": 50
+    },
+    "px": [
+      1633,
+      2458
+    ]
+  },
+  "produit": {
+    "numero": "20",
+    "univers": "visage",
+    "nom": [
+      "patchs yeux",
+      "caféine"
+    ],
+    "sous_titre": "hydrogel · caféine & vitamine C",
+    "sticker": "regard frais",
+    "volume": "7 paires"
+  }
+}
