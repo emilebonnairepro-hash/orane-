@@ -115,6 +115,8 @@ class Boite:
 
     # ---------------------------------------------------------------- page
     def html(self, guides=False):
+        if self.g.get("disposition") == "etui_plat":
+            return self.html_etui(guides)
         p, P, W, H, YH, YB = self.p, self.pal, self.W, self.H, self.YH, self.YB
         fx0, fx1 = self.FACE[0] + MARGE, self.FACE[1] - MARGE
         cx0, cx1 = self.COTE[0] + MARGE, self.COTE[1] - MARGE
@@ -214,6 +216,101 @@ body {{ position: relative; color: {C[P['texte']]}; font-family: "Bricolage Grot
       if (d > 0.05) err.push(sel + ' ' + el.tagName + ' ' + (el.className.baseVal ?? el.className) + ' dépasse de ' + d.toFixed(2) + ' mm');
     }}
   }}
+  document.body.dataset.erreurs = JSON.stringify(err);
+  document.body.dataset.ready = '1';
+}});</script>
+</body></html>"""
+
+    def html_etui(self, guides=False):
+        """Étui plat (sachets) : grande face avant, dos réservé aux mentions, tranches étroites.
+        Les textes du côté passent en bandeau sous la face ; « orane » et le slogan à la verticale sur la tranche."""
+        p, P, W, H, YH, YB = self.p, self.pal, self.W, self.H, self.YH, self.YB
+        fx0, fx1 = self.FACE[0] + MARGE, self.FACE[1] - MARGE
+        cx0, cx1 = self.COTE[0] + MARGE, self.COTE[1] - MARGE
+        y0, y1 = YH + MARGE, YB - MARGE
+        k0, ky0, k1, ky1 = self.g["couvercle"]
+        r0, ry0, r1, ry1 = self.g.get("rabat", [0, 0, 0, 0])
+        cote = self.cfg.get("cote") or p.get("cote", [])
+        sec = "".join(f'<div><h3>{e(t)}</h3><p>{e(x)}</p></div>' for t, x in cote)
+        nom = "<br>".join(e(l) for l in p["nom"])
+        extra = f'<p class="sous2">{e(self.cfg["face_extra"])}</p>' if self.cfg.get("face_extra") else ""
+        logos = "".join(logo(l) for l in p.get("logos", []))
+        ref = (f'<img src="../gabarit/mentions-selfnamed.png" style="position:absolute;left:0;top:0;width:{W}pt;height:{H}pt;opacity:.55;z-index:4">'
+               if guides and (self.dir / "gabarit" / "mentions-selfnamed.png").exists() else "")
+        st = P["sticker"]
+        haut = (y1 - y0) * .6                       # partie haute de la face : marque + bouille ; dessous : le bandeau de textes
+        return f"""<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Unbounded:wght@700;800&display=block" rel="stylesheet">
+<style>
+@page {{ size: {W}pt {H}pt; margin: 0; }}
+* {{ box-sizing: border-box; margin: 0; padding: 0; }}
+html, body {{ width: {W}pt; height: {H}pt; overflow: hidden; background: {'#fff' if guides else 'transparent'}; }}
+body {{ position: relative; color: {C[P['texte']]}; font-family: "Bricolage Grotesque", sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }}
+.fond {{ position: absolute; left: 0; top: 0; width: {W}pt; height: {H}pt; }}
+.z {{ position: absolute; overflow: visible; }}
+.front {{ position: absolute; left: {fx0}pt; top: {y0}pt; width: {fx1 - fx0}pt; height: {y1 - y0}pt; }}
+.haut {{ position: absolute; left: 4pt; top: 6pt; width: calc(100% - 8pt); height: {haut - 6}pt; display: flex; flex-direction: column; align-items: flex-start; }}
+.kicker {{ font-family: Unbounded, sans-serif; font-weight: 700; font-size: 8pt; letter-spacing: .22em; text-transform: uppercase; white-space: nowrap; }}
+.marque {{ font-family: Unbounded, sans-serif; font-weight: 800; font-size: 36pt; letter-spacing: -.05em; line-height: .9; margin-top: 7pt; white-space: nowrap; }}
+.nom {{ font-family: Unbounded, sans-serif; font-weight: 800; font-size: 19pt; line-height: 1; letter-spacing: -.03em; margin-top: auto; }}
+.sous {{ font-weight: 700; font-size: 8.4pt; margin-top: 6pt; line-height: 1.25; }}
+.sticker {{ margin-top: 11pt; background: {C[st]}; color: {texte_sur(st)}; border: 1.3pt solid {A}; border-radius: 99pt;
+  padding: 3.5pt 11pt; font-family: Unbounded, sans-serif; font-weight: 700; font-size: 13pt; box-shadow: 2pt 2pt 0 {A}; transform: rotate(-4deg); white-space: nowrap; }}
+.sous2 {{ font-family: Unbounded, sans-serif; font-weight: 700; font-size: 6.4pt; letter-spacing: .14em; text-transform: uppercase; margin-top: 10pt; }}
+.volume {{ font-family: Unbounded, sans-serif; font-weight: 700; font-size: 9pt; margin-top: 8pt; white-space: nowrap; }}
+.bouille {{ position: absolute; width: 66pt; right: 6pt; top: 8pt; transform: rotate(8deg); }}
+.bande {{ position: absolute; left: 4pt; right: 4pt; top: {haut + 14}pt; bottom: 4pt; display: grid; grid-template-columns: repeat({max(1, len(cote))}, 1fr); gap: 12pt; align-content: start; }}
+.bande h3 {{ font-family: Unbounded, sans-serif; font-weight: 800; font-size: 9.4pt; margin-bottom: 3.5pt; }}
+.bande p {{ font-size: 8pt; line-height: 1.32; font-weight: 600; }}
+.logos {{ position: absolute; right: 4pt; bottom: 4pt; display: flex; gap: 6pt; }}
+.logo {{ width: 30pt; height: 30pt; background: #fff; border-radius: 50%; flex: none; }}
+.tranche {{ position: absolute; left: {cx0}pt; top: {y0}pt; width: {cx1 - cx0}pt; height: {y1 - y0}pt; display: grid; place-items: center; }}
+.tranche p {{ writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; font-family: Unbounded, sans-serif; font-weight: 800; font-size: 13pt; letter-spacing: -.04em; line-height: 1; }}
+.tranche small {{ font-weight: 700; font-size: 5.8pt; letter-spacing: .16em; text-transform: uppercase; margin-top: 10pt; }}
+</style></head><body>
+{self.fond_svg()}
+{ref}
+<!-- dessus (couvercle) et rabat du dessous : décor sans texte -->
+{anneau(C['violet'], C['citron'], f'width:44pt;left:{(k0 + k1) / 2 - 22}pt;top:{ky0 + (ky1 - ky0) / 2 - 22}pt;transform:rotate(-20deg)')}
+{BOUILLE.format(cls='z" style="width:28pt;left:' + str((k0 + k1) / 2 - 12) + 'pt;top:' + str(ky0 + (ky1 - ky0) / 2 - 13) + 'pt;transform:rotate(8deg)')}
+{spark(f'width:11pt;left:{k0 + 40}pt;top:{ky0 + 10}pt', CR)}{spark(f'width:8pt;left:{k1 - 50}pt;top:{ky0 + 14}pt', C['citron'])}
+{spark(f'width:10pt;left:{r0 + 60}pt;top:{ry0 + 8}pt', CR) if r1 else ''}{spark(f'width:8pt;left:{r1 - 70}pt;top:{ry0 + 12}pt', C['citron']) if r1 else ''}
+
+<!-- face avant -->
+{anneau(C[P['anneau'][0]], C[P['anneau'][1]], f'width:60pt;left:{fx1 - 84}pt;top:{y0 + 22}pt;transform:rotate(-24deg)')}
+{spark(f'width:13pt;left:{fx1 - 26}pt;top:{y0 + haut * .5}pt', CR)}{spark(f'width:10pt;left:{fx1 - 60}pt;top:{y0 + haut * .78}pt', C['citron'])}
+<div class="front">
+  <div class="haut">
+    <p class="kicker">n°{e(p['numero'])} · {e(p['univers'])}</p>
+    <p class="marque">orane</p>
+    <p class="nom">{nom}</p>
+    <p class="sous">{e(p['sous_titre'])}</p>
+    <p class="sticker">{e(p['sticker'])}</p>
+    {extra}
+    <p class="volume">{e(p['volume'])}</p>
+  </div>
+  {BOUILLE.format(cls='bouille')}
+  <div class="bande">{sec}</div>
+  {f'<div class="logos">{logos}</div>' if logos else ''}
+</div>
+
+<!-- tranche droite -->
+<div class="tranche"><p>orane <small>peau neuve, mine de rien ✦</small></p></div>
+{self.guides_svg() if guides else ''}
+<script>document.fonts.ready.then(() => {{
+  const pt = 96 / 72, err = [];
+  for (const [sel, x0, y0, x1, y1] of [['.front', {fx0}, {y0}, {fx1}, {y1}], ['.tranche', {cx0}, {y0}, {cx1}, {y1}]]) {{
+    for (const el of document.querySelectorAll(sel + ' p, ' + sel + ' h3, ' + sel + ' .logo')) {{
+      const r = el.getBoundingClientRect();
+      if (r.width === 0) continue;
+      const d = Math.max(x0 * pt - r.left, r.right - x1 * pt, y0 * pt - r.top, r.bottom - y1 * pt) / pt * 25.4 / 72;
+      if (d > 0.05) err.push(sel + ' ' + el.tagName + ' ' + (el.className.baseVal ?? el.className) + ' dépasse de ' + d.toFixed(2) + ' mm');
+    }}
+  }}
+  // la bouille ne doit pas toucher le texte de la colonne de gauche
+  const b = document.querySelector('.front .bouille').getBoundingClientRect();
+  for (const el of document.querySelectorAll('.haut p')) {{ const r = el.getBoundingClientRect();
+    if (r.right > b.left + 2 && r.bottom > b.top && r.top < b.bottom) err.push('bouille sur ' + el.className); }}
   document.body.dataset.erreurs = JSON.stringify(err);
   document.body.dataset.ready = '1';
 }});</script>
