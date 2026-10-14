@@ -14,7 +14,7 @@
       "settings": {
         "kicker": "Les collections",
         "title": "tous les univers",
-        "text": "<p>Visage, corps, cheveux, homme : quatre façons de prendre soin de toi, toutes avec le sourire.</p>",
+        "text": "<p>Visage, corps, cheveux, homme : quatre façons de prendre soin de toi, toutes avec le sourire.</p>",
         "show_description": true,
         "show_count": false,
         "sticker": "choisis ton camp",
@@ -31,7 +31,7 @@
           "settings": {
             "collection": "soin-du-visage",
             "title": "Visage",
-            "text": "Nettoyer, réveiller, hydrater : la routine sans prise de tête.",
+            "text": "Nettoyer, réveiller, hydrater : la routine sans prise de tête.",
             "color": "rose"
           }
         },
@@ -40,7 +40,7 @@
           "settings": {
             "collection": "soin-du-corps",
             "title": "Corps",
-            "text": "Mains et corps, ça pétille sans dessécher.",
+            "text": "Gels douche, gel lavant, crème à l'urée : ça pétille sans dessécher.",
             "color": "citron"
           }
         },
@@ -49,7 +49,7 @@
           "settings": {
             "collection": "soin-du-cuit-chevelu",
             "title": "Cheveux",
-            "text": "La douceur qu'il faut aux cuirs chevelus sensibles.",
+            "text": "Shampooing, après-shampooing, masque : la douceur, des racines aux pointes.",
             "color": "mandarine"
           }
         },

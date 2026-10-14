@@ -1,3 +1,18 @@
+# Livraison offerte dès 65 € (thème v5)
+
+**Le plus simple :** une copie du thème publié, déjà corrigée, existe dans Shopify sous le nom
+**« ORANE – v5 · livraison offerte dès 65 € »** (non publiée).
+Boutique en ligne → Thèmes → sur cette copie : « … » → Aperçu pour vérifier, puis **Publier**.
+Elle contient tout le contenu actuel (dont l'accueil déjà collé), avec en plus :
+- le panier en tiroir (`snippets/orane-drawer-bonus.liquid`, seuil 6500 au lieu de 5000) ;
+- la jauge de la fiche produit (`snippets/orane-buybox.liquid`) ;
+- la page panier, le bandeau d'annonce, les fiches produit, les collections et les pages (65 €) ;
+- les textes Corps et Cheveux des univers sur les pages collections.
+
+Les fichiers de ce dossier sont les mêmes, pour un collage à la main si besoin.
+
+---
+
 # Livraison offerte dès 65 € : les textes du thème publié à mettre à jour
 
 Le tarif « Livraison offerte » (0 € dès 65 € d'achat, France) est **déjà actif dans Shopify**, dans le profil de livraison Selfnamed.
