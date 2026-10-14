@@ -74,7 +74,12 @@ const all = { url: '/collections/all', products: Object.values(products) };
 const coll = (handle, title, tag) => { const ps = Object.values(products).filter((p) => tag(p)); return { handle, title, url: `/collections/${handle}`, products: ps, products_count: ps.length }; };
 liquidGlobals.collections = { all }; liquidGlobals.all_products = products;
 const real = JSON.parse(fs.readFileSync(path.join(here, 'products.json'), 'utf8'));
-for (const r of real) Object.assign(products[r.handle], { description: r.descriptionHtml, tags: r.tags, id: r.id });
+const couleurs = ['#FF5FA8', '#D4F23A', '#FF6A2B', '#6B2CF5', '#FFF3E3'];
+for (const [i, r] of real.entries()) {
+  if (!products[r.handle]) products[r.handle] = P(r.handle, r.title, r.price, r.tags, r.descriptionHtml, couleurs[i % couleurs.length]);
+  Object.assign(products[r.handle], { description: r.descriptionHtml, tags: r.tags, id: r.id });
+}
+all.products = Object.values(products);
 const collMocks = {
   'soin-du-visage': coll('soin-du-visage', 'Soin du visage', (p) => p.tags.includes('soins-du-visage')),
   'soin-du-corps': coll('soin-du-corps', 'Soin du corps', (p) => p.tags.includes('soins-du-corps')),
