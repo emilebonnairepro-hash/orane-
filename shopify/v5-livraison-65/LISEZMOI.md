@@ -9,7 +9,7 @@ il faut faire le changement dans **Boutique en ligne → Thèmes → Personnalis
 | Fichier du thème | Ce qui change |
 |---|---|
 | sections/header-group.json | Bandeau : « Livraison offerte dès 65 € d'achat » |
-| templates/index.json | Ticker et bloc promesses de l'accueil |
+| templates/index.json | Accueil : texte d'intro (toute la gamme), univers Corps et Cheveux, ticker et bloc promesses (65 €) |
 | templates/product.json | Jauge de la fiche (`threshold: 6500`), onglet Livraison, FAQ, promesse |
 | templates/cart.json | Jauge du panier et coach (`threshold: 65`), promesse |
 | templates/collection.json | Promesse |

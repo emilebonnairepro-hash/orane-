@@ -74,7 +74,7 @@ La collection « Soin du cuir chevelu » s'appelle désormais « Soin des cheveu
 
 **7. L'UE n'est pas ouverte à la vente.** Seul le marché France est actif. Les tarifs prévus pour l'UE et l'international ne servent pas tant que les marchés correspondants ne sont pas activés.
 
-**8. Le texte d'accueil est incomplet.** « Gel lavant, shampooing, patchs… » ne cite que les 6 premiers produits. À mettre à jour dans l'éditeur de thème : le thème publié ne peut pas être modifié par l'API.
+**8. Le texte d'accueil est incomplet.** ✅ Corrigé dans `shopify/v5-livraison-65/templates/index.json` : l'intro couvre maintenant toute la gamme, et les textes des univers Corps et Cheveux citent les nouveaux produits. Il reste à coller le fichier dans le thème : le thème publié ne peut pas être modifié par l'API.
 
 **9. Le domaine.** Le site est encore sur 9p6hke-1p.myshopify.com. Il faut brancher un nom de domaine (ex. orane.fr) avant le lancement.
 

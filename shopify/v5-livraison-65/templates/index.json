@@ -40,7 +40,7 @@
         "kicker": "Soins visage · corps · cheveux · homme",
         "title": "Des soins doux,",
         "title_em": "qui ont la pêche.",
-        "lead": "<p>Gel lavant, shampooing, patchs pour les yeux, démaquillant, gel hydratant, huile à barbe : des formules douces, des gestes simples, et un ton qui fait sourire.</p>",
+        "lead": "<p>Pour le visage, le corps, les cheveux et les hommes : gels lavants, masques, crème aux peptides, crème solaire teintée, shampooings, huile à barbe… Des formules douces, des gestes simples, et un ton qui fait sourire.</p>",
         "show_prices": true,
         "collection": "",
         "cta_label": "Voir les soins",
@@ -128,7 +128,7 @@
           "settings": {
             "collection": "soin-du-corps",
             "title": "Corps",
-            "text": "Mains et corps, ça pétille sans dessécher.",
+            "text": "Gels douche, gel lavant, crème à l'urée : ça pétille sans dessécher.",
             "color": "citron"
           }
         },
@@ -137,7 +137,7 @@
           "settings": {
             "collection": "soin-du-cuit-chevelu",
             "title": "Cheveux",
-            "text": "La douceur qu'il faut aux cuirs chevelus sensibles.",
+            "text": "Shampooing, après-shampooing, masque : la douceur, des racines aux pointes.",
             "color": "mandarine"
           }
         },
