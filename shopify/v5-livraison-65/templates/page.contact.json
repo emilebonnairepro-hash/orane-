@@ -1,0 +1,130 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "orane-page-hero",
+      "settings": {
+        "kicker": "Contact",
+        "title": "on papote ?",
+        "text": "<p>Une question sur un soin, une commande, ou juste envie de dire coucou ? Écris-nous, on répond vite (et gentiment).</p>",
+        "show_description": true,
+        "show_count": false,
+        "sticker": "réponse rapide",
+        "button_label": "",
+        "button_link": "",
+        "color": "violet"
+      }
+    },
+    "form": {
+      "type": "orane-contact",
+      "blocks": {
+        "f0": {
+          "type": "fact",
+          "settings": {
+            "big": "2 à 5 jours",
+            "small": "pour être livré",
+            "color": "citron"
+          }
+        },
+        "f1": {
+          "type": "fact",
+          "settings": {
+            "big": "offerte dès 65 €",
+            "small": "la livraison",
+            "color": "rose"
+          }
+        },
+        "f2": {
+          "type": "fact",
+          "settings": {
+            "big": "14 jours",
+            "small": "pour changer d'avis",
+            "color": "creme"
+          }
+        }
+      },
+      "block_order": [
+        "f0",
+        "f1",
+        "f2"
+      ],
+      "settings": {
+        "bubble": "dis-moi tout ✦",
+        "show_email": true,
+        "mail_label": "Tu préfères l'e-mail ?",
+        "kicker": "Le formulaire",
+        "title": "Écris-nous un petit mot.",
+        "topics_label": "C'est à propos de…",
+        "topics": "Un soin | Je t'aide à choisir ✦\nMa commande | Ton numéro de commande m'aidera ! | commande\nUn retour | Pas de souci, on gère ✦ | commande\nJuste coucou | Coucou toi ✦",
+        "name_label": "Ton prénom",
+        "email_label": "Ton e-mail",
+        "order_label": "Ton numéro de commande",
+        "message_label": "Ton message",
+        "placeholder": "Raconte-nous…",
+        "send_label": "Envoyer ✦",
+        "done_title": "Message reçu !",
+        "done_text": "Merci, on lit tout et on te répond par e-mail.",
+        "done_cta": "En attendant, les soins →"
+      }
+    },
+    "faq": {
+      "type": "orane-faq",
+      "blocks": {
+        "q0": {
+          "type": "question",
+          "settings": {
+            "question": "En combien de temps je reçois ma commande ?",
+            "answer": "<p>En 2 à 5 jours. Tu peux souffler, c'est bientôt chez toi.</p>"
+          }
+        },
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "La livraison, elle coûte combien ?",
+            "answer": "<p>Elle est offerte dès 65 € d'achat. En dessous, les frais s'affichent avant le paiement, pas de surprise.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Je peux changer d'avis ?",
+            "answer": "<p>Oui : tu as 14 jours. Écris-nous via le formulaire avec ton numéro de commande et on s'occupe du reste.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Comment je choisis le bon soin ?",
+            "answer": "<p>Chaque fiche produit indique les types de peau et les principes actifs. Tu peux aussi faire le quiz de la page d'accueil, ou nous écrire : on adore conseiller.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q0",
+        "q1",
+        "q2",
+        "q3"
+      ],
+      "settings": {
+        "kicker": "Avant de nous écrire",
+        "title": "Les questions",
+        "title_em": "qu'on adore.",
+        "show_contact": false,
+        "contact_text": "Pas trouvé ta réponse ? Écris-nous, on répond vite (et gentiment)."
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "form",
+    "faq"
+  ]
+}

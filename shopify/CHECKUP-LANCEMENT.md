@@ -58,7 +58,7 @@ La collection « Soin du cuir chevelu » s'appelle désormais « Soin des cheveu
 ## 🔴 Bloquant pour le lancement
 
 **1. La livraison offerte n'existe pas en vrai.** Le site annonce « livraison offerte dès 50 € » à 13 endroits : bandeau, fiches, panier, FAQ, contact. Or les 18 produits sont dans le profil de livraison « Selfnamed », où la France coûte 7,48 € quel que soit le montant. Le profil général (offert dès 65 €) ne s'applique à aucun produit.
-→ Décision à prendre : ajouter un tarif « Livraison offerte » à 0 € dès 50 € pour la France dans le profil Selfnamed, ou retirer la promesse du thème.
+→ **Corrigé côté Shopify (décision : offerte dès 65 €)** : le tarif « Livraison offerte » à 0 € dès 65 € est actif pour la France dans le profil Selfnamed. **Reste à faire** : passer les textes du thème de 50 € à 65 € (voir `shopify/v5-livraison-65/`).
 
 **2. Trois politiques manquent :** Livraison, Retours et CGV. Leurs liens dans le pied de page mènent à une page introuvable. Les mentions légales, obligatoires en France, manquent aussi. Des brouillons sont prêts dans `shopify/politiques/`. Il faut les compléter avec les informations de la société (raison sociale, SIRET, adresse, médiateur de la consommation) avant de les publier.
 
@@ -68,7 +68,7 @@ La collection « Soin du cuir chevelu » s'appelle désormais « Soin des cheveu
 
 **4. La politique de confidentialité a un trou :** « veuillez nous appeler au , nous envoyer un e-mail à l'adresseemilebonnairepro@gmail.com ». Il manque le numéro et une espace. À corriger dans Paramètres → Politiques.
 
-**5. Les prix sont incohérents.** Les 6 premiers produits valent de 6,30 € à 13,40 €. Le même gel lavant de 490 ml coûte 8,30 € en pamplemousse et 16,90 € en cardamome. On dirait des prix d'achat Selfnamed : à vérifier.
+**5. Les prix sont incohérents (confirmé : ce sont des erreurs).** Les 6 premiers produits valent de 6,30 € à 13,40 €. Le même gel lavant de 490 ml coûte 8,30 € en pamplemousse et 16,90 € en cardamome. Il faut les bons prix de vente pour les corriger.
 
 **6. Le délai « Livré en 2 à 5 jours »** est annoncé partout. Les produits partent de chez Selfnamed, en Lettonie : à confirmer avec leurs délais réels.
 

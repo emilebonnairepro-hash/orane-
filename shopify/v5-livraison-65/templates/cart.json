@@ -1,0 +1,122 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "tete": {
+      "type": "orane-panier-tete",
+      "settings": {
+        "kicker": "Le panier",
+        "title_empty": "tout vide… pour l'instant.",
+        "title_one": "un soin, une bouille ravie.",
+        "title_many": "[n] soins, zéro complexe.",
+        "empty_text": "Pas de panique : on t'aide à trouver ton soin.",
+        "empty_cta": "Voir les soins",
+        "quiz_label": "Faire le quiz",
+        "threshold": 65,
+        "track_left": "Plus que ",
+        "track_left_end": "et la livraison est offerte.",
+        "track_done": "Livraison offerte. Tu gères ✦"
+      }
+    },
+    "cart-items": {
+      "type": "main-cart-items",
+      "settings": {
+        "color_scheme": "scheme-a38ac93a-7224-4079-9c68-70762ddc148e",
+        "padding_top": 48,
+        "padding_bottom": 12
+      }
+    },
+    "cart-footer": {
+      "type": "main-cart-footer",
+      "blocks": {
+        "subtotal": {
+          "type": "subtotal",
+          "settings": {}
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "subtotal",
+        "buttons"
+      ],
+      "settings": {
+        "color_scheme": "scheme-a38ac93a-7224-4079-9c68-70762ddc148e",
+        "padding_top": 12,
+        "padding_bottom": 64
+      }
+    },
+    "coach": {
+      "type": "orane-panier-coach",
+      "settings": {
+        "threshold": 65,
+        "kicker": "Le coach",
+        "title": "Et avec ça,",
+        "title_em": "ça donne quoi ?",
+        "boost_ok": "Ajoute-le et la livraison est offerte ✦",
+        "boost_closer": "Le plus grand pas vers la livraison offerte",
+        "mate_note": "Va très bien avec : [produit]",
+        "routine_kicker": "Ta routine, coche par coche",
+        "done_label": "c'est dans le panier",
+        "add_label": "Ajouter",
+        "empty_kicker": "Par où commencer",
+        "empty_title": "Trois soins",
+        "empty_em": "pour démarrer."
+      }
+    },
+    "promesses": {
+      "type": "orane-promesses",
+      "blocks": {
+        "p0": {
+          "type": "promise",
+          "settings": {
+            "big": "2 à 5 jours",
+            "small": "et c'est chez toi",
+            "color": "citron"
+          }
+        },
+        "p1": {
+          "type": "promise",
+          "settings": {
+            "big": "offerte dès 65 €",
+            "small": "la livraison",
+            "color": "rose"
+          }
+        },
+        "p2": {
+          "type": "promise",
+          "settings": {
+            "big": "14 jours",
+            "small": "pour changer d'avis",
+            "color": "mandarine"
+          }
+        }
+      },
+      "block_order": [
+        "p0",
+        "p1",
+        "p2"
+      ],
+      "settings": {
+        "title": "",
+        "color": "aubergine"
+      }
+    }
+  },
+  "order": [
+    "tete",
+    "cart-items",
+    "cart-footer",
+    "coach",
+    "promesses"
+  ]
+}
