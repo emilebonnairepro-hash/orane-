@@ -145,4 +145,39 @@ On ne publie jamais de faux avis ni d'offre qui n'existe pas.
 - **Les commentaires.** Réponds à tous les commentaires dans la première heure, l'algorithme valorise ces échanges.
 - **Les réels.** Reprends le post 04 en réel : 3 plans de 2 secondes, un par geste, sur un son tendance.
 - **Les hashtags.** Mets-en 5 à 8 par post, toujours #orane plus des hashtags précis, et change-les d'un post à l'autre.
-- **La bio.** Par exemple : « orane ✦ peau neuve, mine de rien · soins visage, corps, cheveux » plus le lien vers la boutique.
+- **La bio.** Voir la section « Bio du profil » ci-dessous.
+
+---
+
+## Bio du profil
+
+**Nom affiché** (c'est lui qui compte pour la recherche Instagram) : `orane · soins visage & corps`
+
+**Bio conseillée** (129 caractères sur 150) :
+
+```
+Peau neuve, mine de rien ✦
+Soins visage · corps · cheveux · homme 🍊
+Des formules douces, zéro chichi
+Livraison offerte dès 65 € 👇
+```
+
+**Variante plus fun** (140 caractères) :
+
+```
+Des soins doux qui ont la pêche 🍊
+Visage · corps · cheveux · homme
+On tutoie, on rigole, on prend soin de toi ✦
+Livraison offerte dès 65 € 👇
+```
+
+**Variante courte** (116 caractères) :
+
+```
+orane ✦ peau neuve, mine de rien
+Le skincare sans chichis ni jargon 🍊
+Visage · corps · cheveux · homme
+👇 La boutique
+```
+
+**Lien** : l'adresse de la boutique. **Catégorie** : « Produits de beauté, cosmétiques et soins personnels ».
