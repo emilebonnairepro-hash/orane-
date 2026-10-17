@@ -3,7 +3,7 @@ Rendu image par image avec PIL, envoyé à ffmpeg sur stdin."""
 import math, subprocess, sys
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
-HERE = sys.path[0]
+HERE = __import__("os").path.dirname(__import__("os").path.abspath(__file__))
 W, H, FPS = 1080, 1920, 30
 OUT = sys.argv[1] if len(sys.argv) > 1 else f"{HERE}/orane_masque_keratine_promo.mp4"
 
@@ -222,6 +222,7 @@ SCENES = [
     (3.2, AUBERGINE, s_campagne),
     (3.4, AUBERGINE, s_outro),
 ]
+CORNERS = [(W, H), (0, 0), (W, 0), (0, H), (W, H), (0, 0), (W // 2, H), (W // 2, H // 2)]
 TRANS = 0.42  # transition : rond qui s'ouvre depuis un coin
 
 def render_scene(i, t_local):
@@ -241,7 +242,6 @@ def main():
         "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
         "-c:v", "libx264", "-preset", "slow", "-crf", "18", "-pix_fmt", "yuv420p",
         "-movflags", "+faststart", OUT], stdin=subprocess.PIPE)
-    corners = [(W, H), (0, 0), (W, 0), (0, H), (W, H), (0, 0), (W // 2, H), (W // 2, H // 2)]
     for k in range(n):
         t = k / FPS
         i = max(j for j in range(len(SCENES)) if starts[j] <= t + 1e-9)
@@ -251,7 +251,7 @@ def main():
             # la scène précédente reste visible, la nouvelle s'ouvre en cercle par-dessus
             prev = render_scene(i - 1, SCENES[i - 1][0] + tl)
             p = ease_in_out(tl / TRANS)
-            cx, cy = corners[i]
+            cx, cy = CORNERS[i]
             rmax = math.hypot(max(cx, W - cx), max(cy, H - cy))
             m = Image.new("L", (W, H), 0)
             r = rmax * p
