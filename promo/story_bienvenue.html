@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>ORANE story BIENVENUE10</title>
+<style>
+  /* Story 1080x1920 en unités logiques ; export en haute définition via export_story.js */
+  @font-face { font-family: "Unbounded"; font-weight: 800; src: url(fonts/Unbounded-ExtraBold.ttf); }
+  @font-face { font-family: "Bricolage"; font-weight: 400; src: url(fonts/Bricolage-Regular.ttf); }
+  @font-face { font-family: "Bricolage"; font-weight: 600; src: url(fonts/Bricolage-SemiBold.ttf); }
+  :root {
+    --mandarine: #FF6A2B; --rose: #FF5FA8; --citron: #D4F23A;
+    --aubergine: #2A1240; --creme: #FFF3E3;
+  }
+  * { margin: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; }
+  body { background: var(--mandarine); color: var(--aubergine); position: relative; font-family: "Bricolage", sans-serif; }
+  .abs { position: absolute; }
+  .blob { position: absolute; border-radius: 50%; }
+  .center { left: 0; right: 0; text-align: center; }
+
+  .wordmark { font-family: "Unbounded"; font-weight: 800; font-size: 120px; line-height: 1; top: 318px; }
+
+  .pastille {
+    left: 210px; top: 450px; width: 660px; height: 660px; border-radius: 50%;
+    background: var(--creme); border: 12px solid var(--aubergine);
+    box-shadow: 22px 22px 0 var(--aubergine);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .pastille .pct { font-family: "Unbounded"; font-weight: 800; font-size: 150px; line-height: 1; margin-top: -30px; }
+  .pastille .sous { font-weight: 600; font-size: 52px; margin-top: 38px; }
+
+  .produit {
+    left: 755px; top: 850px; width: 300px; height: 300px; border-radius: 50%;
+    border: 10px solid var(--aubergine); box-shadow: 18px 18px 0 var(--aubergine);
+    background: #ECEBEF url(panels/shampooing_n02.png) center 30% / 112%;
+  }
+
+  .ligne1 { top: 1188px; font-weight: 600; font-size: 62px; }
+  .ligne2 { top: 1288px; font-weight: 400; font-size: 50px; }
+
+  .sticker {
+    position: absolute; display: inline-block; white-space: nowrap;
+    font-family: "Unbounded"; font-weight: 800; line-height: 1;
+    border: 7px solid var(--aubergine); border-radius: 999px;
+    box-shadow: 10px 10px 0 var(--aubergine);
+  }
+  .code { left: 50%; top: 1445px; transform: translate(-50%, -50%) rotate(2deg);
+          background: var(--citron); font-size: 84px; padding: 30px 52px; }
+  .timide { left: 330px; top: 1640px; transform: translate(-50%, -50%) rotate(6deg);
+            background: var(--rose); font-size: 40px; padding: 22px 40px; }
+</style>
+</head>
+<body>
+  <div class="blob" style="left:780px; top:100px; width:460px; height:460px; background:var(--rose)"></div>
+  <div class="blob" style="left:-200px; top:1570px; width:520px; height:520px; background:var(--citron)"></div>
+
+  <!-- la bouille -->
+  <svg class="abs" style="left:488px; top:203px" width="104" height="104" viewBox="0 0 104 104" aria-hidden="true">
+    <g fill="none" stroke="#2A1240" stroke-width="7" stroke-linecap="round">
+      <circle cx="52" cy="52" r="47.5"/>
+      <path d="M33 59 Q52 78 71 59"/>
+    </g>
+    <circle cx="35" cy="42" r="5.7" fill="#2A1240"/>
+    <circle cx="69" cy="42" r="5.7" fill="#2A1240"/>
+  </svg>
+
+  <div class="abs center wordmark">orane</div>
+
+  <div class="abs pastille">
+    <div class="pct">-10&nbsp;%</div>
+    <div class="sous">rien que pour toi</div>
+  </div>
+
+  <div class="abs produit" role="img" aria-label="Shampooing N°02 ORANE"></div>
+
+  <div class="abs center ligne1">sur ta première commande</div>
+  <div class="abs center ligne2">avec le code</div>
+
+  <div class="sticker code">BIENVENUE10</div>
+  <div class="sticker timide">fais pas ta timide</div>
+</body>
+</html>
