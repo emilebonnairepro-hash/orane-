@@ -31,7 +31,7 @@ centered(d, "-10 %", UNB(150), cy - 40, AUBERGINE)
 centered(d, "rien que pour toi", BRI_SB(52), cy + 100, AUBERGINE)
 
 # le pot, dans un rond qui déborde de la pastille
-circle_photo(fr, PANELS[1], (890, 1040), 130, DONE, 0, DONE, zoom=(1.35, 1.35))
+circle_photo(fr, Image.open(f"{R.HERE}/panels/shampooing_n02.png").convert("RGB"), (905, 1000), 150, DONE, 0, DONE, zoom=(1.0, 1.0))
 
 d = ImageDraw.Draw(fr)
 centered(d, "sur ta première commande", BRI_SB(62), 1225, AUBERGINE)
